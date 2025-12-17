@@ -1,0 +1,11 @@
+# 本地开发环境配置示例
+# 复制此文件为 application-local.yml 并填入实际配置（不要提交到 Git）
+
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/microservice_db
+    username: your_username
+    password: your_password
+  kafka:
+    bootstrap-servers: localhost:9092
+
