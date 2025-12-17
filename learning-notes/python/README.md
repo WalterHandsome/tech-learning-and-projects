@@ -26,6 +26,8 @@ python/
 │
 ├── 01-Web开发/            # Web 开发框架
 │   ├── FastAPI快速入门.md            ✅ 已创建
+│   ├── FastAPI高级特性.md            ✅ 已创建
+│   ├── RESTful API设计最佳实践.md    ✅ 已创建
 │   ├── Django基础.md                 ✅ 已创建
 │   └── Flask基础.md                  ✅ 已创建
 │
@@ -33,47 +35,67 @@ python/
 │   ├── 数据分析概述.md               ✅ 已创建
 │   ├── NumPy应用.md                  ✅ 已创建
 │   ├── Pandas应用.md                 ✅ 已创建
-│   └── 数据可视化.md                 ✅ 已创建
+│   ├── 数据可视化.md                 ✅ 已创建
+│   ├── 数据清洗与预处理.md           ✅ 已创建
+│   └── 特征工程.md                   ✅ 已创建
 │
 ├── 03-机器学习/           # 机器学习与AI
 │   ├── 浅谈机器学习.md               ✅ 已创建
-│   └── RAG检索增强生成.md            ✅ 已创建
+│   ├── RAG检索增强生成.md            ✅ 已创建
+│   ├── LangChain框架应用.md          ✅ 已创建
+│   ├── AI Agent开发实践.md           ✅ 已创建
+│   └── 大模型微调实践.md             ✅ 已创建
 │
 ├── 04-并发编程/           # 并发编程
-│   └── Python并发编程.md             ✅ 已创建
+│   ├── Python并发编程.md             ✅ 已创建
+│   ├── 线程池与进程池.md             ✅ 已创建
+│   └── 异步编程进阶.md               ✅ 已创建
 │
 ├── 05-网络编程/           # 网络编程
-│   └── Python网络编程.md             ✅ 已创建
+│   ├── Python网络编程.md             ✅ 已创建
+│   ├── HTTP服务器开发.md             ✅ 已创建
+│   └── gRPC应用开发.md               ✅ 已创建
 │
 ├── 06-爬虫/               # 网络爬虫
-│   └── Python爬虫.md                 ✅ 已创建
+│   ├── Python爬虫.md                 ✅ 已创建
+│   ├── 反爬虫策略与应对.md           ✅ 已创建
+│   └── 分布式爬虫架构.md             ✅ 已创建
 │
 ├── 07-数据库操作/         # 数据库操作
-│   └── Python数据库操作.md           ✅ 已创建
+│   ├── Python数据库操作.md           ✅ 已创建
+│   └── 数据库连接池与事务管理.md     ✅ 已创建
 │
 ├── 08-测试/               # 测试
-│   └── Python测试.md                 ✅ 已创建
+│   ├── Python测试.md                 ✅ 已创建
+│   └── 集成测试与Mock.md             ✅ 已创建
 │
 ├── 09-工具与规范/         # 开发工具与代码规范
-│   └── Python工具与规范.md           ✅ 已创建
+│   ├── Python工具与规范.md           ✅ 已创建
+│   └── 虚拟环境与包管理.md           ✅ 已创建
 │
 ├── 10-设计模式/           # 设计模式
-│   └── Python设计模式.md             ✅ 已创建
+│   ├── Python设计模式.md             ✅ 已创建
+│   └── 设计模式实战案例.md           ✅ 已创建
 │
 ├── 11-部署与运维/         # 部署与运维
-│   └── Python部署与运维.md           ✅ 已创建
+│   ├── Python部署与运维.md           ✅ 已创建
+│   └── Kubernetes部署实践.md        ✅ 已创建
 │
 ├── 12-性能优化/           # 性能优化
-│   └── Python性能优化.md             ✅ 已创建
+│   ├── Python性能优化.md             ✅ 已创建
+│   └── 性能分析工具.md               ✅ 已创建
 │
 ├── 13-安全编程/           # 安全编程
-│   └── Python安全编程.md             ✅ 已创建
+│   ├── Python安全编程.md             ✅ 已创建
+│   └── 加密与认证.md                 ✅ 已创建
 │
 ├── 14-算法与数据结构/     # 算法与数据结构
-│   └── Python算法与数据结构.md       ✅ 已创建
+│   ├── Python算法与数据结构.md       ✅ 已创建
+│   └── 经典算法实现.md               ✅ 已创建
 │
 ├── 15-消息队列/           # 消息队列
-│   └── Python消息队列.md             ✅ 已创建
+│   ├── Python消息队列.md             ✅ 已创建
+│   └── 消息队列高级应用.md           ✅ 已创建
 │
 └── README.md              # 本文件
 ```
@@ -103,6 +125,8 @@ python/
 ### Web 开发部分
 
 - **FastAPI快速入门**：FastAPI框架使用、API开发、异步支持
+- **FastAPI高级特性**：依赖注入、中间件、WebSocket、文件处理、数据库集成、缓存、限流
+- **RESTful API设计最佳实践**：REST原则、HTTP状态码、版本控制、认证授权、限流、错误处理
 - **Django基础**：Django框架、模型、视图、模板
 - **Flask基础**：Flask框架、路由、模板、蓝图
 
@@ -112,59 +136,79 @@ python/
 - **NumPy应用**：数组操作、数学运算、数组索引
 - **Pandas应用**：DataFrame操作、数据清洗、数据分析
 - **数据可视化**：Matplotlib、Seaborn等可视化库
+- **数据清洗与预处理**：缺失值处理、重复数据、异常值、数据标准化、特征工程、编码分类变量
+- **特征工程**：特征选择、特征变换、特征创建、特征编码、相关性分析、特征重要性
 
 ### 机器学习部分
 
-- **浅谈机器学习**：机器学习概述、算法分类、模型训练
-- **RAG检索增强生成**：RAG实现、向量化、检索策略
+- **浅谈机器学习**：机器学习概述、算法分类、模型训练、AI发展史
+- **RAG检索增强生成**：RAG实现、向量化、检索策略、LlamaIndex应用
+- **LangChain框架应用**：LangChain核心概念、链和代理、数据连接、RAG实现
+- **AI Agent开发实践**：Agent架构设计、ReAct Agent、Plan-and-Execute、记忆系统、工具系统
+- **大模型微调实践**：LoRA微调、QLoRA微调、全量微调、数据准备、模型评估
 
 ### 并发编程部分
 
-- **Python并发编程**：多线程、多进程、异步编程（asyncio）
+- **Python并发编程**：多线程、多进程、异步编程（asyncio）基础
+- **线程池与进程池**：ThreadPoolExecutor、ProcessPoolExecutor、性能对比、最佳实践
+- **异步编程进阶**：异步上下文管理器、异步迭代器、异步队列、信号量和锁、超时和取消
 
 ### 网络编程部分
 
 - **Python网络编程**：Socket编程、HTTP客户端、WebSocket、FTP/SMTP
+- **HTTP服务器开发**：http.server、Flask RESTful API、FastAPI、aiohttp异步服务器、Tornado、WebSocket服务器
+- **gRPC应用开发**：Protocol Buffers、gRPC服务定义、服务端实现、客户端调用、流式传输
 
 ### 爬虫部分
 
-- **Python爬虫**：requests、BeautifulSoup、Scrapy、Selenium
+- **Python爬虫**：requests、BeautifulSoup、Scrapy、Selenium基础
+- **反爬虫策略与应对**：User-Agent检测、IP限制、Cookie和Session、JavaScript渲染、验证码处理、请求频率控制
+- **分布式爬虫架构**：分布式架构设计、Redis队列管理、Celery分布式任务、Scrapy-Redis、数据去重、布隆过滤器
 
 ### 数据库操作部分
 
-- **Python数据库操作**：SQLAlchemy ORM、MongoDB、Redis、原生SQL
+- **Python数据库操作**：SQLAlchemy ORM、MongoDB、Redis基础
+- **数据库连接池与事务管理**：连接池配置、会话管理、事务处理、批量操作、异步操作、数据库迁移、原生SQL
 
 ### 测试部分
 
-- **Python测试**：unittest、pytest、Mock、测试覆盖率
+- **Python测试**：unittest、pytest基础、断言、Fixture
+- **集成测试与Mock**：API集成测试、数据库集成测试、Mock对象、pytest-mock、异步测试、测试覆盖率
 
 ### 工具与规范部分
 
-- **Python工具与规范**：虚拟环境、包管理、代码规范（PEP 8）、类型检查、文档工具
+- **Python工具与规范**：代码规范（PEP 8）、类型检查、代码质量工具
+- **虚拟环境与包管理**：venv、virtualenv、conda、pip、Poetry、pipenv、依赖管理、文档工具
 
 ### 设计模式部分
 
 - **Python设计模式**：创建型模式、结构型模式、行为型模式、Python特有模式
+- **设计模式实战案例**：观察者模式（事件系统）、策略模式（支付系统）、装饰器模式、适配器模式、责任链模式、模板方法、状态模式、命令模式、外观模式、代理模式
 
 ### 部署与运维部分
 
 - **Python部署与运维**：Gunicorn/uWSGI部署、Nginx配置、Docker部署、进程管理、监控
+- **Kubernetes部署实践**：Deployment配置、Service、ConfigMap/Secret、HPA自动扩缩容、滚动更新、监控日志
 
 ### 性能优化部分
 
-- **Python性能优化**：算法优化、代码优化、内存优化、并发优化、性能分析工具
+- **Python性能优化**：算法优化、代码优化、内存优化、并发优化
+- **性能分析工具**：cProfile、line_profiler、memory_profiler、py-spy实时分析
 
 ### 安全编程部分
 
-- **Python安全编程**：输入验证、认证授权、数据加密、安全配置、常见漏洞防护
+- **Python安全编程**：输入验证、安全配置、常见漏洞防护
+- **加密与认证**：密码加密（bcrypt、passlib）、JWT认证、OAuth2、常见漏洞防护
 
 ### 算法与数据结构部分
 
 - **Python算法与数据结构**：数据结构实现、排序算法、搜索算法、动态规划、图算法
+- **经典算法实现**：快速排序、归并排序、堆排序、二分搜索、DFS/BFS、动态规划（斐波那契、LCS、背包问题）、图算法（Dijkstra、拓扑排序）、字符串算法（KMP）、贪心算法、回溯算法（N皇后）
 
 ### 消息队列部分
 
-- **Python消息队列**：RabbitMQ、Kafka、Redis队列、Celery分布式任务
+- **Python消息队列**：RabbitMQ、Kafka、Redis队列、Celery分布式任务基础
+- **消息队列高级应用**：RabbitMQ高级特性（消息确认、持久化、公平分发、发布订阅、路由模式、主题模式）、Kafka高级应用（生产者配置、消费者组、分区副本）、Redis消息队列（列表队列、发布订阅、Stream）、Celery高级用法（任务路由、定时任务）、消息幂等性、死信队列、消息重试、顺序保证、监控告警
 
 ## 🎯 学习路径
 

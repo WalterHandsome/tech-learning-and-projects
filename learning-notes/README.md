@@ -22,8 +22,20 @@
 ```
 learning-notes/
 ├── java/                          # Java 技术栈（按类别组织）
-│   ├── 00-Java基础/               # Java 语言基础
-│   │   └── Java新特性8-17.md
+│   ├── 00-Java基础/               # Java 语言基础（12个文档）
+│   │   ├── Java新特性8-17.md
+│   │   ├── JVM内存模型与垃圾回收.md
+│   │   ├── Java并发编程.md
+│   │   ├── Java集合框架.md
+│   │   ├── Java反射与注解.md
+│   │   ├── Java异常处理.md
+│   │   ├── Java泛型.md
+│   │   ├── Java枚举.md
+│   │   ├── Java IO与NIO.md
+│   │   ├── Java字符串.md
+│   │   ├── Java包装类与自动装箱拆箱.md
+│   │   ├── Java内部类.md
+│   │   └── Java正则表达式.md
 │   │
 │   ├── 01-框架/                   # Spring 生态框架
 │   │   ├── Spring基础01.md
@@ -109,11 +121,77 @@ learning-notes/
 │   │
 │   └── README.md                  # Java 技术栈索引
 │
-├── python/                        # Python 技术栈
-│   ├── 浅谈机器学习.md             # 机器学习概述
-│   ├── 数据分析概述.md             # 数据分析基础
-│   ├── fastapi-tutorial.md
-│   └── rag-implementation.md
+├── python/                        # Python 技术栈（按类别组织）
+│   ├── 00-Python基础/              # Python 语言基础（16个文档）
+│   │   ├── Python简介与安装.md
+│   │   ├── Python变量与数据类型.md
+│   │   ├── Python运算符.md
+│   │   ├── Python分支结构.md
+│   │   ├── Python循环结构.md
+│   │   ├── Python数据结构-列表.md
+│   │   ├── Python数据结构-元组.md
+│   │   ├── Python数据结构-字典.md
+│   │   ├── Python数据结构-集合.md
+│   │   ├── Python数据结构-字符串.md
+│   │   ├── Python函数.md
+│   │   ├── Python面向对象编程.md
+│   │   ├── Python异常处理.md
+│   │   ├── Python文件操作.md
+│   │   ├── Python正则表达式.md
+│   │   └── Python高级特性.md
+│   │
+│   ├── 01-Web开发/                 # Web 开发框架
+│   │   ├── FastAPI快速入门.md
+│   │   ├── Django基础.md
+│   │   └── Flask基础.md
+│   │
+│   ├── 02-数据分析/                # 数据分析与科学计算
+│   │   ├── 数据分析概述.md
+│   │   ├── NumPy应用.md
+│   │   ├── Pandas应用.md
+│   │   └── 数据可视化.md
+│   │
+│   ├── 03-机器学习/                # 机器学习与AI
+│   │   ├── 浅谈机器学习.md
+│   │   └── RAG检索增强生成.md
+│   │
+│   ├── 04-并发编程/                 # 并发编程
+│   │   └── Python并发编程.md
+│   │
+│   ├── 05-网络编程/                 # 网络编程
+│   │   └── Python网络编程.md
+│   │
+│   ├── 06-爬虫/                     # 网络爬虫
+│   │   └── Python爬虫.md
+│   │
+│   ├── 07-数据库操作/               # 数据库操作
+│   │   └── Python数据库操作.md
+│   │
+│   ├── 08-测试/                     # 测试
+│   │   └── Python测试.md
+│   │
+│   ├── 09-工具与规范/               # 开发工具与代码规范
+│   │   └── Python工具与规范.md
+│   │
+│   ├── 10-设计模式/                 # 设计模式
+│   │   └── Python设计模式.md
+│   │
+│   ├── 11-部署与运维/               # 部署与运维
+│   │   └── Python部署与运维.md
+│   │
+│   ├── 12-性能优化/                 # 性能优化
+│   │   └── Python性能优化.md
+│   │
+│   ├── 13-安全编程/                 # 安全编程
+│   │   └── Python安全编程.md
+│   │
+│   ├── 14-算法与数据结构/           # 算法与数据结构
+│   │   └── Python算法与数据结构.md
+│   │
+│   ├── 15-消息队列/                 # 消息队列
+│   │   └── Python消息队列.md
+│   │
+│   └── README.md                   # Python 技术栈索引
 │
 └── architecture/                  # 架构设计
     └── event-driven-architecture.md
@@ -122,6 +200,21 @@ learning-notes/
 ## 🎯 内容分类
 
 ### Java 技术栈
+
+**00-Java基础**
+- **Java语言特性**：Java新特性8-17（Lambda、Stream API等）
+- **JVM**：JVM内存模型、垃圾回收算法、垃圾收集器、JVM调优
+- **并发编程**：线程基础、线程同步、线程池、并发集合、原子类、CAS、锁机制
+- **集合框架**：List、Set、Map、Queue等集合类的使用和原理
+- **反射与注解**：反射机制、Class类、注解定义和使用
+- **异常处理**：异常分类、try-catch-finally、自定义异常
+- **泛型**：泛型类、泛型方法、类型通配符、类型擦除
+- **枚举**：枚举定义、枚举方法、EnumSet、EnumMap
+- **IO与NIO**：字节流、字符流、对象流、NIO Buffer、Channel、Selector
+- **字符串**：String不可变性、字符串常量池、StringBuilder、StringBuffer
+- **包装类**：包装类使用、自动装箱拆箱、缓存机制
+- **内部类**：成员内部类、静态内部类、局部内部类、匿名内部类
+- **正则表达式**：Pattern、Matcher、正则语法
 
 **01-框架**
 - **Spring 系列**：Spring 基础（IOC、DI、AOP）、Spring Boot、SpringMVC、Spring 高级特性
@@ -174,10 +267,62 @@ learning-notes/
 
 ### Python 技术栈
 
-- **浅谈机器学习**：机器学习概述、应用领域、算法分类
-- **数据分析概述**：数据分析流程、工具库、技能栈
-- **FastAPI 快速入门**：现代 Web 框架使用指南
-- **RAG 检索增强生成**：RAG 实现和优化策略
+**00-Python基础**
+- **Python语言特性**：变量与数据类型、运算符、分支结构、循环结构
+- **数据结构**：列表、元组、字典、集合、字符串的操作和方法
+- **函数与面向对象**：函数定义、Lambda、装饰器、类与对象、继承与多态
+- **高级特性**：异常处理、文件操作、正则表达式、生成器、迭代器、上下文管理器
+
+**01-Web开发**
+- **FastAPI**：现代 Web 框架、API 开发、异步支持
+- **Django**：全栈 Web 框架、模型、视图、模板
+- **Flask**：轻量级 Web 框架、路由、蓝图
+
+**02-数据分析**
+- **数据分析概述**：数据分析流程、工具库介绍
+- **NumPy**：数组操作、数学运算、科学计算
+- **Pandas**：DataFrame 操作、数据清洗、数据分析
+- **数据可视化**：Matplotlib、Seaborn 等可视化库
+
+**03-机器学习**
+- **浅谈机器学习**：机器学习概述、算法分类、模型训练
+- **RAG检索增强生成**：RAG 实现、向量化、检索策略
+
+**04-并发编程**
+- **Python并发编程**：多线程、多进程、异步编程（asyncio）
+
+**05-网络编程**
+- **Python网络编程**：Socket 编程、HTTP 客户端、WebSocket
+
+**06-爬虫**
+- **Python爬虫**：requests、BeautifulSoup、Scrapy、Selenium
+
+**07-数据库操作**
+- **Python数据库操作**：SQLAlchemy ORM、MongoDB、Redis
+
+**08-测试**
+- **Python测试**：unittest、pytest、Mock、测试覆盖率
+
+**09-工具与规范**
+- **Python工具与规范**：虚拟环境、包管理、代码规范（PEP 8）、类型检查
+
+**10-设计模式**
+- **Python设计模式**：创建型、结构型、行为型设计模式
+
+**11-部署与运维**
+- **Python部署与运维**：Gunicorn/uWSGI 部署、Nginx 配置、Docker 部署
+
+**12-性能优化**
+- **Python性能优化**：算法优化、代码优化、内存优化、性能分析
+
+**13-安全编程**
+- **Python安全编程**：输入验证、认证授权、数据加密、安全配置
+
+**14-算法与数据结构**
+- **Python算法与数据结构**：数据结构实现、排序算法、搜索算法、动态规划
+
+**15-消息队列**
+- **Python消息队列**：RabbitMQ、Kafka、Redis 队列、Celery
 
 ### 架构设计
 
