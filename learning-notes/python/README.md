@@ -37,14 +37,16 @@ python/
 │   ├── Pandas应用.md                 ✅ 已创建
 │   ├── 数据可视化.md                 ✅ 已创建
 │   ├── 数据清洗与预处理.md           ✅ 已创建
-│   └── 特征工程.md                   ✅ 已创建
+│   ├── 特征工程.md                   ✅ 已创建
+│   └── 时间序列分析.md               ✅ 已创建
 │
 ├── 03-机器学习/           # 机器学习与AI
 │   ├── 浅谈机器学习.md               ✅ 已创建
 │   ├── RAG检索增强生成.md            ✅ 已创建
 │   ├── LangChain框架应用.md          ✅ 已创建
 │   ├── AI Agent开发实践.md           ✅ 已创建
-│   └── 大模型微调实践.md             ✅ 已创建
+│   ├── 大模型微调实践.md             ✅ 已创建
+│   └── 深度学习框架应用.md           ✅ 已创建
 │
 ├── 04-并发编程/           # 并发编程
 │   ├── Python并发编程.md             ✅ 已创建
@@ -59,19 +61,23 @@ python/
 ├── 06-爬虫/               # 网络爬虫
 │   ├── Python爬虫.md                 ✅ 已创建
 │   ├── 反爬虫策略与应对.md           ✅ 已创建
-│   └── 分布式爬虫架构.md             ✅ 已创建
+│   ├── 分布式爬虫架构.md             ✅ 已创建
+│   └── 数据存储与管理.md             ✅ 已创建
 │
 ├── 07-数据库操作/         # 数据库操作
 │   ├── Python数据库操作.md           ✅ 已创建
-│   └── 数据库连接池与事务管理.md     ✅ 已创建
+│   ├── 数据库连接池与事务管理.md     ✅ 已创建
+│   └── SQLAlchemy高级特性.md        ✅ 已创建
 │
 ├── 08-测试/               # 测试
 │   ├── Python测试.md                 ✅ 已创建
-│   └── 集成测试与Mock.md             ✅ 已创建
+│   ├── 集成测试与Mock.md             ✅ 已创建
+│   └── 性能测试与压力测试.md         ✅ 已创建
 │
 ├── 09-工具与规范/         # 开发工具与代码规范
 │   ├── Python工具与规范.md           ✅ 已创建
-│   └── 虚拟环境与包管理.md           ✅ 已创建
+│   ├── 虚拟环境与包管理.md           ✅ 已创建
+│   └── 代码质量工具.md               ✅ 已创建
 │
 ├── 10-设计模式/           # 设计模式
 │   ├── Python设计模式.md             ✅ 已创建
@@ -79,15 +85,18 @@ python/
 │
 ├── 11-部署与运维/         # 部署与运维
 │   ├── Python部署与运维.md           ✅ 已创建
-│   └── Kubernetes部署实践.md        ✅ 已创建
+│   ├── Kubernetes部署实践.md        ✅ 已创建
+│   └── CI_CD实践.md                  ✅ 已创建
 │
 ├── 12-性能优化/           # 性能优化
 │   ├── Python性能优化.md             ✅ 已创建
-│   └── 性能分析工具.md               ✅ 已创建
+│   ├── 性能分析工具.md               ✅ 已创建
+│   └── 内存优化技巧.md               ✅ 已创建
 │
 ├── 13-安全编程/           # 安全编程
 │   ├── Python安全编程.md             ✅ 已创建
-│   └── 加密与认证.md                 ✅ 已创建
+│   ├── 加密与认证.md                 ✅ 已创建
+│   └── 常见漏洞防护.md               ✅ 已创建
 │
 ├── 14-算法与数据结构/     # 算法与数据结构
 │   ├── Python算法与数据结构.md       ✅ 已创建
@@ -138,6 +147,7 @@ python/
 - **数据可视化**：Matplotlib、Seaborn等可视化库
 - **数据清洗与预处理**：缺失值处理、重复数据、异常值、数据标准化、特征工程、编码分类变量
 - **特征工程**：特征选择、特征变换、特征创建、特征编码、相关性分析、特征重要性
+- **时间序列分析**：时间序列数据处理、趋势分析、季节性分析、平稳性检验、ARIMA模型、Prophet模型、LSTM预测、异常检测
 
 ### 机器学习部分
 
@@ -146,6 +156,7 @@ python/
 - **LangChain框架应用**：LangChain核心概念、链和代理、数据连接、RAG实现
 - **AI Agent开发实践**：Agent架构设计、ReAct Agent、Plan-and-Execute、记忆系统、工具系统
 - **大模型微调实践**：LoRA微调、QLoRA微调、全量微调、数据准备、模型评估
+- **深度学习框架应用**：TensorFlow基础、PyTorch基础、CNN实现、RNN/LSTM、迁移学习、模型保存加载
 
 ### 并发编程部分
 
@@ -164,21 +175,25 @@ python/
 - **Python爬虫**：requests、BeautifulSoup、Scrapy、Selenium基础
 - **反爬虫策略与应对**：User-Agent检测、IP限制、Cookie和Session、JavaScript渲染、验证码处理、请求频率控制
 - **分布式爬虫架构**：分布式架构设计、Redis队列管理、Celery分布式任务、Scrapy-Redis、数据去重、布隆过滤器
+- **数据存储与管理**：文件存储（JSON、CSV）、数据库存储（SQLite、MongoDB）、数据去重、增量爬取、数据清洗、数据验证
 
 ### 数据库操作部分
 
 - **Python数据库操作**：SQLAlchemy ORM、MongoDB、Redis基础
 - **数据库连接池与事务管理**：连接池配置、会话管理、事务处理、批量操作、异步操作、数据库迁移、原生SQL
+- **SQLAlchemy高级特性**：关系映射（一对多、多对多）、查询优化（预加载、延迟加载）、复杂查询（子查询、组合条件）、事件监听、混合属性
 
 ### 测试部分
 
 - **Python测试**：unittest、pytest基础、断言、Fixture
 - **集成测试与Mock**：API集成测试、数据库集成测试、Mock对象、pytest-mock、异步测试、测试覆盖率
+- **性能测试与压力测试**：Locust压力测试、pytest-benchmark基准测试、Apache Bench、响应时间分析、吞吐量测试
 
 ### 工具与规范部分
 
 - **Python工具与规范**：代码规范（PEP 8）、类型检查、代码质量工具
 - **虚拟环境与包管理**：venv、virtualenv、conda、pip、Poetry、pipenv、依赖管理、文档工具
+- **代码质量工具**：Black格式化、autopep8、Flake8代码检查、Pylint、mypy类型检查、Radon复杂度分析、Bandit安全扫描、Coverage.py覆盖率、pre-commit集成
 
 ### 设计模式部分
 
@@ -189,16 +204,19 @@ python/
 
 - **Python部署与运维**：Gunicorn/uWSGI部署、Nginx配置、Docker部署、进程管理、监控
 - **Kubernetes部署实践**：Deployment配置、Service、ConfigMap/Secret、HPA自动扩缩容、滚动更新、监控日志
+- **CI/CD实践**：GitHub Actions工作流、Python项目CI、Docker构建推送、自动部署、多环境测试、代码质量检查
 
 ### 性能优化部分
 
 - **Python性能优化**：算法优化、代码优化、内存优化、并发优化
 - **性能分析工具**：cProfile、line_profiler、memory_profiler、py-spy实时分析
+- **内存优化技巧**：memory_profiler内存分析、tracemalloc跟踪、生成器节省内存、__slots__减少对象内存、及时释放大对象、数据结构优化（array、deque）
 
 ### 安全编程部分
 
 - **Python安全编程**：输入验证、安全配置、常见漏洞防护
 - **加密与认证**：密码加密（bcrypt、passlib）、JWT认证、OAuth2、常见漏洞防护
+- **常见漏洞防护**：SQL注入防护、XSS防护、CSRF防护、命令注入防护、文件上传安全、敏感信息保护、输入验证
 
 ### 算法与数据结构部分
 
