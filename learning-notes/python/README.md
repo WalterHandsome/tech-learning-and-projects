@@ -32,7 +32,8 @@ python/
 │   ├── Django高级特性.md             ✅ 已创建
 │   ├── Flask基础.md                  ✅ 已创建
 │   ├── Flask高级特性.md               ✅ 已创建
-│   └── WebSocket实时通信.md          ✅ 已创建
+│   ├── WebSocket实时通信.md          ✅ 已创建
+│   └── GraphQL应用开发.md            ✅ 已创建
 │
 ├── 02-数据分析/           # 数据分析与科学计算
 │   ├── 数据分析概述.md               ✅ 已创建
@@ -51,7 +52,8 @@ python/
 │   ├── AI Agent开发实践.md           ✅ 已创建
 │   ├── 大模型微调实践.md             ✅ 已创建
 │   ├── 深度学习框架应用.md           ✅ 已创建
-│   └── 模型评估与验证.md             ✅ 已创建
+│   ├── 模型评估与验证.md             ✅ 已创建
+│   └── 超参数调优.md                 ✅ 已创建
 │
 ├── 04-并发编程/           # 并发编程
 │   ├── Python并发编程.md             ✅ 已创建
@@ -69,17 +71,20 @@ python/
 │   ├── Python爬虫.md                 ✅ 已创建
 │   ├── 反爬虫策略与应对.md           ✅ 已创建
 │   ├── 分布式爬虫架构.md             ✅ 已创建
-│   └── 数据存储与管理.md             ✅ 已创建
+│   ├── 数据存储与管理.md             ✅ 已创建
+│   └── 爬虫框架深入.md               ✅ 已创建
 │
 ├── 07-数据库操作/         # 数据库操作
 │   ├── Python数据库操作.md           ✅ 已创建
 │   ├── 数据库连接池与事务管理.md     ✅ 已创建
-│   └── SQLAlchemy高级特性.md        ✅ 已创建
+│   ├── SQLAlchemy高级特性.md        ✅ 已创建
+│   └── 数据库优化.md                 ✅ 已创建
 │
 ├── 08-测试/               # 测试
 │   ├── Python测试.md                 ✅ 已创建
 │   ├── 集成测试与Mock.md             ✅ 已创建
-│   └── 性能测试与压力测试.md         ✅ 已创建
+│   ├── 性能测试与压力测试.md         ✅ 已创建
+│   └── 测试策略与TDD.md              ✅ 已创建
 │
 ├── 09-工具与规范/         # 开发工具与代码规范
 │   ├── Python工具与规范.md           ✅ 已创建
@@ -94,12 +99,14 @@ python/
 ├── 11-部署与运维/         # 部署与运维
 │   ├── Python部署与运维.md           ✅ 已创建
 │   ├── Kubernetes部署实践.md        ✅ 已创建
-│   └── CI_CD实践.md                  ✅ 已创建
+│   ├── CI_CD实践.md                  ✅ 已创建
+│   └── 监控与日志.md                 ✅ 已创建
 │
 ├── 12-性能优化/           # 性能优化
 │   ├── Python性能优化.md             ✅ 已创建
 │   ├── 性能分析工具.md               ✅ 已创建
-│   └── 内存优化技巧.md               ✅ 已创建
+│   ├── 内存优化技巧.md               ✅ 已创建
+│   └── 缓存策略.md                   ✅ 已创建
 │
 ├── 13-安全编程/           # 安全编程
 │   ├── Python安全编程.md             ✅ 已创建
@@ -149,6 +156,7 @@ python/
 - **Flask基础**：Flask框架、路由、模板、蓝图
 - **Flask高级特性**：蓝图、应用工厂、扩展（SQLAlchemy、Migrate、Login）、上下文、错误处理、测试、部署
 - **WebSocket实时通信**：FastAPI WebSocket、Flask-SocketIO、Django Channels、aiohttp WebSocket、客户端实现
+- **GraphQL应用开发**：Graphene框架、Schema定义、查询和变更、FastAPI集成、订阅、数据加载器
 
 ### 数据分析部分
 
@@ -170,6 +178,7 @@ python/
 - **大模型微调实践**：LoRA微调、QLoRA微调、全量微调、数据准备、模型评估
 - **深度学习框架应用**：TensorFlow基础、PyTorch基础、CNN实现、RNN/LSTM、迁移学习、模型保存加载
 - **模型评估与验证**：评估指标（准确率、精确率、召回率、F1、ROC/AUC、MSE、MAE、R²）、交叉验证（K折、分层K折、留一法）、学习曲线、验证曲线
+- **超参数调优**：网格搜索（GridSearchCV）、随机搜索（RandomizedSearchCV）、贝叶斯优化（Optuna）、参数重要性分析、早停策略、Keras Tuner
 
 ### 并发编程部分
 
@@ -191,18 +200,21 @@ python/
 - **反爬虫策略与应对**：User-Agent检测、IP限制、Cookie和Session、JavaScript渲染、验证码处理、请求频率控制
 - **分布式爬虫架构**：分布式架构设计、Redis队列管理、Celery分布式任务、Scrapy-Redis、数据去重、布隆过滤器
 - **数据存储与管理**：文件存储（JSON、CSV）、数据库存储（SQLite、MongoDB）、数据去重、增量爬取、数据清洗、数据验证
+- **爬虫框架深入**：Scrapy深入（项目结构、Pipeline、中间件）、分布式爬虫（Scrapy-Redis）、Selenium高级（无头浏览器、等待策略、反检测）、Playwright应用、数据解析技巧（XPath、CSS选择器）
 
 ### 数据库操作部分
 
 - **Python数据库操作**：SQLAlchemy ORM、MongoDB、Redis基础
 - **数据库连接池与事务管理**：连接池配置、会话管理、事务处理、批量操作、异步操作、数据库迁移、原生SQL
 - **SQLAlchemy高级特性**：关系映射（一对多、多对多）、查询优化（预加载、延迟加载）、复杂查询（子查询、组合条件）、事件监听、混合属性
+- **数据库优化**：索引优化（单列索引、复合索引、唯一索引）、查询优化（避免N+1、预加载、批量操作）、连接池优化、查询缓存（结果缓存、Redis缓存）、分页优化（游标分页）、数据库分区
 
 ### 测试部分
 
 - **Python测试**：unittest、pytest基础、断言、Fixture
 - **集成测试与Mock**：API集成测试、数据库集成测试、Mock对象、pytest-mock、异步测试、测试覆盖率
 - **性能测试与压力测试**：Locust压力测试、pytest-benchmark基准测试、Apache Bench、响应时间分析、吞吐量测试
+- **测试策略与TDD**：TDD流程（红-绿-重构）、测试金字塔（单元测试、集成测试、端到端测试）、测试策略（功能测试、性能测试、安全测试）、BDD行为驱动开发、测试数据管理（Fixtures、工厂模式）、测试隔离、持续测试
 
 ### 工具与规范部分
 
@@ -221,12 +233,14 @@ python/
 - **Python部署与运维**：Gunicorn/uWSGI部署、Nginx配置、Docker部署、进程管理、监控
 - **Kubernetes部署实践**：Deployment配置、Service、ConfigMap/Secret、HPA自动扩缩容、滚动更新、监控日志
 - **CI/CD实践**：GitHub Actions工作流、Python项目CI、Docker构建推送、自动部署、多环境测试、代码质量检查
+- **监控与日志**：应用监控（Prometheus、健康检查）、日志聚合（ELK Stack、结构化日志）、错误追踪（Sentry）、性能监控（APM、慢查询监控）、资源监控、告警系统
 
 ### 性能优化部分
 
 - **Python性能优化**：算法优化、代码优化、内存优化、并发优化
 - **性能分析工具**：cProfile、line_profiler、memory_profiler、py-spy实时分析
 - **内存优化技巧**：memory_profiler内存分析、tracemalloc跟踪、生成器节省内存、__slots__减少对象内存、及时释放大对象、数据结构优化（array、deque）
+- **缓存策略**：内存缓存（lru_cache、cachetools）、Redis缓存（基础使用、缓存模式）、缓存失效（主动失效、缓存预热）、分布式缓存（一致性哈希）、缓存穿透防护（布隆过滤器）、缓存雪崩防护（随机TTL、多级缓存）
 
 ### 安全编程部分
 
