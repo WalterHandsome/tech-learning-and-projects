@@ -33,7 +33,8 @@ python/
 │   ├── Flask基础.md                  ✅ 已创建
 │   ├── Flask高级特性.md               ✅ 已创建
 │   ├── WebSocket实时通信.md          ✅ 已创建
-│   └── GraphQL应用开发.md            ✅ 已创建
+│   ├── GraphQL应用开发.md            ✅ 已创建
+│   └── API文档生成.md                ✅ 已创建
 │
 ├── 02-数据分析/           # 数据分析与科学计算
 │   ├── 数据分析概述.md               ✅ 已创建
@@ -53,7 +54,8 @@ python/
 │   ├── 大模型微调实践.md             ✅ 已创建
 │   ├── 深度学习框架应用.md           ✅ 已创建
 │   ├── 模型评估与验证.md             ✅ 已创建
-│   └── 超参数调优.md                 ✅ 已创建
+│   ├── 超参数调优.md                 ✅ 已创建
+│   └── 模型部署与服务化.md           ✅ 已创建
 │
 ├── 04-并发编程/           # 并发编程
 │   ├── Python并发编程.md             ✅ 已创建
@@ -78,7 +80,8 @@ python/
 │   ├── Python数据库操作.md           ✅ 已创建
 │   ├── 数据库连接池与事务管理.md     ✅ 已创建
 │   ├── SQLAlchemy高级特性.md        ✅ 已创建
-│   └── 数据库优化.md                 ✅ 已创建
+│   ├── 数据库优化.md                 ✅ 已创建
+│   └── NoSQL数据库深入.md            ✅ 已创建
 │
 ├── 08-测试/               # 测试
 │   ├── Python测试.md                 ✅ 已创建
@@ -90,7 +93,8 @@ python/
 │   ├── Python工具与规范.md           ✅ 已创建
 │   ├── 虚拟环境与包管理.md           ✅ 已创建
 │   ├── 代码质量工具.md               ✅ 已创建
-│   └── 日志管理.md                   ✅ 已创建
+│   ├── 日志管理.md                   ✅ 已创建
+│   └── 配置管理.md                   ✅ 已创建
 │
 ├── 10-设计模式/           # 设计模式
 │   ├── Python设计模式.md             ✅ 已创建
@@ -115,7 +119,8 @@ python/
 │
 ├── 14-算法与数据结构/     # 算法与数据结构
 │   ├── Python算法与数据结构.md       ✅ 已创建
-│   └── 经典算法实现.md               ✅ 已创建
+│   ├── 经典算法实现.md               ✅ 已创建
+│   └── 高级数据结构.md               ✅ 已创建
 │
 ├── 15-消息队列/           # 消息队列
 │   ├── Python消息队列.md             ✅ 已创建
@@ -157,6 +162,7 @@ python/
 - **Flask高级特性**：蓝图、应用工厂、扩展（SQLAlchemy、Migrate、Login）、上下文、错误处理、测试、部署
 - **WebSocket实时通信**：FastAPI WebSocket、Flask-SocketIO、Django Channels、aiohttp WebSocket、客户端实现
 - **GraphQL应用开发**：Graphene框架、Schema定义、查询和变更、FastAPI集成、订阅、数据加载器
+- **API文档生成**：FastAPI自动文档（Swagger UI、ReDoc）、Django DRF文档、Flask文档（Flask-RESTX、Flask-APIDoc）、OpenAPI规范、Sphinx文档、文档最佳实践
 
 ### 数据分析部分
 
@@ -179,6 +185,7 @@ python/
 - **深度学习框架应用**：TensorFlow基础、PyTorch基础、CNN实现、RNN/LSTM、迁移学习、模型保存加载
 - **模型评估与验证**：评估指标（准确率、精确率、召回率、F1、ROC/AUC、MSE、MAE、R²）、交叉验证（K折、分层K折、留一法）、学习曲线、验证曲线
 - **超参数调优**：网格搜索（GridSearchCV）、随机搜索（RandomizedSearchCV）、贝叶斯优化（Optuna）、参数重要性分析、早停策略、Keras Tuner
+- **模型部署与服务化**：FastAPI模型服务、模型版本管理、TensorFlow Serving、TorchServe、MLflow模型服务、模型监控（性能监控、A/B测试）、批量预测
 
 ### 并发编程部分
 
@@ -208,6 +215,7 @@ python/
 - **数据库连接池与事务管理**：连接池配置、会话管理、事务处理、批量操作、异步操作、数据库迁移、原生SQL
 - **SQLAlchemy高级特性**：关系映射（一对多、多对多）、查询优化（预加载、延迟加载）、复杂查询（子查询、组合条件）、事件监听、混合属性
 - **数据库优化**：索引优化（单列索引、复合索引、唯一索引）、查询优化（避免N+1、预加载、批量操作）、连接池优化、查询缓存（结果缓存、Redis缓存）、分页优化（游标分页）、数据库分区
+- **NoSQL数据库深入**：MongoDB深入（聚合管道、索引优化、事务处理）、Redis深入（数据结构应用、发布订阅、Redis Streams）、Cassandra应用、Elasticsearch应用
 
 ### 测试部分
 
@@ -222,6 +230,7 @@ python/
 - **虚拟环境与包管理**：venv、virtualenv、conda、pip、Poetry、pipenv、依赖管理、文档工具
 - **代码质量工具**：Black格式化、autopep8、Flake8代码检查、Pylint、mypy类型检查、Radon复杂度分析、Bandit安全扫描、Coverage.py覆盖率、pre-commit集成
 - **日志管理**：基础日志、日志级别、日志配置、日志轮转（大小轮转、时间轮转）、结构化日志（JSON格式）、日志上下文、多模块日志
+- **配置管理**：环境变量（python-dotenv、.env文件）、Pydantic配置（Settings类、嵌套配置）、Django配置（多环境配置）、Flask配置（配置类）、配置文件（YAML、JSON、TOML）、配置验证、配置热重载
 
 ### 设计模式部分
 
@@ -252,6 +261,7 @@ python/
 
 - **Python算法与数据结构**：数据结构实现、排序算法、搜索算法、动态规划、图算法
 - **经典算法实现**：快速排序、归并排序、堆排序、二分搜索、DFS/BFS、动态规划（斐波那契、LCS、背包问题）、图算法（Dijkstra、拓扑排序）、字符串算法（KMP）、贪心算法、回溯算法（N皇后）
+- **高级数据结构**：堆（heapq模块、堆排序、优先队列）、树（二叉树、二叉搜索树、遍历算法）、图（邻接表、DFS、BFS、Dijkstra算法）、字典树（Trie实现、前缀匹配）、并查集（路径压缩、按秩合并）、线段树（区间查询、单点更新）
 
 ### 消息队列部分
 
