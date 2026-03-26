@@ -21,6 +21,9 @@ ai-agent/
 │   ├── CrewAI多Agent协作.md
 │   ├── OpenAI Agents SDK.md
 │   ├── Google ADK与Bedrock Agents.md
+│   ├── Google ADK详解.md
+│   ├── AWS Strands与Bedrock AgentCore.md
+│   ├── Microsoft Agent Framework.md
 │   └── AG2-PydanticAI-Agno.md
 │
 ├── 03-RAG进阶/                   # 检索增强生成
@@ -64,6 +67,24 @@ ai-agent/
 │   ├── 代码助手Agent.md
 │   └── 数据分析Agent.md
 │
+├── 11-云厂商Agent方案/             # 云厂商解决方案
+│   ├── 阿里云百炼与通义.md
+│   └── 云厂商Agent方案对比.md
+│
+├── 12-Coding Agent/               # 编程Agent
+│   ├── Claude Code与终端Agent.md
+│   ├── Cursor-Kiro-Windsurf IDE Agent.md
+│   └── Devin与自主开发Agent.md
+│
+├── 13-OpenClaw与Agent生态/         # Agent生态
+│   ├── OpenClaw平台详解.md
+│   ├── Agent Skills生态.md
+│   └── Computer Use与浏览器Agent.md
+│
+├── 14-Agent安全与治理/             # 安全与治理
+│   ├── Agent身份与权限.md
+│   └── Agent治理框架.md
+│
 └── README.md                     # 本文件
 ```
 
@@ -87,6 +108,9 @@ ai-agent/
 - **CrewAI多Agent协作**：Agent/Task/Crew/Tool核心概念、角色定义与任务分配、顺序/层级/共识流程、MCP集成、Memory系统、企业级部署
 - **OpenAI Agents SDK**：Agent/Handoff/Guardrail核心概念、工具定义、Agent间交接、输入输出护栏、Tracing追踪、快速原型开发
 - **Google ADK与Bedrock Agents**：Google Agent Development Kit、Amazon Bedrock Agents、云厂商Agent方案对比
+- **Google ADK详解**：ADK核心概念（Agent/Tool/Runner/Session）、Agent类型（LlmAgent/SequentialAgent/ParallelAgent/LoopAgent）、MCP/A2A集成、Vertex AI部署
+- **AWS Strands与Bedrock AgentCore**：Strands SDK模型驱动方法、@tool装饰器、多Agent编排、AgentCore托管运行时、Nova Act浏览器自动化
+- **Microsoft Agent Framework**：SK+AutoGen合并、ChatCompletionAgent、Skills/Plugins系统、GraphFlow图编排、Azure AI Foundry集成
 - **AG2-PydanticAI-Agno**：AG2（原AutoGen）多Agent对话、PydanticAI类型安全Agent、Agno高性能运行时、smolagents轻量方案
 
 ### RAG 进阶
@@ -137,6 +161,28 @@ ai-agent/
 - **智能客服Agent**：多轮对话、知识库检索、工单创建、人工转接、满意度评估
 - **代码助手Agent**：代码生成与审查、仓库理解、Bug修复、测试生成、MCP工具集成
 - **数据分析Agent**：自然语言转SQL、数据可视化、报表生成、异常检测、多数据源接入
+
+### 云厂商 Agent 方案
+
+- **阿里云百炼与通义**：百炼平台、通义千问模型系列、DashScope API、Function Calling、知识库RAG、MCP支持、LangChain/LlamaIndex集成、私有化部署
+- **云厂商Agent方案对比**：AWS/Microsoft/Google/阿里云/百度/腾讯/字节全面对比、协议支持、部署定价、场景选型指南
+
+### Coding Agent
+
+- **Claude Code与终端Agent**：终端原生编码工具、CLAUDE.md配置、MCP扩展、多Agent并行、Git工作流、终端Agent对比
+- **Cursor-Kiro-Windsurf IDE Agent**：IDE集成Agent对比、Cursor Composer、Kiro Specs驱动、Windsurf Cascade、GitHub Copilot、IDE vs 终端Agent
+- **Devin与自主开发Agent**：Devin自主开发、Manus AI、OpenHands开源方案、SWE-Agent、SWE-bench基准、自主vs辅助选型
+
+### OpenClaw 与 Agent 生态
+
+- **OpenClaw平台详解**：开源Agent编排、Skills系统、Heartbeat调度、20+消息渠道、ClawHub市场、Sub-Agents、自托管部署
+- **Agent Skills生态**：Skills/Tools/Plugins对比、OpenClaw Skills、Semantic Kernel Plugins、LangChain Tools、MCP统一协议、Skills市场
+- **Computer Use与浏览器Agent**：Claude Computer Use、Nova Act SDK、Playwright/Puppeteer MCP、GUI vs API Agent、安全考虑
+
+### Agent 安全与治理
+
+- **Agent身份与权限**：OAuth2认证、API Key管理、RBAC权限控制、最小权限原则、A2A认证、审计日志、云厂商身份方案
+- **Agent治理框架**：四大治理支柱、Human-in-the-Loop、合规要求（GDPR/SOC2）、成本治理、速率限制、生命周期管理、企业部署检查清单
 
 ## 🎯 学习路径建议
 

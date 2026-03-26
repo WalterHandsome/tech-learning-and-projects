@@ -1,0 +1,199 @@
+# Computer Use 与浏览器 Agent
+
+## 1. Computer Use 概念
+
+Computer Use 是指 AI 直接操控计算机界面（鼠标、键盘、屏幕）来完成任务，而非通过 API 调用。代表了从"API Agent"到"GUI Agent"的演进。
+
+```
+┌─────────── Agent 交互方式演进 ───────────┐
+│                                           │
+│  API Agent          GUI Agent             │
+│  ├─ 调用 REST API   ├─ 看屏幕截图         │
+│  ├─ 执行函数        ├─ 移动鼠标/点击      │
+│  ├─ 结构化输入输出   ├─ 键盘输入           │
+│  └─ 需要 API 集成   └─ 无需 API，通用性强  │
+│                                           │
+│  适用：有 API 的服务  适用：任何有 GUI 的应用│
+└──────────────────────────────────────────┘
+```
+
+## 2. Anthropic Claude Computer Use
+
+Claude 的 Computer Use 能力通过截图理解屏幕内容，生成鼠标/键盘操作指令。
+
+```python
+import anthropic
+
+client = anthropic.Anthropic()
+
+# Computer Use 工具定义
+tools = [
+    {
+        "type": "computer_20241022",
+        "name": "computer",
+        "display_width_px": 1920,
+        "display_height_px": 1080,
+        "display_number": 1,
+    },
+    {
+        "type": "text_editor_20241022",
+        "name": "str_replace_editor",
+    },
+    {
+        "type": "bash_20241022",
+        "name": "bash",
+    },
+]
+
+response = client.messages.create(
+    model="claude-sonnet-4-20250514",
+    max_tokens=4096,
+    tools=tools,
+    messages=[{
+        "role": "user",
+        "content": "打开浏览器，搜索今天的天气，截图给我看",
+    }],
+)
+
+# 处理 Computer Use 动作
+for block in response.content:
+    if block.type == "tool_use":
+        if block.name == "computer":
+            action = block.input
+            # action: {"action": "mouse_move", "coordinate": [960, 540]}
+            # action: {"action": "left_click"}
+            # action: {"action": "type", "text": "today weather"}
+            # action: {"action": "screenshot"}
+            execute_computer_action(action)
+```
+
+## 3. AWS Nova Act SDK
+
+Nova Act 专注于浏览器自动化，提供高级语义操作接口。
+
+```python
+from nova_act import NovaAct
+
+# 基本浏览器操作
+with NovaAct(starting_page="https://www.amazon.com") as act:
+    # 语义化操作 — 用自然语言描述动作
+    act.act("在搜索框中输入 'mechanical keyboard'")
+    act.act("点击搜索按钮")
+    act.act("按价格从低到高排序")
+    act.act("点击第一个商品")
+
+    # 提取信息
+    result = act.act("提取商品名称、价格和评分")
+    print(result.response)
+    # → {"name": "...", "price": "$59.99", "rating": "4.5/5"}
+
+# 复杂工作流
+with NovaAct(starting_page="https://github.com") as act:
+    act.act("登录账号", credentials={"username": "xxx", "password": "xxx"})
+    act.act("进入 my-repo 仓库")
+    act.act("创建一个新的 Issue，标题为 'Bug: 登录页面样式错误'")
+    act.act("添加 bug 标签")
+```
+
+## 4. Playwright MCP / Puppeteer MCP
+
+通过 MCP 协议将浏览器自动化能力暴露给 Agent。
+
+```json
+// MCP 配置 — Playwright
+{
+  "mcpServers": {
+    "playwright": {
+      "command": "npx",
+      "args": ["-y", "@anthropic/mcp-playwright"]
+    }
+  }
+}
+```
+
+```python
+# Agent 通过 MCP 调用 Playwright
+# 工具自动暴露：navigate, click, fill, screenshot, evaluate 等
+
+# 在 Agent 对话中：
+# "打开 https://example.com，填写登录表单并提交"
+# Agent 会调用：
+#   1. navigate(url="https://example.com/login")
+#   2. fill(selector="#username", value="user")
+#   3. fill(selector="#password", value="pass")
+#   4. click(selector="#submit")
+#   5. screenshot()  — 验证结果
+```
+
+## 5. Web 浏览 Agent 平台
+
+```python
+# Browserbase — 云端浏览器基础设施
+from browserbase import BrowserBase
+
+bb = BrowserBase(api_key="xxx")
+session = bb.create_session()
+
+# 提供给 Agent 使用的浏览器实例
+browser_url = session.connect_url
+# Agent 通过 CDP 协议控制浏览器
+
+# Steel — 专为 AI Agent 设计的浏览器 API
+from steel import Steel
+
+steel = Steel(api_key="xxx")
+session = steel.sessions.create()
+
+# 自动处理：验证码、Cookie、指纹
+page = session.navigate("https://example.com")
+content = page.extract("提取所有产品信息")
+```
+
+## 6. GUI Agent vs API Agent
+
+| 维度 | GUI Agent | API Agent |
+|------|-----------|-----------|
+| 交互方式 | 屏幕截图 + 鼠标键盘 | 函数调用 + 结构化数据 |
+| 通用性 | 高（任何有界面的应用） | 低（需要 API 集成） |
+| 速度 | 慢（截图+推理+操作） | 快（直接调用） |
+| 准确性 | 中（依赖视觉理解） | 高（结构化输入输出） |
+| 成本 | 高（多模态推理） | 低（文本推理） |
+| 稳定性 | 低（UI 变化会影响） | 高（API 契约稳定） |
+| 适用场景 | 无 API 的遗留系统 | 有 API 的现代服务 |
+
+```
+选择策略：
+├─ 有 API → 优先用 API Agent（快、准、省）
+├─ 无 API + 简单操作 → Playwright/Puppeteer MCP
+├─ 无 API + 复杂操作 → Claude Computer Use / Nova Act
+└─ 批量数据采集 → 专用爬虫 + API Agent
+```
+
+## 7. 典型用例
+
+```
+表单填写：自动填写报销单、申请表
+数据提取：从网页抓取结构化数据
+测试自动化：UI 回归测试、跨浏览器测试
+流程自动化：操作无 API 的内部系统
+竞品监控：定期检查竞品网站变化
+```
+
+## 8. 安全考虑
+
+```
+安全风险：
+├─ 凭证泄露：Agent 操作时可能暴露密码
+├─ 越权操作：Agent 可能执行未授权的操作
+├─ 数据泄露：屏幕截图可能包含敏感信息
+├─ 注入攻击：恶意网页可能误导 Agent
+└─ 资源滥用：无限制的浏览器操作消耗资源
+
+防护措施：
+├─ 沙箱环境：在隔离环境中运行浏览器
+├─ 权限控制：限制可访问的 URL 白名单
+├─ 截图脱敏：自动遮盖敏感信息区域
+├─ 操作审计：记录所有浏览器操作日志
+├─ 人工确认：关键操作前请求人工审批
+└─ 超时控制：设置操作超时，防止无限循环
+```
