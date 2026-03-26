@@ -37,6 +37,7 @@
 ### 1. 学习笔记 (learning-notes)
 
 **Java 技术栈**
+
 - Java 基础（12个文档）
 - Spring 框架系列（Spring、Spring Boot、Spring Cloud）
 - 中间件（Kafka、RabbitMQ、Redis、Elasticsearch、Nginx）
@@ -44,6 +45,7 @@
 - 设计模式、网络编程、数据库等
 
 **Python 技术栈**
+
 - Python 基础（16个文档）
 - Web 开发（FastAPI、Django、Flask）
 - 数据分析（NumPy、Pandas、数据可视化）
@@ -51,6 +53,7 @@
 - 并发编程、网络编程、爬虫、数据库操作等
 
 **前端技术栈**
+
 - HTML5/CSS3 基础、Flex/Grid 布局、响应式设计
 - JavaScript 基础、ES6+、TypeScript
 - React（Hooks、状态管理、Router、性能优化）
@@ -60,6 +63,7 @@
 - 测试、浏览器原理、性能优化、跨平台开发、数据可视化等
 
 **iOS 技术栈**
+
 - Swift 语言基础（语法、OOP、协议与泛型、并发、ARC）
 - SwiftUI（布局、状态管理、导航、动画）
 - UIKit（核心组件、AutoLayout、TableView/CollectionView）
@@ -67,6 +71,7 @@
 - 系统框架、性能优化、工程化、面试准备等
 
 **Android 技术栈**
+
 - Kotlin 语言基础（语法、OOP、函数式编程、协程、Java互操作）
 - Jetpack Compose（布局、状态管理、导航、动画）
 - 传统View体系（RecyclerView、ConstraintLayout、自定义View）
@@ -74,6 +79,7 @@
 - 系统能力、性能优化、工程化、面试准备等
 
 **AI Agent 技术栈**
+
 - Agent 核心概念、大语言模型基础、Prompt Engineering
 - Agent 协议（MCP 模型上下文协议、A2A Agent间通信、ACP）
 - Agent 框架（LangGraph、CrewAI、OpenAI Agents SDK、Google ADK）
@@ -84,6 +90,7 @@
 ### 2. Spring Boot 微服务项目
 
 基于 Spring Boot 3.x 的微服务架构实践：
+
 - ✅ 事件驱动架构（Kafka）
 - ✅ 统一异常处理和响应格式
 - ✅ 全链路追踪（TraceId）
@@ -95,6 +102,7 @@
 ### 3. RAG + LLM Agent 平台
 
 企业级 AI Agent 平台：
+
 - ✅ RAG 检索增强生成
 - ✅ Function Calling 工具体系（30+ 工具）
 - ✅ WebSocket 流式交互
@@ -105,6 +113,7 @@
 ## 🛠️ 技术栈
 
 ### 后端开发
+
 - **Java**: JDK 17+, Spring Boot 3.x, Spring Cloud
 - **Python**: Python 3.10+, FastAPI
 - **消息队列**: Kafka, RabbitMQ
@@ -112,11 +121,13 @@
 - **向量数据库**: PostgreSQL + pgvector
 
 ### AI & LLM
+
 - **RAG**: LlamaIndex
 - **LLM**: Amazon Bedrock (Claude), OpenAI API
 - **Function Calling**: 自定义工具体系
 
 ### 工程化
+
 - **容器化**: Docker, Docker Compose
 - **编排**: Kubernetes
 - **CI/CD**: GitHub Actions
@@ -145,5 +156,4 @@ MIT License - 详见 [LICENSE](./LICENSE) 文件
 
 ---
 
-**最后更新**: 2024年
-
+**最后更新**: 2026年

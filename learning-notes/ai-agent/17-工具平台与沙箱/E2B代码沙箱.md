@@ -1,0 +1,280 @@
+# E2B 代码沙箱
+
+## 1. 概述
+
+E2B（Environment to Binary）提供开源的安全沙箱环境，让 AI Agent 能安全地执行代码、操作文件系统、运行进程。每个沙箱是一个隔离的微型虚拟机。
+
+```
+┌─────────────────────────────────────────┐
+│              AI Agent                    │
+├─────────────────────────────────────────┤
+│              E2B SDK                     │
+│  ┌──────────┐ ┌──────────┐ ┌────────┐  │
+│  │代码执行   │ │文件系统   │ │进程管理 │  │
+│  │Code Exec │ │Filesystem│ │Process │  │
+│  └──────────┘ └──────────┘ └────────┘  │
+├─────────────────────────────────────────┤
+│  Firecracker microVM（安全隔离沙箱）     │
+│  ├─ 独立文件系统                         │
+│  ├─ 网络隔离                             │
+│  ├─ 资源限制（CPU/内存）                  │
+│  └─ 最长 24h 生命周期                    │
+└─────────────────────────────────────────┘
+```
+
+## 2. 快速开始
+
+```bash
+pip install e2b-code-interpreter
+```
+
+```python
+from e2b_code_interpreter import Sandbox
+
+# 创建沙箱（默认 Python 环境）
+with Sandbox() as sandbox:
+    # 执行 Python 代码
+    execution = sandbox.run_code("print('Hello from sandbox!')")
+    print(execution.text)  # → Hello from sandbox!
+
+    # 执行多行代码
+    result = sandbox.run_code("""
+import numpy as np
+data = np.random.randn(1000)
+print(f"均值: {data.mean():.4f}")
+print(f"标准差: {data.std():.4f}")
+""")
+    print(result.text)
+
+    # 安装包并使用
+    sandbox.run_code("!pip install pandas matplotlib")
+    sandbox.run_code("""
+import pandas as pd
+df = pd.DataFrame({'x': range(10), 'y': [i**2 for i in range(10)]})
+print(df.describe())
+""")
+```
+
+## 3. 文件系统操作
+
+```python
+from e2b_code_interpreter import Sandbox
+
+with Sandbox() as sandbox:
+    # 写入文件
+    sandbox.files.write("/home/user/data.csv", "name,age\nAlice,30\nBob,25")
+
+    # 读取文件
+    content = sandbox.files.read("/home/user/data.csv")
+    print(content)
+
+    # 列出目录
+    files = sandbox.files.list("/home/user")
+    for f in files:
+        print(f"{f.name} - {f.size} bytes")
+
+    # 上传本地文件到沙箱
+    with open("local_data.csv", "rb") as f:
+        sandbox.files.write("/home/user/uploaded.csv", f.read())
+
+    # 从沙箱下载文件
+    remote_content = sandbox.files.read("/home/user/data.csv")
+    with open("downloaded.csv", "w") as f:
+        f.write(remote_content)
+
+    # 在代码中操作文件
+    sandbox.run_code("""
+import pandas as pd
+df = pd.read_csv('/home/user/data.csv')
+df['age_group'] = df['age'].apply(lambda x: 'young' if x < 28 else 'senior')
+df.to_csv('/home/user/processed.csv', index=False)
+print(df)
+""")
+```
+
+## 4. 进程管理
+
+```python
+from e2b_code_interpreter import Sandbox
+
+with Sandbox() as sandbox:
+    # 运行 shell 命令
+    result = sandbox.commands.run("ls -la /home/user")
+    print(result.stdout)
+
+    # 安装系统包
+    sandbox.commands.run("apt-get update && apt-get install -y curl")
+
+    # 运行后台进程
+    process = sandbox.commands.run("python -m http.server 8080", background=True)
+
+    # 检查进程
+    sandbox.commands.run("curl http://localhost:8080")
+
+    # 终止进程
+    process.kill()
+```
+
+## 5. 与 OpenAI 集成
+
+```python
+from openai import OpenAI
+from e2b_code_interpreter import Sandbox
+
+client = OpenAI()
+
+def code_agent(task: str) -> str:
+    """代码执行 Agent"""
+    messages = [
+        {"role": "system", "content": "你是数据分析师。用 Python 代码解决问题。输出可执行代码。"},
+        {"role": "user", "content": task},
+    ]
+
+    tools = [{
+        "type": "function",
+        "function": {
+            "name": "execute_python",
+            "description": "在沙箱中执行 Python 代码",
+            "parameters": {
+                "type": "object",
+                "properties": {"code": {"type": "string", "description": "Python 代码"}},
+                "required": ["code"],
+            },
+        },
+    }]
+
+    with Sandbox() as sandbox:
+        while True:
+            response = client.chat.completions.create(
+                model="gpt-4o", messages=messages, tools=tools,
+            )
+            msg = response.choices[0].message
+
+            if not msg.tool_calls:
+                return msg.content
+
+            messages.append(msg)
+            for tc in msg.tool_calls:
+                import json
+                code = json.loads(tc.function.arguments)["code"]
+                result = sandbox.run_code(code)
+                output = result.text or str(result.error) or "执行完成，无输出"
+                messages.append({
+                    "role": "tool", "tool_call_id": tc.id, "content": output,
+                })
+
+answer = code_agent("分析 1000 个正态分布随机数，画直方图，计算统计量")
+```
+
+## 6. 自定义沙箱模板
+
+```python
+# e2b.toml — 自定义沙箱配置
+"""
+[template]
+name = "data-science"
+dockerfile = "Dockerfile"
+"""
+
+# Dockerfile
+"""
+FROM e2b/code-interpreter:latest
+RUN pip install pandas numpy scikit-learn matplotlib seaborn plotly
+RUN pip install torch transformers
+"""
+
+# 构建自定义模板
+# e2b template build
+
+# 使用自定义模板
+from e2b_code_interpreter import Sandbox
+
+with Sandbox(template="data-science") as sandbox:
+    result = sandbox.run_code("""
+import torch
+print(f"PyTorch version: {torch.__version__}")
+print(f"CUDA available: {torch.cuda.is_available()}")
+""")
+```
+
+## 7. Desktop Sandbox（桌面沙箱）
+
+用于 GUI Agent 的桌面环境沙箱。
+
+```python
+from e2b_desktop import Sandbox as DesktopSandbox
+
+with DesktopSandbox() as sandbox:
+    # 获取桌面截图
+    screenshot = sandbox.screenshot()
+
+    # 鼠标操作
+    sandbox.mouse.move(500, 300)
+    sandbox.mouse.click()
+    sandbox.mouse.double_click()
+
+    # 键盘操作
+    sandbox.keyboard.type("Hello World")
+    sandbox.keyboard.hotkey("ctrl", "s")
+
+    # 打开应用
+    sandbox.commands.run("firefox https://example.com &")
+    import time; time.sleep(3)
+    screenshot = sandbox.screenshot()
+```
+
+## 8. MCP 集成
+
+```json
+{
+  "mcpServers": {
+    "e2b": {
+      "command": "npx",
+      "args": ["-y", "@e2b/mcp-server"],
+      "env": {
+        "E2B_API_KEY": "e2b_xxx"
+      }
+    }
+  }
+}
+```
+
+## 9. 安全模型
+
+```
+E2B 安全隔离机制：
+
+┌─────────────────────────────────┐
+│  Host Machine                   │
+│  ┌───────────┐ ┌───────────┐   │
+│  │ Sandbox A │ │ Sandbox B │   │
+│  │ (microVM) │ │ (microVM) │   │
+│  │ ┌───────┐ │ │ ┌───────┐ │   │
+│  │ │独立FS  │ │ │ │独立FS  │ │   │
+│  │ │独立网络│ │ │ │独立网络│ │   │
+│  │ │资源限制│ │ │ │资源限制│ │   │
+│  │ └───────┘ │ │ └───────┘ │   │
+│  └───────────┘ └───────────┘   │
+│  Firecracker VMM               │
+└─────────────────────────────────┘
+
+安全特性：
+├─ Firecracker microVM 硬件级隔离
+├─ 独立文件系统（沙箱间不可访问）
+├─ 网络隔离（可配置出站规则）
+├─ CPU/内存资源限制
+├─ 最长 24h 自动销毁
+└─ 无持久化（沙箱销毁后数据清除）
+```
+
+## 10. 使用场景与对比
+
+| 场景           | E2B              | Modal            | Daytona          |
+|---------------|------------------|------------------|------------------|
+| 代码执行沙箱   | ✅ 核心功能       | ✅ Serverless    | ✅ 开发环境       |
+| GUI 沙箱      | ✅ Desktop       | ❌               | ❌               |
+| 自定义模板     | ✅ Dockerfile    | ✅ Image         | ✅ Devcontainer  |
+| MCP 支持      | ✅               | ❌               | ✅               |
+| 开源          | ✅ Apache 2.0    | ❌               | ✅ Apache 2.0    |
+| 隔离级别       | microVM          | Container        | Container        |
+| 适用场景       | Agent代码执行     | ML推理/训练      | 开发环境管理      |

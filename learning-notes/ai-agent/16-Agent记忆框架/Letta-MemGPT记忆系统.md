@@ -1,0 +1,243 @@
+# Letta (MemGPT) 记忆系统
+
+## 1. 概述
+
+Letta（前身 MemGPT）是 UC Berkeley 研究团队开发的有状态 Agent 运行时，采用操作系统启发的分层记忆架构，让 Agent 能自主管理自己的记忆。
+
+```
+┌─────────────────────────────────────────────┐
+│              Letta Agent Runtime             │
+├─────────────────────────────────────────────┤
+│  ┌─────────────────────────────────────┐    │
+│  │  Core Memory（核心记忆 - 上下文内）   │    │
+│  │  ├─ Human Block: 用户信息            │    │
+│  │  └─ Persona Block: Agent 人设        │    │
+│  └─────────────────────────────────────┘    │
+│  ┌─────────────────────────────────────┐    │
+│  │  Recall Memory（回忆记忆 - 近期对话） │    │
+│  │  └─ 最近对话历史的搜索索引            │    │
+│  └─────────────────────────────────────┘    │
+│  ┌─────────────────────────────────────┐    │
+│  │  Archival Memory（归档记忆 - 向量库） │    │
+│  │  └─ 无限容量的长期知识存储            │    │
+│  └─────────────────────────────────────┘    │
+├─────────────────────────────────────────────┤
+│  工具调用 │ 状态持久化 │ 多步推理           │
+└─────────────────────────────────────────────┘
+```
+
+核心理念：Agent 通过系统调用（函数调用）自主读写记忆，类似操作系统的内存管理。
+
+## 2. 分层记忆架构
+
+```
+类比操作系统内存层级：
+
+CPU 寄存器  ←→  System Prompt（固定指令）
+L1 Cache   ←→  Core Memory（核心记忆，上下文窗口内）
+RAM        ←→  Recall Memory（回忆记忆，近期对话索引）
+磁盘       ←→  Archival Memory（归档记忆，向量数据库）
+
+Agent 通过以下系统调用管理记忆：
+├─ core_memory_append(key, value)    # 追加核心记忆
+├─ core_memory_replace(key, old, new) # 修改核心记忆
+├─ recall_memory_search(query)        # 搜索近期对话
+├─ archival_memory_insert(content)    # 写入归档记忆
+└─ archival_memory_search(query)      # 搜索归档记忆
+```
+
+## 3. 安装与快速开始
+
+```bash
+pip install letta
+letta server  # 启动 Letta 服务器（含 ADE 界面）
+```
+
+```python
+from letta import create_client
+
+# 连接 Letta 服务器
+client = create_client(base_url="http://localhost:8283")
+
+# 创建有状态 Agent
+agent = client.create_agent(
+    name="personal-assistant",
+    model="openai/gpt-4o",
+    embedding="openai/text-embedding-3-small",
+    memory_blocks=[
+        {"label": "human", "value": "用户名：Alice，职业：软件工程师"},
+        {"label": "persona", "value": "你是一个友好的个人助手，记住用户的偏好。"},
+    ],
+    tools=["web_search", "run_code"],
+)
+
+# 与 Agent 对话（Agent 自动管理记忆）
+response = client.send_message(
+    agent_id=agent.id,
+    message="我最近在学 Rust，觉得所有权机制很有趣",
+    role="user",
+)
+print(response.messages)
+# Agent 内部可能执行：
+# core_memory_append("human", "正在学习 Rust，对所有权机制感兴趣")
+```
+
+## 4. Agent 自编辑记忆
+
+Letta 的核心特色：Agent 自主决定何时、如何更新记忆。
+
+```python
+# Agent 收到消息后的内部推理过程：
+"""
+1. 用户说"我换了新工作，现在在字节跳动做 AI 基础设施"
+2. Agent 思考：用户工作信息变了，需要更新核心记忆
+3. Agent 调用：core_memory_replace(
+     "human",
+     "职业：软件工程师",
+     "职业：AI 基础设施工程师，公司：字节跳动"
+   )
+4. Agent 回复："恭喜新工作！字节跳动的 AI 基础设施团队很棒..."
+"""
+
+# 查看 Agent 当前核心记忆
+memory = client.get_agent_memory(agent_id=agent.id)
+print(memory.core_memory)
+# {"human": "用户名：Alice，职业：AI基础设施工程师，公司：字节跳动，正在学习Rust",
+#  "persona": "你是一个友好的个人助手..."}
+```
+
+## 5. 归档记忆操作
+
+```python
+# Agent 自动将重要信息归档
+# 当对话中出现大量技术细节时，Agent 会：
+"""
+archival_memory_insert("Alice 的项目使用 Kubernetes 部署，
+  集群规模 500+ 节点，主要运行 GPU 训练任务。
+  技术栈：Python, Go, Rust, CUDA")
+"""
+
+# 后续对话中，Agent 搜索归档记忆
+"""
+用户："帮我回忆一下我之前说的项目架构"
+Agent 内部：archival_memory_search("项目架构 部署")
+→ 找到归档记忆，生成回复
+"""
+
+# 通过 API 直接操作归档记忆
+client.insert_archival_memory(
+    agent_id=agent.id,
+    memory="公司技术文档：微服务架构指南 v2.0 ..."
+)
+
+results = client.search_archival_memory(
+    agent_id=agent.id,
+    query="微服务架构",
+    limit=5,
+)
+```
+
+## 6. 自定义工具
+
+```python
+from letta import create_client
+
+client = create_client()
+
+# 定义自定义工具
+def query_database(query: str) -> str:
+    """查询内部数据库
+
+    Args:
+        query: SQL 查询语句
+
+    Returns:
+        查询结果的 JSON 字符串
+    """
+    import sqlite3, json
+    conn = sqlite3.connect("app.db")
+    cursor = conn.execute(query)
+    results = cursor.fetchall()
+    return json.dumps(results, ensure_ascii=False)
+
+# 注册工具
+tool = client.create_tool(func=query_database)
+
+# 创建带自定义工具的 Agent
+agent = client.create_agent(
+    name="db-assistant",
+    model="openai/gpt-4o",
+    tools=[tool.name, "archival_memory_search"],
+    memory_blocks=[
+        {"label": "human", "value": "DBA，管理 PostgreSQL 集群"},
+        {"label": "persona", "value": "数据库专家助手"},
+    ],
+)
+```
+
+## 7. Agent Development Environment (ADE)
+
+```
+Letta ADE 提供可视化界面：
+
+┌─────────────────────────────────────────┐
+│  Letta ADE (http://localhost:8283)      │
+├──────────┬──────────────────────────────┤
+│ Agent 列表│  Agent 详情                  │
+│          │  ├─ 对话历史                  │
+│ • assistant│  ├─ 核心记忆（可编辑）       │
+│ • researcher│ ├─ 归档记忆浏览            │
+│ • coder  │  ├─ 工具调用日志              │
+│          │  ├─ 内部推理过程              │
+│          │  └─ 配置管理                  │
+└──────────┴──────────────────────────────┘
+
+功能：
+├─ 实时查看 Agent 内部思考过程
+├─ 手动编辑核心记忆
+├─ 浏览和搜索归档记忆
+├─ 查看工具调用历史
+└─ 调试 Agent 行为
+```
+
+## 8. 多 Agent 协作
+
+```python
+# 创建多个专业 Agent
+researcher = client.create_agent(
+    name="researcher",
+    model="openai/gpt-4o",
+    tools=["web_search", "archival_memory_search"],
+    memory_blocks=[
+        {"label": "persona", "value": "你是研究员，负责信息收集和分析"},
+        {"label": "shared", "value": "团队项目：AI Agent 调研报告"},
+    ],
+)
+
+writer = client.create_agent(
+    name="writer",
+    model="openai/gpt-4o",
+    tools=["archival_memory_search"],
+    memory_blocks=[
+        {"label": "persona", "value": "你是技术作者，负责撰写报告"},
+        {"label": "shared", "value": "团队项目：AI Agent 调研报告"},
+    ],
+)
+
+# Agent 间通过共享归档记忆协作
+# researcher 将调研结果写入归档 → writer 从归档读取并撰写
+```
+
+## 9. 与 Mem0 对比
+
+| 维度           | Letta (MemGPT)          | Mem0                    |
+|---------------|-------------------------|-------------------------|
+| 定位           | 有状态 Agent 运行时       | 通用记忆层               |
+| 记忆管理       | Agent 自主管理（系统调用） | 框架自动提取              |
+| 记忆层级       | 三层（核心/回忆/归档）     | 扁平（向量 + 图）         |
+| Agent 运行时   | ✅ 完整运行时             | ❌ 仅记忆层              |
+| 可视化调试     | ✅ ADE                   | ❌ 基础 API              |
+| 集成方式       | 独立运行时               | 嵌入现有框架              |
+| 学习曲线       | 中高                     | 低                      |
+| 适用场景       | 需要深度记忆管理的Agent    | 快速为现有Agent添加记忆   |
+| 开源协议       | Apache 2.0              | Apache 2.0              |
