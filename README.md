@@ -14,6 +14,8 @@
 │   ├── java/                   # Java 技术栈学习笔记
 │   ├── python/                 # Python 技术栈学习笔记
 │   ├── frontend/               # 前端技术栈学习笔记
+│   ├── ios/                    # iOS 技术栈学习笔记
+│   ├── android/                # Android 技术栈学习笔记
 │   └── architecture/           # 架构设计相关
 │
 ├── spring-boot-microservice-demo/  # Spring Boot 微服务项目
@@ -55,6 +57,20 @@
 - 工程化（Webpack、Vite、ESLint、Monorepo）
 - Node.js（Express、Koa、数据库操作）
 - 测试、浏览器原理、性能优化、跨平台开发、数据可视化等
+
+**iOS 技术栈**
+- Swift 语言基础（语法、OOP、协议与泛型、并发、ARC）
+- SwiftUI（布局、状态管理、导航、动画）
+- UIKit（核心组件、AutoLayout、TableView/CollectionView）
+- 数据持久化、网络编程、架构模式（MVVM、Combine、Clean Architecture）
+- 系统框架、性能优化、工程化、面试准备等
+
+**Android 技术栈**
+- Kotlin 语言基础（语法、OOP、函数式编程、协程、Java互操作）
+- Jetpack Compose（布局、状态管理、导航、动画）
+- 传统View体系（RecyclerView、ConstraintLayout、自定义View）
+- Jetpack组件、网络编程、架构模式（MVVM/MVI、Hilt、Clean Architecture）
+- 系统能力、性能优化、工程化、面试准备等
 
 ### 2. Spring Boot 微服务项目
 
@@ -102,6 +118,8 @@
 - [Java 学习笔记](./learning-notes/java/README.md)
 - [Python 学习笔记](./learning-notes/python/README.md)
 - [前端学习笔记](./learning-notes/frontend/README.md)
+- [iOS 学习笔记](./learning-notes/ios/README.md)
+- [Android 学习笔记](./learning-notes/android/README.md)
 - [Spring Boot 微服务项目](./spring-boot-microservice-demo/README.md)
 - [RAG LLM Agent 平台](./rag-llm-agent-platform/README.md)
 

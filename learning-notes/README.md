@@ -39,6 +39,32 @@ learning-notes/
 │   ├── 14-DevOps与部署/            # CI/CD、Nginx、Docker、CDN
 │   └── 15-面试准备/                # JS面试题、框架面试题、综合面试题
 │
+├── ios/                           # iOS 技术栈（按类别组织）
+│   ├── 00-Swift基础/              # Swift 语法、OOP、协议与泛型、并发、ARC
+│   ├── 01-SwiftUI/                # 基础布局、状态管理、导航、动画
+│   ├── 02-UIKit/                  # 核心组件、AutoLayout、TableView/CollectionView
+│   ├── 03-数据持久化/              # UserDefaults、Core Data、SwiftData、文件系统
+│   ├── 04-网络编程/                # URLSession、Alamofire/Moya、Codable
+│   ├── 05-架构模式/                # MVC/MVVM、Combine、Clean Architecture
+│   ├── 06-系统框架/                # 推送通知、地图、多媒体、Core Animation
+│   ├── 07-性能优化/                # Instruments、内存优化、启动优化
+│   ├── 08-工程化/                  # Xcode、SPM/CocoaPods、测试、CI/CD
+│   ├── 09-跨平台/                  # Flutter/RN集成、SwiftUI与UIKit混合
+│   └── 10-面试准备/                # Swift面试题、iOS系统面试题、架构面试题
+│
+├── android/                       # Android 技术栈（按类别组织）
+│   ├── 00-Kotlin基础/             # Kotlin 语法、OOP、函数式、协程、Java互操作
+│   ├── 01-Jetpack Compose/        # 基础布局、状态管理、导航、动画
+│   ├── 02-传统View体系/            # View基础、RecyclerView、ConstraintLayout
+│   ├── 03-Jetpack组件/            # ViewModel、Room、Navigation、WorkManager
+│   ├── 04-网络编程/                # Retrofit/OkHttp、序列化、缓存策略
+│   ├── 05-架构模式/                # MVVM/MVI、Clean Architecture、Hilt/Koin
+│   ├── 06-系统能力/                # 四大组件、通知、多媒体、权限
+│   ├── 07-性能优化/                # 内存优化、启动优化、布局优化
+│   ├── 08-工程化/                  # Gradle、多渠道打包、测试、CI/CD
+│   ├── 09-跨平台/                  # Flutter集成、KMM、Compose与View混合
+│   └── 10-面试准备/                # Kotlin面试题、Android系统面试题、架构面试题
+│
 ├── java/                          # Java 技术栈（按类别组织）
 │   ├── 00-Java基础/               # Java 语言基础（12个文档）
 │   │   ├── Java新特性8-17.md
