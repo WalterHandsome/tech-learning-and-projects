@@ -21,6 +21,24 @@
 
 ```
 learning-notes/
+├── frontend/                      # 前端技术栈（按类别组织）
+│   ├── 00-HTML与CSS基础/           # HTML5、CSS3、布局、响应式
+│   ├── 01-JavaScript基础/          # 数据类型、函数、原型链、异步、ES6+、DOM
+│   ├── 02-TypeScript/              # 基础类型、高级类型、工程化
+│   ├── 03-React/                   # 基础、Hooks、状态管理、Router、性能优化
+│   ├── 04-Vue/                     # Vue3、组合式API、Pinia、Nuxt3
+│   ├── 05-工程化与构建/             # Webpack、Vite、包管理、ESLint、Monorepo
+│   ├── 06-CSS进阶/                 # Sass/Less、CSS-in-JS、Tailwind、动画
+│   ├── 07-Node.js/                 # 基础、Express/Koa、数据库、性能优化
+│   ├── 08-测试/                    # Jest、组件测试、E2E、测试策略
+│   ├── 09-浏览器与网络/             # 渲染原理、HTTP、安全、存储
+│   ├── 10-性能优化/                 # 指标、加载优化、运行时优化、资源优化
+│   ├── 11-跨平台开发/              # React Native、Electron、小程序、Flutter
+│   ├── 12-可视化与图形/             # Canvas/SVG、ECharts、D3.js、Three.js
+│   ├── 13-微前端与架构/             # 微前端、设计模式、大型项目架构
+│   ├── 14-DevOps与部署/            # CI/CD、Nginx、Docker、CDN
+│   └── 15-面试准备/                # JS面试题、框架面试题、综合面试题
+│
 ├── java/                          # Java 技术栈（按类别组织）
 │   ├── 00-Java基础/               # Java 语言基础（12个文档）
 │   │   ├── Java新特性8-17.md
@@ -198,6 +216,105 @@ learning-notes/
 ```
 
 ## 🎯 内容分类
+
+### 前端技术栈
+
+**00-HTML与CSS基础**
+- **HTML5语义化与新特性**：语义化标签、表单新特性、多媒体、Canvas、Web Storage、Web Workers、无障碍访问
+- **CSS3核心特性**：选择器、盒模型、BFC、层叠上下文、定位方案、CSS变量、CSS函数、居中方案
+- **Flex与Grid布局**：Flex容器与项目属性、Grid网格布局、区域命名、常见布局方案
+- **响应式设计与媒体查询**：媒体查询、断点设计、移动优先、响应式单位、容器查询
+
+**01-JavaScript基础**
+- **数据类型与变量**：基本类型与引用类型、类型判断、类型转换、var/let/const、深拷贝与浅拷贝
+- **函数与作用域**：函数声明与表达式、闭包、this指向、call/apply/bind
+- **原型链与继承**：原型对象、原型链、继承方式、ES6 class、instanceof原理
+- **异步编程与Promise**：事件循环、Promise、async/await、并发控制
+- **ES6+新特性**：解构赋值、Map/Set、Proxy/Reflect、Symbol、Iterator、模块化
+- **DOM与BOM操作**：DOM查询与操作、事件模型、Observer API、BOM对象
+
+**02-TypeScript**
+- **基础入门**：基础类型、接口、类型别名、联合类型、函数类型、类、类型守卫
+- **高级类型**：泛型、条件类型、映射类型、工具类型、模板字面量类型、类型体操
+- **工程化实践**：tsconfig配置、声明文件、与React/Vue集成
+
+**03-React**
+- **基础与JSX**：JSX语法、组件、Props与State、条件渲染、列表渲染、组件通信
+- **Hooks深入**：useState、useEffect、useContext、useReducer、useMemo/useCallback、自定义Hook
+- **状态管理**：Context API、Redux Toolkit、Zustand、TanStack Query
+- **Router路由**：路由配置、嵌套路由、路由守卫、数据加载
+- **性能优化**：React.memo、代码分割、虚拟列表、并发特性
+
+**04-Vue**
+- **Vue3基础与组合式API**：模板语法、响应式（ref/reactive/computed/watch）、组件通信、Composables
+- **Vue Router与Pinia**：路由配置、导航守卫、Pinia状态管理、持久化
+- **Vue3高级特性**：Teleport、Suspense、自定义指令、Transition、KeepAlive、插件开发
+- **Vue生态工具库**：Nuxt3、VueUse、Element Plus、Vitest、unplugin自动导入
+
+**05-工程化与构建**
+- **Webpack核心概念**：Entry/Output、Loader、Plugin、代码分割、Tree Shaking、HMR
+- **Vite现代构建工具**：ESM原生模块、依赖预构建、插件系统、环境变量、SSR
+- **包管理器**：npm、yarn、pnpm（硬链接、workspace）
+- **代码规范**：ESLint、Prettier、Husky + lint-staged、commitlint
+- **Monorepo**：pnpm workspace、Turborepo任务编排与缓存
+
+**06-CSS进阶**
+- **CSS预处理器**：Sass（变量、嵌套、混入、模块化）、Less、PostCSS
+- **CSS-in-JS与CSS Modules**：CSS Modules、styled-components、方案对比
+- **Tailwind CSS**：工具类优先、配置定制、响应式、暗色模式、组件抽象
+- **CSS动画与过渡**：transition、animation、GPU加速、FLIP技术、Web Animations API
+
+**07-Node.js**
+- **基础与模块系统**：事件循环、CommonJS/ESM、Buffer/Stream、核心模块
+- **Express与Koa框架**：路由、中间件、错误处理、NestJS简介
+- **数据库操作**：Prisma ORM、Mongoose、ioredis
+- **性能优化**：内存泄漏排查、Worker Threads、Stream、PM2
+
+**08-测试**
+- **Jest单元测试**：匹配器、Mock函数、异步测试、Vitest
+- **组件测试**：React Testing Library、Vue Test Utils、Hook测试
+- **E2E测试**：Playwright、Cypress、API拦截
+- **测试策略**：测试金字塔、TDD/BDD、Mock策略、MSW
+
+**09-浏览器与网络**
+- **浏览器渲染原理**：关键渲染路径、重排与重绘、优化策略、资源加载
+- **HTTP协议与缓存**：HTTP/1.1/2/3、HTTPS、强缓存、协商缓存、Service Worker
+- **Web安全**：XSS（存储型/反射型/DOM型）、CSRF、CSP、CORS、安全响应头
+- **浏览器存储**：Cookie、localStorage/sessionStorage、IndexedDB、Cache API
+
+**10-性能优化**
+- **性能指标**：Core Web Vitals（LCP/INP/CLS）、Lighthouse、Performance API
+- **加载优化**：代码分割、Tree Shaking、压缩、预加载、SSR/SSG、骨架屏
+- **运行时优化**：防抖节流、虚拟列表、Web Worker、内存泄漏排查
+- **资源优化**：图片格式（WebP/AVIF）、响应式图片、字体优化、SVG优化
+
+**11-跨平台开发**
+- **React Native**：核心组件、样式系统、React Navigation、Expo
+- **Electron**：主进程与渲染进程、IPC通信、打包发布
+- **微信小程序**：WXML/WXSS、生命周期、Taro/uni-app跨端框架
+- **Flutter与Dart**：Dart语法、Widget体系、布局系统、状态管理
+
+**12-可视化与图形**
+- **Canvas与SVG**：Canvas 2D API、SVG基础、选型对比
+- **ECharts**：图表类型、配置项、React/Vue集成、大数据量优化
+- **D3.js**：选择集、数据绑定、比例尺、坐标轴、过渡动画
+- **Three.js**：场景/相机/渲染器、几何体与材质、光照、动画、模型加载
+
+**13-微前端与架构**
+- **微前端方案**：qiankun、Module Federation、样式隔离、JS沙箱、应用通信
+- **前端设计模式**：发布订阅、策略模式、单例模式、组件模式（HOC/Hooks/复合组件）
+- **大型项目架构**：目录结构、API层封装、错误处理、权限控制、国际化
+
+**14-DevOps与部署**
+- **CI/CD**：GitHub Actions、Docker构建推送、Changesets版本管理
+- **Nginx配置**：SPA部署、反向代理、Gzip、HTTPS、安全头
+- **Docker容器化**：多阶段构建、Docker Compose、镜像优化
+- **CDN**：缓存策略、资源哈希、多环境管理
+
+**15-面试准备**
+- **JavaScript面试题**：数据类型、手写题（防抖节流、Promise.all、深拷贝、柯里化等）、闭包、事件循环
+- **框架面试题**：React（虚拟DOM、Fiber、Hooks原理）、Vue（响应式原理、Diff算法）
+- **综合面试题**：性能优化、浏览器原理、工程化、设计模式、算法题
 
 ### Java 技术栈
 

@@ -13,6 +13,7 @@
 ├── learning-notes/              # 技术学习笔记
 │   ├── java/                   # Java 技术栈学习笔记
 │   ├── python/                 # Python 技术栈学习笔记
+│   ├── frontend/               # 前端技术栈学习笔记
 │   └── architecture/           # 架构设计相关
 │
 ├── spring-boot-microservice-demo/  # Spring Boot 微服务项目
@@ -45,6 +46,15 @@
 - 数据分析（NumPy、Pandas、数据可视化）
 - 机器学习（RAG、机器学习基础）
 - 并发编程、网络编程、爬虫、数据库操作等
+
+**前端技术栈**
+- HTML5/CSS3 基础、Flex/Grid 布局、响应式设计
+- JavaScript 基础、ES6+、TypeScript
+- React（Hooks、状态管理、Router、性能优化）
+- Vue3（组合式API、Pinia、Vue Router、Nuxt3）
+- 工程化（Webpack、Vite、ESLint、Monorepo）
+- Node.js（Express、Koa、数据库操作）
+- 测试、浏览器原理、性能优化、跨平台开发、数据可视化等
 
 ### 2. Spring Boot 微服务项目
 
@@ -91,6 +101,7 @@
 
 - [Java 学习笔记](./learning-notes/java/README.md)
 - [Python 学习笔记](./learning-notes/python/README.md)
+- [前端学习笔记](./learning-notes/frontend/README.md)
 - [Spring Boot 微服务项目](./spring-boot-microservice-demo/README.md)
 - [RAG LLM Agent 平台](./rag-llm-agent-platform/README.md)
 

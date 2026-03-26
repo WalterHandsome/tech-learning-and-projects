@@ -1,0 +1,113 @@
+# Node.js 基础与模块系统
+
+## 1. 事件循环
+
+```
+   ┌───────────────────────────┐
+┌─>│           timers          │  ← setTimeout, setInterval
+│  └─────────────┬─────────────┘
+│  ┌─────────────┴─────────────┐
+│  │     pending callbacks     │  ← I/O 回调
+│  └─────────────┬─────────────┘
+│  ┌─────────────┴─────────────┐
+│  │       idle, prepare       │
+│  └─────────────┬─────────────┘
+│  ┌─────────────┴─────────────┐
+│  │           poll            │  ← 获取新的 I/O 事件
+│  └─────────────┬─────────────┘
+│  ┌─────────────┴─────────────┐
+│  │           check           │  ← setImmediate
+│  └─────────────┬─────────────┘
+│  ┌─────────────┴─────────────┐
+└──┤      close callbacks      │  ← socket.on('close')
+   └───────────────────────────┘
+
+微任务（process.nextTick > Promise.then）在每个阶段之间执行
+```
+
+## 2. 模块系统
+
+```javascript
+// CommonJS（Node.js 传统方式）
+const fs = require('fs');
+module.exports = { add, subtract };
+module.exports = function main() {};
+
+// ESM（推荐，package.json 中设置 "type": "module"）
+import fs from 'node:fs';
+import { readFile } from 'node:fs/promises';
+export function add(a, b) { return a + b; }
+export default class Calculator {}
+```
+
+## 3. 核心模块
+
+```javascript
+// fs 文件系统
+import { readFile, writeFile, mkdir, readdir, stat } from 'node:fs/promises';
+
+const content = await readFile('file.txt', 'utf-8');
+await writeFile('output.txt', 'hello');
+await mkdir('new-dir', { recursive: true });
+const files = await readdir('./src');
+
+// path 路径
+import path from 'node:path';
+path.join('/user', 'docs', 'file.txt');  // /user/docs/file.txt
+path.resolve('src', 'index.js');          // 绝对路径
+path.extname('file.txt');                 // .txt
+path.basename('/path/file.txt');          // file.txt
+path.dirname('/path/file.txt');           // /path
+
+// Stream 流
+import { createReadStream, createWriteStream } from 'node:fs';
+import { pipeline } from 'node:stream/promises';
+import { createGzip } from 'node:zlib';
+
+await pipeline(
+  createReadStream('input.txt'),
+  createGzip(),
+  createWriteStream('input.txt.gz'),
+);
+
+// Buffer
+const buf = Buffer.from('Hello', 'utf-8');
+buf.toString('base64');  // SGVsbG8=
+Buffer.alloc(1024);      // 分配 1KB
+
+// child_process
+import { exec, spawn } from 'node:child_process';
+import { execSync } from 'node:child_process';
+
+const output = execSync('ls -la', { encoding: 'utf-8' });
+
+// Worker Threads
+import { Worker, isMainThread, parentPort } from 'node:worker_threads';
+
+if (isMainThread) {
+  const worker = new Worker(new URL('./worker.js', import.meta.url));
+  worker.postMessage({ data: 'hello' });
+  worker.on('message', (result) => console.log(result));
+} else {
+  parentPort.on('message', (msg) => {
+    parentPort.postMessage({ result: msg.data.toUpperCase() });
+  });
+}
+```
+
+## 4. 环境变量与配置
+
+```javascript
+// 使用 dotenv
+import 'dotenv/config';
+const port = process.env.PORT || 3000;
+const dbUrl = process.env.DATABASE_URL;
+
+// process 对象
+process.argv;     // 命令行参数
+process.cwd();    // 当前工作目录
+process.env;      // 环境变量
+process.exit(0);  // 退出进程
+process.pid;      // 进程ID
+process.memoryUsage(); // 内存使用
+```
