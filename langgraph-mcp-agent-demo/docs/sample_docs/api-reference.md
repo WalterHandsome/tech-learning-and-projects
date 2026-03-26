@@ -1,0 +1,33 @@
+# API 参考文档
+
+## 用户接口
+
+### 创建用户
+- 路径：`POST /api/users`
+- 请求体：`{ "name": "string", "email": "string" }`
+- 响应：`{ "id": 1, "name": "string", "email": "string" }`
+
+### 查询用户
+- 路径：`GET /api/users/{id}`
+- 响应：`{ "id": 1, "name": "string", "email": "string" }`
+
+## 订单接口
+
+### 创建订单
+- 路径：`POST /api/orders`
+- 请求体：`{ "user_id": 1, "product": "string", "amount": 100 }`
+- 响应：`{ "id": 101, "status": "pending" }`
+
+### 查询订单
+- 路径：`GET /api/orders?user_id=1&status=pending`
+- 响应：订单列表
+
+## 错误码
+
+| 状态码 | 说明 |
+|--------|------|
+| 200 | 成功 |
+| 400 | 请求参数错误 |
+| 401 | 未认证 |
+| 404 | 资源不存在 |
+| 500 | 服务器内部错误 |

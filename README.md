@@ -29,6 +29,18 @@
 │   ├── tests/                  # 测试代码
 │   └── k8s/                    # Kubernetes 配置
 │
+├── langgraph-mcp-agent-demo/   # LangGraph + MCP Agent 示例
+│   ├── app/agent/              # LangGraph 工作流
+│   ├── app/mcp_servers/        # MCP Server 实现
+│   ├── app/rag/                # RAG 检索模块
+│   └── app/api/                # FastAPI 接口
+│
+├── crewai-multi-agent-demo/    # CrewAI 多 Agent 协作示例
+│   ├── app/agents/             # Agent 角色定义
+│   ├── app/tasks/              # 任务定义
+│   ├── app/crews/              # Crew 组装
+│   └── app/tools/              # 自定义工具
+│
 └── scripts/                     # 工具脚本
 ```
 
@@ -109,6 +121,30 @@
 - ✅ 向量数据库（PostgreSQL + pgvector）
 
 **快速开始**: 查看 [项目 README](./rag-llm-agent-platform/README.md)
+
+### 4. LangGraph + MCP Agent 示例
+
+基于 LangGraph 工作流和 MCP 工具协议的智能 Agent：
+
+- ✅ LangGraph 图结构工作流编排
+- ✅ MCP 工具自动发现与调用
+- ✅ RAG 知识库检索（ChromaDB）
+- ✅ 人机交互节点（敏感操作审批）
+- ✅ 会话记忆与状态持久化
+
+**快速开始**: 查看 [项目 README](./langgraph-mcp-agent-demo/README.md)
+
+### 5. CrewAI 多 Agent 协作示例
+
+基于 CrewAI 的角色化多 Agent 协作内容创作流水线：
+
+- ✅ 四角色 Agent 团队（研究员/作家/编辑/SEO优化师）
+- ✅ 顺序执行与层级执行模式
+- ✅ MCP 工具集成（网络搜索、网页抓取）
+- ✅ 记忆系统（短期 + 长期 + 实体记忆）
+- ✅ CLI + API 双模式运行
+
+**快速开始**: 查看 [项目 README](./crewai-multi-agent-demo/README.md)
 
 ## 🛠️ 技术栈
 
