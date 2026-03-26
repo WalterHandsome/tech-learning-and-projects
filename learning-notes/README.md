@@ -65,18 +65,29 @@ learning-notes/
 │   ├── 09-跨平台/                  # Flutter集成、KMM、Compose与View混合
 │   └── 10-面试准备/                # Kotlin面试题、Android系统面试题、架构面试题
 │
-├── ai-agent/                      # AI Agent 技术栈（按类别组织）
+├── ai-agent/                      # AI Agent 技术栈（22个分类，74个文档）
 │   ├── 00-基础概念/                # Agent概述、大语言模型、Prompt Engineering
-│   ├── 01-Agent协议/              # MCP协议、A2A协议、ACP与协议生态
-│   ├── 02-Agent框架/              # LangGraph、CrewAI、OpenAI SDK、Google ADK
+│   ├── 01-Agent协议/              # MCP/A2A/ACP/ANP/AG-UI + 协议转换工具
+│   ├── 02-Agent框架/              # LangGraph、CrewAI、OpenAI SDK、ADK、Strands、MS Agent FW
 │   ├── 03-RAG进阶/                # RAG架构、向量数据库、高级RAG、GraphRAG
 │   ├── 04-工具与Function Calling/  # Function Calling、MCP Server开发、工具安全
 │   ├── 05-多Agent系统/            # 架构模式、通信协调、人机协作
 │   ├── 06-记忆与状态/              # 短期/长期记忆、对话管理、知识库
 │   ├── 07-模型服务/                # API接入、开源模型部署、模型路由
-│   ├── 08-可观测与评估/            # 可观测性、评估基准、安全对齐
+│   ├── 08-可观测与评估/            # 可观测性平台、评估基准、安全对齐
 │   ├── 09-低代码平台/              # Dify、Coze/FastGPT、n8n/Flowise
-│   └── 10-实战案例/                # 智能客服、代码助手、数据分析Agent
+│   ├── 10-实战案例/                # 客服/代码/数据/研究/运维/内容创作 Agent
+│   ├── 11-云厂商Agent方案/         # AWS/Azure/GCP/阿里云 + 全面对比
+│   ├── 12-Coding Agent/           # Claude Code、IDE Agent、Devin/OpenHands
+│   ├── 13-OpenClaw与Agent生态/     # 浏览器自动化、AgentOS、Skills生态
+│   ├── 14-Agent安全与治理/         # 身份权限、治理框架
+│   ├── 15-Agentic设计模式/        # Anthropic模式、15+设计模式、工作流编排
+│   ├── 16-Agent记忆框架/          # Mem0、Letta/MemGPT、Zep/LangMem
+│   ├── 17-工具平台与沙箱/          # Composio、E2B、工具生态总览
+│   ├── 18-AI网关与路由/            # LiteLLM、Vercel AI SDK、Portkey
+│   ├── 19-Java-TS Agent生态/      # Spring AI、Vercel AI SDK、Dapr Agents
+│   ├── 20-Agent框架补充/          # LlamaIndex、Claude能力、框架选型指南
+│   └── 21-Harness Engineering/    # 完整指南、Context Eng、Kiro配置、CI/CD集成
 │
 ├── java/                          # Java 技术栈（按类别组织）
 │   ├── 00-Java基础/               # Java 语言基础（12个文档）
