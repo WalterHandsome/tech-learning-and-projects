@@ -1,256 +1,232 @@
 # AI Agent 技术学习笔记
 
-> 本目录包含 AI Agent 与大模型应用开发的学习笔记，按类别组织
+> 本目录包含 AI Agent 与大模型应用开发的完整知识体系，覆盖 2024-2026 主流技术
 
-## 📁 目录结构
+## 📁 知识体系结构
+
+按学习路径从基础到高级组织，共 22 个分类、74 个文档。
 
 ```
 ai-agent/
-├── 00-基础概念/                  # AI Agent 核心概念
-│   ├── AI Agent概述与发展.md
-│   ├── 大语言模型基础.md
-│   └── Prompt Engineering.md
 │
-├── 01-Agent协议/                 # Agent 通信协议
-│   ├── MCP模型上下文协议.md
-│   ├── A2A Agent间通信协议.md
-│   └── ACP与协议生态.md
+│  ═══════════════ 第一层：认知基础 ═══════════════
 │
-├── 02-Agent框架/                 # 主流开发框架
-│   ├── LangGraph工作流编排.md
-│   ├── CrewAI多Agent协作.md
-│   ├── OpenAI Agents SDK.md
-│   ├── Google ADK与Bedrock Agents.md
-│   ├── Google ADK详解.md
-│   ├── AWS Strands与Bedrock AgentCore.md
-│   ├── Microsoft Agent Framework.md
-│   └── AG2-PydanticAI-Agno.md
+├── 00-基础概念/                    # 入门必读
+│   ├── AI Agent概述与发展.md       # Agent 定义、分类、演进趋势
+│   ├── 大语言模型基础.md           # GPT/Claude/Gemini/Llama 对比
+│   └── Prompt Engineering.md      # 提示词工程（Harness 的起点）
 │
-├── 03-RAG进阶/                   # 检索增强生成
-│   ├── RAG架构与核心流程.md
-│   ├── 向量数据库选型.md
-│   ├── 高级RAG策略.md
-│   └── GraphRAG知识图谱.md
+├── 15-Agentic设计模式/             # 架构蓝图（先理解模式再选框架）
+│   ├── Anthropic Agent设计模式.md  # 官方 5 大 Workflow + Agent 模式
+│   ├── Agentic设计模式大全.md      # 15+ 生产级设计模式
+│   └── Agent工作流编排模式.md      # DAG/状态机/事件驱动/并行扇出
 │
-├── 04-工具与Function Calling/     # 工具调用
-│   ├── Function Calling机制.md
-│   ├── MCP Server开发.md
-│   └── 工具编排与安全.md
+│  ═══════════════ 第二层：协议标准 ═══════════════
 │
-├── 05-多Agent系统/                # 多Agent协作
-│   ├── 多Agent架构模式.md
-│   ├── Agent通信与协调.md
-│   └── 人机协作与监督.md
+├── 01-Agent协议/                   # Agent 通信的"TCP/IP"
+│   ├── Agent协议全景图.md          # ★ 全协议关系图（MCP/A2A/AG-UI/ANP）
+│   ├── MCP模型上下文协议.md        # Agent ↔ 工具（垂直连接）
+│   ├── A2A Agent间通信协议.md      # Agent ↔ Agent（水平协作）
+│   ├── ACP与协议生态.md            # ACP/ANP 轻量协议
+│   └── 协议转换工具.md             # ★ Open-CLI/CLI-Anything/Higress
 │
-├── 06-记忆与状态/                 # Agent记忆系统
-│   ├── 短期与长期记忆.md
-│   ├── 对话管理与上下文.md
-│   └── 知识库与经验学习.md
+│  ═══════════════ 第三层：开发框架 ═══════════════
 │
-├── 07-模型服务/                   # LLM 接入与部署
-│   ├── OpenAI与Claude API.md
-│   ├── 开源模型部署.md
-│   └── 模型路由与网关.md
+├── 02-Agent框架/                   # 主流框架（选一个深入）
+│   ├── LangGraph工作流编排.md      # ★ 生产级首选，图结构编排
+│   ├── CrewAI多Agent协作.md        # ★ 角色化多 Agent，最快上手
+│   ├── OpenAI Agents SDK.md       # 快速原型，GPT 生态
+│   ├── Google ADK详解.md           # ADK 全功能，A2A 原生
+│   ├── AWS Strands与Bedrock AgentCore.md  # AWS 生态
+│   ├── Microsoft Agent Framework.md       # SK+AutoGen 合并
+│   ├── Google ADK与Bedrock Agents.md      # 云厂商方案概览
+│   └── AG2-PydanticAI-Agno.md     # 其他框架
 │
-├── 08-可观测与评估/               # 监控与评估
-│   ├── LLM可观测性.md
-│   ├── Agent评估与基准.md
-│   └── 安全与对齐.md
+├── 20-Agent框架补充/               # 框架生态补充
+│   ├── LlamaIndex Agent与Workflow.md  # 事件驱动编排
+│   ├── Anthropic Claude Agent能力.md  # Claude 全能力解析
+│   └── Agent框架选型指南.md        # ★ 10+ 框架对比矩阵
 │
-├── 09-低代码平台/                 # 可视化构建
-│   ├── Dify平台实践.md
-│   ├── Coze与FastGPT.md
-│   └── n8n与Flowise.md
+├── 19-Java-TS Agent生态/           # 多语言 Agent 开发
+│   ├── Spring AI Agent.md         # Java 生态
+│   ├── Vercel AI SDK Agent开发.md  # TypeScript 生态
+│   └── Dapr Agents分布式运行时.md  # 分布式 Agent
 │
-├── 10-实战案例/                   # 项目实践
-│   ├── 智能客服Agent.md
-│   ├── 代码助手Agent.md
-│   └── 数据分析Agent.md
+│  ═══════════════ 第四层：核心能力 ═══════════════
+│
+├── 03-RAG进阶/                     # 检索增强生成
+│   ├── RAG架构与核心流程.md        # Naive → Advanced → Modular RAG
+│   ├── 向量数据库选型.md           # Pinecone/Weaviate/Qdrant/Chroma
+│   ├── 高级RAG策略.md             # HyDE/Self-RAG/Agentic RAG
+│   └── GraphRAG知识图谱.md        # 图+向量混合检索
+│
+├── 04-工具与Function Calling/      # 工具调用
+│   ├── Function Calling机制.md    # OpenAI/Claude/Gemini 对比
+│   ├── MCP Server开发.md          # Python/TS SDK 实战
+│   └── 工具编排与安全.md           # 权限/审计/沙箱
+│
+├── 17-工具平台与沙箱/              # 工具基础设施
+│   ├── Composio工具平台.md        # 1000+ 工具，MCP Gateway
+│   ├── E2B代码沙箱.md             # 安全隔离执行环境
+│   └── Agent工具生态总览.md        # 搜索/浏览器/数据/代码沙箱
+│
+├── 05-多Agent系统/                 # 多 Agent 协作
+│   ├── 多Agent架构模式.md          # Supervisor/Swarm/Hierarchical
+│   ├── Agent通信与协调.md          # 消息传递/Handoff/冲突解决
+│   └── 人机协作与监督.md           # HITL/审批/渐进式自主
+│
+├── 06-记忆与状态/                  # Agent 记忆
+│   ├── 短期与长期记忆.md           # 缓冲/摘要/向量/实体记忆
+│   ├── 对话管理与上下文.md         # 多轮对话/上下文压缩
+│   └── 知识库与经验学习.md         # 知识库/反思/自我改进
+│
+├── 16-Agent记忆框架/               # 记忆专用框架
+│   ├── Mem0记忆层.md              # 图记忆，Y Combinator $24M
+│   ├── Letta-MemGPT记忆系统.md    # OS 级分层记忆
+│   └── Zep与LangMem.md           # 时序知识图谱
+│
+│  ═══════════════ 第五层：浏览器与 Agent OS ═══════════════
+│
+├── 13-OpenClaw与Agent生态/         # Agent 生态系统
+│   ├── 浏览器自动化Agent详解.md    # ★ Browser-Use/Skyvern/Agent-S 等
+│   ├── Computer Use与浏览器Agent.md # Claude Computer Use/Nova Act
+│   ├── OpenClaw平台详解.md        # Skills/Heartbeat/20+ 渠道
+│   ├── Agent Skills生态.md        # Skills/Tools/Plugins 对比
+│   └── AgentOS生态.md             # ★ OpenClaw/ZeroClaw/OpenFang
+│
+│  ═══════════════ 第六层：基础设施 ═══════════════
+│
+├── 07-模型服务/                    # LLM 接入与部署
+│   ├── OpenAI与Claude API.md     # API 调用/流式/多模态
+│   ├── 开源模型部署.md             # vLLM/Ollama/量化部署
+│   └── 模型路由与网关.md           # LiteLLM/负载均衡
+│
+├── 18-AI网关与路由/                # AI 基础设施
+│   ├── LiteLLM统一接口.md         # 100+ 模型统一 API
+│   ├── Vercel AI SDK与Gateway.md  # TypeScript AI 网关
+│   └── Portkey与AI网关对比.md     # 网关方案对比
+│
+├── 08-可观测与评估/                # 监控与评估
+│   ├── LLM可观测性.md             # 链路追踪/Token 监控
+│   ├── 可观测性平台详解.md         # LangSmith/LangFuse/Phoenix
+│   ├── Agent评估与基准.md         # RAGAS/SWE-bench
+│   └── 安全与对齐.md              # 注入防御/PII/Guardrails
+│
+│  ═══════════════ 第七层：工程化 ═══════════════
+│
+├── 21-Harness Engineering/         # ★ 核心方法论
+│   ├── Harness Engineering完整指南.md  # 五大实践/自主循环/检查清单
+│   ├── Context Engineering详解.md     # 六大上下文维度
+│   ├── Kiro Harness实战配置.md        # Steering/Hooks/Specs 模板
+│   ├── Harness Engineering开源项目.md  # ★ 开源项目与资源
+│   └── Harness Engineering与CI-CD集成.md # ★ GitHub Actions 自动循环
+│
+├── 12-Coding Agent/                # 编程 Agent
+│   ├── Claude Code与终端Agent.md  # 终端原生/CLAUDE.md/多 Agent
+│   ├── Cursor-Kiro-Windsurf IDE Agent.md # IDE Agent 对比
+│   └── Devin与自主开发Agent.md    # 自主开发/SWE-bench
+│
+│  ═══════════════ 第八层：平台与部署 ═══════════════
 │
 ├── 11-云厂商Agent方案/             # 云厂商解决方案
-│   ├── 阿里云百炼与通义.md
-│   └── 云厂商Agent方案对比.md
+│   ├── 阿里云百炼与通义.md         # 百炼/Qwen/DashScope
+│   └── 云厂商Agent方案对比.md      # AWS/Azure/GCP/阿里/百度/腾讯/字节
 │
-├── 12-Coding Agent/               # 编程Agent
-│   ├── Claude Code与终端Agent.md
-│   ├── Cursor-Kiro-Windsurf IDE Agent.md
-│   └── Devin与自主开发Agent.md
-│
-├── 13-OpenClaw与Agent生态/         # Agent生态
-│   ├── OpenClaw平台详解.md
-│   ├── Agent Skills生态.md
-│   └── Computer Use与浏览器Agent.md
+├── 09-低代码平台/                  # 可视化构建
+│   ├── Dify平台实践.md            # 工作流/知识库/Agent
+│   ├── Coze与FastGPT.md          # Bot 构建/插件市场
+│   └── n8n与Flowise.md           # 自动化工作流
 │
 ├── 14-Agent安全与治理/             # 安全与治理
-│   ├── Agent身份与权限.md
-│   └── Agent治理框架.md
+│   ├── Agent身份与权限.md         # OAuth2/RBAC/审计
+│   └── Agent治理框架.md           # 四大支柱/合规/企业检查清单
 │
-├── 15-Agentic设计模式/             # 设计模式
-│   ├── Anthropic Agent设计模式.md
-│   ├── Agentic设计模式大全.md
-│   └── Agent工作流编排模式.md
+│  ═══════════════ 第九层：实战 ═══════════════
 │
-├── 16-Agent记忆框架/               # 记忆框架
-│   ├── Mem0记忆层.md
-│   ├── Letta-MemGPT记忆系统.md
-│   └── Zep与LangMem.md
-│
-├── 17-工具平台与沙箱/               # 工具平台
-│   ├── Composio工具平台.md
-│   ├── E2B代码沙箱.md
-│   └── Agent工具生态总览.md
-│
-├── 18-AI网关与路由/                 # AI 网关
-│   ├── LiteLLM统一接口.md
-│   ├── Vercel AI SDK与Gateway.md
-│   └── Portkey与AI网关对比.md
-│
-├── 19-Java-TS Agent生态/           # 多语言生态
-│   ├── Spring AI Agent.md
-│   ├── Vercel AI SDK Agent开发.md
-│   └── Dapr Agents分布式运行时.md
-│
-├── 20-Agent框架补充/                # 框架补充
-│   ├── LlamaIndex Agent与Workflow.md
-│   ├── Anthropic Claude Agent能力.md
-│   └── Agent框架选型指南.md
-│
-├── 21-Harness Engineering/         # Harness Engineering
-│   ├── Harness Engineering完整指南.md
-│   ├── Context Engineering详解.md
-│   └── Kiro Harness实战配置.md
-│
-└── README.md                     # 本文件
+└── 10-实战案例/                    # 项目实践
+    ├── 智能客服Agent.md           # 多轮对话/知识库/人工转接
+    ├── 代码助手Agent.md           # 代码生成/审查/MCP 集成
+    ├── 数据分析Agent.md           # NL2SQL/可视化/报表
+    ├── 研究助手Agent.md           # 多源搜索/论文分析
+    ├── 自动化运维Agent.md         # 监控/告警/自动修复
+    └── 内容创作Agent.md           # 多 Agent 协作创作
 ```
 
-## 📚 内容说明
+## 🎯 学习路径
 
-### 基础概念
+```
+第一阶段：认知（1-2 天）
+  00-基础概念 → 15-设计模式 → 理解 Agent 是什么、怎么设计
 
-- **AI Agent概述与发展**：Agent定义与分类、从Chatbot到Agentic AI的演进、ReAct/Plan-and-Execute/Tool Use范式、2025-2026行业趋势
-- **大语言模型基础**：Transformer架构、GPT/Claude/Gemini/Llama模型对比、Token与上下文窗口、Temperature/Top-P采样、多模态能力
-- **Prompt Engineering**：系统提示词设计、Few-shot/Chain-of-Thought/Tree-of-Thought、结构化输出、提示词注入防御
+第二阶段：协议（1 天）
+  01-Agent协议 → 理解 MCP/A2A/AG-UI 生态
 
-### Agent 协议
+第三阶段：框架（3-5 天）
+  02-Agent框架 → 选一个深入（推荐 LangGraph 或 CrewAI）
+  20-框架补充 → Agent框架选型指南
 
-- **MCP模型上下文协议**：MCP架构（Host/Client/Server）、工具发现与调用、资源与提示模板、传输层（stdio/SSE/Streamable HTTP）、安全模型、MCP Server开发实践
-- **A2A Agent间通信协议**：Google A2A协议、Agent Card发现机制、任务生命周期管理、流式通信、企业级认证授权、与MCP的互补关系
-- **ACP与协议生态**：IBM ACP轻量消息协议、ANP Agent网络协议、协议选型指南（MCP vs A2A vs ACP）
+第四阶段：核心能力（1-2 周）
+  03-RAG → 04-工具 → 05-多Agent → 06-记忆
+  16-记忆框架 → 17-工具平台
 
-### Agent 框架
+第五阶段：工程化（1 周）
+  21-Harness Engineering → 12-Coding Agent
+  这是提升 AI coding 效率的关键
 
-- **LangGraph工作流编排**：图结构（StateGraph/Node/Edge）、条件路由、检查点与状态持久化、人机交互节点、子图、LangGraph Cloud部署
-- **CrewAI多Agent协作**：Agent/Task/Crew/Tool核心概念、角色定义与任务分配、顺序/层级/共识流程、MCP集成、Memory系统、企业级部署
-- **OpenAI Agents SDK**：Agent/Handoff/Guardrail核心概念、工具定义、Agent间交接、输入输出护栏、Tracing追踪、快速原型开发
-- **Google ADK与Bedrock Agents**：Google Agent Development Kit、Amazon Bedrock Agents、云厂商Agent方案对比
-- **Google ADK详解**：ADK核心概念（Agent/Tool/Runner/Session）、Agent类型（LlmAgent/SequentialAgent/ParallelAgent/LoopAgent）、MCP/A2A集成、Vertex AI部署
-- **AWS Strands与Bedrock AgentCore**：Strands SDK模型驱动方法、@tool装饰器、多Agent编排、AgentCore托管运行时、Nova Act浏览器自动化
-- **Microsoft Agent Framework**：SK+AutoGen合并、ChatCompletionAgent、Skills/Plugins系统、GraphFlow图编排、Azure AI Foundry集成
-- **AG2-PydanticAI-Agno**：AG2（原AutoGen）多Agent对话、PydanticAI类型安全Agent、Agno高性能运行时、smolagents轻量方案
+第六阶段：生产化（持续）
+  07-模型服务 → 08-可观测 → 14-安全治理
+  11-云厂商 → 09-低代码平台
 
-### RAG 进阶
+第七阶段：实战（持续）
+  10-实战案例 → 选一个方向深入
+```
 
-- **RAG架构与核心流程**：Naive RAG → Advanced RAG → Modular RAG演进、文档加载与分块策略、Embedding模型选型、检索与重排序、生成与引用
-- **向量数据库选型**：Pinecone、Weaviate、Qdrant、Milvus、Chroma、pgvector对比、混合搜索（向量+关键词+语义）
-- **高级RAG策略**：查询改写与扩展、HyDE假设文档嵌入、Self-RAG自反思检索、Contextual Retrieval、Reranking重排序、Agentic RAG
-- **GraphRAG知识图谱**：知识图谱构建、实体关系抽取、图检索策略、Microsoft GraphRAG、Neo4j集成、图+向量混合检索
+## 📊 技术全景图
 
-### 工具与 Function Calling
-
-- **Function Calling机制**：OpenAI/Claude/Gemini Function Calling对比、工具定义Schema、并行工具调用、流式工具调用
-- **MCP Server开发**：Python/TypeScript SDK、工具/资源/提示注册、传输层实现、认证与授权、测试与调试
-- **工具编排与安全**：工具链编排、权限控制、输入验证、速率限制、审计日志、沙箱执行
-
-### 多 Agent 系统
-
-- **多Agent架构模式**：Supervisor监督者模式、Hierarchical层级模式、Swarm群体模式、Network网络模式、选型指南
-- **Agent通信与协调**：消息传递、共享状态、任务委派与交接（Handoff）、冲突解决、A2A协议实践
-- **人机协作与监督**：Human-in-the-Loop、审批工作流、中断与恢复、信任层级、渐进式自主
-
-### 记忆与状态
-
-- **短期与长期记忆**：对话缓冲记忆、摘要记忆、向量记忆、实体记忆、记忆检索策略
-- **对话管理与上下文**：多轮对话管理、上下文窗口优化、对话历史压缩、会话隔离
-- **知识库与经验学习**：知识库构建与更新、经验回放、反思机制、自我改进
-
-### 模型服务
-
-- **OpenAI与Claude API**：Chat Completions API、Anthropic Messages API、流式响应、多模态输入、Batch API、成本优化
-- **开源模型部署**：vLLM/Ollama/llama.cpp推理引擎、Llama/Qwen/DeepSeek模型、量化部署（GGUF/AWQ/GPTQ）、GPU资源规划
-- **模型路由与网关**：LiteLLM统一接口、模型负载均衡、Fallback策略、Token用量追踪、API Key管理
-
-### 可观测与评估
-
-- **LLM可观测性**：LangSmith/LangFuse/Phoenix追踪平台、Trace/Span/Run链路追踪、Token用量监控、延迟分析、成本追踪
-- **Agent评估与基准**：任务完成率、工具调用准确率、RAGAS评估框架、人工评估、A/B测试、回归测试
-- **安全与对齐**：提示词注入防御、输出过滤、PII检测、内容安全策略、Red Teaming、Guardrails护栏
-
-### 低代码平台
-
-- **Dify平台实践**：工作流编排、知识库管理、Agent模式、API发布、私有化部署
-- **Coze与FastGPT**：Coze Bot构建、插件市场、FastGPT知识库问答、工作流编排
-- **n8n与Flowise**：n8n AI Agent节点、Flowise可视化LangChain、自动化工作流集成
-
-### 实战案例
-
-- **智能客服Agent**：多轮对话、知识库检索、工单创建、人工转接、满意度评估
-- **代码助手Agent**：代码生成与审查、仓库理解、Bug修复、测试生成、MCP工具集成
-- **数据分析Agent**：自然语言转SQL、数据可视化、报表生成、异常检测、多数据源接入
-
-### 云厂商 Agent 方案
-
-- **阿里云百炼与通义**：百炼平台、通义千问模型系列、DashScope API、Function Calling、知识库RAG、MCP支持、LangChain/LlamaIndex集成、私有化部署
-- **云厂商Agent方案对比**：AWS/Microsoft/Google/阿里云/百度/腾讯/字节全面对比、协议支持、部署定价、场景选型指南
-
-### Coding Agent
-
-- **Claude Code与终端Agent**：终端原生编码工具、CLAUDE.md配置、MCP扩展、多Agent并行、Git工作流、终端Agent对比
-- **Cursor-Kiro-Windsurf IDE Agent**：IDE集成Agent对比、Cursor Composer、Kiro Specs驱动、Windsurf Cascade、GitHub Copilot、IDE vs 终端Agent
-- **Devin与自主开发Agent**：Devin自主开发、Manus AI、OpenHands开源方案、SWE-Agent、SWE-bench基准、自主vs辅助选型
-
-### OpenClaw 与 Agent 生态
-
-- **OpenClaw平台详解**：开源Agent编排、Skills系统、Heartbeat调度、20+消息渠道、ClawHub市场、Sub-Agents、自托管部署
-- **Agent Skills生态**：Skills/Tools/Plugins对比、OpenClaw Skills、Semantic Kernel Plugins、LangChain Tools、MCP统一协议、Skills市场
-- **Computer Use与浏览器Agent**：Claude Computer Use、Nova Act SDK、Playwright/Puppeteer MCP、GUI vs API Agent、安全考虑
-
-### Agent 安全与治理
-
-- **Agent身份与权限**：OAuth2认证、API Key管理、RBAC权限控制、最小权限原则、A2A认证、审计日志、云厂商身份方案
-- **Agent治理框架**：四大治理支柱、Human-in-the-Loop、合规要求（GDPR/SOC2）、成本治理、速率限制、生命周期管理、企业部署检查清单
-
-## 🎯 学习路径建议
-
-### 入门阶段
-1. **基础概念**：AI Agent概述 → 大语言模型基础 → Prompt Engineering
-2. **快速体验**：低代码平台（Dify/Coze）→ 感受Agent能力
-
-### 开发阶段
-3. **协议理解**：MCP协议 → A2A协议 → 协议生态
-4. **框架学习**：LangGraph → CrewAI → OpenAI Agents SDK（选一深入）
-5. **RAG实践**：RAG核心流程 → 向量数据库 → 高级RAG策略
-6. **工具开发**：Function Calling → MCP Server开发
-
-### 进阶阶段
-7. **多Agent系统**：架构模式 → 通信协调 → 人机协作
-8. **记忆系统**：短期/长期记忆 → 对话管理 → 知识库
-9. **模型服务**：API接入 → 开源模型部署 → 模型路由
-10. **可观测性**：链路追踪 → 评估基准 → 安全对齐
-
-### 实战阶段
-11. **项目实践**：智能客服 → 代码助手 → 数据分析Agent
-
-## 📖 使用说明
-
-- 所有笔记从个人学习过程中整理，已移除敏感信息
-- 包含代码示例和最佳实践
-- 技术发展迅速，内容持续更新
+```
+┌─────────────────────────────────────────────────────────────────┐
+│                        AI Agent 技术全景                          │
+├─────────────────────────────────────────────────────────────────┤
+│                                                                  │
+│  用户层    AG-UI ←→ 前端 UI ←→ A2UI                             │
+│           ─────────────────────────────────────                  │
+│  Agent层   Agent A ←─A2A/ACP─→ Agent B ←─ANP─→ Agent C         │
+│           ─────────────────────────────────────                  │
+│  工具层    MCP Server │ Composio │ E2B │ Browser-Use            │
+│           ─────────────────────────────────────                  │
+│  转换层    Open-CLI │ CLI-Anything │ Higress                    │
+│           ─────────────────────────────────────                  │
+│  模型层    GPT-4o │ Claude │ Gemini │ Qwen │ Llama │ DeepSeek  │
+│           ─────────────────────────────────────                  │
+│  基础设施  LiteLLM │ Portkey │ LangSmith │ LangFuse            │
+│           ─────────────────────────────────────                  │
+│  工程化    Harness Engineering │ CI/CD │ Kiro Steering          │
+│           ─────────────────────────────────────                  │
+│  运行时    LangGraph │ CrewAI │ OpenFang │ AgentCore            │
+│                                                                  │
+└─────────────────────────────────────────────────────────────────┘
+```
 
 ## 🔗 相关资源
 
-- [LangGraph 文档](https://langchain-ai.github.io/langgraph/)
-- [CrewAI 文档](https://docs.crewai.com/)
-- [OpenAI Agents SDK](https://openai.github.io/openai-agents-python/)
-- [MCP 规范](https://modelcontextprotocol.io/)
-- [A2A 协议](https://google.github.io/A2A/)
-- [Dify 文档](https://docs.dify.ai/)
+### 官方文档
+- [LangGraph](https://langchain-ai.github.io/langgraph/) | [CrewAI](https://docs.crewai.com/) | [OpenAI Agents SDK](https://openai.github.io/openai-agents-python/)
+- [MCP 规范](https://modelcontextprotocol.io/) | [A2A 协议](https://google.github.io/A2A/)
+- [Google ADK](https://google.github.io/adk-docs/) | [AWS Strands](https://strandsagents.com/)
+
+### Harness Engineering
+- [OpenAI 论文](https://openai.com/index/harness-engineering)
+- [LangChain Deep Agents](https://blog.langchain.com/improving-deep-agents-with-harness-engineering/)
+- [nxcode 完整指南](https://www.nxcode.io/resources/news/harness-engineering-complete-guide-ai-agent-codex-2026)
+
+### 浏览器自动化
+- [Browser-Use](https://browser-use.com/) | [Skyvern](https://github.com/Skyvern-AI/skyvern) | [Agent-S](https://github.com/simular-ai/Agent-S)
+
+### Agent OS
+- [OpenClaw](https://github.com/openclaw/openclaw) | [OpenFang](https://github.com/RightNow-AI/openfang)
+
+### 协议转换
+- [Higress](https://github.com/alibaba/higress) | [Open-CLI](https://opencli.info/) | [CLI-Anything](https://github.com/HKUDS/CLI-Anything)
+
+### 低代码平台
+- [Dify](https://docs.dify.ai/) | [Coze](https://www.coze.com/) | [FastGPT](https://fastgpt.in/)
