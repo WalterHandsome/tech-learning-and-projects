@@ -1,0 +1,219 @@
+# 数据分析 Agent
+
+## 1. 系统架构
+
+```
+┌─────────────────────────────────────────────────────┐
+│                 数据分析 Agent                        │
+├──────────┬──────────┬──────────┬───────────────────┤
+│ NL→SQL   │ 数据可视化│ 报告生成  │ 异常检测          │
+├──────────┼──────────┼──────────┼───────────────────┤
+│ 自然语言  │ 图表生成  │ Markdown │ 统计分析          │
+│ →SQL转换 │ 趋势分析  │ PDF导出  │ 阈值告警          │
+└──────────┴──────────┴──────────┴───────────────────┘
+         ↕ 多数据源（MySQL/PG/CSV/API）↕
+```
+
+## 2. NL→SQL 转换
+
+```python
+from langchain_openai import ChatOpenAI
+from langchain_core.prompts import ChatPromptTemplate
+
+llm = ChatOpenAI(model="gpt-4o", temperature=0)
+
+# 获取数据库 Schema 作为上下文
+DB_SCHEMA = """
+表：orders (id, user_id, product_id, amount, status, created_at)
+表：products (id, name, category, price)
+表：users (id, name, email, region, created_at)
+
+关系：orders.user_id → users.id, orders.product_id → products.id
+"""
+
+nl2sql_prompt = ChatPromptTemplate.from_template("""你是 SQL 专家。根据用户的自然语言问题生成 SQL 查询。
+
+数据库结构：
+{schema}
+
+规则：
+1. 只生成 SELECT 查询
+2. 使用标准 SQL 语法
+3. 对中文字段名使用英文列名
+4. 复杂查询添加注释
+
+用户问题：{question}
+
+只输出 SQL，不要其他内容：
+""")
+
+async def nl_to_sql(question: str) -> str:
+    chain = nl2sql_prompt | llm
+    result = await chain.ainvoke({"schema": DB_SCHEMA, "question": question})
+    sql = result.content.strip().strip("```sql").strip("```").strip()
+    return sql
+
+# 示例
+sql = await nl_to_sql("上个月各地区的销售额排名")
+# SELECT u.region, SUM(o.amount) as total_sales
+# FROM orders o JOIN users u ON o.user_id = u.id
+# WHERE o.created_at >= DATE_TRUNC('month', CURRENT_DATE - INTERVAL '1 month')
+# GROUP BY u.region ORDER BY total_sales DESC
+```
+
+## 3. 安全执行 SQL
+
+```python
+import sqlite3
+import pandas as pd
+
+class SafeSQLExecutor:
+    """安全的 SQL 执行器"""
+
+    FORBIDDEN_KEYWORDS = ["DROP", "DELETE", "UPDATE", "INSERT", "ALTER", "TRUNCATE", "GRANT"]
+
+    def __init__(self, db_path: str):
+        self.db_path = db_path
+
+    def validate_sql(self, sql: str) -> bool:
+        upper = sql.upper().strip()
+        if not upper.startswith("SELECT"):
+            return False
+        return not any(kw in upper for kw in self.FORBIDDEN_KEYWORDS)
+
+    def execute(self, sql: str) -> pd.DataFrame:
+        if not self.validate_sql(sql):
+            raise ValueError("只允许 SELECT 查询")
+        conn = sqlite3.connect(self.db_path)
+        try:
+            df = pd.read_sql_query(sql, conn)
+            if len(df) > 10000:
+                df = df.head(10000)  # 限制返回行数
+            return df
+        finally:
+            conn.close()
+
+executor = SafeSQLExecutor("business.db")
+df = executor.execute(sql)
+```
+
+## 4. 数据可视化
+
+```python
+import matplotlib.pyplot as plt
+import matplotlib
+matplotlib.rcParams['font.sans-serif'] = ['SimHei']  # 中文支持
+
+class DataVisualizer:
+    """数据可视化生成器"""
+
+    async def auto_visualize(self, df: pd.DataFrame, question: str) -> str:
+        """根据数据和问题自动选择图表类型"""
+        prompt = f"""根据数据和问题，选择最合适的图表类型。
+
+数据列：{list(df.columns)}
+数据行数：{len(df)}
+数据示例：{df.head(3).to_string()}
+问题：{question}
+
+回答格式：{{"chart_type": "bar/line/pie/scatter", "x": "列名", "y": "列名", "title": "标题"}}"""
+
+        config = eval((await llm.ainvoke(prompt)).content)
+        return self._create_chart(df, config)
+
+    def _create_chart(self, df: pd.DataFrame, config: dict) -> str:
+        fig, ax = plt.subplots(figsize=(10, 6))
+        chart_type = config["chart_type"]
+
+        if chart_type == "bar":
+            df.plot(kind="bar", x=config["x"], y=config["y"], ax=ax)
+        elif chart_type == "line":
+            df.plot(kind="line", x=config["x"], y=config["y"], ax=ax)
+        elif chart_type == "pie":
+            df.set_index(config["x"])[config["y"]].plot(kind="pie", ax=ax, autopct="%1.1f%%")
+
+        ax.set_title(config["title"])
+        path = f"charts/{config['title']}.png"
+        fig.savefig(path, dpi=150, bbox_inches="tight")
+        plt.close()
+        return path
+
+visualizer = DataVisualizer()
+chart_path = await visualizer.auto_visualize(df, "各地区销售额对比")
+```
+
+## 5. 报告生成
+
+```python
+async def generate_report(question: str, sql: str, df: pd.DataFrame, chart_path: str) -> str:
+    """生成数据分析报告"""
+    stats = df.describe().to_string()
+
+    prompt = f"""基于以下数据分析结果，生成一份简洁的分析报告。
+
+原始问题：{question}
+SQL 查询：{sql}
+数据统计：
+{stats}
+
+数据预览：
+{df.head(10).to_string()}
+
+报告要求：
+1. 关键发现（3-5 条）
+2. 数据洞察
+3. 建议措施
+使用 Markdown 格式。"""
+
+    report = (await llm.ainvoke(prompt)).content
+    # 插入图表
+    report += f"\n\n![数据图表]({chart_path})\n"
+    return report
+```
+
+## 6. 完整 Agent 流程
+
+```python
+from langgraph.graph import StateGraph, START, END
+from typing import TypedDict
+
+class AnalysisState(TypedDict):
+    question: str
+    sql: str
+    data: str  # JSON
+    chart_path: str
+    report: str
+
+async def step_nl2sql(state: AnalysisState) -> dict:
+    sql = await nl_to_sql(state["question"])
+    return {"sql": sql}
+
+async def step_execute(state: AnalysisState) -> dict:
+    df = executor.execute(state["sql"])
+    return {"data": df.to_json()}
+
+async def step_visualize(state: AnalysisState) -> dict:
+    df = pd.read_json(state["data"])
+    path = await visualizer.auto_visualize(df, state["question"])
+    return {"chart_path": path}
+
+async def step_report(state: AnalysisState) -> dict:
+    df = pd.read_json(state["data"])
+    report = await generate_report(state["question"], state["sql"], df, state["chart_path"])
+    return {"report": report}
+
+graph = StateGraph(AnalysisState)
+graph.add_node("nl2sql", step_nl2sql)
+graph.add_node("execute", step_execute)
+graph.add_node("visualize", step_visualize)
+graph.add_node("report", step_report)
+graph.add_edge(START, "nl2sql")
+graph.add_edge("nl2sql", "execute")
+graph.add_edge("execute", "visualize")
+graph.add_edge("visualize", "report")
+graph.add_edge("report", END)
+
+analysis_agent = graph.compile()
+result = await analysis_agent.ainvoke({"question": "分析上季度各产品线的销售趋势"})
+print(result["report"])
+```

@@ -65,6 +65,19 @@ learning-notes/
 │   ├── 09-跨平台/                  # Flutter集成、KMM、Compose与View混合
 │   └── 10-面试准备/                # Kotlin面试题、Android系统面试题、架构面试题
 │
+├── ai-agent/                      # AI Agent 技术栈（按类别组织）
+│   ├── 00-基础概念/                # Agent概述、大语言模型、Prompt Engineering
+│   ├── 01-Agent协议/              # MCP协议、A2A协议、ACP与协议生态
+│   ├── 02-Agent框架/              # LangGraph、CrewAI、OpenAI SDK、Google ADK
+│   ├── 03-RAG进阶/                # RAG架构、向量数据库、高级RAG、GraphRAG
+│   ├── 04-工具与Function Calling/  # Function Calling、MCP Server开发、工具安全
+│   ├── 05-多Agent系统/            # 架构模式、通信协调、人机协作
+│   ├── 06-记忆与状态/              # 短期/长期记忆、对话管理、知识库
+│   ├── 07-模型服务/                # API接入、开源模型部署、模型路由
+│   ├── 08-可观测与评估/            # 可观测性、评估基准、安全对齐
+│   ├── 09-低代码平台/              # Dify、Coze/FastGPT、n8n/Flowise
+│   └── 10-实战案例/                # 智能客服、代码助手、数据分析Agent
+│
 ├── java/                          # Java 技术栈（按类别组织）
 │   ├── 00-Java基础/               # Java 语言基础（12个文档）
 │   │   ├── Java新特性8-17.md

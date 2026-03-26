@@ -16,6 +16,7 @@
 │   ├── frontend/               # 前端技术栈学习笔记
 │   ├── ios/                    # iOS 技术栈学习笔记
 │   ├── android/                # Android 技术栈学习笔记
+│   ├── ai-agent/               # AI Agent 技术栈学习笔记
 │   └── architecture/           # 架构设计相关
 │
 ├── spring-boot-microservice-demo/  # Spring Boot 微服务项目
@@ -72,6 +73,14 @@
 - Jetpack组件、网络编程、架构模式（MVVM/MVI、Hilt、Clean Architecture）
 - 系统能力、性能优化、工程化、面试准备等
 
+**AI Agent 技术栈**
+- Agent 核心概念、大语言模型基础、Prompt Engineering
+- Agent 协议（MCP 模型上下文协议、A2A Agent间通信、ACP）
+- Agent 框架（LangGraph、CrewAI、OpenAI Agents SDK、Google ADK）
+- RAG 进阶（高级RAG策略、GraphRAG、向量数据库选型）
+- 工具与 Function Calling、多Agent系统、记忆与状态
+- 模型服务、可观测与评估、低代码平台、实战案例
+
 ### 2. Spring Boot 微服务项目
 
 基于 Spring Boot 3.x 的微服务架构实践：
@@ -120,6 +129,7 @@
 - [前端学习笔记](./learning-notes/frontend/README.md)
 - [iOS 学习笔记](./learning-notes/ios/README.md)
 - [Android 学习笔记](./learning-notes/android/README.md)
+- [AI Agent 学习笔记](./learning-notes/ai-agent/README.md)
 - [Spring Boot 微服务项目](./spring-boot-microservice-demo/README.md)
 - [RAG LLM Agent 平台](./rag-llm-agent-platform/README.md)
 
