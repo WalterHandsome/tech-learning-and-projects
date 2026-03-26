@@ -85,6 +85,41 @@ ai-agent/
 │   ├── Agent身份与权限.md
 │   └── Agent治理框架.md
 │
+├── 15-Agentic设计模式/             # 设计模式
+│   ├── Anthropic Agent设计模式.md
+│   ├── Agentic设计模式大全.md
+│   └── Agent工作流编排模式.md
+│
+├── 16-Agent记忆框架/               # 记忆框架
+│   ├── Mem0记忆层.md
+│   ├── Letta-MemGPT记忆系统.md
+│   └── Zep与LangMem.md
+│
+├── 17-工具平台与沙箱/               # 工具平台
+│   ├── Composio工具平台.md
+│   ├── E2B代码沙箱.md
+│   └── Agent工具生态总览.md
+│
+├── 18-AI网关与路由/                 # AI 网关
+│   ├── LiteLLM统一接口.md
+│   ├── Vercel AI SDK与Gateway.md
+│   └── Portkey与AI网关对比.md
+│
+├── 19-Java-TS Agent生态/           # 多语言生态
+│   ├── Spring AI Agent.md
+│   ├── Vercel AI SDK Agent开发.md
+│   └── Dapr Agents分布式运行时.md
+│
+├── 20-Agent框架补充/                # 框架补充
+│   ├── LlamaIndex Agent与Workflow.md
+│   ├── Anthropic Claude Agent能力.md
+│   └── Agent框架选型指南.md
+│
+├── 21-Harness Engineering/         # Harness Engineering
+│   ├── Harness Engineering完整指南.md
+│   ├── Context Engineering详解.md
+│   └── Kiro Harness实战配置.md
+│
 └── README.md                     # 本文件
 ```
 
