@@ -244,3 +244,11 @@ results = client.search("主题偏好", user_id="u1")
 | 云服务       | ✅             | ✅             | ✅             | ❌             |
 | 学习曲线     | 低             | 中             | 低             | 中             |
 | 适用场景     | 通用记忆层      | 有状态Agent    | 对话记忆       | LangGraph生态 |
+## 🎬 推荐视频资源
+
+### 🌐 YouTube
+- [Mem0 - AI Memory Layer](https://www.youtube.com/watch?v=nMGCE4GU1kc) — Mem0介绍
+- [AI Jason - Agent Memory Systems](https://www.youtube.com/watch?v=Ox9DBiJMnHY) — Agent记忆系统讲解
+
+### 📖 官方文档
+- [Mem0 Docs](https://docs.mem0.ai/) — Mem0官方文档

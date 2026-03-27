@@ -163,3 +163,11 @@ result = agent.run("北京今天天气怎么样？")
 | 学习曲线 | 中 | 低 | 低 | 极低 |
 | 模型支持 | 多模型 | 多模型 | 多模型 | HuggingFace |
 | 适用场景 | 复杂多Agent | 生产级API | 快速开发 | 原型验证 |
+## 🎬 推荐视频资源
+
+### 🌐 YouTube
+- [James Briggs - PydanticAI Tutorial](https://www.youtube.com/watch?v=nMGCE4GU1kc) — PydanticAI入门教程
+- [Matt Williams - AutoGen Tutorial](https://www.youtube.com/watch?v=vU2S6dVf79M) — AG2/AutoGen教程
+
+### 🎓 DeepLearning.AI（免费）
+- [AI Agentic Design Patterns with AutoGen](https://www.deeplearning.ai/short-courses/ai-agentic-design-patterns-with-autogen/) — AutoGen设计模式

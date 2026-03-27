@@ -252,3 +252,11 @@ logger.log({
 | 临时凭证 | ✅ STS Token | ✅ Managed Identity | ✅ Short-lived Token |
 | 跨服务 | Cross-account Role | Cross-tenant | Cross-project |
 | Agent 专用 | Bedrock Agent Role | AI Foundry Identity | Vertex AI SA |
+## 🎬 推荐视频资源
+
+### 🌐 YouTube
+- [DeepLearning.AI - Quality and Safety for LLM Applications](https://www.deeplearning.ai/short-courses/quality-safety-llm-applications/) — 包含权限控制章节（免费）
+- [OWASP - LLM Security Top 10](https://www.youtube.com/watch?v=4YOpILi9Oxs) — LLM安全风险
+
+### 📖 官方文档
+- [OWASP LLM Top 10](https://owasp.org/www-project-top-10-for-large-language-model-applications/) — OWASP LLM安全指南

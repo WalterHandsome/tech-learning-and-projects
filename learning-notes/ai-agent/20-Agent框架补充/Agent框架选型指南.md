@@ -230,3 +230,11 @@ PydanticAI   → "类型安全的 Python Agent"
 LlamaIndex   → "RAG 和数据处理优先"
 smolagents   → "最少代码，HuggingFace 生态"
 ```
+## 🎬 推荐视频资源
+
+### 🌐 YouTube
+- [AI Jason - Best AI Agent Frameworks 2025](https://www.youtube.com/watch?v=Ox9DBiJMnHY) — Agent框架对比评测
+- [DeepLearning.AI - Agentic AI](https://www.deeplearning.ai/courses/agentic-ai/) — 框架选型参考（免费）
+
+### 📺 B站
+- [AI Agent框架选型指南](https://www.bilibili.com/video/BV1dH4y1P7FY) — 中文框架对比

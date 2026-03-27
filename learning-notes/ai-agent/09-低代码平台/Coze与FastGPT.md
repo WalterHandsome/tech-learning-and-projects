@@ -180,3 +180,15 @@ services:
 | Agent 模式 | ✅ | ✅ | ✅ |
 | 私有部署 | ❌ | ✅ | ✅ |
 | 适用场景 | 快速构建Bot | 知识库问答 | 复杂工作流 |
+## 🎬 推荐视频资源
+
+### 🌐 YouTube
+- [Coze Official - Build AI Bot](https://www.youtube.com/watch?v=CgMd0zsz_BQ) — Coze官方教程
+
+### 📺 B站
+- [Coze扣子平台实战教程](https://www.bilibili.com/video/BV1Bz421B7bG) — Coze中文实战
+- [FastGPT部署与使用教程](https://www.bilibili.com/video/BV1PD421E7mN) — FastGPT中文教程
+
+### 📖 官方文档
+- [Coze官方文档](https://www.coze.com/docs) — Coze平台文档
+- [FastGPT文档](https://doc.fastgpt.in/) — FastGPT官方文档

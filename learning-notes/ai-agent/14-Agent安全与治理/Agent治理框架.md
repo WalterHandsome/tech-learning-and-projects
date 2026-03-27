@@ -297,3 +297,8 @@ Agent 事件响应流程：
   □ 安全审查已通过
   □ 第三方依赖已审计
 ```
+## 🎬 推荐视频资源
+
+### 🌐 YouTube
+- [DeepLearning.AI - Quality and Safety for LLM Applications](https://www.deeplearning.ai/short-courses/quality-safety-llm-applications/) — LLM安全与质量（免费）
+- [DeepLearning.AI - Red Teaming LLM Applications](https://www.deeplearning.ai/short-courses/red-teaming-llm-applications/) — LLM红队测试（免费）

@@ -173,3 +173,13 @@ IDE Agent 优势：
 已有 GitHub 生态        → GitHub Copilot
 团队统一工具            → GitHub Copilot（覆盖面最广）
 ```
+## 🎬 推荐视频资源
+
+### 🌐 YouTube
+- [Fireship - Cursor AI Review](https://www.youtube.com/watch?v=DHjqpvDnNGE) — Cursor AI评测
+- [Frontend Masters - Cursor & Claude Code](https://frontendmasters.com/courses/pro-ai/) — IDE Agent专业教程
+- [Traversy Media - Cursor Tutorial](https://www.youtube.com/watch?v=LDB4uaJ87e0) — Cursor使用教程
+
+### 📺 B站
+- [Cursor AI编程助手教程](https://www.bilibili.com/video/BV1Bm421N7BH) — Cursor中文教程
+- [Kiro IDE使用体验](https://www.bilibili.com/video/BV1dH4y1P7FY) — Kiro中文评测

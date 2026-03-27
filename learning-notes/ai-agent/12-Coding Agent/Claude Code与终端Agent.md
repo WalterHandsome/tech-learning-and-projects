@@ -171,3 +171,15 @@ echo "检查代码中的安全漏洞" | claude --pipe
 6. 上下文管理：长会话用 /compact 压缩上下文
 7. 安全意识：审查 Claude Code 执行的命令
 ```
+## 🎬 推荐视频资源
+
+### 🌐 YouTube
+- [Anthropic - Claude Code Demo](https://www.youtube.com/watch?v=hkhDdcM5V94) — Claude Code官方演示
+- [Frontend Masters - Claude Code Tutorial](https://frontendmasters.com/courses/pro-ai/) — Claude Code专业教程
+- [Fireship - Claude Code Review](https://www.youtube.com/watch?v=DHjqpvDnNGE) — Claude Code快速评测
+
+### 📺 B站
+- [Claude Code使用教程](https://www.bilibili.com/video/BV1Bm421N7BH) — Claude Code中文教程
+
+### 📖 官方文档
+- [Claude Code Docs](https://docs.anthropic.com/en/docs/claude-code) — Anthropic官方文档

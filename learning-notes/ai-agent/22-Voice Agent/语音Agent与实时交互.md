@@ -606,3 +606,18 @@ VAD 决定"用户是否在说话"：
 - 实时通信 → `语音Agent开发实战.md`（本目录，开发实战指南）
 - 模型服务 → `07-模型服务/OpenAI与Claude API.md`（API 调用基础）
 - 工具平台 → `17-工具平台与沙箱/Agent工具生态总览.md`
+## 🎬 推荐视频资源
+
+### 🌐 YouTube
+- [OpenAI - Realtime API Demo](https://www.youtube.com/watch?v=JhCl-GeT4jw) — OpenAI Realtime API演示
+- [ElevenLabs - Conversational AI](https://www.youtube.com/watch?v=nMGCE4GU1kc) — ElevenLabs语音Agent
+- [LiveKit - Build Voice AI Agent](https://www.youtube.com/watch?v=dcgRMOG605w) — LiveKit语音Agent教程
+
+### 📺 B站
+- [语音Agent开发实战](https://www.bilibili.com/video/BV1dH4y1P7FY) — 语音Agent中文教程
+
+### 📖 官方文档
+- [OpenAI Realtime API](https://platform.openai.com/docs/guides/realtime) — OpenAI实时API文档
+- [ElevenLabs Docs](https://elevenlabs.io/docs) — ElevenLabs文档
+- [LiveKit Agents](https://docs.livekit.io/agents/) — LiveKit Agents文档
+- [Vapi Docs](https://docs.vapi.ai/) — Vapi语音Agent文档

@@ -127,3 +127,11 @@ patterns = {
     "轻量微服务":       "ACP（服务间通信）",
 }
 ```
+## 🎬 推荐视频资源
+
+### 🌐 YouTube
+- [AI Jason - Agent Communication Protocols](https://www.youtube.com/watch?v=Ox9DBiJMnHY) — Agent协议生态讲解
+- [Google Cloud - A2A Protocol](https://www.youtube.com/watch?v=4Fy0gDqSVOg) — A2A/ACP协议介绍
+
+### 📺 B站
+- [AI协议生态全景解读](https://www.bilibili.com/video/BV1dH4y1P7FY) — MCP/A2A/ACP协议对比

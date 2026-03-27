@@ -201,3 +201,14 @@ AutoGen 迁移：
 | 代码分析任务 | OpenAIAssistantAgent + Code Interpreter |
 | 跨语言团队 | Python + .NET 混合开发 |
 | 快速原型 | ChatCompletionAgent + @skill |
+## 🎬 推荐视频资源
+
+### 🌐 YouTube
+- [Microsoft - Semantic Kernel Tutorial](https://www.youtube.com/watch?v=pHksBVqH7uI) — Semantic Kernel教程
+- [Microsoft - AutoGen Tutorial](https://www.youtube.com/watch?v=vU2S6dVf79M) — AutoGen框架教程
+
+### 🎓 DeepLearning.AI（免费）
+- [AI Agentic Design Patterns with AutoGen](https://www.deeplearning.ai/short-courses/ai-agentic-design-patterns-with-autogen/) — AutoGen设计模式
+
+### 📖 官方文档
+- [Semantic Kernel Docs](https://learn.microsoft.com/en-us/semantic-kernel/) — 微软SK官方文档

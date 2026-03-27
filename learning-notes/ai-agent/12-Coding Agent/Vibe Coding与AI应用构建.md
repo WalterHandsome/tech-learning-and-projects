@@ -366,3 +366,16 @@ Vibe Coding 适合：                    Vibe Coding 不适合：
 - 自主开发 → `Devin与自主开发Agent.md`（本目录）
 - Harness Engineering → `21-Harness Engineering/Harness Engineering完整指南.md`
 - Agent 设计模式 → `15-Agentic设计模式/Agentic设计模式大全.md`
+## 🎬 推荐视频资源
+
+### 🌐 YouTube
+- [Fireship - Vibe Coding Explained](https://www.youtube.com/watch?v=DHjqpvDnNGE) — Vibe Coding概念讲解
+- [freeCodeCamp - Build Apps with AI](https://www.youtube.com/watch?v=dcgRMOG605w) — AI应用构建教程
+
+### 📺 B站
+- [Vibe Coding实战](https://www.bilibili.com/video/BV1Bm421N7BH) — AI辅助编程中文教程
+
+### 🌐 平台
+- [Replit](https://replit.com/) — AI驱动的在线IDE
+- [v0.dev](https://v0.dev/) — Vercel AI UI生成器
+- [bolt.new](https://bolt.new/) — StackBlitz AI应用构建

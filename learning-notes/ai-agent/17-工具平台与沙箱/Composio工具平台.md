@@ -253,3 +253,11 @@ CRM：    Salesforce, HubSpot, Pipedrive
 | 框架集成     | 广泛            | OpenAI/LangChain| OpenAI          |
 | 元工具发现   | ✅              | ❌              | ❌              |
 | 自托管       | ❌ 仅云服务     | ❌              | ❌              |
+## 🎬 推荐视频资源
+
+### 🌐 YouTube
+- [Composio - 1000+ Tools for AI Agents](https://www.youtube.com/watch?v=nMGCE4GU1kc) — Composio平台介绍
+- [AI Jason - Best Agent Tools](https://www.youtube.com/watch?v=Ox9DBiJMnHY) — Agent工具平台对比
+
+### 📖 官方文档
+- [Composio Docs](https://docs.composio.dev/) — Composio官方文档

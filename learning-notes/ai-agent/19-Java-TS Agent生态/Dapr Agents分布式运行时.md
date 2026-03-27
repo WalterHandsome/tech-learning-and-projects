@@ -321,3 +321,12 @@ Dapr Agents 最适合：
 ├─ 快速原型开发
 └─ 无 Kubernetes 环境
 ```
+## 🎬 推荐视频资源
+
+### 🌐 YouTube
+- [Microsoft - Dapr Overview](https://www.youtube.com/watch?v=pHksBVqH7uI) — Dapr概述
+- [Dapr - Getting Started](https://www.youtube.com/watch?v=vU2S6dVf79M) — Dapr入门教程
+
+### 📖 官方文档
+- [Dapr Docs](https://docs.dapr.io/) — Dapr官方文档
+- [Dapr Agents GitHub](https://github.com/dapr/dapr-agents) — Dapr Agents项目

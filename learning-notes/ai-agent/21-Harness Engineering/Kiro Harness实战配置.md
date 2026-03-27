@@ -248,3 +248,8 @@ Agent 首次通过率        30-40%      70-80%
 
 注：数据为 OpenAI 内部实验参考值，实际效果因项目而异
 ```
+## 🎬 推荐视频资源
+
+### 📖 官方文档
+- [Kiro Documentation](https://kiro.dev/docs) — Kiro官方文档
+- [Kiro Steering Guide](https://kiro.dev/docs/steering) — Steering配置指南

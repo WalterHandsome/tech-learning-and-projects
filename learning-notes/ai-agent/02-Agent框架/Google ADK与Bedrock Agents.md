@@ -148,3 +148,11 @@ for event in response["completion"]:
 | 部署 | 自管理/Vertex | 全托管 | 全托管 |
 | 适用场景 | Google 生态 | AWS 生态 | Azure 生态 |
 | 成本模型 | 按 API 调用 | 按调用+步骤 | 按调用 |
+## 🎬 推荐视频资源
+
+### 🌐 YouTube
+- [Google Cloud - ADK Overview](https://www.youtube.com/watch?v=E8pMFNox4Lc) — Google ADK官方介绍
+- [AWS re:Invent - Bedrock Agents](https://www.youtube.com/watch?v=F8NKVhkZZWI) — Bedrock Agents讲解
+
+### 📖 官方文档
+- [Google ADK Docs](https://google.github.io/adk-docs/) — ADK官方文档

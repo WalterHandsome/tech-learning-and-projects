@@ -189,3 +189,11 @@ evaluator = SatisfactionEvaluator(llm)
 score = await evaluator.evaluate(conversation_messages)
 # {"score": 0.85, "resolved": True, "sentiment": "positive", "improvement": "可以更主动提供相关信息"}
 ```
+## 🎬 推荐视频资源
+
+### 🌐 YouTube
+- [DeepLearning.AI - Building Systems with ChatGPT API](https://www.deeplearning.ai/short-courses/building-systems-with-chatgpt/) — 构建客服系统（免费）
+- [LangChain - Customer Support Bot](https://www.youtube.com/watch?v=9BPCV5TYPmg) — 客服Bot实战
+
+### 📺 B站
+- [AI智能客服实战项目](https://www.bilibili.com/video/BV1PD421E7mN) — 智能客服中文实战

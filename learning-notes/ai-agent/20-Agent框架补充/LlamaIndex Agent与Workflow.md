@@ -274,3 +274,11 @@ agent = ReActAgent.from_tools(
 | Agent 类型  | ReAct / FC       | 自定义            | 角色 Agent        |
 | 学习曲线     | 中               | 中高              | 低               |
 | 适用场景     | RAG/数据密集型    | 复杂自定义流程     | 团队协作任务       |
+## 🎬 推荐视频资源
+
+### 🌐 YouTube
+- [DeepLearning.AI - Building Agentic RAG with LlamaIndex](https://www.deeplearning.ai/short-courses/building-agentic-rag-with-llamaindex/) — LlamaIndex Agentic RAG（免费）
+- [LlamaIndex - Workflow Tutorial](https://www.youtube.com/watch?v=dcgRMOG605w) — LlamaIndex Workflow教程
+
+### 📖 官方文档
+- [LlamaIndex Docs](https://docs.llamaindex.ai/) — LlamaIndex官方文档

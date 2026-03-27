@@ -199,3 +199,12 @@ content = page.extract("提取所有产品信息")
 ├─ 人工确认：关键操作前请求人工审批
 └─ 超时控制：设置操作超时，防止无限循环
 ```
+## 🎬 推荐视频资源
+
+### 🌐 YouTube
+- [Anthropic - Computer Use Demo](https://www.youtube.com/watch?v=hkhDdcM5V94) — Claude Computer Use官方演示
+- [Google - Gemini Computer Use](https://www.youtube.com/watch?v=E8pMFNox4Lc) — Gemini Computer Use介绍
+
+### 📖 官方文档
+- [Anthropic Computer Use](https://docs.anthropic.com/en/docs/agents-and-tools/computer-use) — Claude Computer Use文档
+- [Google Computer Use](https://ai.google.dev/gemini-api/docs/computer-use) — Gemini Computer Use文档

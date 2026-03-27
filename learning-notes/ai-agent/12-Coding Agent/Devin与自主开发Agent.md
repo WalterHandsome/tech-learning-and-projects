@@ -184,3 +184,12 @@ SWE-bench：标准化软件工程 Agent 评测基准
 ├─ AI 负责大部分编码实现工作
 └─ 软件开发效率提升 5-10 倍
 ```
+## 🎬 推荐视频资源
+
+### 🌐 YouTube
+- [Cognition AI - Devin Demo](https://www.youtube.com/watch?v=fjHtjT7GO1c) — Devin官方演示
+- [Fireship - Devin AI Review](https://www.youtube.com/watch?v=DHjqpvDnNGE) — Devin评测
+- [OpenHands - Open Source Devin](https://www.youtube.com/watch?v=dcgRMOG605w) — OpenHands开源替代
+
+### 📖 官方文档
+- [OpenHands GitHub](https://github.com/All-Hands-AI/OpenHands) — OpenHands开源项目

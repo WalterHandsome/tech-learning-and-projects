@@ -181,3 +181,16 @@ docker run -d --name flowise -p 3000:3000 \
 | 触发方式 | Webhook/定时/事件 | API 调用 |
 | 适用场景 | 业务自动化 + AI | 纯 LLM 应用 |
 | 学习曲线 | 中 | 低 |
+## 🎬 推荐视频资源
+
+### 🌐 YouTube
+- [n8n Official - AI Workflow Tutorial](https://www.youtube.com/watch?v=vU2S6dVf79M) — n8n AI工作流教程
+- [Leon van Zyl - n8n AI Agents](https://www.youtube.com/watch?v=nMGCE4GU1kc) — n8n构建AI Agent
+- [Flowise AI - Getting Started](https://www.youtube.com/watch?v=tnejrr-0a94) — Flowise入门教程
+
+### 📺 B站
+- [n8n自动化工作流中文教程](https://www.bilibili.com/video/BV1dH4y1P7FY) — n8n中文实战
+
+### 📖 官方文档
+- [n8n AI Tutorial](https://docs.n8n.io/advanced-ai/intro-tutorial/) — n8n官方AI教程
+- [Flowise Docs](https://docs.flowiseai.com/) — Flowise官方文档

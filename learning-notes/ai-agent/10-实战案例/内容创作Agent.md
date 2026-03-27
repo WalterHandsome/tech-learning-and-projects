@@ -281,3 +281,8 @@ publish_task = Task(
                                             │ 发布  │ 重写
                                             └──────┘
 ```
+## 🎬 推荐视频资源
+
+### 🌐 YouTube
+- [DeepLearning.AI - Multi AI Agent Systems with crewAI](https://www.deeplearning.ai/short-courses/multi-ai-agent-systems-with-crewai/) — 多Agent内容创作（免费）
+- [CrewAI - Content Creation Crew](https://www.youtube.com/watch?v=sPzc6hMg7So) — CrewAI内容创作实战

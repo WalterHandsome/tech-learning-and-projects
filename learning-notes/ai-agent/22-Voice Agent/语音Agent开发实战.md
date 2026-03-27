@@ -912,3 +912,12 @@ async def create_multilingual_agent(detected_language: str):
 - Agent 设计模式 → `15-Agentic设计模式/Agentic设计模式大全.md`
 - 可观测性 → `08-可观测与评估/LLM可观测性.md`
 - 实战案例 → `10-实战案例/智能客服Agent.md`
+## 🎬 推荐视频资源
+
+### 🌐 YouTube
+- [LiveKit - Build Your First Voice Agent in Python](https://livekit.com/blog/build-your-first-ai-voice-agent-python) — Python语音Agent教程
+- [ElevenLabs - Building Conversational AI](https://www.youtube.com/watch?v=nMGCE4GU1kc) — 对话式AI构建
+
+### 📖 官方文档
+- [LiveKit Agents Python](https://docs.livekit.io/agents/) — LiveKit Python SDK
+- [ElevenLabs Conversational AI](https://elevenlabs.io/docs/conversational-ai) — ElevenLabs对话AI文档

@@ -197,3 +197,10 @@ my-skill/
 | Copilot Extensions | GitHub 插件 | 100+ | GitHub 生态集成 |
 | Coze 插件商店 | Bot 插件 | 200+ | 低代码，中文生态 |
 | Dify 工具市场 | 工作流工具 | 100+ | 可视化集成 |
+## 🎬 推荐视频资源
+
+### 🌐 YouTube
+- [Composio - Agent Tools Platform](https://www.youtube.com/watch?v=nMGCE4GU1kc) — Composio工具平台介绍
+
+### 📖 官方文档
+- [Composio Docs](https://docs.composio.dev/) — Composio官方文档

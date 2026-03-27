@@ -280,3 +280,10 @@ client = OpenAI(
 ├─ 大型企业：Portkey/LiteLLM + 自建护栏 + Datadog 监控
 └─ Vercel 用户：Vercel AI SDK + AI Gateway（最佳体验）
 ```
+## 🎬 推荐视频资源
+
+### 🌐 YouTube
+- [Portkey - AI Gateway](https://www.youtube.com/watch?v=Ox9DBiJMnHY) — Portkey AI网关介绍
+
+### 📖 官方文档
+- [Portkey Docs](https://portkey.ai/docs) — Portkey官方文档

@@ -248,3 +248,11 @@ Google 于 2026 年 3 月开源的持续记忆 Agent 方案。
      ↓
 快速添加记忆层 ──→ Mem0（最简集成）
 ```
+## 🎬 推荐视频资源
+
+### 🌐 YouTube
+- [Zep - Long-Term Memory for AI](https://www.youtube.com/watch?v=nMGCE4GU1kc) — Zep记忆系统介绍
+
+### 📖 官方文档
+- [Zep Docs](https://help.getzep.com/) — Zep官方文档
+- [LangMem Docs](https://langchain-ai.github.io/langmem/) — LangMem文档

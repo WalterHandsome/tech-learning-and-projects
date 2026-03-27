@@ -342,3 +342,15 @@ public class MultiModelService {
     }
 }
 ```
+## 🎬 推荐视频资源
+
+### 🌐 YouTube
+- [Spring - Spring AI Introduction](https://www.youtube.com/watch?v=9SGDpanrc8U) — Spring AI官方介绍
+- [Dan Vega - Spring AI Tutorial](https://www.youtube.com/watch?v=pHksBVqH7uI) — Spring AI实战教程
+
+### 📺 B站
+- [Spring AI中文教程](https://www.bilibili.com/video/BV1Es4y1q7Bf) — Spring AI中文实战
+
+### 📖 官方文档
+- [Spring AI Docs](https://docs.spring.io/spring-ai/reference/) — Spring AI官方文档
+- [Baeldung - Spring AI](https://www.baeldung.com/spring-ai) — Spring AI教程

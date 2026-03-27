@@ -582,3 +582,13 @@ print(f"✅ 知识库构建完成，共 {len(chunks)} 个文档块")
 - RAG 架构 → `03-RAG进阶/RAG架构与核心流程.md`
 - MCP Server → `04-工具与Function Calling/MCP Server开发.md`
 - 向量数据库 → `03-RAG进阶/向量数据库选型.md`
+## 🎬 推荐视频资源
+
+### 🌐 YouTube
+- [Firecrawl - Web Scraping for AI](https://www.youtube.com/watch?v=dcgRMOG605w) — Firecrawl网页抓取
+- [Tavily - AI Search API](https://www.youtube.com/watch?v=Ox9DBiJMnHY) — Tavily搜索API
+
+### 📖 官方文档
+- [Firecrawl Docs](https://docs.firecrawl.dev/) — Firecrawl文档
+- [Tavily Docs](https://docs.tavily.com/) — Tavily文档
+- [Jina Reader](https://jina.ai/reader/) — Jina Reader API

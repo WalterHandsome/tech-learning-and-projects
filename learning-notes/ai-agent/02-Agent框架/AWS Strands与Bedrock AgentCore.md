@@ -176,3 +176,12 @@ with NovaAct(starting_page="https://www.example.com") as act:
 | 浏览器自动化 | Nova Act SDK | - | - |
 | 部署 | AgentCore Runtime | Azure AI Foundry | Vertex AI Engine |
 | 可观测性 | CloudWatch 集成 | App Insights | Cloud Trace |
+## 🎬 推荐视频资源
+
+### 🌐 YouTube
+- [AWS - Bedrock Agents Tutorial](https://www.youtube.com/watch?v=F8NKVhkZZWI) — AWS Bedrock Agents官方教程
+- [freeCodeCamp - AWS AI Services](https://www.youtube.com/watch?v=GWB9ApTPTv4) — AWS AI服务概览
+
+### 📖 官方文档
+- [AWS Strands Agents](https://strandsagents.com/) — Strands官方文档
+- [AWS Bedrock Agents](https://docs.aws.amazon.com/bedrock/latest/userguide/agents.html) — Bedrock Agents文档
