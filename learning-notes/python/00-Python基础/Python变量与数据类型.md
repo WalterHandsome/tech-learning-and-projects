@@ -284,4 +284,7 @@ result = "Hello" + 123
 4. 可以使用`type()`和`isinstance()`检查类型
 5. 可以使用类型转换函数进行类型转换
 6. 注意变量的作用域和生命周期
+## 🎬 推荐视频资源
 
+- [Corey Schafer - Python Data Types](https://www.youtube.com/watch?v=khKv-8q7YmY) — Python数据类型详解
+- [Programming with Mosh - Python Tutorial](https://www.youtube.com/watch?v=_uQrJ0TkZlc) — 包含变量与类型章节

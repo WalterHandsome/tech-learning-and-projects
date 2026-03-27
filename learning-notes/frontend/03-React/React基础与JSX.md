@@ -167,3 +167,8 @@ function LifecycleDemo() {
   return <div>{data ? JSON.stringify(data) : '加载中...'}</div>;
 }
 ```
+## 🎬 推荐视频资源
+
+- [freeCodeCamp - React Full Course](https://www.youtube.com/watch?v=bMknfKXIFA8) — React完整课程（12小时）
+- [Traversy Media - React Crash Course](https://www.youtube.com/watch?v=LDB4uaJ87e0) — React速成
+- [Fireship - React in 100 Seconds](https://www.youtube.com/watch?v=Tn6-PIqc4UM) — React快速了解

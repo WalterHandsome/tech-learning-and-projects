@@ -153,3 +153,7 @@ function CreateUser() {
 | Redux Toolkit | 大型应用、复杂状态逻辑 | 中 |
 | TanStack Query | 服务端状态（API数据缓存） | 中 |
 | Jotai | 原子化状态管理 | 低 |
+## 🎬 推荐视频资源
+
+- [Jack Herrington - State Management](https://www.youtube.com/watch?v=zpUMRsAO6-Y) — React状态管理对比
+- [Fireship - Redux in 100 Seconds](https://www.youtube.com/watch?v=_shA5Xwe8_4) — Redux快速了解

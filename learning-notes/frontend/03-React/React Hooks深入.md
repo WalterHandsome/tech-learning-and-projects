@@ -197,3 +197,7 @@ function useFetch(url) {
   return { data, loading, error };
 }
 ```
+## 🎬 推荐视频资源
+
+- [Web Dev Simplified - React Hooks](https://www.youtube.com/watch?v=O6P86uwfdR0) — React Hooks完整教程
+- [Jack Herrington - React Hooks](https://www.youtube.com/@jherr) — React高级技巧频道

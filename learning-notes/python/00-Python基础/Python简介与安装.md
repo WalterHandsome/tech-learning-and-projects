@@ -192,4 +192,8 @@ python3 hello.py
 3. Windows 系统使用`python --version`检查安装；macOS/Linux 系统使用`python3 --version`检查
 4. 推荐使用 Python 3，Python 2 已停止维护
 5. 选择合适的开发工具可以提高开发效率
+## 🎬 推荐视频资源
 
+- [freeCodeCamp - Python Full Course for Beginners](https://www.youtube.com/watch?v=rfscVS0vtbw) — 4.5小时Python完整入门
+- [Programming with Mosh - Python Tutorial](https://www.youtube.com/watch?v=_uQrJ0TkZlc) — 6小时Python入门教程
+- [Corey Schafer - Python Tutorials](https://www.youtube.com/playlist?list=PL-osiE80TeTt2d9bfVyTiXJA-UTHn6WwU) — Python系统教程系列

@@ -217,3 +217,8 @@ do {
 // try? 转为可选值
 let isValid = try? validate(email: "test@example.com", password: "123")
 ```
+## 🎬 推荐视频资源
+
+- [CodeWithChris - Swift Tutorial for Beginners](https://www.youtube.com/watch?v=comQ1-x2a1Q) — Swift入门教程
+- [Paul Hudson - 100 Days of SwiftUI](https://www.hackingwithswift.com/100/swiftui) — 100天SwiftUI挑战
+- [Sean Allen - Swift Fundamentals](https://www.youtube.com/watch?v=CwA1VWP0Ldw) — Swift基础教程

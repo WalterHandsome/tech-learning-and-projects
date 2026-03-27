@@ -199,3 +199,8 @@ prompt = ANALYSIS_TEMPLATE.substitute(
     output_format="Markdown 报告",
 )
 ```
+## 🎬 推荐视频资源
+
+- [DeepLearning.AI - ChatGPT Prompt Engineering for Developers](https://www.deeplearning.ai/short-courses/chatgpt-prompt-engineering-for-developers/) — 吴恩达+OpenAI联合出品（免费）
+- [DeepLearning.AI - Building Systems with ChatGPT API](https://www.deeplearning.ai/short-courses/building-systems-with-chatgpt/) — 构建基于LLM的系统（免费）
+- [freeCodeCamp - Prompt Engineering Tutorial](https://www.youtube.com/watch?v=_ZvnD96BbQ0) — 完整Prompt工程教程

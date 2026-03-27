@@ -103,3 +103,7 @@ vi.spyOn(console, 'log');
 // - 更快的执行速度
 // - 兼容 Jest API
 ```
+## 🎬 推荐视频资源
+
+- [Traversy Media - Jest Crash Course](https://www.youtube.com/watch?v=7r4xVDI2vho) — Jest速成
+- [freeCodeCamp - JavaScript Testing](https://www.youtube.com/watch?v=FgnxcUQ5vho) — JavaScript测试完整课程

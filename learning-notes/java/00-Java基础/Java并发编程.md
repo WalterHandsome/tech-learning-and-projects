@@ -430,4 +430,7 @@ CompletableFuture<String> combined = future1.thenCombine(future2, (r1, r2) -> r1
 6. **使用原子类**：简单操作使用AtomicInteger等原子类
 7. **避免过度同步**：只在必要时使用同步
 8. **使用CompletableFuture**：处理异步任务和组合多个异步操作
+## 🎬 推荐视频资源
 
+- [Jakob Jenkov - Java Concurrency](https://www.youtube.com/playlist?list=PLL8woMHwr36EDxjUoCzboZjedsnhLP1j4) — Java并发编程完整系列
+- [Defog Tech - Java Multithreading](https://www.youtube.com/playlist?list=PLhfHPmPYPPRk6yMrcbfafFGSbE2EPK_A6) — Java多线程教程

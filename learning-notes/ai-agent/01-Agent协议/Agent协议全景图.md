@@ -125,3 +125,8 @@ patterns = {
 2025：A2A + AG-UI 兴起，多 Agent 协作和前端交互标准化
 2026+：协议融合，可能出现统一 Agent 通信标准
 ```
+## 🎬 推荐视频资源
+
+- [Anthropic - Model Context Protocol](https://www.youtube.com/watch?v=kQmXtrmQ5Zg) — MCP官方介绍
+- [Google Cloud - A2A Protocol](https://www.youtube.com/watch?v=4Fy0gDqSVOg) — A2A协议介绍
+- [AI Jason - Agent Protocols Explained](https://www.youtube.com/watch?v=Ox9DBiJMnHY) — Agent协议生态讲解

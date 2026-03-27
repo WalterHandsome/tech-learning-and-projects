@@ -166,3 +166,7 @@ docker compose up -d
 # 访问 http://localhost:3000 进入管理界面
 # 首次访问需要设置管理员账号
 ```
+## 🎬 推荐视频资源
+
+- [Dify Official - Getting Started](https://www.youtube.com/watch?v=1gNMnQH0vRc) — Dify官方入门教程
+- [AI Jason - Dify Tutorial](https://www.youtube.com/watch?v=CgMd0zsz_BQ) — Dify平台实战讲解

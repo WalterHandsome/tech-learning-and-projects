@@ -1553,5 +1553,7 @@ void testBulkRequest() throws IOException {
 - 准备参数（Index、Update、Bulk时需要）
 - 发送请求。调用RestHighLevelClient#.xxx()方法，xxx是index、get、update、delete、bulk
 - 解析结果（Get时需要）
+## 🎬 推荐视频资源
 
-
+- [freeCodeCamp - Elasticsearch Tutorial](https://www.youtube.com/watch?v=C3tlMqaNSaI) — Elasticsearch完整教程
+- [Fireship - Elasticsearch in 100 Seconds](https://www.youtube.com/watch?v=yg4i3c48ep4) — Elasticsearch快速了解

@@ -166,3 +166,7 @@ protocol UserInteractorProtocol {
     func fetchUsers() async throws -> [User]
 }
 ```
+## 🎬 推荐视频资源
+
+- [Sean Allen - MVVM in SwiftUI](https://www.youtube.com/watch?v=wEf1YS4vyW8) — SwiftUI MVVM架构
+- [Essential Developer - iOS Architecture](https://www.youtube.com/c/EssentialDeveloper) — iOS架构设计频道

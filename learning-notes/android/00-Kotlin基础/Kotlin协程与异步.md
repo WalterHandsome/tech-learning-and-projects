@@ -147,3 +147,7 @@ supervisorScope {
     val job2 = launch { task2() }  // task1 失败不影响 task2
 }
 ```
+## 🎬 推荐视频资源
+
+- [Philipp Lackner - Kotlin Coroutines](https://www.youtube.com/watch?v=ShNhJ3wMpvQ) — Kotlin协程完整教程
+- [JetBrains - Coroutines Guide](https://www.youtube.com/watch?v=_hfBv0a09Jc) — 官方协程指南

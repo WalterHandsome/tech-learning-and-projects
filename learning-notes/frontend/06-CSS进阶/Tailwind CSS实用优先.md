@@ -119,3 +119,7 @@ function Button({ variant = 'primary', size = 'md', className, ...props }) {
   );
 }
 ```
+## 🎬 推荐视频资源
+
+- [Traversy Media - Tailwind CSS Crash Course](https://www.youtube.com/watch?v=dFgzHOX84xQ) — Tailwind速成
+- [Fireship - Tailwind in 100 Seconds](https://www.youtube.com/watch?v=mr15Xzb1Ook) — Tailwind快速了解

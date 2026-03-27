@@ -285,3 +285,7 @@ def autonomous_agent(task: str, max_turns: int = 10) -> str:
 | 调试难度   | 简单               | 复杂               |
 | 成本控制   | 容易               | 需要限制轮次        |
 | 适用场景   | 明确流程、高可靠性   | 开放式、探索性任务   |
+## 🎬 推荐视频资源
+
+- [DeepLearning.AI - Agentic AI with Andrew Ng](https://www.deeplearning.ai/courses/agentic-ai/) — Agentic设计模式全面讲解（免费）
+- [DeepLearning.AI - AI Agentic Design Patterns with AutoGen](https://www.deeplearning.ai/short-courses/ai-agentic-design-patterns-with-autogen/) — 设计模式实战（免费）

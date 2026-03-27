@@ -185,3 +185,7 @@ graph.add_edge("retrieve", "generate")
 graph.add_conditional_edges("generate", quality_check)
 app = graph.compile()
 ```
+## 🎬 推荐视频资源
+
+- [DeepLearning.AI - Advanced Retrieval for AI with Chroma](https://www.deeplearning.ai/short-courses/advanced-retrieval-for-ai/) — 高级检索策略（免费）
+- [DeepLearning.AI - Building Agentic RAG with LlamaIndex](https://www.deeplearning.ai/short-courses/building-agentic-rag-with-llamaindex/) — Agentic RAG（免费）

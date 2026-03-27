@@ -2483,3 +2483,8 @@ public class AppForDICollection {
 * property标签表示setter方式注入，构造方式注入constructor-arg标签内部也可以写`<array>`、`<list>`、`<set>`、`<map>`、`<props>`标签
 * List的底层也是通过数组实现的，所以`<list>`和`<array>`标签是可以混用
 * 集合中要添加引用类型，只需要把`<value>`标签改成`<ref>`标签，这种方式用的比较少
+## 🎬 推荐视频资源
+
+- [Amigoscode - Spring Boot Tutorial](https://www.youtube.com/watch?v=9SGDpanrc8U) — Spring Boot完整教程
+- [Java Brains - Spring Framework](https://www.youtube.com/playlist?list=PLqq-6Pq4lTTbx8p2oCgcAQGQyqN8XeA1) — Spring框架系统教程
+- [freeCodeCamp - Spring Boot Full Course](https://www.youtube.com/watch?v=31KTdfRH6nY) — Spring Boot完整课程

@@ -418,4 +418,7 @@ Arrays.toString(array);            // 转字符串
 5. **线程安全**：多线程环境下使用并发集合
 6. **合理使用Stream API**：简化集合操作代码
 7. **注意null值**：某些集合不允许null值，使用时注意
+## 🎬 推荐视频资源
 
+- [Java Brains - Java Collections](https://www.youtube.com/watch?v=GdAon80-0KA) — Java集合框架详解
+- [Coding with John - Java Collections](https://www.youtube.com/watch?v=viTainYWwbI) — 集合框架实战

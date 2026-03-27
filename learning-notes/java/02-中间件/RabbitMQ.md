@@ -1043,19 +1043,7 @@ public MessageConverter jsonMessageConverter(){
     return new Jackson2JsonMessageConverter();
 }
 ```
+## 🎬 推荐视频资源
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+- [Amigoscode - RabbitMQ Tutorial](https://www.youtube.com/watch?v=nFxjaVmFj5E) — RabbitMQ完整教程
+- [freeCodeCamp - Message Queues](https://www.youtube.com/watch?v=5-Rq4-PZlew) — 消息队列概念讲解

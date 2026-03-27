@@ -174,3 +174,7 @@ fun ScrollTracker(listState: LazyListState) {
     }
 }
 ```
+## 🎬 推荐视频资源
+
+- [Philipp Lackner - State in Compose](https://www.youtube.com/watch?v=mymWGMy9pYI) — Compose状态管理
+- [Android Developers - State and Jetpack Compose](https://www.youtube.com/watch?v=rmv2ug-wW4U) — 官方状态管理讲解

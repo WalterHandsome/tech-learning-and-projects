@@ -555,4 +555,8 @@ Python提供了多种并发编程方式：
 - **异步编程**：适合高并发I/O操作，性能优异
 
 选择合适的并发方式可以显著提高程序性能。
+## 🎬 推荐视频资源
 
+- [Corey Schafer - Threading Tutorial](https://www.youtube.com/watch?v=IEEhzQoKtQU) — Python多线程教程
+- [Corey Schafer - Multiprocessing](https://www.youtube.com/watch?v=fKl2JW_qrso) — Python多进程教程
+- [ArjanCodes - Async Python](https://www.youtube.com/watch?v=2IW-ZEui4h4) — Python异步编程

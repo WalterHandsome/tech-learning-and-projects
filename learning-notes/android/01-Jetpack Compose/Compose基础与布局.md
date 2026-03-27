@@ -165,3 +165,8 @@ fun MainScreen(navController: NavController) {
     }
 }
 ```
+## 🎬 推荐视频资源
+
+- [Philipp Lackner - Jetpack Compose Full Course](https://www.youtube.com/watch?v=cDabx3SjuOY) — Compose完整课程
+- [Android Developers - Compose Tutorial](https://www.youtube.com/watch?v=cDabx3SjuOY) — 官方Compose教程
+- [Stevdza-San - Jetpack Compose](https://www.youtube.com/@StevdzaSan) — Compose教程频道

@@ -216,3 +216,8 @@ val user = createUser().also {
     logger.info("Created user: ${it.name}")
 }
 ```
+## 🎬 推荐视频资源
+
+- [freeCodeCamp - Kotlin Full Course](https://www.youtube.com/watch?v=EExSSotojVI) — Kotlin完整课程
+- [Philipp Lackner - Kotlin Tutorial](https://www.youtube.com/watch?v=5flXf8nuq60) — Kotlin入门教程
+- [JetBrains - Kotlin by JetBrains](https://www.youtube.com/watch?v=F9UC9DY-vIU) — 官方Kotlin教程

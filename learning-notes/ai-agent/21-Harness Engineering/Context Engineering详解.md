@@ -160,3 +160,7 @@ Harness Engineering 解决：Agent 如何被约束和验证
 4. 测量上下文质量
    追踪 Agent 首次通过率，低于 70% 说明上下文需要优化
 ```
+## 🎬 推荐视频资源
+
+- [LangChain - Context Engineering for AI Agents](https://www.youtube.com/watch?v=9BPCV5TYPmg) — Context Engineering实战
+- [DeepLearning.AI - Building Systems with ChatGPT API](https://www.deeplearning.ai/short-courses/building-systems-with-chatgpt/) — 系统级上下文管理（免费）

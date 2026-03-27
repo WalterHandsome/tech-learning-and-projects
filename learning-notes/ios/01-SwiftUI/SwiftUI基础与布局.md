@@ -151,3 +151,8 @@ GeometryReader { geometry in
     }
 }
 ```
+## 🎬 推荐视频资源
+
+- [Swiftful Thinking - SwiftUI Bootcamp](https://www.youtube.com/playlist?list=PLwvDm4VfkdphqETTBf-DdjCoAvhai1QpO) — SwiftUI完整入门系列
+- [Paul Hudson - SwiftUI Tutorial](https://www.youtube.com/watch?v=aP-SQXTtWhY) — SwiftUI教程
+- [Stanford CS193p - SwiftUI](https://www.youtube.com/playlist?list=PLpGHT1n4-mAtTj9oywMWoBx0dCGd51_yG) — 斯坦福SwiftUI课程（免费）

@@ -113,3 +113,8 @@ process.exit(0);  // 退出进程
 process.pid;      // 进程ID
 process.memoryUsage(); // 内存使用
 ```
+## 🎬 推荐视频资源
+
+- [freeCodeCamp - Node.js Full Course](https://www.youtube.com/watch?v=Oe421EPjeBE) — Node.js完整课程
+- [Traversy Media - Node.js Crash Course](https://www.youtube.com/watch?v=fBNz5xF-Kx4) — Node.js速成
+- [Fireship - Node.js in 100 Seconds](https://www.youtube.com/watch?v=ENrzD9HAZK4) — Node.js快速了解

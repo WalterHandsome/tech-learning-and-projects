@@ -508,4 +508,8 @@ print(Color.RED.value) # 1
 ## 14. 总结
 
 Python 提供了许多高级特性，包括生成器、迭代器、上下文管理器、装饰器、闭包、元类等。这些特性让 Python 代码更加优雅、高效和灵活。掌握这些高级特性可以帮助你写出更专业的 Python 代码。
+## 🎬 推荐视频资源
 
+- [Corey Schafer - Generators](https://www.youtube.com/watch?v=bD05uGo_sVI) — 生成器详解
+- [Corey Schafer - Context Managers](https://www.youtube.com/watch?v=-aKFBoZpiqA) — 上下文管理器
+- [mCoding - Python Expert Tips](https://www.youtube.com/c/mCodingWithJamesMurphy) — Python高级技巧频道

@@ -309,3 +309,7 @@ drop.addEventListener('drop', (e) => {
   <meta property="og:url" content="https://example.com">
 </head>
 ```
+## 🎬 推荐视频资源
+
+- [freeCodeCamp - HTML Full Course](https://www.youtube.com/watch?v=kUMe1FH4CHE) — HTML完整课程
+- [Kevin Powell - HTML & CSS](https://www.youtube.com/@KevinPowell) — CSS大师Kevin Powell频道

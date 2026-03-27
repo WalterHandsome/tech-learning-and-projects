@@ -183,3 +183,7 @@ class TokenTracker:
         # GPT-4o 价格
         return (self.total_input * 2.5 + self.total_output * 10) / 1_000_000
 ```
+## 🎬 推荐视频资源
+
+- [DeepLearning.AI - ChatGPT Prompt Engineering for Developers](https://www.deeplearning.ai/short-courses/chatgpt-prompt-engineering-for-developers/) — OpenAI API实战（免费）
+- [Anthropic - Claude API Tutorial](https://www.youtube.com/watch?v=hkhDdcM5V94) — Claude API使用教程

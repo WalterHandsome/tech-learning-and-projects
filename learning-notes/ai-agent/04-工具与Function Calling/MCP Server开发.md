@@ -211,3 +211,7 @@ async def test_tool_list(mcp_server):
     assert len(tools) == 1
     assert tools[0].name == "add"
 ```
+## 🎬 推荐视频资源
+
+- [freeCodeCamp - MCP Crash Course](https://www.youtube.com/watch?v=JBqLV4MnN3E) — MCP Server开发完整教程
+- [Anthropic - Building MCP Servers](https://www.youtube.com/watch?v=kQmXtrmQ5Zg) — 官方MCP Server开发指南

@@ -148,3 +148,7 @@ struct UserListView: View {
     }
 }
 ```
+## 🎬 推荐视频资源
+
+- [Swiftful Thinking - SwiftUI State Management](https://www.youtube.com/watch?v=KD4OAjQJYPc) — SwiftUI状态管理
+- [Sean Allen - @State @Binding @ObservedObject](https://www.youtube.com/watch?v=stSB04C4iS4) — 属性包装器详解

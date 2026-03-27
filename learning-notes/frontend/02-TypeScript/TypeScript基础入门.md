@@ -201,3 +201,8 @@ const el = document.getElementById('app')!; // 断言不为 null
 const config = { url: '/api', method: 'GET' } as const;
 // 类型变为 { readonly url: "/api"; readonly method: "GET" }
 ```
+## 🎬 推荐视频资源
+
+- [freeCodeCamp - TypeScript Full Course](https://www.youtube.com/watch?v=30LWjhZzg50) — TypeScript完整课程
+- [Fireship - TypeScript in 100 Seconds](https://www.youtube.com/watch?v=zQnBQ4tB3ZA) — TypeScript快速了解
+- [Matt Pocock - Total TypeScript](https://www.youtube.com/@maaboroshi) — TypeScript高级技巧

@@ -160,3 +160,7 @@ fun UserMviScreen(viewModel: UserMviViewModel = hiltViewModel()) {
     }
 }
 ```
+## 🎬 推荐视频资源
+
+- [Philipp Lackner - MVVM Tutorial](https://www.youtube.com/watch?v=ijXjCtCXcN4) — Android MVVM教程
+- [Philipp Lackner - MVI Architecture](https://www.youtube.com/watch?v=hlBsrsVFgIk) — MVI架构讲解

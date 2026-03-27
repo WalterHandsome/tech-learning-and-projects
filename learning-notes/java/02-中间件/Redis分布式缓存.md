@@ -875,7 +875,8 @@ spring:
         - 192.168.150.101:8002
         - 192.168.150.101:8003
 ```
+## 🎬 推荐视频资源
 
-
-
-
+- [freeCodeCamp - Redis Full Course](https://www.youtube.com/watch?v=XCsS_NVAa1g) — Redis完整课程
+- [Fireship - Redis in 100 Seconds](https://www.youtube.com/watch?v=G1rOthIU-uo) — Redis快速了解
+- [Tech With Tim - Redis Tutorial](https://www.youtube.com/watch?v=OqCK95AS-YE) — Redis实战教程

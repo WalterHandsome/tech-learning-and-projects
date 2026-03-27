@@ -130,3 +130,7 @@ module.exports = {
   cache: { type: 'filesystem' },
 };
 ```
+## 🎬 推荐视频资源
+
+- [freeCodeCamp - Webpack Full Course](https://www.youtube.com/watch?v=MpGLUVbqoYQ) — Webpack完整课程
+- [Fireship - Webpack in 100 Seconds](https://www.youtube.com/watch?v=5IG4UmULyoA) — Webpack快速了解

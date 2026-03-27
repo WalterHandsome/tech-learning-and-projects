@@ -493,4 +493,8 @@ df.groupby('列名').apply(lambda x: x.sort_values('另一列'))
 ## 15. 总结
 
 Pandas 是 Python 数据分析的核心库，提供了强大的数据处理和分析功能。掌握 Pandas 的 Series 和 DataFrame 操作、数据清洗、数据透视、分组聚合等功能，是进行数据分析的基础。Pandas 与 NumPy、Matplotlib 等库的配合使用，可以完成从数据获取到数据可视化的完整数据分析流程。
+## 🎬 推荐视频资源
 
+- [freeCodeCamp - Pandas Full Course](https://www.youtube.com/watch?v=gtjxAH8uaP0) — Pandas完整教程
+- [Corey Schafer - Pandas Tutorial](https://www.youtube.com/playlist?list=PL-osiE80TeTsWmV9i9c58mdDCSskIFdDS) — Pandas系统教程系列
+- [Keith Galli - Pandas Tutorial](https://www.youtube.com/watch?v=vmEHCJofslg) — Pandas实战教程

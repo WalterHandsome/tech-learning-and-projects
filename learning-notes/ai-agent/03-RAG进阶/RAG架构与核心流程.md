@@ -145,3 +145,8 @@ rag_chain = (
 answer = rag_chain.invoke("RAG 有哪些优化策略？")
 print(answer)
 ```
+## 🎬 推荐视频资源
+
+- [DeepLearning.AI - Building and Evaluating Advanced RAG](https://www.deeplearning.ai/short-courses/building-evaluating-advanced-rag/) — 高级RAG构建与评估（免费）
+- [freeCodeCamp - RAG Tutorial](https://www.youtube.com/watch?v=T-D1OfcDW1M) — RAG完整教程
+- [DeepLearning.AI - LangChain Chat with Your Data](https://www.deeplearning.ai/short-courses/langchain-chat-with-your-data/) — 用LangChain构建RAG（免费）

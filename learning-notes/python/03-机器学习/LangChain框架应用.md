@@ -466,4 +466,7 @@ LangChain 提供了构建强大 LLM 应用所需的所有工具：
 - **灵活的记忆管理**：支持多种记忆策略
 
 通过 LangChain，可以快速构建从简单的问答系统到复杂的多代理应用。
+## 🎬 推荐视频资源
 
+- [DeepLearning.AI - LangChain for LLM Application Development](https://www.deeplearning.ai/short-courses/langchain-for-llm-application-development/) — LangChain入门（免费）
+- [freeCodeCamp - LangChain Tutorial](https://www.youtube.com/watch?v=lG7Uxts9SXs) — LangChain完整教程
