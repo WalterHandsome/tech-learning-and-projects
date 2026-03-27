@@ -449,3 +449,9 @@ c.method()  # A method（按照继承顺序，先找到A的方法）
 
 - [Corey Schafer - Python OOP Tutorial](https://www.youtube.com/playlist?list=PL-osiE80TeTsqhIuOqKhwlXsIBIdSeYtc) — Python OOP完整系列（6集）
 - [Tech With Tim - Python OOP](https://www.youtube.com/watch?v=JeznW_7DlB0) — OOP快速入门
+### 📺 B站（Bilibili）
+- [黑马程序员 - Python面向对象](https://www.bilibili.com/video/BV1qW4y1a7fU) — 包含OOP完整章节
+- [小甲鱼 - Python面向对象](https://www.bilibili.com/video/BV1c4411e77t) — OOP部分讲解清晰
+
+### 🌐 其他平台
+- [廖雪峰 - 面向对象编程](https://www.liaoxuefeng.com/wiki/1016959663602400/1017495723838528) — 中文OOP教程

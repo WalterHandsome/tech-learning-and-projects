@@ -204,3 +204,8 @@ prompt = ANALYSIS_TEMPLATE.substitute(
 - [DeepLearning.AI - ChatGPT Prompt Engineering for Developers](https://www.deeplearning.ai/short-courses/chatgpt-prompt-engineering-for-developers/) — 吴恩达+OpenAI联合出品（免费）
 - [DeepLearning.AI - Building Systems with ChatGPT API](https://www.deeplearning.ai/short-courses/building-systems-with-chatgpt/) — 构建基于LLM的系统（免费）
 - [freeCodeCamp - Prompt Engineering Tutorial](https://www.youtube.com/watch?v=_ZvnD96BbQ0) — 完整Prompt工程教程
+### 📺 B站（Bilibili）
+- [吴恩达 - Prompt Engineering中文字幕](https://www.bilibili.com/video/BV1No4y1t7Zn) — DeepLearning.AI课程中文版
+
+### 🌐 其他平台
+- [Learn Prompting](https://learnprompting.org/zh-Hans/docs/intro) — 免费开源Prompt工程教程（中文版）

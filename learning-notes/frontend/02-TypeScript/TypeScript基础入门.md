@@ -206,3 +206,9 @@ const config = { url: '/api', method: 'GET' } as const;
 - [freeCodeCamp - TypeScript Full Course](https://www.youtube.com/watch?v=30LWjhZzg50) — TypeScript完整课程
 - [Fireship - TypeScript in 100 Seconds](https://www.youtube.com/watch?v=zQnBQ4tB3ZA) — TypeScript快速了解
 - [Matt Pocock - Total TypeScript](https://www.youtube.com/@maaboroshi) — TypeScript高级技巧
+### 📺 B站（Bilibili）
+- [黑马程序员 - TypeScript教程](https://www.bilibili.com/video/BV1YP411S7cC) — TS完整中文教程
+- [尚硅谷 - TypeScript教程](https://www.bilibili.com/video/BV1Xy4y1v7S2) — TS深入讲解
+
+### 🌐 其他平台
+- [TypeScript官方中文文档](https://www.typescriptlang.org/zh/) — 官方中文文档

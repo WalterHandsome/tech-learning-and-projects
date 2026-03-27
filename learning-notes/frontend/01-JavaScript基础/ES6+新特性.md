@@ -218,3 +218,10 @@ const module = await import('./heavy-module.js');
 - [Traversy Media - JavaScript Crash Course](https://www.youtube.com/watch?v=hdI2bqOjy3c) — JavaScript速成
 - [freeCodeCamp - JavaScript Full Course](https://www.youtube.com/watch?v=PkZNo7MFNFg) — JavaScript完整课程
 - [Fireship - JavaScript in 100 Seconds](https://www.youtube.com/watch?v=DHjqpvDnNGE) — JavaScript快速了解
+### 📺 B站（Bilibili）
+- [尚硅谷 - ES6-ES13新特性](https://www.bilibili.com/video/BV1uK411H7on) — ES6+完整中文教程
+- [黑马程序员 - JavaScript高级](https://www.bilibili.com/video/BV1Y84y1L7Nn) — JS高级特性
+
+### 🌐 其他平台
+- [现代JavaScript教程](https://zh.javascript.info/) — 最全面的中文JS教程（免费在线）
+- [MDN Web Docs中文](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript) — Mozilla官方中文文档

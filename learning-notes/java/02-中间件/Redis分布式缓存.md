@@ -880,3 +880,6 @@ spring:
 - [freeCodeCamp - Redis Full Course](https://www.youtube.com/watch?v=XCsS_NVAa1g) — Redis完整课程
 - [Fireship - Redis in 100 Seconds](https://www.youtube.com/watch?v=G1rOthIU-uo) — Redis快速了解
 - [Tech With Tim - Redis Tutorial](https://www.youtube.com/watch?v=OqCK95AS-YE) — Redis实战教程
+### 📺 B站（Bilibili）
+- [黑马程序员 - Redis实战](https://www.bilibili.com/video/BV1cr4y1671t) — Redis完整中文教程
+- [尚硅谷 - Redis7教程](https://www.bilibili.com/video/BV1Fd4y1S7dz) — Redis7最新教程

@@ -138,3 +138,8 @@ main_graph.add_edge("research", "writing")
 - [DeepLearning.AI - AI Agents in LangGraph](https://www.deeplearning.ai/short-courses/ai-agents-in-langgraph/) — 吴恩达+LangChain联合出品（免费）
 - [freeCodeCamp - How to Develop AI Agents Using LangGraph](https://www.youtube.com/watch?v=dcgRMOG605w) — LangGraph实战指南
 - [LangChain Official - LangGraph Tutorial](https://www.youtube.com/watch?v=9BPCV5TYPmg) — 官方教程
+### 📺 B站（Bilibili）
+- [LangChain官方 - LangGraph教程中文字幕](https://www.bilibili.com/video/BV1dH4y1P7FY) — LangGraph入门到实战
+
+### 🎓 DeepLearning.AI（免费）
+- [AI Agents in LangGraph](https://www.deeplearning.ai/short-courses/ai-agents-in-langgraph/) — 吴恩达+LangChain联合出品

@@ -150,3 +150,9 @@ print(answer)
 - [DeepLearning.AI - Building and Evaluating Advanced RAG](https://www.deeplearning.ai/short-courses/building-evaluating-advanced-rag/) — 高级RAG构建与评估（免费）
 - [freeCodeCamp - RAG Tutorial](https://www.youtube.com/watch?v=T-D1OfcDW1M) — RAG完整教程
 - [DeepLearning.AI - LangChain Chat with Your Data](https://www.deeplearning.ai/short-courses/langchain-chat-with-your-data/) — 用LangChain构建RAG（免费）
+### 📺 B站（Bilibili）
+- [RAG从入门到精通](https://www.bilibili.com/video/BV1PD421E7mN) — RAG完整中文教程
+- [李沐 - 检索增强生成论文精读](https://space.bilibili.com/1567748478) — RAG论文精读
+
+### 🎓 DeepLearning.AI（免费）
+- [Building and Evaluating Advanced RAG](https://www.deeplearning.ai/short-courses/building-evaluating-advanced-rag/) — 高级RAG构建

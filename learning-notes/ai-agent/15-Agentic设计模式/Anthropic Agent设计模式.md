@@ -289,3 +289,8 @@ def autonomous_agent(task: str, max_turns: int = 10) -> str:
 
 - [DeepLearning.AI - Agentic AI with Andrew Ng](https://www.deeplearning.ai/courses/agentic-ai/) — Agentic设计模式全面讲解（免费）
 - [DeepLearning.AI - AI Agentic Design Patterns with AutoGen](https://www.deeplearning.ai/short-courses/ai-agentic-design-patterns-with-autogen/) — 设计模式实战（免费）
+### 📺 B站（Bilibili）
+- [吴恩达 - Agentic AI设计模式中文字幕](https://www.bilibili.com/video/BV1Bz421B7bG) — Agentic设计模式讲解
+
+### 🎓 DeepLearning.AI（免费）
+- [Agentic AI with Andrew Ng](https://www.deeplearning.ai/courses/agentic-ai/) — Agentic AI完整课程

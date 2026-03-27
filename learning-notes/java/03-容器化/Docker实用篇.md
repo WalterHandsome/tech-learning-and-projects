@@ -1210,3 +1210,6 @@ docker pull 192.168.150.101:8080/nginx:1.0
 - [freeCodeCamp - Docker Tutorial](https://www.youtube.com/watch?v=fqMOX6JJhGo) — Docker完整教程
 - [TechWorld with Nana - Docker Tutorial](https://www.youtube.com/watch?v=3c-iBn73dDE) — Docker系统教程（最受欢迎）
 - [Fireship - Docker in 100 Seconds](https://www.youtube.com/watch?v=Gjnup-PuquQ) — Docker快速了解
+### 📺 B站（Bilibili）
+- [黑马程序员 - Docker实战](https://www.bilibili.com/video/BV1HP4118797) — Docker完整中文教程
+- [尚硅谷 - Docker教程](https://www.bilibili.com/video/BV1gr4y1U7CY) — Docker深入讲解

@@ -866,3 +866,6 @@ SET [ SESSION | GLOBAL ] TRANSACTION ISOLATION LEVEL { READ UNCOMMITTED | READ C
 
 - [freeCodeCamp - MySQL Full Course](https://www.youtube.com/watch?v=HXV3zeQKqGY) — MySQL完整课程
 - [Programming with Mosh - MySQL Tutorial](https://www.youtube.com/watch?v=7S_tz1z_5bA) — MySQL入门教程（3小时）
+### 📺 B站（Bilibili）
+- [黑马程序员 - MySQL教程](https://www.bilibili.com/video/BV1Kr4y1i7ru) — MySQL完整中文教程（最受欢迎）
+- [尚硅谷 - MySQL高级](https://www.bilibili.com/video/BV1iq4y1u7vj) — MySQL高级特性

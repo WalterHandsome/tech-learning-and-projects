@@ -145,3 +145,8 @@ crew = Crew(
 - [DeepLearning.AI - Multi AI Agent Systems with crewAI](https://www.deeplearning.ai/short-courses/multi-ai-agent-systems-with-crewai/) — 吴恩达出品多Agent系统（免费）
 - [CrewAI Official - Getting Started](https://www.youtube.com/watch?v=sPzc6hMg7So) — CrewAI官方入门
 - [Matt Williams - CrewAI Tutorial](https://www.youtube.com/watch?v=tnejrr-0a94) — CrewAI完整教程
+### 📺 B站（Bilibili）
+- [CrewAI多Agent实战教程](https://www.bilibili.com/video/BV1Bm421N7BH) — CrewAI中文实战
+
+### 🎓 DeepLearning.AI（免费）
+- [Multi AI Agent Systems with crewAI](https://www.deeplearning.ai/short-courses/multi-ai-agent-systems-with-crewai/) — 多Agent系统实战

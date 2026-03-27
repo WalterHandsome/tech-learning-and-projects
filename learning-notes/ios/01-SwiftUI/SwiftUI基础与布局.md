@@ -156,3 +156,11 @@ GeometryReader { geometry in
 - [Swiftful Thinking - SwiftUI Bootcamp](https://www.youtube.com/playlist?list=PLwvDm4VfkdphqETTBf-DdjCoAvhai1QpO) — SwiftUI完整入门系列
 - [Paul Hudson - SwiftUI Tutorial](https://www.youtube.com/watch?v=aP-SQXTtWhY) — SwiftUI教程
 - [Stanford CS193p - SwiftUI](https://www.youtube.com/playlist?list=PLpGHT1n4-mAtTj9oywMWoBx0dCGd51_yG) — 斯坦福SwiftUI课程（免费）
+### 📺 B站（Bilibili）
+- [SwiftUI中文教程](https://www.bilibili.com/video/BV1s3411g7ab) — SwiftUI入门到实战
+
+### 🎓 斯坦福公开课
+- [Stanford CS193p - SwiftUI](https://cs193p.sites.stanford.edu/) — 斯坦福iOS开发课程（免费，B站有中文字幕版）
+
+### 🌐 其他平台
+- [Hacking with Swift - 100 Days of SwiftUI](https://www.hackingwithswift.com/100/swiftui) — 最受欢迎的SwiftUI学习路径
