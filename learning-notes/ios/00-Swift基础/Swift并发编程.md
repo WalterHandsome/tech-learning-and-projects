@@ -137,3 +137,7 @@ group.notify(queue: .main) {
     print("全部完成")
 }
 ```
+## 🎬 推荐视频资源
+
+- [Sean Allen - Swift Concurrency](https://www.youtube.com/watch?v=U6lQOo5aGmE) — Swift并发编程教程
+- [Paul Hudson - Concurrency in Swift](https://www.youtube.com/watch?v=sGnxBiLL3Gc) — async/await详解

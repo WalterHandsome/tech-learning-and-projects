@@ -472,4 +472,8 @@ Django 是一个功能强大的 Web 框架，采用 MTV 架构模式，提供了
 - [Django 官方文档](https://docs.djangoproject.com/)
 - [Django 中文文档](https://docs.djangoproject.com/zh-hans/)
 - [Django 最佳实践](https://docs.djangoproject.com/en/stable/misc/design-philosophies/)
+## 🎬 推荐视频资源
 
+- [freeCodeCamp - Django Web Framework](https://www.youtube.com/watch?v=F5mRW0jo-U4) — Django完整课程
+- [Corey Schafer - Django Tutorial](https://www.youtube.com/playlist?list=PL-osiE80TeTtoQCKZ03TU5fNfx2UY6U4p) — Django系统教程系列
+- [Dennis Ivy - Django Crash Course](https://www.youtube.com/watch?v=PtQiiknWUcI) — Django快速入门

@@ -132,3 +132,8 @@ await server.connect(transport);
 
 社区 Server：1000+ 开源实现
 ```
+## 🎬 推荐视频资源
+
+- [Anthropic - Model Context Protocol Introduction](https://www.youtube.com/watch?v=kQmXtrmQ5Zg) — MCP官方介绍
+- [freeCodeCamp - MCP Crash Course](https://www.youtube.com/watch?v=JBqLV4MnN3E) — MCP完整教程
+- [AI Jason - MCP Explained](https://www.youtube.com/watch?v=Ox9DBiJMnHY) — MCP协议通俗讲解

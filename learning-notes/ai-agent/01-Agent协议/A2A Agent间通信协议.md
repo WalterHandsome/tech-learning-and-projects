@@ -110,3 +110,7 @@ submitted → working → input-required → working → completed
 轻量消息传递 → ACP
 复杂企业场景 → MCP + A2A 组合
 ```
+## 🎬 推荐视频资源
+
+- [Google Cloud - A2A Protocol Overview](https://www.youtube.com/watch?v=4Fy0gDqSVOg) — Google官方A2A协议介绍
+- [AI Jason - A2A vs MCP](https://www.youtube.com/watch?v=4Fy0gDqSVOg) — A2A与MCP对比讲解

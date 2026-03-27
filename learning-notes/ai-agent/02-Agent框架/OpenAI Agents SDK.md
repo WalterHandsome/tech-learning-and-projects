@@ -141,3 +141,7 @@ set_trace_processors([custom_processor])
 - 复杂的图结构工作流
 - 需要精细状态管理的场景
 ```
+## 🎬 推荐视频资源
+
+- [OpenAI - Agents SDK Introduction](https://www.youtube.com/watch?v=JhCl-GeT4jw) — OpenAI官方Agents SDK介绍
+- [DeepLearning.AI - Building Agentic RAG with LlamaIndex](https://www.deeplearning.ai/short-courses/building-agentic-rag-with-llamaindex/) — Agentic RAG实战（免费）

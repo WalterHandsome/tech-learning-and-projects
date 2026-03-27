@@ -118,3 +118,7 @@ app.use('*', async (req, res) => {
   res.status(200).set({ 'Content-Type': 'text/html' }).end(html);
 });
 ```
+## 🎬 推荐视频资源
+
+- [Fireship - Vite in 100 Seconds](https://www.youtube.com/watch?v=KCrXgy8qtjM) — Vite快速了解
+- [Traversy Media - Vite Crash Course](https://www.youtube.com/watch?v=89NJdbYTgJ8) — Vite速成

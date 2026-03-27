@@ -148,3 +148,7 @@ fun UserScreen(viewModel: ModernViewModel = hiltViewModel()) {
     }
 }
 ```
+## 🎬 推荐视频资源
+
+- [Philipp Lackner - ViewModel Tutorial](https://www.youtube.com/watch?v=9sqvBydNJSg) — ViewModel教程
+- [CodingWithMitch - Android Architecture](https://www.youtube.com/watch?v=ijXjCtCXcN4) — Android架构组件

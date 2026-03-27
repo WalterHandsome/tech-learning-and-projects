@@ -1205,5 +1205,8 @@ docker push 192.168.150.101:8080/nginx:1.0
 ```sh
 docker pull 192.168.150.101:8080/nginx:1.0 
 ```
+## 🎬 推荐视频资源
 
-
+- [freeCodeCamp - Docker Tutorial](https://www.youtube.com/watch?v=fqMOX6JJhGo) — Docker完整教程
+- [TechWorld with Nana - Docker Tutorial](https://www.youtube.com/watch?v=3c-iBn73dDE) — Docker系统教程（最受欢迎）
+- [Fireship - Docker in 100 Seconds](https://www.youtube.com/watch?v=Gjnup-PuquQ) — Docker快速了解

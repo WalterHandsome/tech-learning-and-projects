@@ -101,4 +101,8 @@ async def websocket_endpoint(websocket: WebSocket):
 
 - [FastAPI 官方文档](https://fastapi.tiangolo.com/)
 - [FastAPI 中文文档](https://fastapi.tiangolo.com/zh/)
+## 🎬 推荐视频资源
 
+- [freeCodeCamp - FastAPI Course](https://www.youtube.com/watch?v=0sOvCWFmrtA) — FastAPI完整课程（19小时）
+- [Bitfumes - FastAPI Tutorial](https://www.youtube.com/watch?v=7t2alSnE2-I) — FastAPI快速入门
+- [ArjanCodes - FastAPI Best Practices](https://www.youtube.com/watch?v=B9hLkfzgq0s) — FastAPI最佳实践

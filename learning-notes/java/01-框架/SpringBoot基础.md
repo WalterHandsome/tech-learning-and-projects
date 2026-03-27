@@ -1539,7 +1539,8 @@ spring:
 静态资源需要放在 `resources` 下的 `static` 下，如下图所示
 
 <img src="SpringBoot基础-assets/image-20210917230702072.png" alt="image-20210917230702072" style="zoom:80%;" />
+## 🎬 推荐视频资源
 
-
-
-
+- [Amigoscode - Spring Boot Tutorial 2025](https://www.youtube.com/watch?v=9SGDpanrc8U) — Spring Boot完整教程
+- [Programming with Mosh - Spring Boot Tutorial](https://www.youtube.com/watch?v=31KTdfRH6nY) — Spring Boot入门
+- [Daily Code Buffer - Spring Boot Microservices](https://www.youtube.com/watch?v=BnknNTN8icw) — Spring Boot微服务

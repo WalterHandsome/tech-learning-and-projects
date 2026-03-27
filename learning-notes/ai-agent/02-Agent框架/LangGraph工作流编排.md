@@ -133,3 +133,8 @@ main_graph.add_edge("research", "writing")
 # 部署到 LangGraph Cloud
 # langgraph deploy --config langgraph.json
 ```
+## 🎬 推荐视频资源
+
+- [DeepLearning.AI - AI Agents in LangGraph](https://www.deeplearning.ai/short-courses/ai-agents-in-langgraph/) — 吴恩达+LangChain联合出品（免费）
+- [freeCodeCamp - How to Develop AI Agents Using LangGraph](https://www.youtube.com/watch?v=dcgRMOG605w) — LangGraph实战指南
+- [LangChain Official - LangGraph Tutorial](https://www.youtube.com/watch?v=9BPCV5TYPmg) — 官方教程

@@ -483,4 +483,7 @@ np.setdiff1d(array1, array2)   # 差集
 ## 17. 总结
 
 NumPy 是 Python 科学计算的基础库，提供了高性能的多维数组对象和丰富的数组操作函数。掌握 NumPy 的基本操作、数组运算、统计方法和线性代数运算，是进行数据分析和科学计算的基础。
+## 🎬 推荐视频资源
 
+- [freeCodeCamp - NumPy Full Course](https://www.youtube.com/watch?v=QUT1VHiLmmI) — NumPy完整教程
+- [Keith Galli - NumPy Tutorial](https://www.youtube.com/watch?v=GB9ByFAIAH4) — NumPy实战教程

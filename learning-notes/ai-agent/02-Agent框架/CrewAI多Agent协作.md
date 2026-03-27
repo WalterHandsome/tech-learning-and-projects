@@ -140,3 +140,8 @@ crew = Crew(
 | 模型锁定 | 无 | 无 | OpenAI |
 | MCP 支持 | 原生 | 通过工具 | 通过工具 |
 | 适用场景 | 团队协作 | 复杂工作流 | GPT 原型 |
+## 🎬 推荐视频资源
+
+- [DeepLearning.AI - Multi AI Agent Systems with crewAI](https://www.deeplearning.ai/short-courses/multi-ai-agent-systems-with-crewai/) — 吴恩达出品多Agent系统（免费）
+- [CrewAI Official - Getting Started](https://www.youtube.com/watch?v=sPzc6hMg7So) — CrewAI官方入门
+- [Matt Williams - CrewAI Tutorial](https://www.youtube.com/watch?v=tnejrr-0a94) — CrewAI完整教程

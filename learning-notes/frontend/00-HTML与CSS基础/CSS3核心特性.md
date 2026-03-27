@@ -372,3 +372,7 @@ position: absolute | fixed;
   line-height: 100px; /* 单行垂直居中 */
 }
 ```
+## 🎬 推荐视频资源
+
+- [Kevin Powell - CSS Tutorials](https://www.youtube.com/@KevinPowell) — 全网最好的CSS教程频道
+- [freeCodeCamp - CSS Full Course](https://www.youtube.com/watch?v=OXGznpKZ_sA) — CSS完整课程

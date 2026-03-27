@@ -180,3 +180,7 @@ network.register(reviewer)
 | Hierarchical | 中 | 大型团队、多职能 | 可扩展 | 层级延迟 |
 | Swarm | 中 | 客服、动态路由 | 灵活自主 | 难以调试 |
 | Network | 高 | 复杂协作、头脑风暴 | 最灵活 | 消息爆炸 |
+## 🎬 推荐视频资源
+
+- [DeepLearning.AI - Multi AI Agent Systems with crewAI](https://www.deeplearning.ai/short-courses/multi-ai-agent-systems-with-crewai/) — 多Agent系统实战（免费）
+- [DeepLearning.AI - AI Agentic Design Patterns with AutoGen](https://www.deeplearning.ai/short-courses/ai-agentic-design-patterns-with-autogen/) — Agentic设计模式（免费）

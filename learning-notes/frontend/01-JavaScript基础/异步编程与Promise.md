@@ -193,3 +193,8 @@ class MyPromise {
   catch(onRejected) { return this.then(null, onRejected); }
 }
 ```
+## 🎬 推荐视频资源
+
+- [Fireship - Async Await in 100 Seconds](https://www.youtube.com/watch?v=vn3tm0quoqE) — 异步编程快速了解
+- [Traversy Media - Async JS Crash Course](https://www.youtube.com/watch?v=PoRJizFvM7s) — 异步JS速成
+- [The Net Ninja - Async JavaScript](https://www.youtube.com/playlist?list=PL4cUxeGkcC9jx2TTZk3IGWKSbtugYdrlu) — 异步JS系列教程

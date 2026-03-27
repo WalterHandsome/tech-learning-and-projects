@@ -222,3 +222,8 @@
 | 卡片列表 | Grid | auto-fill 自适应 |
 | 居中对齐 | 都可以 | Grid 的 place-items 更简洁 |
 | 不确定子元素数量 | Flex | 更灵活 |
+## 🎬 推荐视频资源
+
+- [Kevin Powell - Flexbox Tutorial](https://www.youtube.com/watch?v=u044iM9xsWU) — Flexbox完整教程
+- [Kevin Powell - CSS Grid Tutorial](https://www.youtube.com/watch?v=rg7Fvvl3taU) — CSS Grid完整教程
+- [Fireship - CSS Flexbox in 100 Seconds](https://www.youtube.com/watch?v=K74l26pE4YA) — Flexbox快速了解

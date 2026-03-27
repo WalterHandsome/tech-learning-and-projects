@@ -1030,5 +1030,8 @@ scp  -r  HOME/.kube   node1: HOME/
  删除资源              使用命令式对象配置 kubectl delete -f  XXX.yaml
 
  查询资源              使用命令式对象管理 kubectl get(describe) 资源名称
+## 🎬 推荐视频资源
 
-
+- [TechWorld with Nana - Kubernetes Tutorial](https://www.youtube.com/watch?v=X48VuDVv0do) — K8s完整教程（最受欢迎，4小时）
+- [freeCodeCamp - Kubernetes Course](https://www.youtube.com/watch?v=d6WC5n9G_sM) — K8s完整课程
+- [Fireship - Kubernetes in 100 Seconds](https://www.youtube.com/watch?v=PziYflu8cB8) — K8s快速了解

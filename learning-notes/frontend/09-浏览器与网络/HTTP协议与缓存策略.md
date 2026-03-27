@@ -112,3 +112,7 @@ self.addEventListener('fetch', (event) => {
 502 Bad Gateway           # 网关错误
 503 Service Unavailable   # 服务不可用
 ```
+## 🎬 推荐视频资源
+
+- [Fireship - HTTP in 100 Seconds](https://www.youtube.com/watch?v=iYM2zFP3Zn0) — HTTP快速了解
+- [Traversy Media - HTTP Crash Course](https://www.youtube.com/watch?v=iYM2zFP3Zn0) — HTTP速成

@@ -158,3 +158,7 @@ val MIGRATION_1_2 = object : Migration(1, 2) {
 )
 abstract class AppDatabase : RoomDatabase()
 ```
+## 🎬 推荐视频资源
+
+- [Philipp Lackner - Room Database](https://www.youtube.com/watch?v=bOd3wO0uFr8) — Room数据库完整教程
+- [CodingWithMitch - Room Persistence](https://www.youtube.com/watch?v=xPOIaKVFz5Y) — Room持久化教程

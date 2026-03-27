@@ -862,4 +862,7 @@ SET [ SESSION | GLOBAL ] TRANSACTION ISOLATION LEVEL { READ UNCOMMITTED | READ C
 ~~~
 
 > 注意:事务隔离级别越高，数据越安全，但是性能越低。
+## 🎬 推荐视频资源
 
+- [freeCodeCamp - MySQL Full Course](https://www.youtube.com/watch?v=HXV3zeQKqGY) — MySQL完整课程
+- [Programming with Mosh - MySQL Tutorial](https://www.youtube.com/watch?v=7S_tz1z_5bA) — MySQL入门教程（3小时）

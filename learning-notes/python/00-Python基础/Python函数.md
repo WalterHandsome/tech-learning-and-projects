@@ -494,3 +494,7 @@ help(add)  # 查看函数帮助
 ## 13. 总结
 
 函数是 Python 编程的核心概念之一。Python 中的函数是一等函数，可以赋值给变量，也可以作为函数的参数和返回值，这也就意味着我们可以在 Python 中使用高阶函数。掌握函数的定义、参数类型、Lambda 函数、装饰器和递归调用对于 Python 编程非常重要。
+## 🎬 推荐视频资源
+
+- [Corey Schafer - Python Functions](https://www.youtube.com/watch?v=9Os0o3wzS_I) — Python函数详解
+- [Corey Schafer - Decorators](https://www.youtube.com/watch?v=FsAPt_9Bf3U) — 装饰器深入讲解

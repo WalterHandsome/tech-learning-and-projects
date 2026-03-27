@@ -91,3 +91,9 @@ Answer: 您最近的订单是...
 | 任务型 Agent | 目标导向，工具调用 | 数据分析、代码生成 |
 | 自主型 Agent | 自主规划，持续执行 | 研究助手、自动化运维 |
 | 多 Agent 系统 | 多角色协作 | 软件开发团队、内容创作 |
+## 🎬 推荐视频资源
+
+- [Andrej Karpathy - Intro to Large Language Models](https://www.youtube.com/watch?v=zjkBMFhNj_g) — 1小时LLM入门概述，前Tesla AI总监讲解
+- [Andrew Ng - AI For Everyone](https://www.coursera.org/learn/ai-for-everyone) — 吴恩达非技术角度理解AI全貌（免费）
+- [DeepLearning.AI - Agentic AI with Andrew Ng](https://www.deeplearning.ai/courses/agentic-ai/) — Agentic AI全面讲解（免费）
+- [IBM Technology - What are AI Agents?](https://www.youtube.com/watch?v=F8NKVhkZZWI) — 5分钟快速理解AI Agent

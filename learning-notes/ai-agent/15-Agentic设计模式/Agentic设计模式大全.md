@@ -382,3 +382,7 @@ triage.handoffs = [sales, support]
 | Human-in-the-Loop | ★★     | 高风险操作               |
 | Guardrails        | ★      | 安全合规要求              |
 | Fallback          | ★      | 高可用性要求              |
+## 🎬 推荐视频资源
+
+- [Andrew Ng - What's Next for AI Agentic Workflows](https://www.youtube.com/watch?v=sal78ACtGTc) — 吴恩达讲Agentic工作流
+- [DeepLearning.AI - Agentic AI with Andrew Ng](https://www.deeplearning.ai/courses/agentic-ai/) — Agentic AI完整课程（免费）

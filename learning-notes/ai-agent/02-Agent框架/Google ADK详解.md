@@ -244,3 +244,7 @@ live_agent = LiveAgent(
 | 迭代优化 | LoopAgent |
 | 跨服务协作 | A2ATool + LlmAgent |
 | 生产部署 | Vertex AI Agent Engine |
+## 🎬 推荐视频资源
+
+- [Google Cloud - Agent Development Kit](https://www.youtube.com/watch?v=E8pMFNox4Lc) — Google ADK官方介绍
+- [Google Cloud - Building AI Agents with ADK](https://www.youtube.com/watch?v=3Vy0V3sBhAo) — ADK实战教程

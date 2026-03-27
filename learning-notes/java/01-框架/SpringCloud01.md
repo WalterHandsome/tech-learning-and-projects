@@ -1119,9 +1119,7 @@ Nacos和Eureka整体结构类似，服务注册、服务拉取、心跳等待，
   - 临时实例心跳不正常会被剔除，非临时实例则不会被剔除
   - Nacos支持服务列表变更的消息推送模式，服务列表更新更及时
   - Nacos集群默认采用AP方式，当集群中存在非临时实例时，采用CP模式；Eureka采用AP方式
+## 🎬 推荐视频资源
 
-
-
-
-
-
+- [Daily Code Buffer - Spring Cloud Tutorial](https://www.youtube.com/watch?v=BnknNTN8icw) — Spring Cloud微服务完整教程
+- [Java Brains - Microservices with Spring Boot](https://www.youtube.com/playlist?list=PLqq-6Pq4lTTZSKAFG6aCDVDP86Qx4lNas) — 微服务系统教程

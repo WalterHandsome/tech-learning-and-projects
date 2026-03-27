@@ -185,3 +185,7 @@ for idx, tc in tool_calls_buffer.items():
 | 强制调用 | tool_choice | tool_choice | tool_config |
 | 嵌套对象 | 支持 | 支持 | 支持 |
 | 最大工具数 | 128 | 64 | 128 |
+## 🎬 推荐视频资源
+
+- [DeepLearning.AI - Functions, Tools and Agents with LangChain](https://www.deeplearning.ai/short-courses/functions-tools-agents-langchain/) — Function Calling实战（免费）
+- [OpenAI - Function Calling Guide](https://www.youtube.com/watch?v=0lOSvOoF2to) — OpenAI Function Calling讲解

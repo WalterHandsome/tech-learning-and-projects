@@ -121,3 +121,7 @@ export class UsersService {
   create(dto: CreateUserDto) { return this.repo.save(dto); }
 }
 ```
+## 🎬 推荐视频资源
+
+- [Traversy Media - Express Crash Course](https://www.youtube.com/watch?v=SccSCuHhOw0) — Express速成
+- [freeCodeCamp - Express.js Full Course](https://www.youtube.com/watch?v=G8uL0lFFoN0) — Express完整课程

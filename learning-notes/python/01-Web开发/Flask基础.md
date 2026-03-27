@@ -434,4 +434,8 @@ uwsgi --http :8000 --wsgi-file app.py --callable app
 ## 17. 总结
 
 Flask是一个轻量级、灵活的Web框架，适合快速开发小型应用和API。通过扩展可以构建功能完整的Web应用。
+## 🎬 推荐视频资源
 
+- [freeCodeCamp - Flask Tutorial](https://www.youtube.com/watch?v=Qr4QMBUPxWo) — Flask完整教程
+- [Corey Schafer - Flask Tutorial](https://www.youtube.com/playlist?list=PL-osiE80TeTs4UjLw5MM6OjgkjFeUxCYH) — Flask系统教程系列
+- [Tech With Tim - Flask Tutorial](https://www.youtube.com/watch?v=mqhxxeeTbu0) — Flask快速入门

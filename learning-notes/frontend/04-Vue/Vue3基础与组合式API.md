@@ -193,3 +193,8 @@ export function useFetch(url) {
 const { x, y } = useMouse();
 const { data, loading } = useFetch('/api/users');
 ```
+## 🎬 推荐视频资源
+
+- [freeCodeCamp - Vue 3 Full Course](https://www.youtube.com/watch?v=VeNfHj6MhgA) — Vue 3完整课程（6小时）
+- [Traversy Media - Vue.js Crash Course](https://www.youtube.com/watch?v=qZXt1Aom3Cs) — Vue速成
+- [Fireship - Vue.js in 100 Seconds](https://www.youtube.com/watch?v=nhBVL41-_Cw) — Vue快速了解

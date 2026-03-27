@@ -213,3 +213,8 @@ import * as math from './math.js';
 // 动态导入（代码分割）
 const module = await import('./heavy-module.js');
 ```
+## 🎬 推荐视频资源
+
+- [Traversy Media - JavaScript Crash Course](https://www.youtube.com/watch?v=hdI2bqOjy3c) — JavaScript速成
+- [freeCodeCamp - JavaScript Full Course](https://www.youtube.com/watch?v=PkZNo7MFNFg) — JavaScript完整课程
+- [Fireship - JavaScript in 100 Seconds](https://www.youtube.com/watch?v=DHjqpvDnNGE) — JavaScript快速了解

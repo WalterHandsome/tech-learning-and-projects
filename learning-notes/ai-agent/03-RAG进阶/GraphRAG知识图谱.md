@@ -179,3 +179,7 @@ GraphRAG 适合：
 ├── 事实性检索
 └── 实体关系简单的场景
 ```
+## 🎬 推荐视频资源
+
+- [Microsoft Research - GraphRAG](https://www.youtube.com/watch?v=r09tJfnassM) — 微软GraphRAG官方讲解
+- [DeepLearning.AI - Knowledge Graphs for RAG](https://www.deeplearning.ai/short-courses/knowledge-graphs-rag/) — 知识图谱+RAG（免费）

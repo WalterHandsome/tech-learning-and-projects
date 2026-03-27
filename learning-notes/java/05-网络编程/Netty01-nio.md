@@ -2277,9 +2277,7 @@ public class AioServer {
     }
 }
 ```
+## 🎬 推荐视频资源
 
-
-
-
-
-
+- [Jakob Jenkov - Java NIO Tutorial](https://www.youtube.com/playlist?list=PLUbFnGajtZlXhAScGaV94nWMRMOjGGIXo) — Java NIO完整教程
+- [Defog Tech - Netty Tutorial](https://www.youtube.com/watch?v=DKJ0w30M0vg) — Netty入门教程

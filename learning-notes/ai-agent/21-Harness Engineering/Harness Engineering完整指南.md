@@ -391,3 +391,7 @@ Agent 可观测性            Hooks（agentStop → 运行测试验证）
    Debug → 设计反馈循环
    Code Review → 维护 Harness
 ```
+## 🎬 推荐视频资源
+
+- [DeepLearning.AI - Agentic AI with Andrew Ng](https://www.deeplearning.ai/courses/agentic-ai/) — 包含Harness Engineering理念（免费）
+- [OpenAI - Harness Engineering Blog](https://openai.com/index/harness-engineering) — OpenAI官方Harness Engineering文章

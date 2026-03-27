@@ -94,3 +94,7 @@ X-Content-Type-Options: nosniff
 X-XSS-Protection: 0  // 现代浏览器建议关闭，使用 CSP 替代
 Referrer-Policy: strict-origin-when-cross-origin
 ```
+## 🎬 推荐视频资源
+
+- [Fireship - Web Security in 100 Seconds](https://www.youtube.com/watch?v=4YOpILi9Oxs) — Web安全快速了解
+- [Computerphile - Cross Site Scripting](https://www.youtube.com/watch?v=L5l9lSnNMxg) — XSS详解

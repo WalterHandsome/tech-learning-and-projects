@@ -174,3 +174,7 @@ def tracked_completion(model: str, messages: list) -> str:
     metrics.record_call(model, latency, response.usage.prompt_tokens, response.usage.completion_tokens)
     return response.choices[0].message.content
 ```
+## 🎬 推荐视频资源
+
+- [DeepLearning.AI - Evaluating and Debugging Generative AI](https://www.deeplearning.ai/short-courses/evaluating-debugging-generative-ai/) — LLM评估与调试（免费）
+- [LangSmith - Getting Started](https://www.youtube.com/watch?v=tFXm5ijih98) — LangSmith可观测性平台入门

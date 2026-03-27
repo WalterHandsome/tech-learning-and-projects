@@ -445,3 +445,7 @@ c.method()  # A method（按照继承顺序，先找到A的方法）
 ## 13. 总结
 
 面向对象编程是一种非常流行的编程范式，它更符合人类正常的思维习惯。类是抽象的，对象是具体的，有了类就能创建对象，有了对象就可以接收消息，这就是面向对象编程的基础。掌握类的定义、对象的创建、继承、多态和特殊方法对于 Python 编程非常重要。
+## 🎬 推荐视频资源
+
+- [Corey Schafer - Python OOP Tutorial](https://www.youtube.com/playlist?list=PL-osiE80TeTsqhIuOqKhwlXsIBIdSeYtc) — Python OOP完整系列（6集）
+- [Tech With Tim - Python OOP](https://www.youtube.com/watch?v=JeznW_7DlB0) — OOP快速入门

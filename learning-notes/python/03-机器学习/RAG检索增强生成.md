@@ -65,4 +65,7 @@ response = query_engine.query("你的问题")
 
 - [LlamaIndex 文档](https://docs.llamaindex.ai/)
 - [RAG 论文](https://arxiv.org/abs/2005.11401)
+## 🎬 推荐视频资源
 
+- [DeepLearning.AI - LangChain Chat with Your Data](https://www.deeplearning.ai/short-courses/langchain-chat-with-your-data/) — RAG实战（免费）
+- [freeCodeCamp - RAG Tutorial](https://www.youtube.com/watch?v=T-D1OfcDW1M) — RAG完整教程
