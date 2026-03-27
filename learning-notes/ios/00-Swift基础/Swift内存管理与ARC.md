@@ -1,5 +1,7 @@
 # Swift 内存管理与 ARC
 
+> Author: Walter Wang
+
 ## 1. ARC 原理
 
 ```swift

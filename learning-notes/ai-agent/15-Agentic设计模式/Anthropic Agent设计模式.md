@@ -1,5 +1,7 @@
 # Anthropic Agent 设计模式
 
+> Author: Walter Wang
+
 ## 1. Workflows vs Agents
 
 Anthropic 在 "Building Effective Agents" 指南中将 Agentic 系统分为两大类：

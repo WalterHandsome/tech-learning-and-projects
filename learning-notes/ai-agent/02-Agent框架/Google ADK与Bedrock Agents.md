@@ -1,5 +1,7 @@
 # Google ADK 与 Bedrock Agents
 
+> Author: Walter Wang
+
 ## 1. Google ADK 概述
 
 Google Agent Development Kit（ADK）是 Google 推出的开源 Agent 开发框架，深度集成 Gemini 模型和 Google 生态。

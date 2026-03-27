@@ -1,5 +1,7 @@
 # Gradle基础与应用
 
+> Author: Walter Wang
+
 ## 1. Gradle基础
 
 ### 1.1 Gradle简介

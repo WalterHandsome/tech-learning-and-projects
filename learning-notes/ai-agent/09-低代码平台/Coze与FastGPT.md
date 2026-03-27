@@ -1,5 +1,7 @@
 # Coze 与 FastGPT
 
+> Author: Walter Wang
+
 ## 1. Coze 平台概述
 
 Coze（扣子）是字节跳动推出的 AI Bot 构建平台，支持零代码创建 Agent，内置丰富的插件市场。

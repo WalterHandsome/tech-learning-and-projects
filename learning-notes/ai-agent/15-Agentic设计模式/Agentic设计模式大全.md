@@ -1,5 +1,7 @@
 # Agentic 设计模式大全
 
+> Author: Walter Wang
+
 ## 1. Augmented LLM（增强型 LLM）
 
 所有 Agent 的基础构建块：LLM + 检索 + 工具 + 记忆。

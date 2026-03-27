@@ -1,5 +1,7 @@
 # Vue Router 与 Pinia
 
+> Author: Walter Wang
+
 ## 1. Vue Router 配置
 
 ```javascript

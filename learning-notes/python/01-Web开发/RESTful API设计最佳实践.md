@@ -1,5 +1,7 @@
 # RESTful API 设计最佳实践
 
+> Author: Walter Wang
+
 > 设计和实现高质量 RESTful API 的指南
 
 ## 1. RESTful 原则

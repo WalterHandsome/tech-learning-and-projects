@@ -1,5 +1,7 @@
 # Swift 面向对象编程
 
+> Author: Walter Wang
+
 ## 1. 类与结构体
 
 ```swift

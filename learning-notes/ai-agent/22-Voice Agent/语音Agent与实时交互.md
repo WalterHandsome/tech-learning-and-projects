@@ -1,5 +1,7 @@
 # 语音 Agent 与实时交互
 
+> Author: Walter Wang
+
 ## 1. 概述
 
 语音 Agent 是 AI Agent 的语音交互形态，用户通过自然语音与 Agent 实时对话，Agent 能听、能说、能执行工具调用。2025 年是语音 Agent 爆发元年，OpenAI Realtime API 正式 GA，ElevenLabs、LiveKit、Vapi 等平台快速成熟。

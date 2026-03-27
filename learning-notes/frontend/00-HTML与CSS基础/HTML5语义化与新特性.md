@@ -1,5 +1,7 @@
 # HTML5 语义化与新特性
 
+> Author: Walter Wang
+
 ## 1. HTML5 语义化标签
 
 ### 1.1 为什么需要语义化

@@ -1,5 +1,7 @@
 # RAG 架构与核心流程
 
+> Author: Walter Wang
+
 ## 1. RAG 演进路线
 
 ```

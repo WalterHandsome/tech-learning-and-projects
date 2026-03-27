@@ -1,5 +1,7 @@
 ## SpringMVC_day02
 
+> Author: Walter Wang
+
 **今日内容**
 
 > * 完成SSM的整合开发

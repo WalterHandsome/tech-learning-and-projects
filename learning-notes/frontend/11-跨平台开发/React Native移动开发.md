@@ -1,5 +1,7 @@
 # React Native 移动开发
 
+> Author: Walter Wang
+
 ## 1. 核心组件
 
 ```jsx

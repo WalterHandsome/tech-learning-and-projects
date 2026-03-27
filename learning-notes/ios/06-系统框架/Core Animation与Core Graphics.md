@@ -1,5 +1,7 @@
 # Core Animation 与 Core Graphics
 
+> Author: Walter Wang
+
 ## 1. CALayer 基础
 
 ```swift

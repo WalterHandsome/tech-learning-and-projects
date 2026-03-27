@@ -1,5 +1,7 @@
 # CI/CD 与自动化部署
 
+> Author: Walter Wang
+
 ## 1. GitHub Actions
 
 ```yaml

@@ -1,5 +1,7 @@
 # FastAPI 快速入门
 
+> Author: Walter Wang
+
 > 从 private-notes 提取的技术学习笔记
 
 ## FastAPI 简介

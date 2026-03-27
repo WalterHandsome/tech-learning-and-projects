@@ -1,5 +1,7 @@
 # TypeScript 工程化实践
 
+> Author: Walter Wang
+
 ## 1. tsconfig.json 配置
 
 ```jsonc

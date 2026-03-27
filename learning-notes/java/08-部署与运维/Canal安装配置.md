@@ -1,5 +1,7 @@
 # 安装和配置Canal
 
+> Author: Walter Wang
+
 
 
 下面我们就开启mysql的主从同步机制，让Canal来模拟salve

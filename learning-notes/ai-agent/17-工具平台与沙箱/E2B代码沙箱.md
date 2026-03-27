@@ -1,5 +1,7 @@
 # E2B 代码沙箱
 
+> Author: Walter Wang
+
 ## 1. 概述
 
 E2B（Environment to Binary）提供开源的安全沙箱环境，让 AI Agent 能安全地执行代码、操作文件系统、运行进程。每个沙箱是一个隔离的微型虚拟机。

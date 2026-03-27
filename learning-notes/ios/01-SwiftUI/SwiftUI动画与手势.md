@@ -1,5 +1,7 @@
 # SwiftUI 动画与手势
 
+> Author: Walter Wang
+
 ## 1. 基础动画
 
 ```swift

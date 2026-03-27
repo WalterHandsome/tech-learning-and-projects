@@ -1,5 +1,7 @@
 # ECharts 数据可视化
 
+> Author: Walter Wang
+
 ## 1. 基本使用
 
 ```javascript

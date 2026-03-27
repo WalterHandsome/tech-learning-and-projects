@@ -1,5 +1,7 @@
 # Swift 语法基础
 
+> Author: Walter Wang
+
 ## 1. 变量与常量
 
 ```swift

@@ -1,5 +1,7 @@
 # Flask基础
 
+> Author: Walter Wang
+
 ## 1. Flask概述
 
 Flask是一个轻量级的Python Web框架，具有以下特点：

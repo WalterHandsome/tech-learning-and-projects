@@ -1,5 +1,7 @@
 # Python性能优化
 
+> Author: Walter Wang
+
 ## 1. 性能优化概述
 
 Python性能优化可以从多个方面入手：

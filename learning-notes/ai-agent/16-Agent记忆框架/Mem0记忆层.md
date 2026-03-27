@@ -1,5 +1,7 @@
 # Mem0 记忆层
 
+> Author: Walter Wang
+
 ## 1. 概述
 
 Mem0 是为 AI Agent 设计的智能记忆层，可为任何 LLM 应用添加持久化记忆能力。Y Combinator 孵化，获得 $24M 融资。

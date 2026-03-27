@@ -1,5 +1,7 @@
 # RabbitMQ部署指南
 
+> Author: Walter Wang
+
 
 
 

@@ -1,5 +1,7 @@
 # Canvas 与 SVG 基础
 
+> Author: Walter Wang
+
 ## 1. Canvas 2D
 
 ```javascript

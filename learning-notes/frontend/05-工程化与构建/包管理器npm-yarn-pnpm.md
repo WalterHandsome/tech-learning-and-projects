@@ -1,5 +1,7 @@
 # 包管理器 npm / yarn / pnpm
 
+> Author: Walter Wang
+
 ## 1. npm
 
 ```bash

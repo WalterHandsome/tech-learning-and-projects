@@ -1,5 +1,7 @@
 # AI Agent 概述与发展
 
+> Author: Walter Wang
+
 ## 1. 什么是 AI Agent
 
 AI Agent 是一个能够感知环境、自主决策并执行动作来完成目标的智能系统。与传统 Chatbot 的核心区别在于：

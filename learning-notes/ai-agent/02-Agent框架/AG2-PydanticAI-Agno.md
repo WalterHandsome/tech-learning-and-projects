@@ -1,5 +1,7 @@
 # AG2 / PydanticAI / Agno
 
+> Author: Walter Wang
+
 ## 1. AG2（原 AutoGen）
 
 AG2 是微软 AutoGen 项目的社区分支，专注于多 Agent 对话和协作。

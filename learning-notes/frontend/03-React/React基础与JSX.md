@@ -1,5 +1,7 @@
 # React 基础与 JSX
 
+> Author: Walter Wang
+
 ## 1. JSX 语法
 
 ```jsx

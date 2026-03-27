@@ -1,5 +1,7 @@
 # Swift 并发编程
 
+> Author: Walter Wang
+
 ## 1. async/await
 
 ```swift

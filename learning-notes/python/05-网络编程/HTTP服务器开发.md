@@ -1,5 +1,7 @@
 # HTTP服务器开发
 
+> Author: Walter Wang
+
 > 使用 Python 构建高性能 HTTP 服务器
 
 ## 1. 使用 http.server（基础）

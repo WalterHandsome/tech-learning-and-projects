@@ -1,5 +1,7 @@
 ## Spring_day02
 
+> Author: Walter Wang
+
 **今日目标**
 
 > * 掌握IOC/DI配置管理第三方bean

@@ -1,5 +1,7 @@
 # Tailwind CSS 实用优先
 
+> Author: Walter Wang
+
 ## 1. 核心理念
 
 - 工具类优先（Utility-First）：直接在 HTML 中使用预定义的工具类

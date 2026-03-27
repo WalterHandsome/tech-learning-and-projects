@@ -1,5 +1,7 @@
 # DOM 与 BOM 操作
 
+> Author: Walter Wang
+
 ## 1. DOM 查询
 
 ```javascript

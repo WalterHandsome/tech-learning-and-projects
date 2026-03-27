@@ -1,5 +1,7 @@
 # Core Data 数据库
 
+> Author: Walter Wang
+
 ## 1. Core Data Stack 初始化
 
 ```swift

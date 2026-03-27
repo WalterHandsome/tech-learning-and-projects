@@ -1,5 +1,7 @@
 # Harness Engineering 与 CI/CD 集成
 
+> Author: Walter Wang
+
 ## 1. 核心循环
 
 Agent 写代码 → CI 运行 → 失败 → Agent 读日志 → 修复 → CI 再运行。

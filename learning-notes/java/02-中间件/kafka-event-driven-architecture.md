@@ -1,5 +1,7 @@
 # Kafka 事件驱动架构
 
+> Author: Walter Wang
+
 > 从 private-notes 提取的技术学习笔记
 
 ## 概述

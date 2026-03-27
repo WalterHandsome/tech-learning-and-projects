@@ -1,5 +1,7 @@
 # gRPC 应用开发
 
+> Author: Walter Wang
+
 > 使用 gRPC 构建高性能 RPC 服务
 
 ## 1. gRPC 概述

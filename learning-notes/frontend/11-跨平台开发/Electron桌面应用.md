@@ -1,5 +1,7 @@
 # Electron 桌面应用
 
+> Author: Walter Wang
+
 ## 1. 架构
 
 ```

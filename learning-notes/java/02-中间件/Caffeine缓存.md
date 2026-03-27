@@ -1,5 +1,7 @@
 # Caffeine
 
+> Author: Walter Wang
+
 ### 1. What is [caffeine](https://github.com/ben-manes/caffeine)?
 
 #### 1.1 Caffeine简介

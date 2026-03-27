@@ -1,5 +1,7 @@
 # Vue3 基础与组合式 API
 
+> Author: Walter Wang
+
 ## 1. 模板语法
 
 ```vue

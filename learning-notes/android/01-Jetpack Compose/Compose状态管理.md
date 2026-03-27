@@ -1,5 +1,7 @@
 # Compose 状态管理
 
+> Author: Walter Wang
+
 ## 1. remember 与 mutableStateOf
 
 ```kotlin

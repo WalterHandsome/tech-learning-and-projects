@@ -1,5 +1,7 @@
 # JavaScript 数据类型与变量
 
+> Author: Walter Wang
+
 ## 1. 数据类型
 
 ### 1.1 基本类型（原始类型）

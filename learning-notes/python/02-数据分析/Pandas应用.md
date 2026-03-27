@@ -1,5 +1,7 @@
 # Pandas应用
 
+> Author: Walter Wang
+
 ## 1. Pandas概述
 
 Pandas 是 Wes McKinney 在2008年开发的一个强大的**分析结构化数据**的工具集。Pandas 以 NumPy 为基础（实现数据存储和运算），提供了专门用于数据分析的类型、方法和函数，对数据分析和数据挖掘提供了很好的支持。

@@ -1,5 +1,7 @@
 # JVM内存模型与垃圾回收
 
+> Author: Walter Wang
+
 ## 1. JVM内存结构
 
 JVM在Java程序运行时把它所管理的内存划分为几个不同的数据区域：

@@ -1,5 +1,7 @@
 # Mysql基础
 
+> Author: Walter Wang
+
 ## 1.SQL
 
 ### 1.1 **SQL分类**

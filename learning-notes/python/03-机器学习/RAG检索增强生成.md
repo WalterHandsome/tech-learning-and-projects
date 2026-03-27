@@ -1,5 +1,7 @@
 # RAG 检索增强生成实现指南
 
+> Author: Walter Wang
+
 > 从 private-notes 提取的技术学习笔记
 
 ## RAG 概述

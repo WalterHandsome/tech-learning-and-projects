@@ -1,5 +1,7 @@
 # React Hooks 深入
 
+> Author: Walter Wang
+
 ## 1. useState
 
 ```jsx

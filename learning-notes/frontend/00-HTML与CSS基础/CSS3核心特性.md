@@ -1,5 +1,7 @@
 # CSS3 核心特性
 
+> Author: Walter Wang
+
 ## 1. 选择器
 
 ### 1.1 属性选择器

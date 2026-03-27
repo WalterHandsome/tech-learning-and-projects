@@ -1,5 +1,7 @@
 # Jest 单元测试
 
+> Author: Walter Wang
+
 ## 1. 基础语法
 
 ```javascript

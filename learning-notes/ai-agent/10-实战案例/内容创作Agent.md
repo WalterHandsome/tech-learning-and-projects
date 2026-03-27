@@ -1,5 +1,7 @@
 # 内容创作 Agent
 
+> Author: Walter Wang
+
 ## 1. 系统架构
 
 ```

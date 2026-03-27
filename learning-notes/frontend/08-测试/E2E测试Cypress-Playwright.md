@@ -1,5 +1,7 @@
 # E2E 测试 Cypress / Playwright
 
+> Author: Walter Wang
+
 ## 1. Playwright（推荐）
 
 ```javascript

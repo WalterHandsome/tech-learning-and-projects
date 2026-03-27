@@ -1,5 +1,7 @@
 # Python面向对象编程
 
+> Author: Walter Wang
+
 ## 1. 面向对象编程概述
 
 面向对象编程是一种非常流行的**编程范式**（programming paradigm），所谓编程范式就是**程序设计的方法论**。

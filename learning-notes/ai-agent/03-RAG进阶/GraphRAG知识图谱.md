@@ -1,5 +1,7 @@
 # GraphRAG 知识图谱
 
+> Author: Walter Wang
+
 ## 1. 知识图谱基础
 
 ```

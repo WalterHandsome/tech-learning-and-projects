@@ -1,5 +1,7 @@
 # CI/CD 与自动化发布
 
+> Author: Walter Wang
+
 ## 1. Fastlane 基础配置
 
 ```ruby

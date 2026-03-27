@@ -1,5 +1,7 @@
 # OpenAI 与 Claude API
 
+> Author: Walter Wang
+
 ## 1. OpenAI Chat Completions API
 
 ```python

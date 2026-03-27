@@ -1,5 +1,7 @@
 # Redis集群
 
+> Author: Walter Wang
+
 本章是基于CentOS7下的Redis集群教程，包括：
 
 - 单机安装Redis

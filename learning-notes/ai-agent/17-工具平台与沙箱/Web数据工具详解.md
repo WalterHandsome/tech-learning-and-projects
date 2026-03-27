@@ -1,5 +1,7 @@
 # Web 数据工具详解
 
+> Author: Walter Wang
+
 ## 1. 概述
 
 AI Agent 需要从互联网获取实时信息，Web 数据工具是 Agent 的"眼睛"和"搜索引擎"。本文覆盖 Firecrawl、Tavily、Exa、Jina Reader、Brave Search、SerpAPI、Apify 七大工具，从搜索到抓取到内容提取的完整链路。

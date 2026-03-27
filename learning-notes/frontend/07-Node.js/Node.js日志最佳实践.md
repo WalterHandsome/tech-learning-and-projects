@@ -1,5 +1,7 @@
 # Node.js 日志最佳实践
 
+> Author: Walter Wang
+
 ## 1. 日志库对比
 
 | 特性 | pino | winston | Bunyan | console |

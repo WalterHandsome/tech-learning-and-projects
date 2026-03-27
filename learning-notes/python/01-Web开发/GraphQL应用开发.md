@@ -1,5 +1,7 @@
 # GraphQL 应用开发
 
+> Author: Walter Wang
+
 > 使用 Python 开发 GraphQL API
 
 ## 1. GraphQL 概述

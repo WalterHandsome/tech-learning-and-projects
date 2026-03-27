@@ -1,5 +1,7 @@
 # 设计模式总结
 
+> Author: Walter Wang
+
 > 从 private-notes 提取的技术学习笔记
 
 ## 设计模式概述

@@ -1,5 +1,7 @@
 # CocoaPods / SPM / Carthage
 
+> Author: Walter Wang
+
 ## 1. CocoaPods
 
 ```ruby

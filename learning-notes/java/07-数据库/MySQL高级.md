@@ -1,5 +1,7 @@
 # MySQL高级
 
+> Author: Walter Wang
+
 ## 1. 事务
 
 ### 1.1 事务的ACID特性

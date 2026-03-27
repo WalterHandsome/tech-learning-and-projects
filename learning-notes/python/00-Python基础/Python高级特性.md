@@ -1,5 +1,7 @@
 # Python高级特性
 
+> Author: Walter Wang
+
 ## 1. 生成器（Generator）
 
 生成器是一种特殊的迭代器，可以使用函数的方式来创建。生成器使用`yield`关键字返回值，每次调用`next()`时会执行到下一个`yield`语句。

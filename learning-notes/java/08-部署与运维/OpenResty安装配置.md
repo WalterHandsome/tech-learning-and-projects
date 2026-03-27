@@ -1,5 +1,7 @@
 # 安装OpenResty
 
+> Author: Walter Wang
+
 
 
 # 1.安装

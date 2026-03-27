@@ -1,5 +1,7 @@
 # 语音 Agent 开发实战
 
+> Author: Walter Wang
+
 ## 1. 概述
 
 本文是语音 Agent 的实战开发指南，覆盖 OpenAI Realtime API、LiveKit Agents、ElevenLabs 三大平台的完整开发流程，以及语音 Agent 的核心设计模式。

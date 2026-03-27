@@ -1,5 +1,7 @@
 # Claude Code 与终端 Agent
 
+> Author: Walter Wang
+
 ## 1. Claude Code 概述
 
 Claude Code 是 Anthropic 推出的终端原生 Agentic 编码工具。直接在终端中运行，能理解整个代码库、编辑文件、执行命令、操作 Git，无需离开命令行。

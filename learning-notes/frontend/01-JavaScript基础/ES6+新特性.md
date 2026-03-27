@@ -1,5 +1,7 @@
 # ES6+ 新特性
 
+> Author: Walter Wang
+
 ## 1. 解构赋值
 
 ```javascript

@@ -1,5 +1,7 @@
 # Composio 工具平台
 
+> Author: Walter Wang
+
 ## 1. 概述
 
 Composio 提供 1000+ 预构建工具集成，让 AI Agent 能连接 GitHub、Slack、Jira、Gmail 等外部服务。核心价值：统一认证管理 + 元工具发现 + MCP Gateway。

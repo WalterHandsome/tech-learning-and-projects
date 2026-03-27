@@ -1,5 +1,7 @@
 # A2A Agent 间通信协议
 
+> Author: Walter Wang
+
 ## 1. A2A 概述
 
 A2A（Agent-to-Agent）是 Google 于 2025 年提出的开放协议，用于标准化不同 AI Agent 之间的通信与协作。与 MCP 互补：MCP 解决 Agent 与工具的连接（垂直集成），A2A 解决 Agent 与 Agent 的协作（水平协作）。

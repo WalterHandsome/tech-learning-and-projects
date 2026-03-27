@@ -1,5 +1,7 @@
 # Room 数据库
 
+> Author: Walter Wang
+
 ## 1. Entity 定义
 
 ```kotlin

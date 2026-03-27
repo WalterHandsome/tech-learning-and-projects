@@ -1,5 +1,7 @@
 # HTTP 协议与缓存策略
 
+> Author: Walter Wang
+
 ## 1. HTTP 版本对比
 
 | 特性 | HTTP/1.1 | HTTP/2 | HTTP/3 |

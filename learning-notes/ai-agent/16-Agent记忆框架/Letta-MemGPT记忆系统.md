@@ -1,5 +1,7 @@
 # Letta (MemGPT) 记忆系统
 
+> Author: Walter Wang
+
 ## 1. 概述
 
 Letta（前身 MemGPT）是 UC Berkeley 研究团队开发的有状态 Agent 运行时，采用操作系统启发的分层记忆架构，让 Agent 能自主管理自己的记忆。

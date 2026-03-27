@@ -1,5 +1,7 @@
 # KMM 跨平台开发
 
+> Author: Walter Wang
+
 ## 1. Kotlin Multiplatform 项目结构
 
 ```

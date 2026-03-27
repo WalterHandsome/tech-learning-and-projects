@@ -1,5 +1,7 @@
 # RabbitMQ
 
+> Author: Walter Wang
+
 
 
 

@@ -1,5 +1,7 @@
 # SQLAlchemy 高级特性
 
+> Author: Walter Wang
+
 > SQLAlchemy ORM 的高级用法和优化技巧
 
 ## 1. 关系映射

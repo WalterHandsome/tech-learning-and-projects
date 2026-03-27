@@ -1,5 +1,7 @@
 # Clean Architecture 实践
 
+> Author: Walter Wang
+
 ## 1. 分层结构
 
 ```

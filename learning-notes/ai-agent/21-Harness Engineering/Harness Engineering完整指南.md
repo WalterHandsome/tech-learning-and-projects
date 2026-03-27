@@ -1,5 +1,7 @@
 # Harness Engineering 完整指南
 
+> Author: Walter Wang
+
 ## 1. 从 Prompt 到 Harness 的演进
 
 ```

@@ -1,5 +1,7 @@
 # Android 日志最佳实践
 
+> Author: Walter Wang
+
 ## 1. Android 日志基础
 
 ```kotlin

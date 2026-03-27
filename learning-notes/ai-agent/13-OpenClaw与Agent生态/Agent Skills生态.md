@@ -1,5 +1,7 @@
 # Agent Skills 生态
 
+> Author: Walter Wang
+
 ## 1. 什么是 Agent Skills
 
 Agent Skills 是模块化的能力扩展单元，让 Agent 获得特定领域的知识和工具调用能力。不同框架对 Skills 的实现方式各异，但核心理念一致：即插即用、可组合、可复用。

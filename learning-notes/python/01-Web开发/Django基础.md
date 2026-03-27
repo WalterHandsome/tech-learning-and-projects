@@ -1,5 +1,7 @@
 # Django基础
 
+> Author: Walter Wang
+
 ## 1. Django概述
 
 Django 是一个用 Python 编写的开源 Web 应用框架，采用了 MTV（Model-Template-View）的设计模式。Django 框架诞生于2003年，由劳伦斯出版集团旗下在线新闻网站的内容管理系统（CMS）研发团队开发，以比利时的吉普赛爵士吉他手 Django Reinhardt 来命名。

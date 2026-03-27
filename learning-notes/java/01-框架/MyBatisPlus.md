@@ -1,5 +1,7 @@
 ## MyBatisPlus
 
+> Author: Walter Wang
+
 **今日目标**
 
 > 基于MyBatisPlus完成标准Dao的增删改查功能

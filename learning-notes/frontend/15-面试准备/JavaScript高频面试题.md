@@ -1,5 +1,7 @@
 # JavaScript 高频面试题
 
+> Author: Walter Wang
+
 ## 1. 数据类型
 
 ```javascript

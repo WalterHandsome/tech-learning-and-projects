@@ -1,5 +1,7 @@
 # Vercel AI SDK 与 Gateway
 
+> Author: Walter Wang
+
 ## 1. 概述
 
 Vercel AI SDK 是 TypeScript 生态的 AI 开发工具包，提供统一的模型接口、流式响应、工具调用等能力。AI Gateway 提供集中式模型路由和管理。

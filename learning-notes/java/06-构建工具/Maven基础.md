@@ -1,5 +1,7 @@
 # Maven基础与应用
 
+> Author: Walter Wang
+
 ## 1. Maven基础
 
 ### 1.1 Maven简介    [01-Maven简介-Maven的概念与作用]

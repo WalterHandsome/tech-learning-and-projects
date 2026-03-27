@@ -1,5 +1,7 @@
 # Android 系统与组件面试题
 
+> Author: Walter Wang
+
 ## 1. Activity 启动模式
 
 ```kotlin

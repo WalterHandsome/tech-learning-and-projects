@@ -1,5 +1,7 @@
 # Django 高级特性
 
+> Author: Walter Wang
+
 > Django 框架的高级功能和最佳实践
 
 ## 1. Django 中间件

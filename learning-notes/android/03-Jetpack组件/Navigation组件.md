@@ -1,5 +1,7 @@
 # Navigation 组件
 
+> Author: Walter Wang
+
 ## 1. NavGraph（XML 方式）
 
 ```xml

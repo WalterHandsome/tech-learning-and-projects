@@ -1,5 +1,7 @@
 # MCP 模型上下文协议
 
+> Author: Walter Wang
+
 ## 1. MCP 概述
 
 MCP（Model Context Protocol）是 Anthropic 于 2024 年底提出的开放协议，用于标准化 AI 模型与外部工具、数据源之间的连接。类比为"AI 应用的 USB-C 接口"。

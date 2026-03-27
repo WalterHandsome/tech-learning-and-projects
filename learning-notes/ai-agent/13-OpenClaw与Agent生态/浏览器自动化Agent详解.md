@@ -1,5 +1,7 @@
 # 浏览器自动化 Agent 详解
 
+> Author: Walter Wang
+
 ## 1. 概述
 
 浏览器自动化 Agent 从传统 DOM 脚本演进到视觉驱动的自主 Agent。

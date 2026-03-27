@@ -1,5 +1,7 @@
 # Microsoft Agent Framework
 
+> Author: Walter Wang
+
 ## 1. 概述
 
 Microsoft Agent Framework 是微软于 2026 年推出的统一 Agent 开发框架，由 Semantic Kernel（企业级 AI 编排）和 AutoGen（多 Agent 研究框架）合并而来。融合了 SK 的类型安全、遥测、安全能力与 AutoGen 的多 Agent 协作模式。

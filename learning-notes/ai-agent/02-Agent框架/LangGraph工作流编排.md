@@ -1,5 +1,7 @@
 # LangGraph 工作流编排
 
+> Author: Walter Wang
+
 ## 1. 概述
 
 LangGraph 是 LangChain 团队推出的 Agent 工作流编排框架，基于图结构定义 Agent 的执行流程。2025 年 10 月发布 1.0 GA，是目前生产级 Agent 开发的行业标准。

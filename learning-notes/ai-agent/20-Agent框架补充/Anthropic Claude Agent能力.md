@@ -1,5 +1,7 @@
 # Anthropic Claude Agent 能力
 
+> Author: Walter Wang
+
 ## 1. Claude 模型家族
 
 ```

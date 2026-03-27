@@ -1,5 +1,7 @@
 # Dapr Agents 分布式运行时
 
+> Author: Walter Wang
+
 ## 1. 概述
 
 Dapr Agents 基于 Dapr 的 Sidecar 架构，为 AI Agent 提供分布式运行时能力：Agent 间通信、状态管理、工作流编排、弹性伸缩。

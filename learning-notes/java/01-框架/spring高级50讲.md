@@ -1,5 +1,7 @@
 ## 容器与 bean
 
+> Author: Walter Wang
+
 ### 1) 容器接口
 
 - BeanFactory 接口，典型功能有：

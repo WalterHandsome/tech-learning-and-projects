@@ -1,5 +1,7 @@
 # Agent 支付协议
 
+> Author: Walter Wang
+
 ## 1. 概述
 
 随着 AI Agent 从"对话助手"演进为"能执行任务的自主代理"，Agent 需要代替用户完成购买、支付、订阅等商业行为。2025 年，Agent 支付协议成为新兴领域，OpenAI、Google、Mastercard 等巨头纷纷入局。

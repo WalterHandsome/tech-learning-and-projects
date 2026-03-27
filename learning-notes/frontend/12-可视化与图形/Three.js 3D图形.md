@@ -1,5 +1,7 @@
 # Three.js 3D 图形
 
+> Author: Walter Wang
+
 ## 1. 基本概念
 
 ```javascript

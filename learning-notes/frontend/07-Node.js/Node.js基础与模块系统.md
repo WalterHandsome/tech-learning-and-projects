@@ -1,5 +1,7 @@
 # Node.js 基础与模块系统
 
+> Author: Walter Wang
+
 ## 1. 事件循环
 
 ```

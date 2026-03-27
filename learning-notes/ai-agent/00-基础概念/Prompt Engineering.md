@@ -1,5 +1,7 @@
 # Prompt Engineering
 
+> Author: Walter Wang
+
 ## 1. System Prompt 设计
 
 System Prompt 定义模型的角色、行为边界和输出格式，是 Agent 开发的基础。

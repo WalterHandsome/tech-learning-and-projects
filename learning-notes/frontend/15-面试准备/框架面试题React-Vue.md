@@ -1,5 +1,7 @@
 # 框架面试题 React / Vue
 
+> Author: Walter Wang
+
 ## 1. React 面试题
 
 ### 虚拟 DOM 与 Diff 算法

@@ -1,5 +1,7 @@
 # Vibe Coding 与 AI 应用构建
 
+> Author: Walter Wang
+
 ## 1. 概述
 
 Vibe Coding 是 Andrej Karpathy（OpenAI 联合创始人）在 2025 年初提出的概念："你描述你想要什么，AI 来构建它"。与传统 Coding Agent（辅助开发者写代码）不同，Vibe Coding 面向非开发者或快速原型场景，用自然语言直接生成完整应用。

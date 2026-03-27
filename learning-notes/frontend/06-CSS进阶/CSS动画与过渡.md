@@ -1,5 +1,7 @@
 # CSS 动画与过渡
 
+> Author: Walter Wang
+
 ## 1. transition 过渡
 
 ```css

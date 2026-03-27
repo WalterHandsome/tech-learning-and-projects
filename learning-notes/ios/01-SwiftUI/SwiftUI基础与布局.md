@@ -1,5 +1,7 @@
 # SwiftUI 基础与布局
 
+> Author: Walter Wang
+
 ## 1. 基础组件
 
 ```swift

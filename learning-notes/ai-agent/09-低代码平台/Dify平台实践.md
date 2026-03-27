@@ -1,5 +1,7 @@
 # Dify 平台实践
 
+> Author: Walter Wang
+
 ## 1. Dify 概述
 
 Dify 是一个开源的 LLM 应用开发平台，支持可视化编排 Agent 工作流、知识库管理和 API 发布。

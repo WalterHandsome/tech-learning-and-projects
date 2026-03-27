@@ -1,4 +1,6 @@
 # Nginx常用配置
+
+> Author: Walter Wang
 ### 代理静态文件
 
 ~~~sh 

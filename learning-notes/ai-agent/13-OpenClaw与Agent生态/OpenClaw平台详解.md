@@ -1,5 +1,7 @@
 # OpenClaw 平台详解
 
+> Author: Walter Wang
+
 ## 1. 概述
 
 OpenClaw 是一个开源的 Agent 编排平台，核心理念是通过模块化 Skills 系统快速构建可部署到 20+ 消息渠道的 AI Agent。支持自托管，提供 ClawHub Skills 市场。

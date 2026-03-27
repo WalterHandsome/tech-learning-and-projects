@@ -1,5 +1,7 @@
 # TypeScript 高级类型
 
+> Author: Walter Wang
+
 ## 1. 泛型
 
 ```typescript

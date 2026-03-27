@@ -1,5 +1,7 @@
 # Web 安全 XSS / CSRF
 
+> Author: Walter Wang
+
 ## 1. XSS（跨站脚本攻击）
 
 ### 1.1 类型

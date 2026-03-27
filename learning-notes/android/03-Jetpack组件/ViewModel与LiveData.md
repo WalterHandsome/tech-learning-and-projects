@@ -1,5 +1,7 @@
 # ViewModel 与 LiveData
 
+> Author: Walter Wang
+
 ## 1. ViewModel 生命周期
 
 ```kotlin

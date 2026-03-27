@@ -1,5 +1,7 @@
 # Python工具与规范
 
+> Author: Walter Wang
+
 ## 1. 虚拟环境
 
 ### 1.1 venv（Python 3.3+）

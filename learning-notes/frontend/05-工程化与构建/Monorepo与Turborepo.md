@@ -1,5 +1,7 @@
 # Monorepo 与 Turborepo
 
+> Author: Walter Wang
+
 ## 1. Monorepo 概念
 
 - 单一仓库管理多个项目/包

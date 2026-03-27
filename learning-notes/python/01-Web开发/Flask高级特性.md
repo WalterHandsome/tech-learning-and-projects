@@ -1,5 +1,7 @@
 # Flask 高级特性
 
+> Author: Walter Wang
+
 > Flask 框架的高级功能和扩展应用
 
 ## 1. Flask 蓝图（Blueprint）

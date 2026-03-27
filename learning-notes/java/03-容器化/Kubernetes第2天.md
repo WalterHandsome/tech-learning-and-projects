@@ -1,5 +1,7 @@
 # 第四章 实战入门
 
+> Author: Walter Wang
+
 本章节将介绍如何在kubernetes集群中部署一个nginx服务，并且能够对其进行访问。
 
 ## Namespace

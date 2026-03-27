@@ -1,5 +1,7 @@
 # Cursor / Kiro / Windsurf IDE Agent
 
+> Author: Walter Wang
+
 ## 1. IDE 集成 Coding Agent 概述
 
 IDE Agent 将 AI 能力直接嵌入开发环境，提供代码补全、多文件编辑、对话式编程等能力。相比终端 Agent，IDE Agent 拥有更丰富的上下文（语法树、诊断信息、UI 交互）。

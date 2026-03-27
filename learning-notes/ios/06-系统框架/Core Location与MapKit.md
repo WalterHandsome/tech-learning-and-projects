@@ -1,5 +1,7 @@
 # Core Location 与 MapKit
 
+> Author: Walter Wang
+
 ## 1. 请求定位权限
 
 ```swift

@@ -1,5 +1,7 @@
 # AWS Strands Agents SDK 与 Bedrock AgentCore
 
+> Author: Walter Wang
+
 ## 1. Strands Agents SDK 概述
 
 Strands Agents SDK 是 AWS 于 2025 年 5 月开源的 Python Agent 框架，7 月发布 v1.0 正式版并新增多 Agent 编排能力。核心理念是"模型驱动"——Agent 自主规划、推理并选择工具，开发者只需定义工具和目标。

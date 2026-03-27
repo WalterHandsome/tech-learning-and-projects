@@ -1,5 +1,7 @@
 # MVVM 与 MVI 架构
 
+> Author: Walter Wang
+
 ## 1. MVVM（ViewModel + StateFlow + Repository）
 
 ```kotlin

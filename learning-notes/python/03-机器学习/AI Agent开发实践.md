@@ -1,5 +1,7 @@
 # AI Agent 开发实践
 
+> Author: Walter Wang
+
 > 构建能够自主决策和执行任务的智能代理系统
 
 ## 1. AI Agent 概述

@@ -1,5 +1,7 @@
 # Agent 通信与协调
 
+> Author: Walter Wang
+
 ## 1. 消息传递模式
 
 ```

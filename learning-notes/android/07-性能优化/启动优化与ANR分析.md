@@ -1,5 +1,7 @@
 # 启动优化与 ANR 分析
 
+> Author: Walter Wang
+
 ## 1. 启动类型
 
 ```kotlin

@@ -1,5 +1,7 @@
 # Computer Use 与浏览器 Agent
 
+> Author: Walter Wang
+
 ## 1. Computer Use 概念
 
 Computer Use 是指 AI 直接操控计算机界面（鼠标、键盘、屏幕）来完成任务，而非通过 API 调用。代表了从"API Agent"到"GUI Agent"的演进。

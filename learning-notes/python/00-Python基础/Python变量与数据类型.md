@@ -1,5 +1,7 @@
 # Python变量与数据类型
 
+> Author: Walter Wang
+
 ## 1. 变量概述
 
 ### 1.1 什么是变量

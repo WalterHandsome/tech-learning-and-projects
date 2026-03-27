@@ -1,5 +1,7 @@
 # NoSQL 数据库深入
 
+> Author: Walter Wang
+
 > Python NoSQL 数据库应用和最佳实践
 
 ## 1. MongoDB 深入

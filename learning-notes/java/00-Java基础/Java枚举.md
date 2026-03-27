@@ -1,5 +1,7 @@
 # Java枚举
 
+> Author: Walter Wang
+
 ## 1. 枚举概述
 
 ### 1.1 什么是枚举

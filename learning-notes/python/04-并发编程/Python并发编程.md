@@ -1,5 +1,7 @@
 # Python并发编程
 
+> Author: Walter Wang
+
 ## 1. 并发编程概述
 
 并发编程是指在同一时间段内执行多个任务，Python提供了多种并发编程的方式：

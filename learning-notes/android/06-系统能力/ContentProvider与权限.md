@@ -1,5 +1,7 @@
 # ContentProvider 与权限
 
+> Author: Walter Wang
+
 ## 1. ContentProvider 基础
 
 ```kotlin

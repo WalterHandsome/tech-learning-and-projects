@@ -1,5 +1,7 @@
 # Agent 身份与权限
 
+> Author: Walter Wang
+
 ## 1. 概述
 
 Agent 身份管理是 AI Agent 安全的基础。与传统用户身份不同，Agent 需要处理"代表谁行动"、"拥有什么权限"、"如何证明身份"等独特问题。

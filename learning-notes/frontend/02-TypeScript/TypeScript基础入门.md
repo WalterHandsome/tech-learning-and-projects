@@ -1,5 +1,7 @@
 # TypeScript 基础入门
 
+> Author: Walter Wang
+
 ## 1. 基础类型
 
 ```typescript

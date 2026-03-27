@@ -1,5 +1,7 @@
 # Vercel AI SDK Agent 开发
 
+> Author: Walter Wang
+
 ## 1. 概述
 
 使用 Vercel AI SDK（TypeScript）构建 AI Agent，核心模式：`generateText` + `tools` + `maxSteps` 实现 Agent 循环。

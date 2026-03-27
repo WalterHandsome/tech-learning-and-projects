@@ -1,5 +1,7 @@
 # Activity 与 Fragment 生命周期
 
+> Author: Walter Wang
+
 ## 1. Activity 生命周期
 
 ```kotlin

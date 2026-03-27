@@ -1,5 +1,7 @@
 # View 与 ViewGroup 基础
 
+> Author: Walter Wang
+
 ## 1. View 绘制流程
 
 ```kotlin

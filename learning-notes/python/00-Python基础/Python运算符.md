@@ -1,5 +1,7 @@
 # Python运算符
 
+> Author: Walter Wang
+
 ## 1. 运算符概述
 
 Python 语言支持很多种运算符，下面的表格按照运算符的优先级从高到低，对 Python 中的运算符进行了罗列。

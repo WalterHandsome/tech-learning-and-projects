@@ -1,5 +1,7 @@
 # Devin 与自主开发 Agent
 
+> Author: Walter Wang
+
 ## 1. Devin 概述
 
 Devin 是 Cognition 公司推出的"首个 AI 软件工程师"，能自主完成从需求理解到代码部署的完整开发流程。代表了从"辅助编程"到"自主开发"的范式转变。

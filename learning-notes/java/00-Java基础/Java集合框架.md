@@ -1,5 +1,7 @@
 # Java集合框架
 
+> Author: Walter Wang
+
 ## 1. 集合框架概述
 
 ### 1.1 集合框架结构

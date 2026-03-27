@@ -1,5 +1,7 @@
 # Webpack 核心概念
 
+> Author: Walter Wang
+
 ## 1. 核心概念
 
 ```javascript

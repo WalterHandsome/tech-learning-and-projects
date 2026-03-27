@@ -1,5 +1,7 @@
 # FastAPI 高级特性
 
+> Author: Walter Wang
+
 > FastAPI 的高级功能和最佳实践
 
 ## 1. 依赖注入系统

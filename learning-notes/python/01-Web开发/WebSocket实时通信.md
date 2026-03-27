@@ -1,5 +1,7 @@
 # WebSocket 实时通信
 
+> Author: Walter Wang
+
 > 使用 Python 实现 WebSocket 实时通信
 
 ## 1. WebSocket 概述

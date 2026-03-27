@@ -1,5 +1,7 @@
 # Combine 响应式编程
 
+> Author: Walter Wang
+
 ## 1. Publisher 与 Subscriber
 
 ```swift

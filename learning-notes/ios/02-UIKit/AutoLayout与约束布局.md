@@ -1,5 +1,7 @@
 # AutoLayout 与约束布局
 
+> Author: Walter Wang
+
 ## 1. NSLayoutConstraint 基础
 
 ```swift

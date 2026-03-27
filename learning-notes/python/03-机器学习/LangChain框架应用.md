@@ -1,5 +1,7 @@
 # LangChain 框架应用
 
+> Author: Walter Wang
+
 > LangChain 是一个用于构建基于大语言模型（LLM）应用的框架
 
 ## 1. LangChain 概述

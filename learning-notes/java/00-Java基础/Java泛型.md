@@ -1,5 +1,7 @@
 # Java泛型
 
+> Author: Walter Wang
+
 ## 1. 泛型概述
 
 ### 1.1 什么是泛型

@@ -1,5 +1,7 @@
 # n8n 与 Flowise
 
+> Author: Walter Wang
+
 ## 1. n8n 概述
 
 n8n 是一个开源的工作流自动化平台，内置 AI Agent 节点，可将 LLM 能力与 400+ 应用集成。

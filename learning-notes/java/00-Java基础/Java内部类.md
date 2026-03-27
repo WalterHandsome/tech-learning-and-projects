@@ -1,5 +1,7 @@
 # Java内部类
 
+> Author: Walter Wang
+
 ## 1. 内部类概述
 
 ### 1.1 什么是内部类

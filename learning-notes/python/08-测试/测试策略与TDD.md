@@ -1,5 +1,7 @@
 # 测试策略与TDD
 
+> Author: Walter Wang
+
 > 测试驱动开发（TDD）和测试策略
 
 ## 1. TDD 流程

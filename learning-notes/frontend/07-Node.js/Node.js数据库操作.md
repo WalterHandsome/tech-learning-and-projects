@@ -1,5 +1,7 @@
 # Node.js 数据库操作
 
+> Author: Walter Wang
+
 ## 1. Prisma ORM（推荐）
 
 ```prisma

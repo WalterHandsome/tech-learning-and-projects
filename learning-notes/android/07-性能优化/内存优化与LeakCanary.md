@@ -1,5 +1,7 @@
 # 内存优化与 LeakCanary
 
+> Author: Walter Wang
+
 ## 1. 常见内存泄漏场景
 
 ```kotlin

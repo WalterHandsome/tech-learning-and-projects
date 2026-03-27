@@ -1,5 +1,7 @@
 # iOS 系统与框架面试题
 
+> Author: Walter Wang
+
 ## 1. App 生命周期
 
 ```swift

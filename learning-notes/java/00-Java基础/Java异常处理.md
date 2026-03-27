@@ -1,5 +1,7 @@
 # Java异常处理
 
+> Author: Walter Wang
+
 ## 1. 异常概述
 
 ### 1.1 什么是异常

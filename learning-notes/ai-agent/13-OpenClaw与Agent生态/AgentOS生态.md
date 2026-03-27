@@ -1,5 +1,7 @@
 # Agent OS 生态
 
+> Author: Walter Wang
+
 ## 1. 什么是 Agent OS
 
 Agent OS 为 AI Agent 提供类似操作系统的运行环境：技能管理、任务调度、记忆、通信渠道。

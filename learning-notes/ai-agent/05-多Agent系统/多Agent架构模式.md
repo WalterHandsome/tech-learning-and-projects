@@ -1,5 +1,7 @@
 # 多 Agent 架构模式
 
+> Author: Walter Wang
+
 ## 1. 架构模式概览
 
 ```

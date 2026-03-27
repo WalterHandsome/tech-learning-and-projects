@@ -1,5 +1,7 @@
 # 自定义 View 与绘制
 
+> Author: Walter Wang
+
 ## 1. Canvas 与 Paint
 
 ```kotlin

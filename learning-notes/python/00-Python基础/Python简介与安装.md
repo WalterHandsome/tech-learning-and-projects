@@ -1,5 +1,7 @@
 # Python简介与安装
 
+> Author: Walter Wang
+
 ## 1. Python简介
 
 ### 1.1 什么是Python

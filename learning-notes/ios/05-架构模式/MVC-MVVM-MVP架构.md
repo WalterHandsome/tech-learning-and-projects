@@ -1,5 +1,7 @@
 # MVC / MVVM / MVP 架构
 
+> Author: Walter Wang
+
 ## 1. MVC（Apple 默认）
 
 ```swift

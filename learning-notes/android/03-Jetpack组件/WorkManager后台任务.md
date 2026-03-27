@@ -1,5 +1,7 @@
 # WorkManager 后台任务
 
+> Author: Walter Wang
+
 ## 1. 基本 Worker
 
 ```kotlin

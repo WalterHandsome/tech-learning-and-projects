@@ -1,5 +1,7 @@
 # React Native iOS 集成
 
+> Author: Walter Wang
+
 ## 1. 集成到现有 iOS 项目
 
 ```ruby

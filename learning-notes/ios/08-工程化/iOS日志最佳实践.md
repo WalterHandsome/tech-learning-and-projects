@@ -1,5 +1,7 @@
 # iOS 日志最佳实践
 
+> Author: Walter Wang
+
 ## 1. Apple 统一日志系统
 
 ```swift

@@ -1,5 +1,7 @@
 #  第五章 Pod详解
 
+> Author: Walter Wang
+
 本章节将详细介绍Pod资源的各种配置（yaml）和原理。
 
 ## Pod介绍

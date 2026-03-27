@@ -1,5 +1,7 @@
 # Nginx 前端部署配置
 
+> Author: Walter Wang
+
 ## 1. SPA 部署
 
 ```nginx

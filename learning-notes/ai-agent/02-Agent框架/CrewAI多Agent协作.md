@@ -1,5 +1,7 @@
 # CrewAI 多 Agent 协作
 
+> Author: Walter Wang
+
 ## 1. 概述
 
 CrewAI 是一个角色化多 Agent 协作框架，核心理念是将 AI Agent 组织为一个"团队"（Crew），每个 Agent 扮演特定角色，协作完成复杂任务。GitHub 44K+ Stars，支持 MCP 集成。

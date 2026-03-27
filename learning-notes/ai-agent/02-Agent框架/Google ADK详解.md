@@ -1,5 +1,7 @@
 # Google ADK 详解
 
+> Author: Walter Wang
+
 ## 1. 概述
 
 Google Agent Development Kit（ADK）是 Google 推出的开源、代码优先的 Agent 开发框架。深度集成 Gemini 模型生态，原生支持 A2A 协议和 MCP，提供从原型到生产的完整路径。

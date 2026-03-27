@@ -1,5 +1,7 @@
 # Python部署与运维
 
+> Author: Walter Wang
+
 ## 1. 部署概述
 
 Python应用的部署需要考虑：

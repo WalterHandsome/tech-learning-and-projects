@@ -1,5 +1,7 @@
 # 第六章 Pod控制器详解
 
+> Author: Walter Wang
+
 本章节主要介绍各种Pod控制器的详细使用。
 
 ## Pod控制器介绍

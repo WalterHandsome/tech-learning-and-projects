@@ -1,5 +1,7 @@
 # Kubernetes 部署实践
 
+> Author: Walter Wang
+
 > 使用 Kubernetes 部署 Python 应用
 
 ## 1. Kubernetes 基础

@@ -1,5 +1,7 @@
 # 分布式缓存
 
+> Author: Walter Wang
+
 -- 基于Redis集群解决单机Redis存在的问题
 
 

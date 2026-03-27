@@ -1,5 +1,7 @@
 # 安装elasticsearch
 
+> Author: Walter Wang
+
 
 
 # 1.部署单点es

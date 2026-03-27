@@ -1,5 +1,7 @@
 # 集成测试与 Mock
 
+> Author: Walter Wang
+
 > 学习如何进行集成测试和使用 Mock 对象
 
 ## 1. 集成测试概述

@@ -1,5 +1,7 @@
 # Sentinel 规则持久化
 
+> Author: Walter Wang
+
 
 
 

@@ -1,5 +1,7 @@
 # API 文档生成
 
+> Author: Walter Wang
+
 > Python Web API 文档自动生成工具和最佳实践
 
 ## 1. FastAPI 自动文档

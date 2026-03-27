@@ -1,5 +1,7 @@
 # 微服务架构模式
 
+> Author: Walter Wang
+
 > 从 private-notes 提取的技术学习笔记
 
 ## 微服务架构概述

@@ -1,5 +1,7 @@
 # Compose 与 View 混合开发
 
+> Author: Walter Wang
+
 ## 1. ComposeView 嵌入 XML 布局
 
 ```xml

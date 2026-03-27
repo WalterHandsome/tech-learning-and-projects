@@ -1,5 +1,7 @@
 # Kiro Harness 实战配置
 
+> Author: Walter Wang
+
 ## 1. 概述
 
 本文档提供一套可直接使用的 Kiro Harness 配置模板，将 Harness Engineering

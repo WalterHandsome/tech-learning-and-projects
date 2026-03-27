@@ -1,5 +1,7 @@
 ## Maven高级
 
+> Author: Walter Wang
+
 **今日目标**
 
 > * 理解并实现分模块开发

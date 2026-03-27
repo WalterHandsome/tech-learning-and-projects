@@ -1,5 +1,7 @@
 # SwiftUI 状态管理
 
+> Author: Walter Wang
+
 ## 1. @State
 
 ```swift

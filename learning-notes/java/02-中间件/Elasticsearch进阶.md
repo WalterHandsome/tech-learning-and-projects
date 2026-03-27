@@ -1,5 +1,7 @@
 # 分布式搜索引擎02
 
+> Author: Walter Wang
+
 在昨天的学习中，我们已经导入了大量数据到elasticsearch中，实现了elasticsearch的数据存储功能。但elasticsearch最擅长的还是搜索和数据分析。
 
 所以今天，我们研究下elasticsearch的数据搜索功能。我们会分别使用**DSL**和**RestClient**实现搜索。

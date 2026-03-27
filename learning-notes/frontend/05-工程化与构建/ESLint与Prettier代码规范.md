@@ -1,5 +1,7 @@
 # ESLint 与 Prettier 代码规范
 
+> Author: Walter Wang
+
 ## 1. ESLint 配置
 
 ```javascript

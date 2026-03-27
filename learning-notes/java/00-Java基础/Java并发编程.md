@@ -1,5 +1,7 @@
 # Java并发编程
 
+> Author: Walter Wang
+
 ## 1. 线程基础
 
 ### 1.1 线程的创建

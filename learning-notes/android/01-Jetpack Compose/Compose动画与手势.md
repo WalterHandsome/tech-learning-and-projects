@@ -1,5 +1,7 @@
 # Compose 动画与手势
 
+> Author: Walter Wang
+
 ## 1. animateXxxAsState
 
 ```kotlin

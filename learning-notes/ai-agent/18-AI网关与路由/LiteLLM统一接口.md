@@ -1,5 +1,7 @@
 # LiteLLM 统一接口
 
+> Author: Walter Wang
+
 ## 1. 概述
 
 LiteLLM 提供统一的 OpenAI 兼容接口，支持 100+ LLM 提供商（OpenAI、Anthropic、Google、AWS Bedrock、Azure 等）。核心价值：一套代码切换任意模型。

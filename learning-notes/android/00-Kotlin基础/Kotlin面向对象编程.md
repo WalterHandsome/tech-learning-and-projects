@@ -1,5 +1,7 @@
 # Kotlin 面向对象编程
 
+> Author: Walter Wang
+
 ## 1. 类与对象
 
 ```kotlin

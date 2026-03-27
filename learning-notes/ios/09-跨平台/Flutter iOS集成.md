@@ -1,5 +1,7 @@
 # Flutter iOS 集成
 
+> Author: Walter Wang
+
 ## 1. 创建 Flutter Module
 
 ```bash

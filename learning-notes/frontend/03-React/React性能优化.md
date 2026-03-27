@@ -1,5 +1,7 @@
 # React 性能优化
 
+> Author: Walter Wang
+
 ## 1. React.memo
 
 ```jsx

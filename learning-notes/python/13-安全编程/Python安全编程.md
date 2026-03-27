@@ -1,5 +1,7 @@
 # Python安全编程
 
+> Author: Walter Wang
+
 ## 1. 安全编程概述
 
 Python应用安全涉及多个方面：

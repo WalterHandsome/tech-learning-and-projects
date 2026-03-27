@@ -1,5 +1,7 @@
 # Zep 与 LangMem
 
+> Author: Walter Wang
+
 ## 1. Zep：时序知识图谱记忆
 
 Zep 为 AI Agent 提供基于时序知识图谱的记忆服务，自动从对话中提取事实、构建实体图谱、追踪时间变化。

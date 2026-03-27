@@ -1,5 +1,7 @@
 # MCP Server 开发
 
+> Author: Walter Wang
+
 ## 1. Python SDK 完整示例
 
 ```python

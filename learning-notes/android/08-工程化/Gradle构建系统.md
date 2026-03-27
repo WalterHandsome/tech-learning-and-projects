@@ -1,5 +1,7 @@
 # Gradle 构建系统
 
+> Author: Walter Wang
+
 ## 1. build.gradle.kts 基础
 
 ```kotlin

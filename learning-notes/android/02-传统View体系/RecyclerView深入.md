@@ -1,5 +1,7 @@
 # RecyclerView 深入
 
+> Author: Walter Wang
+
 ## 1. Adapter 与 ViewHolder
 
 ```kotlin

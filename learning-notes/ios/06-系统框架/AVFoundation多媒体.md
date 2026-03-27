@@ -1,5 +1,7 @@
 # AVFoundation 多媒体
 
+> Author: Walter Wang
+
 ## 1. AVAudioPlayer 音频播放
 
 ```swift

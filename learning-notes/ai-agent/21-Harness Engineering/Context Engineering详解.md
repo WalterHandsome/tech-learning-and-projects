@@ -1,5 +1,7 @@
 # Context Engineering 详解
 
+> Author: Walter Wang
+
 ## 1. 概述
 
 Context Engineering 是 Harness Engineering 的前置基础。如果说 Prompt Engineering

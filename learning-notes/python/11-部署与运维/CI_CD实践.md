@@ -1,5 +1,7 @@
 # CI/CD 实践
 
+> Author: Walter Wang
+
 > 使用 GitHub Actions 实现持续集成和持续部署
 
 ## 1. GitHub Actions 基础

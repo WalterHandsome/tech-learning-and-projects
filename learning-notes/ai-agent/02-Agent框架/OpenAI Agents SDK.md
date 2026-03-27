@@ -1,5 +1,7 @@
 # OpenAI Agents SDK
 
+> Author: Walter Wang
+
 ## 1. 概述
 
 OpenAI Agents SDK 是 OpenAI 官方推出的 Agent 开发工具包，核心设计理念是"少量代码，快速构建"。适合快速原型开发和 GPT 模型生态内的 Agent 构建。

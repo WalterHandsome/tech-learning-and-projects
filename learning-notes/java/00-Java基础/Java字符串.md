@@ -1,5 +1,7 @@
 # Java字符串
 
+> Author: Walter Wang
+
 ## 1. String概述
 
 ### 1.1 String的特性

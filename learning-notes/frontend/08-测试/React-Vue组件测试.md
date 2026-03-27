@@ -1,5 +1,7 @@
 # React / Vue 组件测试
 
+> Author: Walter Wang
+
 ## 1. React Testing Library
 
 ```jsx

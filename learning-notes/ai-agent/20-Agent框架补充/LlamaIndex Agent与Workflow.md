@@ -1,5 +1,7 @@
 # LlamaIndex Agent 与 Workflow
 
+> Author: Walter Wang
+
 ## 1. 概述
 
 LlamaIndex 提供事件驱动的 Workflow 引擎和多种 Agent 类型，专注于 RAG 和数据处理场景的 Agent 开发。

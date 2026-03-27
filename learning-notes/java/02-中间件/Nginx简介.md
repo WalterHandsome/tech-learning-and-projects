@@ -1,5 +1,7 @@
 # Nginx简介
 
+> Author: Walter Wang
+
 ### Nginx简介
 ![](Nginx-image/01.Nginx简介/1663064825039.png)
 #### 什么是nginx

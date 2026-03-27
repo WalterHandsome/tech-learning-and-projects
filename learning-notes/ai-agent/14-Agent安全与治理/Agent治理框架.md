@@ -1,5 +1,7 @@
 # Agent 治理框架
 
+> Author: Walter Wang
+
 ## 1. 四大治理支柱
 
 ```

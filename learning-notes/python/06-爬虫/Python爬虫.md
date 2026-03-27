@@ -1,5 +1,7 @@
 # Python爬虫
 
+> Author: Walter Wang
+
 ## 1. 爬虫概述
 
 网络爬虫（Web Crawler）是一种自动获取网页内容的程序。Python提供了丰富的爬虫库：

@@ -1,5 +1,7 @@
 # 高级 RAG 策略
 
+> Author: Walter Wang
+
 ## 1. Query 改写与扩展
 
 ```python

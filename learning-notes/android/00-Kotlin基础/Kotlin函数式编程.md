@@ -1,5 +1,7 @@
 # Kotlin 函数式编程
 
+> Author: Walter Wang
+
 ## 1. 高阶函数与 Lambda
 
 ```kotlin

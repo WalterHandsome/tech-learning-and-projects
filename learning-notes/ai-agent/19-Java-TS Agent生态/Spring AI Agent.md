@@ -1,5 +1,7 @@
 # Spring AI Agent
 
+> Author: Walter Wang
+
 ## 1. 概述
 
 Spring AI 是 Spring 生态的 AI 框架，为 Java/Kotlin 开发者提供统一的 AI 模型接口、工具调用、RAG、MCP 客户端等能力。

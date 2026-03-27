@@ -1,5 +1,7 @@
 # Spring Boot 最佳实践
 
+> Author: Walter Wang
+
 > 本文档总结了 Spring Boot 开发中的最佳实践和常见模式
 
 ## 1. 项目结构

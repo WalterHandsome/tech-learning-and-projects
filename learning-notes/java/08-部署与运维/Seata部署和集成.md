@@ -1,5 +1,7 @@
 # seata的部署和集成
 
+> Author: Walter Wang
+
 
 
 # 一、部署Seata的tc-server
