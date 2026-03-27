@@ -16,7 +16,7 @@
 │   ├── frontend/               # 前端技术栈（16个分类）
 │   ├── ios/                    # iOS 技术栈（11个分类）
 │   ├── android/                # Android 技术栈（11个分类）
-│   ├── ai-agent/               # AI Agent 技术栈（22个分类，80个文档）
+│   ├── ai-agent/               # AI Agent 技术栈（23个分类，85个文档）
 │   └── architecture/           # 架构设计
 │
 ├── spring-boot-microservice-demo/  # Spring Boot 微服务项目
@@ -37,7 +37,7 @@
 | [前端](./learning-notes/frontend/README.md) | 16 | React/Vue、TypeScript、Node.js、工程化、性能优化 |
 | [iOS](./learning-notes/ios/README.md) | 11 | Swift、SwiftUI/UIKit、架构模式、系统框架 |
 | [Android](./learning-notes/android/README.md) | 11 | Kotlin、Jetpack Compose、Jetpack 组件、架构模式 |
-| [AI Agent](./learning-notes/ai-agent/README.md) | 22 | Agent 协议/框架/RAG/工具/Harness Engineering（80个文档） |
+| [AI Agent](./learning-notes/ai-agent/README.md) | 23 | Agent 协议/框架/RAG/工具/Voice/Harness Engineering（85个文档） |
 
 ### 实战项目
 

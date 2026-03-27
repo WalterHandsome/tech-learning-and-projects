@@ -4,7 +4,7 @@
 
 ## 📁 知识体系结构
 
-按学习路径从基础到高级组织，共 22 个分类、80 个文档。
+按学习路径从基础到高级组织，共 23 个分类、85 个文档。
 
 ```
 ai-agent/
@@ -28,6 +28,7 @@ ai-agent/
 │   ├── MCP模型上下文协议.md        # Agent ↔ 工具（垂直连接）
 │   ├── A2A Agent间通信协议.md      # Agent ↔ Agent（水平协作）
 │   ├── ACP与协议生态.md            # ACP/ANP 轻量协议
+│   ├── Agent支付协议.md            # ★ ACP(OpenAI)/AP2(Google)/Mastercard/x402
 │   └── 协议转换工具.md             # ★ Open-CLI/CLI-Anything/Higress
 │
 │  ═══════════════ 第三层：开发框架 ═══════════════
@@ -68,6 +69,7 @@ ai-agent/
 ├── 17-工具平台与沙箱/              # 工具基础设施
 │   ├── Composio工具平台.md        # 1000+ 工具，MCP Gateway
 │   ├── E2B代码沙箱.md             # 安全隔离执行环境
+│   ├── Web数据工具详解.md          # ★ Firecrawl/Tavily/Exa/Jina/Brave/Apify
 │   └── Agent工具生态总览.md        # 搜索/浏览器/数据/代码沙箱
 │
 ├── 05-多Agent系统/                 # 多 Agent 协作
@@ -93,6 +95,10 @@ ai-agent/
 │   ├── OpenClaw平台详解.md        # Skills/Heartbeat/20+ 渠道
 │   ├── Agent Skills生态.md        # Skills/Tools/Plugins 对比
 │   └── AgentOS生态.md             # ★ OpenClaw/ZeroClaw/OpenFang
+│
+├── 22-Voice Agent/                 # ★ 语音 Agent（2026 热门方向）
+│   ├── 语音Agent与实时交互.md      # OpenAI Realtime/ElevenLabs/LiveKit/Vapi
+│   └── 语音Agent开发实战.md        # 完整开发指南 + 设计模式
 │
 │  ═══════════════ 第六层：基础设施 ═══════════════
 │
@@ -124,7 +130,8 @@ ai-agent/
 ├── 12-Coding Agent/                # 编程 Agent
 │   ├── Claude Code与终端Agent.md  # 终端原生/CLAUDE.md/多 Agent
 │   ├── Cursor-Kiro-Windsurf IDE Agent.md # IDE Agent 对比
-│   └── Devin与自主开发Agent.md    # 自主开发/SWE-bench
+│   ├── Devin与自主开发Agent.md    # 自主开发/SWE-bench
+│   └── Vibe Coding与AI应用构建.md  # ★ Replit/v0/Bolt/Lovable
 │
 │  ═══════════════ 第八层：平台与部署 ═══════════════
 │
