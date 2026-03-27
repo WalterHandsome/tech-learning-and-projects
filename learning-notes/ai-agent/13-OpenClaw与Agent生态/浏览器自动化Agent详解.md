@@ -121,3 +121,12 @@ const title = await page.extract("提取文章标题");
 ├─ 超时控制：设置最大执行时间
 └─ 人工兜底：关键操作（支付/删除）需确认
 ```
+## 🎬 推荐视频资源
+
+### 🌐 YouTube
+- [Browser-Use - Getting Started](https://www.youtube.com/watch?v=dcgRMOG605w) — Browser-Use入门
+- [Skyvern - AI Browser Automation](https://www.youtube.com/watch?v=YtiYrmAdJ5g) — Skyvern演示
+
+### 📖 官方文档
+- [Browser-Use](https://browser-use.com/) — Browser-Use官网
+- [Skyvern](https://github.com/Skyvern-AI/skyvern) — Skyvern GitHub

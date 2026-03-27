@@ -303,3 +303,10 @@ LiteLLM 内置管理界面：http://localhost:4000/ui
 | 缓存         | ✅ Redis         | ❌                | ✅ 语义缓存       |
 | 开源         | ✅ Apache 2.0    | ❌                | ❌               |
 | 适用场景     | 团队自托管网关     | Vercel 生态       | 企业级 AI 网关    |
+## 🎬 推荐视频资源
+
+### 🌐 YouTube
+- [LiteLLM - Unified LLM API](https://www.youtube.com/watch?v=Ox9DBiJMnHY) — LiteLLM统一接口教程
+
+### 📖 官方文档
+- [LiteLLM Docs](https://docs.litellm.ai/) — LiteLLM官方文档（支持100+模型）

@@ -316,3 +316,11 @@ def select_model(task_complexity: str) -> str:
 | 批量 API      | ✅ 50% 折扣     | ✅ 50% 折扣    | ❌              |
 | 代码能力       | ★★★★★          | ★★★★★         | ★★★★           |
 | 指令遵循       | ★★★★★          | ★★★★           | ★★★★           |
+## 🎬 推荐视频资源
+
+### 🌐 YouTube
+- [Anthropic - Claude 4 Capabilities](https://www.youtube.com/watch?v=hkhDdcM5V94) — Claude能力介绍
+- [Anthropic - Extended Thinking](https://www.youtube.com/watch?v=hkhDdcM5V94) — Claude扩展思考
+
+### 📖 官方文档
+- [Anthropic Docs](https://docs.anthropic.com/) — Claude官方文档

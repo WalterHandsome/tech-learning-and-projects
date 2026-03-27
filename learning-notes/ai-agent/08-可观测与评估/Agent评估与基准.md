@@ -226,3 +226,11 @@ class RegressionTestSuite:
                 failed += 1
         return {"passed": passed, "failed": failed, "total": len(self.test_cases)}
 ```
+## 🎬 推荐视频资源
+
+### 🌐 YouTube
+- [DeepLearning.AI - Evaluating and Debugging Generative AI](https://www.deeplearning.ai/short-courses/evaluating-debugging-generative-ai/) — AI评估与调试（免费）
+- [RAGAS - RAG Evaluation Tutorial](https://www.youtube.com/watch?v=tFXm5ijih98) — RAGAS评估框架教程
+
+### 📖 官方文档
+- [RAGAS Docs](https://docs.ragas.io/) — RAGAS评估框架文档

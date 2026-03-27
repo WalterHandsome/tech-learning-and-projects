@@ -281,3 +281,8 @@ async def handle_incident():
 
 asyncio.run(handle_incident())
 ```
+## 🎬 推荐视频资源
+
+### 🌐 YouTube
+- [AWS - AI-Powered Operations](https://www.youtube.com/watch?v=F8NKVhkZZWI) — AI驱动的运维自动化
+- [freeCodeCamp - DevOps with AI](https://www.youtube.com/watch?v=GWB9ApTPTv4) — AI+DevOps实战

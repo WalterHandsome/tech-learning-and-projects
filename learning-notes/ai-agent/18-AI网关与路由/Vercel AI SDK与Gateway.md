@@ -269,3 +269,11 @@ const result = await generateText({
 | 预算管理     | ✅ Gateway         | ✅ 细粒度           |
 | 自托管       | ✅ SDK / ❌ Gateway| ✅ 完全自托管        |
 | 适用场景     | Next.js/React 应用 | Python 后端/Agent   |
+## 🎬 推荐视频资源
+
+### 🌐 YouTube
+- [Vercel - AI SDK Tutorial](https://www.youtube.com/watch?v=LDB4uaJ87e0) — Vercel AI SDK教程
+- [Lee Robinson - AI SDK Demo](https://www.youtube.com/watch?v=DHjqpvDnNGE) — AI SDK实战演示
+
+### 📖 官方文档
+- [Vercel AI SDK Docs](https://sdk.vercel.ai/docs) — Vercel AI SDK官方文档

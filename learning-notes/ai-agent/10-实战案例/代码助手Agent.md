@@ -216,3 +216,11 @@ async def generate_tests(code: str, file_path: str) -> str:
   }
 }
 ```
+## 🎬 推荐视频资源
+
+### 🌐 YouTube
+- [Anthropic - Claude Code Introduction](https://www.youtube.com/watch?v=hkhDdcM5V94) — Claude Code代码助手
+- [freeCodeCamp - Build a Code Assistant](https://www.youtube.com/watch?v=dcgRMOG605w) — 构建代码助手
+
+### 📺 B站
+- [AI编程助手实战](https://www.bilibili.com/video/BV1Bm421N7BH) — AI代码助手中文教程

@@ -172,3 +172,11 @@ async def check_task_status(agent_url: str, task_id: str):
         )
         return response.json()  # status: submitted/working/completed/failed
 ```
+## 🎬 推荐视频资源
+
+### 🌐 YouTube
+- [DeepLearning.AI - Multi AI Agent Systems with crewAI](https://www.deeplearning.ai/short-courses/multi-ai-agent-systems-with-crewai/) — 多Agent通信实战（免费）
+- [LangChain - Multi-Agent Collaboration](https://www.youtube.com/watch?v=9BPCV5TYPmg) — 多Agent协作模式
+
+### 📺 B站
+- [多Agent系统架构讲解](https://www.bilibili.com/video/BV1Bm421N7BH) — 多Agent协作中文教程

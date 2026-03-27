@@ -243,3 +243,11 @@ writer = client.create_agent(
 | 学习曲线       | 中高                     | 低                      |
 | 适用场景       | 需要深度记忆管理的Agent    | 快速为现有Agent添加记忆   |
 | 开源协议       | Apache 2.0              | Apache 2.0              |
+## 🎬 推荐视频资源
+
+### 🌐 YouTube
+- [MemGPT - OS-Level Memory for LLMs](https://www.youtube.com/watch?v=nMGCE4GU1kc) — MemGPT论文讲解
+
+### 📖 官方文档
+- [Letta Docs](https://docs.letta.com/) — Letta/MemGPT官方文档
+- [Letta GitHub](https://github.com/letta-ai/letta) — Letta开源项目

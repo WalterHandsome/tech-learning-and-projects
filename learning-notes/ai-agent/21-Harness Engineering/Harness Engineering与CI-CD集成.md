@@ -175,3 +175,11 @@ Cursor:     .cursorrules 中写明修改后运行测试
 □ 安全：Agent 代码额外审查 + 覆盖率门禁
 □ 可观测：报告上传 Artifact + 修复次数追踪
 ```
+## 🎬 推荐视频资源
+
+### 🌐 YouTube
+- [GitHub - GitHub Actions Tutorial](https://www.youtube.com/watch?v=R8_veQiYBjI) — GitHub Actions教程
+- [DeepLearning.AI - Agentic AI](https://www.deeplearning.ai/courses/agentic-ai/) — 包含工程化章节（免费）
+
+### 📖 官方文档
+- [GitHub Actions Docs](https://docs.github.com/en/actions) — GitHub Actions文档

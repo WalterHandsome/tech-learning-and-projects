@@ -138,3 +138,8 @@ Agent OS（OpenClaw/OpenFang）：运行 Agent 的完整环境 → 类比"操作
 ├─ 自定义 Agent 应用              → 用框架自己搭建
 └─ 不确定？ → ZeroClaw 开始，按需升级
 ```
+## 🎬 推荐视频资源
+
+### 📖 官方文档
+- [OpenClaw GitHub](https://github.com/openclaw/openclaw) — OpenClaw AgentOS
+- [OpenFang GitHub](https://github.com/RightNow-AI/openfang) — OpenFang运行时

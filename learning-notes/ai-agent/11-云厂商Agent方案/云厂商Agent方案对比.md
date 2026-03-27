@@ -115,3 +115,12 @@ Google:
 
 推荐策略：开源框架开发 → 托管服务部署生产
 ```
+## 🎬 推荐视频资源
+
+### 🌐 YouTube
+- [AWS re:Invent - Bedrock Agents](https://www.youtube.com/watch?v=F8NKVhkZZWI) — AWS Bedrock Agents
+- [Google Cloud - Vertex AI Agents](https://www.youtube.com/watch?v=E8pMFNox4Lc) — Google Vertex AI Agent
+- [Microsoft - Azure AI Agent Service](https://www.youtube.com/watch?v=pHksBVqH7uI) — Azure AI Agent
+
+### 📺 B站
+- [云厂商AI Agent方案对比](https://www.bilibili.com/video/BV1dH4y1P7FY) — 中文云厂商方案对比

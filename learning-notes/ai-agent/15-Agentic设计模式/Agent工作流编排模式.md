@@ -326,3 +326,11 @@ resumed = app.invoke(None, config)  # 传入 None 表示恢复
 | 持久化       | Postgres/Redis   | 无内置           | Vertex AI Store  |
 | 部署         | LangGraph Cloud  | CrewAI Enterprise| Vertex AI Agent  |
 | 适用场景     | 复杂自定义流程    | 角色协作任务      | Google 云原生    |
+## 🎬 推荐视频资源
+
+### 🌐 YouTube
+- [Andrew Ng - What's Next for AI Agentic Workflows](https://www.youtube.com/watch?v=sal78ACtGTc) — 吴恩达讲Agentic工作流
+- [DeepLearning.AI - AI Agents in LangGraph](https://www.deeplearning.ai/short-courses/ai-agents-in-langgraph/) — LangGraph工作流编排（免费）
+
+### 📺 B站
+- [吴恩达 - Agentic工作流中文字幕](https://www.bilibili.com/video/BV1Bz421B7bG) — Agentic工作流讲解

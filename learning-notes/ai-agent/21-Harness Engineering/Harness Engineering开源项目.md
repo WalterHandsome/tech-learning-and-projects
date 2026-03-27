@@ -143,3 +143,9 @@ Day 2：从 ai_harness_engineering 复制模板，配置 CLAUDE.md/Steering
 Day 3：配置 CI 验证 + Kiro Hooks，测试 Agent → CI → 修复循环
 Day 4+：添加质量扫描、完善架构约束、建立质量指标
 ```
+## 🎬 推荐视频资源
+
+### 📖 官方资源
+- [OpenAI - Harness Engineering](https://openai.com/index/harness-engineering) — OpenAI官方文章
+- [LangChain - Deep Agents](https://blog.langchain.com/improving-deep-agents-with-harness-engineering/) — LangChain Harness Engineering
+- [nxcode - Complete Guide](https://www.nxcode.io/resources/news/harness-engineering-complete-guide-ai-agent-codex-2026) — 完整指南

@@ -280,3 +280,11 @@ E2B 安全隔离机制：
 | 开源          | ✅ Apache 2.0    | ❌               | ✅ Apache 2.0    |
 | 隔离级别       | microVM          | Container        | Container        |
 | 适用场景       | Agent代码执行     | ML推理/训练      | 开发环境管理      |
+## 🎬 推荐视频资源
+
+### 🌐 YouTube
+- [E2B - Code Sandbox for AI](https://www.youtube.com/watch?v=nMGCE4GU1kc) — E2B沙箱介绍
+
+### 📖 官方文档
+- [E2B Docs](https://e2b.dev/docs) — E2B官方文档
+- [E2B GitHub](https://github.com/e2b-dev/e2b) — E2B开源项目

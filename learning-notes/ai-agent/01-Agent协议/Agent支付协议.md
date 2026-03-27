@@ -574,3 +574,8 @@ Agent 支付安全要点：
 - Agent 安全 → `14-Agent安全与治理/Agent身份与权限.md`
 - Agent 治理 → `14-Agent安全与治理/Agent治理框架.md`
 - MCP 协议 → `MCP模型上下文协议.md`（工具调用基础）
+## 🎬 推荐视频资源
+
+### 🌐 YouTube
+- [a]16z - AI Agent Payments](https://www.youtube.com/watch?v=JhCl-GeT4jw) — AI Agent支付未来趋势
+- [Stripe - AI Payment Integration](https://www.youtube.com/watch?v=F8NKVhkZZWI) — AI支付集成方案

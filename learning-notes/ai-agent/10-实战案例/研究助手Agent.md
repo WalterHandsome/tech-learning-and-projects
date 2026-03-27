@@ -227,3 +227,8 @@ LLM Agent 在 2025 年进入生产化阶段，主要框架趋于成熟...
 1. [论文标题](URL) - 作者, 2025
 2. ...
 ```
+## 🎬 推荐视频资源
+
+### 🌐 YouTube
+- [LangChain - Research Assistant Agent](https://www.youtube.com/watch?v=dcgRMOG605w) — 研究助手Agent实战
+- [DeepLearning.AI - Building Agentic RAG](https://www.deeplearning.ai/short-courses/building-agentic-rag-with-llamaindex/) — Agentic RAG研究助手（免费）

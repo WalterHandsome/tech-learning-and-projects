@@ -221,3 +221,8 @@ docker-compose up -d
 | 多 Agent | Sub-Agents | 工作流 | Bot 嵌套 | AI Agent 节点 |
 | 定时任务 | Heartbeat | ❌ | 定时触发 | Cron 触发 |
 | 适用场景 | 个人/团队助手 | 企业 AI 应用 | 快速 Bot | 自动化流程 |
+## 🎬 推荐视频资源
+
+### 📖 官方文档
+- [OpenClaw GitHub](https://github.com/openclaw/openclaw) — OpenClaw开源项目
+- [OpenFang GitHub](https://github.com/RightNow-AI/openfang) — OpenFang Agent运行时

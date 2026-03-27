@@ -310,3 +310,8 @@ MCP Server 目录（1000+ 服务器）：
 ├─ 核心业务逻辑 → 自建 MCP Server
 └─ 内部 API → 自建 MCP Server + 认证
 ```
+## 🎬 推荐视频资源
+
+### 🌐 YouTube
+- [AI Jason - Agent Tools Ecosystem](https://www.youtube.com/watch?v=Ox9DBiJMnHY) — Agent工具生态讲解
+- [DeepLearning.AI - Functions, Tools and Agents](https://www.deeplearning.ai/short-courses/functions-tools-agents-langchain/) — 工具与Agent（免费）

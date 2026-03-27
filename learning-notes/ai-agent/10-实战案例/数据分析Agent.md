@@ -219,3 +219,8 @@ analysis_agent = graph.compile()
 result = await analysis_agent.ainvoke({"question": "分析上季度各产品线的销售趋势"})
 print(result["report"])
 ```
+## 🎬 推荐视频资源
+
+### 🌐 YouTube
+- [DeepLearning.AI - LangChain Chat with Your Data](https://www.deeplearning.ai/short-courses/langchain-chat-with-your-data/) — 数据对话Agent（免费）
+- [freeCodeCamp - Data Analysis with AI](https://www.youtube.com/watch?v=T-D1OfcDW1M) — AI数据分析教程

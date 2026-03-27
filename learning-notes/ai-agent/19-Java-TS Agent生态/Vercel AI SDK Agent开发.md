@@ -336,3 +336,11 @@ async function resilientAgent(prompt: string, maxRetries = 3) {
   }
 }
 ```
+## 🎬 推荐视频资源
+
+### 🌐 YouTube
+- [Vercel - AI SDK Agent Tutorial](https://www.youtube.com/watch?v=LDB4uaJ87e0) — AI SDK Agent教程
+- [Lee Robinson - Building AI Apps](https://www.youtube.com/watch?v=DHjqpvDnNGE) — AI应用构建
+
+### 📖 官方文档
+- [Vercel AI SDK Docs](https://sdk.vercel.ai/docs) — 官方文档
