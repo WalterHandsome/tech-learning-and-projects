@@ -118,3 +118,6 @@ process.memoryUsage(); // 内存使用
 - [freeCodeCamp - Node.js Full Course](https://www.youtube.com/watch?v=Oe421EPjeBE) — Node.js完整课程
 - [Traversy Media - Node.js Crash Course](https://www.youtube.com/watch?v=fBNz5xF-Kx4) — Node.js速成
 - [Fireship - Node.js in 100 Seconds](https://www.youtube.com/watch?v=ENrzD9HAZK4) — Node.js快速了解
+### 📺 B站（Bilibili）
+- [黑马程序员 - Node.js教程](https://www.bilibili.com/video/BV1a34y167AZ) — Node.js完整中文教程
+- [尚硅谷 - Node.js教程](https://www.bilibili.com/video/BV1gM411W7ex) — Node.js深入讲解

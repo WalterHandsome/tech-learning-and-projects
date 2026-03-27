@@ -227,3 +227,9 @@
 - [Kevin Powell - Flexbox Tutorial](https://www.youtube.com/watch?v=u044iM9xsWU) — Flexbox完整教程
 - [Kevin Powell - CSS Grid Tutorial](https://www.youtube.com/watch?v=rg7Fvvl3taU) — CSS Grid完整教程
 - [Fireship - CSS Flexbox in 100 Seconds](https://www.youtube.com/watch?v=K74l26pE4YA) — Flexbox快速了解
+### 📺 B站（Bilibili）
+- [黑马程序员 - CSS布局教程](https://www.bilibili.com/video/BV1p84y1P7Z5) — Flex/Grid完整教程
+
+### 🌐 其他平台
+- [Flexbox Froggy](https://flexboxfroggy.com/#zh-cn) — Flexbox游戏化学习（中文）
+- [Grid Garden](https://cssgridgarden.com/#zh-cn) — CSS Grid游戏化学习（中文）

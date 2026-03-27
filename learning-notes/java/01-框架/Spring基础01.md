@@ -2488,3 +2488,10 @@ public class AppForDICollection {
 - [Amigoscode - Spring Boot Tutorial](https://www.youtube.com/watch?v=9SGDpanrc8U) — Spring Boot完整教程
 - [Java Brains - Spring Framework](https://www.youtube.com/playlist?list=PLqq-6Pq4lTTbx8p2oCgcAQGQyqN8XeA1) — Spring框架系统教程
 - [freeCodeCamp - Spring Boot Full Course](https://www.youtube.com/watch?v=31KTdfRH6nY) — Spring Boot完整课程
+### 📺 B站（Bilibili）
+- [尚硅谷 - Spring6完整教程](https://www.bilibili.com/video/BV1kR4y1b7Qc) — Spring最新版完整教程
+- [黑马程序员 - SSM框架](https://www.bilibili.com/video/BV1Fi4y1S7ix) — Spring+SpringMVC+MyBatis
+
+### 🌐 其他平台
+- [Spring官方文档](https://spring.io/guides) — 官方入门指南
+- [Baeldung](https://www.baeldung.com/) — Java/Spring最权威的英文教程网站

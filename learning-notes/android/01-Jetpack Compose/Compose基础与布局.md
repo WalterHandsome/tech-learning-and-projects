@@ -170,3 +170,9 @@ fun MainScreen(navController: NavController) {
 - [Philipp Lackner - Jetpack Compose Full Course](https://www.youtube.com/watch?v=cDabx3SjuOY) — Compose完整课程
 - [Android Developers - Compose Tutorial](https://www.youtube.com/watch?v=cDabx3SjuOY) — 官方Compose教程
 - [Stevdza-San - Jetpack Compose](https://www.youtube.com/@StevdzaSan) — Compose教程频道
+### 📺 B站（Bilibili）
+- [Jetpack Compose中文教程](https://www.bilibili.com/video/BV1HV4y1a7n4) — Compose入门到实战
+
+### 🌐 其他平台
+- [Android官方Compose教程](https://developer.android.com/courses/android-basics-compose/course) — Google官方Compose课程（免费）
+- [Jetpack Compose官方文档](https://developer.android.com/develop/ui/compose/documentation) — 官方文档

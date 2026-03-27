@@ -434,3 +434,6 @@ CompletableFuture<String> combined = future1.thenCombine(future2, (r1, r2) -> r1
 
 - [Jakob Jenkov - Java Concurrency](https://www.youtube.com/playlist?list=PLL8woMHwr36EDxjUoCzboZjedsnhLP1j4) — Java并发编程完整系列
 - [Defog Tech - Java Multithreading](https://www.youtube.com/playlist?list=PLhfHPmPYPPRk6yMrcbfafFGSbE2EPK_A6) — Java多线程教程
+### 📺 B站（Bilibili）
+- [黑马程序员 - Java并发编程](https://www.bilibili.com/video/BV16J411h7Rd) — Java并发完整教程
+- [尚硅谷 - JUC并发编程](https://www.bilibili.com/video/BV1Kw411Z7dF) — JUC深入讲解

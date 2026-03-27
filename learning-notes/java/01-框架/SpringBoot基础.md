@@ -1544,3 +1544,9 @@ spring:
 - [Amigoscode - Spring Boot Tutorial 2025](https://www.youtube.com/watch?v=9SGDpanrc8U) — Spring Boot完整教程
 - [Programming with Mosh - Spring Boot Tutorial](https://www.youtube.com/watch?v=31KTdfRH6nY) — Spring Boot入门
 - [Daily Code Buffer - Spring Boot Microservices](https://www.youtube.com/watch?v=BnknNTN8icw) — Spring Boot微服务
+### 📺 B站（Bilibili）
+- [尚硅谷 - SpringBoot3完整教程](https://www.bilibili.com/video/BV1Es4y1q7Bf) — SpringBoot3最新教程
+- [黑马程序员 - SpringBoot实战](https://www.bilibili.com/video/BV1Lq4y1J77x) — SpringBoot项目实战
+
+### 🌐 其他平台
+- [Baeldung - Spring Boot](https://www.baeldung.com/spring-boot) — 英文Spring Boot权威教程

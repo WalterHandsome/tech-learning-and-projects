@@ -1557,3 +1557,6 @@ void testBulkRequest() throws IOException {
 
 - [freeCodeCamp - Elasticsearch Tutorial](https://www.youtube.com/watch?v=C3tlMqaNSaI) — Elasticsearch完整教程
 - [Fireship - Elasticsearch in 100 Seconds](https://www.youtube.com/watch?v=yg4i3c48ep4) — Elasticsearch快速了解
+### 📺 B站（Bilibili）
+- [黑马程序员 - Elasticsearch教程](https://www.bilibili.com/video/BV1LQ4y127n4) — ES完整中文教程
+- [尚硅谷 - Elasticsearch教程](https://www.bilibili.com/video/BV1hh411D7sb) — ES深入讲解

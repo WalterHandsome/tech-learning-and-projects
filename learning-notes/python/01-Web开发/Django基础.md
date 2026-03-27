@@ -477,3 +477,9 @@ Django 是一个功能强大的 Web 框架，采用 MTV 架构模式，提供了
 - [freeCodeCamp - Django Web Framework](https://www.youtube.com/watch?v=F5mRW0jo-U4) — Django完整课程
 - [Corey Schafer - Django Tutorial](https://www.youtube.com/playlist?list=PL-osiE80TeTtoQCKZ03TU5fNfx2UY6U4p) — Django系统教程系列
 - [Dennis Ivy - Django Crash Course](https://www.youtube.com/watch?v=PtQiiknWUcI) — Django快速入门
+### 📺 B站（Bilibili）
+- [黑马程序员 - Django教程](https://www.bilibili.com/video/BV1vK4y1o7jH) — Django完整中文教程
+- [刘江的Django教程](https://www.bilibili.com/video/BV1pE411q7Nj) — Django实战教程
+
+### 🌐 其他平台
+- [Django官方中文文档](https://docs.djangoproject.com/zh-hans/) — 官方中文文档

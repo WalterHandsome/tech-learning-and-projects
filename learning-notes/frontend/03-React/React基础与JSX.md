@@ -172,3 +172,9 @@ function LifecycleDemo() {
 - [freeCodeCamp - React Full Course](https://www.youtube.com/watch?v=bMknfKXIFA8) — React完整课程（12小时）
 - [Traversy Media - React Crash Course](https://www.youtube.com/watch?v=LDB4uaJ87e0) — React速成
 - [Fireship - React in 100 Seconds](https://www.youtube.com/watch?v=Tn6-PIqc4UM) — React快速了解
+### 📺 B站（Bilibili）
+- [尚硅谷 - React18教程](https://www.bilibili.com/video/BV1ZB4y1Z7o8) — React18完整中文教程
+- [黑马程序员 - React教程](https://www.bilibili.com/video/BV1Z44y1K7Fj) — React项目实战
+
+### 🌐 其他平台
+- [React官方中文文档](https://zh-hans.react.dev/) — 官方中文文档（2023新版）

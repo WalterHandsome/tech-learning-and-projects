@@ -197,3 +197,10 @@ python3 hello.py
 - [freeCodeCamp - Python Full Course for Beginners](https://www.youtube.com/watch?v=rfscVS0vtbw) — 4.5小时Python完整入门
 - [Programming with Mosh - Python Tutorial](https://www.youtube.com/watch?v=_uQrJ0TkZlc) — 6小时Python入门教程
 - [Corey Schafer - Python Tutorials](https://www.youtube.com/playlist?list=PL-osiE80TeTt2d9bfVyTiXJA-UTHn6WwU) — Python系统教程系列
+### 📺 B站（Bilibili）
+- [黑马程序员 - Python从入门到精通](https://www.bilibili.com/video/BV1qW4y1a7fU) — 600万播放，中文Python入门首选
+- [小甲鱼 - Python零基础入门](https://www.bilibili.com/video/BV1c4411e77t) — 经典Python入门系列
+
+### 🌐 其他平台
+- [廖雪峰Python教程](https://www.liaoxuefeng.com/wiki/1016959663602400) — 中文最经典的Python在线教程
+- [Python官方教程中文版](https://docs.python.org/zh-cn/3/tutorial/) — 官方教程

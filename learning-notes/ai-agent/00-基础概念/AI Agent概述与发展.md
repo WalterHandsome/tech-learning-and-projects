@@ -97,3 +97,9 @@ Answer: 您最近的订单是...
 - [Andrew Ng - AI For Everyone](https://www.coursera.org/learn/ai-for-everyone) — 吴恩达非技术角度理解AI全貌（免费）
 - [DeepLearning.AI - Agentic AI with Andrew Ng](https://www.deeplearning.ai/courses/agentic-ai/) — Agentic AI全面讲解（免费）
 - [IBM Technology - What are AI Agents?](https://www.youtube.com/watch?v=F8NKVhkZZWI) — 5分钟快速理解AI Agent
+### 📺 B站（Bilibili）
+- [李沐 - 动手学深度学习](https://www.bilibili.com/video/BV1if4y147hS) — 亚马逊首席科学家，中文AI教育天花板
+- [跟李沐学AI - GPT/Transformer论文精读](https://space.bilibili.com/1567748478) — 论文精读系列，深入理解大模型
+
+### 🎓 Coursera / edX
+- [Andrew Ng - AI For Everyone](https://www.coursera.org/learn/ai-for-everyone) — 非技术角度理解AI（免费旁听）

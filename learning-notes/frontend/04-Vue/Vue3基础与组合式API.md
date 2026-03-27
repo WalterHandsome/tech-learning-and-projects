@@ -198,3 +198,10 @@ const { data, loading } = useFetch('/api/users');
 - [freeCodeCamp - Vue 3 Full Course](https://www.youtube.com/watch?v=VeNfHj6MhgA) — Vue 3完整课程（6小时）
 - [Traversy Media - Vue.js Crash Course](https://www.youtube.com/watch?v=qZXt1Aom3Cs) — Vue速成
 - [Fireship - Vue.js in 100 Seconds](https://www.youtube.com/watch?v=nhBVL41-_Cw) — Vue快速了解
+### 📺 B站（Bilibili）
+- [尚硅谷 - Vue3完整教程](https://www.bilibili.com/video/BV1Za4y1r7KE) — Vue3完整中文教程
+- [黑马程序员 - Vue3教程](https://www.bilibili.com/video/BV1HV4y1a7n4) — Vue3项目实战
+- [coderwhy - Vue3+TS](https://www.bilibili.com/video/BV1WP4y187Tu) — Vue3+TypeScript深入
+
+### 🌐 其他平台
+- [Vue3官方中文文档](https://cn.vuejs.org/) — 官方中文文档

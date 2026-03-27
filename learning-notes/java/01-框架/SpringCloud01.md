@@ -1123,3 +1123,6 @@ Nacos和Eureka整体结构类似，服务注册、服务拉取、心跳等待，
 
 - [Daily Code Buffer - Spring Cloud Tutorial](https://www.youtube.com/watch?v=BnknNTN8icw) — Spring Cloud微服务完整教程
 - [Java Brains - Microservices with Spring Boot](https://www.youtube.com/playlist?list=PLqq-6Pq4lTTZSKAFG6aCDVDP86Qx4lNas) — 微服务系统教程
+### 📺 B站（Bilibili）
+- [尚硅谷 - SpringCloud完整教程](https://www.bilibili.com/video/BV1LQ4y127n4) — 微服务全家桶
+- [黑马程序员 - 微服务实战](https://www.bilibili.com/video/BV1LQ4y127n4) — 微服务项目实战

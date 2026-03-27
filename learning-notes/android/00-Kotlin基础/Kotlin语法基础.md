@@ -221,3 +221,9 @@ val user = createUser().also {
 - [freeCodeCamp - Kotlin Full Course](https://www.youtube.com/watch?v=EExSSotojVI) — Kotlin完整课程
 - [Philipp Lackner - Kotlin Tutorial](https://www.youtube.com/watch?v=5flXf8nuq60) — Kotlin入门教程
 - [JetBrains - Kotlin by JetBrains](https://www.youtube.com/watch?v=F9UC9DY-vIU) — 官方Kotlin教程
+### 📺 B站（Bilibili）
+- [黑马程序员 - Kotlin教程](https://www.bilibili.com/video/BV1wf4y1s7TG) — Kotlin完整中文教程
+
+### 🌐 其他平台
+- [Kotlin官方中文文档](https://book.kotlincn.net/) — 官方中文文档
+- [Kotlin Koans](https://play.kotlinlang.org/koans/) — 官方交互式练习

@@ -1047,3 +1047,6 @@ public MessageConverter jsonMessageConverter(){
 
 - [Amigoscode - RabbitMQ Tutorial](https://www.youtube.com/watch?v=nFxjaVmFj5E) — RabbitMQ完整教程
 - [freeCodeCamp - Message Queues](https://www.youtube.com/watch?v=5-Rq4-PZlew) — 消息队列概念讲解
+### 📺 B站（Bilibili）
+- [黑马程序员 - RabbitMQ教程](https://www.bilibili.com/video/BV1mN4y1Z7t9) — RabbitMQ完整中文教程
+- [尚硅谷 - RabbitMQ教程](https://www.bilibili.com/video/BV1cb4y1o7zz) — RabbitMQ深入讲解
