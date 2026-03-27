@@ -13,6 +13,8 @@ PERSIST_DIR = Path(__file__).parent.parent.parent / "docs" / "chroma_db"
 
 def get_vectorstore():
     """获取向量数据库实例"""
+
+__author__ = "Walter Wang"
     embeddings = OpenAIEmbeddings(api_key=settings.openai_api_key)
     return Chroma(
         collection_name=COLLECTION_NAME,

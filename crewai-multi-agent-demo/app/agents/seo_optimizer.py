@@ -9,6 +9,8 @@ from app.tools.custom_tools import keyword_density
 def create_seo_optimizer() -> Agent:
     """创建 SEO 优化师 Agent
 
+__author__ = "Walter Wang"
+
     职责：
     - 分析目标关键词的搜索趋势
     - 优化文章标题、描述和关键词布局

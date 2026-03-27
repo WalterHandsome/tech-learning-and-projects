@@ -10,6 +10,8 @@ from typing_extensions import TypedDict
 class AgentState(TypedDict):
     """LangGraph Agent 状态
 
+__author__ = "Walter Wang"
+
     messages: 对话消息列表（累加）
     intent: 用户意图分类
     context: RAG 检索到的上下文

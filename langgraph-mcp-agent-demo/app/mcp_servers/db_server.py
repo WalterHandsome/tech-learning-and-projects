@@ -21,6 +21,8 @@ _MOCK_DB = {
 @tool
 def query_users(name: str = "", role: str = "") -> str:
     """查询用户信息。可按姓名或角色筛选。"""
+
+__author__ = "Walter Wang"
     results = _MOCK_DB["users"]
     if name:
         results = [u for u in results if name in u["name"]]

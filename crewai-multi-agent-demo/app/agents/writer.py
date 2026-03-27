@@ -8,6 +8,8 @@ from app.tools.custom_tools import save_article, word_count
 def create_writer() -> Agent:
     """创建技术作家 Agent
 
+__author__ = "Walter Wang"
+
     职责：
     - 基于研究成果撰写结构清晰的技术文章
     - 确保内容准确、易读、有深度

@@ -6,6 +6,8 @@ from crewai import Agent
 def create_editor() -> Agent:
     """创建内容编辑 Agent
 
+__author__ = "Walter Wang"
+
     职责：
     - 审查文章的逻辑结构和内容准确性
     - 优化语言表达和段落衔接

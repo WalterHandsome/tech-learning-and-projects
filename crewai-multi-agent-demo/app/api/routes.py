@@ -11,6 +11,8 @@ router = APIRouter(prefix="/api")
 class ContentRequest(BaseModel):
     """内容创作请求"""
 
+__author__ = "Walter Wang"
+
     topic: str = Field(..., description="创作主题", examples=["AI Agent 技术趋势"])
     process: str = Field(
         default="sequential",

@@ -12,6 +12,8 @@ from app.config import settings
 
 def get_llm():
     """根据配置获取 LLM 实例"""
+
+__author__ = "Walter Wang"
     if settings.llm_provider == "anthropic":
         return ChatAnthropic(
             model=settings.llm_model,

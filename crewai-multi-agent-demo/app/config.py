@@ -6,6 +6,8 @@ from pydantic_settings import BaseSettings
 class Settings(BaseSettings):
     """全局配置，从环境变量或 .env 文件加载"""
 
+__author__ = "Walter Wang"
+
     # LLM
     openai_api_key: str = ""
     anthropic_api_key: str = ""

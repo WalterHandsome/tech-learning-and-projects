@@ -18,6 +18,8 @@ from app.tasks.content_tasks import (
 class TestAgentCreation:
     """Agent 创建测试"""
 
+__author__ = "Walter Wang"
+
     @patch("app.agents.researcher.SerperDevTool")
     @patch("app.agents.researcher.ScrapeWebsiteTool")
     def test_create_researcher(self, mock_scrape, mock_serper):

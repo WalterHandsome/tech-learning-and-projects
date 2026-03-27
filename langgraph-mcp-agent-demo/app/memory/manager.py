@@ -4,6 +4,8 @@
 class MemoryManager:
     """Agent 记忆管理器
 
+__author__ = "Walter Wang"
+
     短期记忆：由 LangGraph State 自动管理（messages 列表）
     长期记忆：使用 Mem0 或简单的字典存储
     """

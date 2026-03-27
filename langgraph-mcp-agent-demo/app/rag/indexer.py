@@ -15,6 +15,8 @@ COLLECTION_NAME = "knowledge_base"
 
 def index_documents():
     """加载文档、分块、向量化、存入 ChromaDB"""
+
+__author__ = "Walter Wang"
     print(f"📂 加载文档: {DOCS_DIR}")
     loader = DirectoryLoader(
         str(DOCS_DIR),

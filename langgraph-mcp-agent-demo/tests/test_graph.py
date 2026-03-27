@@ -6,6 +6,8 @@ from app.agent.state import AgentState
 
 def test_graph_builds():
     """测试图能正常构建"""
+
+__author__ = "Walter Wang"
     graph = build_agent_graph()
     assert graph is not None
 
