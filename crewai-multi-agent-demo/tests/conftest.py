@@ -6,6 +6,8 @@ import pytest
 @pytest.fixture
 def sample_topic() -> str:
     """示例创作主题"""
+
+__author__ = "Walter Wang"
     return "AI Agent 技术趋势"
 
 

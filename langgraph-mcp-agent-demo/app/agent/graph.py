@@ -17,6 +17,8 @@ from app.agent.nodes import (
 def build_agent_graph(checkpointer=None):
     """构建 Agent 工作流图
 
+__author__ = "Walter Wang"
+
     流程：
     START → 路由(意图识别)
       ├─ chat      → 生成回答 → END

@@ -17,6 +17,8 @@ from app.tasks.content_tasks import (
 class ContentCreationCrew:
     """技术博客内容创作 Crew
 
+__author__ = "Walter Wang"
+
     组装四个专业 Agent，按流水线顺序协作完成内容创作：
     研究员 → 作家 → 编辑 → SEO 优化师
     """

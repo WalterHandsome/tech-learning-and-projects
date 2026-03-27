@@ -6,6 +6,8 @@ import pytest
 @pytest.fixture
 def sample_state():
     """示例 Agent 状态"""
+
+__author__ = "Walter Wang"
     from langchain_core.messages import HumanMessage
 
     return {

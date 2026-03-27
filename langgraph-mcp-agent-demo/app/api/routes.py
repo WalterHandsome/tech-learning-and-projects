@@ -27,6 +27,8 @@ class ChatResponse(BaseModel):
 @router.post("/chat", response_model=ChatResponse)
 async def chat(req: ChatRequest):
     """对话接口"""
+
+__author__ = "Walter Wang"
     # 获取长期记忆
     memory = await memory_manager.get_memory(req.session_id)
 

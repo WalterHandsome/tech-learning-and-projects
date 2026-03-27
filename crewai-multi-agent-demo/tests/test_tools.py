@@ -10,6 +10,8 @@ from app.tools.custom_tools import save_article, word_count, keyword_density, OU
 class TestSaveArticle:
     """save_article 工具测试"""
 
+__author__ = "Walter Wang"
+
     def test_save_article_creates_file(self, sample_article: str):
         """测试文章保存功能"""
         with tempfile.TemporaryDirectory() as tmpdir:

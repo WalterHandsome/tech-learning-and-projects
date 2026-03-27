@@ -7,6 +7,8 @@ from crewai_tools import SerperDevTool, ScrapeWebsiteTool
 def create_researcher() -> Agent:
     """创建高级研究员 Agent
 
+__author__ = "Walter Wang"
+
     职责：
     - 使用搜索引擎调研指定主题
     - 抓取权威网页获取详细信息

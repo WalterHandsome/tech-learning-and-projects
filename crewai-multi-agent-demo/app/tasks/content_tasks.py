@@ -6,6 +6,8 @@ from crewai import Agent, Task
 def create_research_task(agent: Agent, topic: str) -> Task:
     """创建研究任务
 
+__author__ = "Walter Wang"
+
     研究员 Agent 针对给定主题进行全面调研，
     输出结构化的研究报告供后续写作使用。
     """

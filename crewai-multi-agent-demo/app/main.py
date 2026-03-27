@@ -29,6 +29,8 @@ app.include_router(router)
 
 def run_cli(topic: str, process: str = "sequential") -> None:
     """CLI 模式：直接运行内容创作流水线"""
+
+__author__ = "Walter Wang"
     from app.crews.content_crew import ContentCreationCrew
 
     print(f"\n{'='*60}")
