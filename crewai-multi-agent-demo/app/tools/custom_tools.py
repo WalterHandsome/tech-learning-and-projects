@@ -1,12 +1,25 @@
 """自定义工具 — 文件保存、字数统计、关键词密度分析"""
 
 import re
+import sys
 from pathlib import Path
 
 from crewai.tools import tool
 
+# 将项目根目录加入 sys.path 以便导入 shared 模块
+_PROJECT_ROOT = Path(__file__).resolve().parent.parent.parent.parent
+if str(_PROJECT_ROOT) not in sys.path:
+    sys.path.insert(0, str(_PROJECT_ROOT))
+
+from shared.watermark import embed_watermark
+
+__author__ = "Walter Wang"
+
 # 输出目录
 OUTPUT_DIR = Path(__file__).resolve().parent.parent.parent / "output"
+
+# 默认水印作者
+_WATERMARK_AUTHOR = "Walter Wang"
 
 
 @tool("save_article")
@@ -24,8 +37,11 @@ def save_article(filename: str, content: str) -> str:
     if not safe_name.endswith(".md"):
         safe_name += ".md"
 
+    # 嵌入隐形作者水印
+    watermarked_content = embed_watermark(content, _WATERMARK_AUTHOR)
+
     filepath = OUTPUT_DIR / safe_name
-    filepath.write_text(content, encoding="utf-8")
+    filepath.write_text(watermarked_content, encoding="utf-8")
     return f"文章已保存到: {filepath}"
 
 
