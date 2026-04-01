@@ -160,17 +160,56 @@ echo "检查代码中的安全漏洞" | claude --pipe
 | Git 集成 | ✅ 原生 | ✅ 原生 | ✅ | ✅ |
 | 价格 | Claude API 计费 | 免费+API费 | OpenAI 计费 | Gemini 计费 |
 
-## 9. 最佳实践
+## 9. 权限配置（五级权限系统）
+
+Claude Code 内部实现了五级权限模型，点击"允许"说明配置不够完善：
+
+```json
+// ~/.claude/settings.json — 预配置权限规则
+{
+  "permissions": {
+    "allow": [
+      "Read(**)",
+      "Glob(**)",
+      "Grep(**)",
+      "Bash(npm test*)",
+      "Bash(git *)",
+      "Write(src/**/*.test.ts)"
+    ],
+    "deny": [
+      "Bash(rm -rf *)",
+      "Read(~/.ssh/**)",
+      "Write(.env*)"
+    ]
+  }
+}
+```
+
+## 10. 上下文管理（5 种压缩策略）
+
+Claude Code 内部有 5 种上下文压缩策略，从轻到重：
+1. Microcompact — 基于时间清除旧工具结果
+2. Context Collapse — 摘要压缩对话片段
+3. Session Memory — 提取关键上下文到文件
+4. Full Compact — `/compact` 命令，摘要整个历史
+5. PTL Truncation — 最后手段，丢弃最早消息
+
+**关键：** CLAUDE.md 在每一轮对话中都会重新加载，所以把最重要的上下文放在 CLAUDE.md 中，而不是依赖对话历史。
+
+## 11. 最佳实践
 
 ```
-1. 项目配置：始终维护 CLAUDE.md，提供项目上下文
-2. 任务粒度：一次一个明确任务，避免模糊指令
-3. 验证习惯：让 Claude Code 运行测试验证修改
-4. Git 纪律：每个逻辑变更单独 commit
-5. MCP 扩展：为常用服务配置 MCP Server
-6. 上下文管理：长会话用 /compact 压缩上下文
-7. 安全意识：审查 Claude Code 执行的命令
+1. CLAUDE.md 是最高杠杆 — 每轮都会加载，放入项目规范和关键上下文
+2. 预配置权限 — 用 settings.json 配置 allow/deny，减少交互确认
+3. 主动压缩 — 长会话用 /compact，不要等 Agent 开始"忘事"
+4. 任务粒度 — 一次一个明确任务，避免模糊指令
+5. 验证习惯 — 让 Claude Code 运行测试验证修改
+6. Git Worktree — 多 Agent 并行时利用 Worktree 隔离
+7. Hook 扩展 — 用 Hook 系统自动化 lint/test/通知
+8. MCP 扩展 — 为常用服务配置 MCP Server
 ```
+
+> 📖 深度架构分析见 → `Claude Code架构深度解析.md`（本目录）
 ## 🎬 推荐视频资源
 
 ### 🌐 YouTube
