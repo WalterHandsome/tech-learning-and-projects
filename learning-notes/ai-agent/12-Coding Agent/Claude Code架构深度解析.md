@@ -335,20 +335,244 @@ Hook 可触发的动作：
 }
 ```
 
-## 10. 特性开关系统（44 个 Flag）
+## 10. 反蒸馏机制（Anti-Distillation）
 
-泄露揭示了 44 个特性开关，指向多个未发布功能：
+泄露揭示了 Anthropic 防止竞争对手通过录制 API 流量来训练模型的两层防御：
 
-| Flag | 推测功能 |
-|------|---------|
-| PROACTIVE | 主动模式 — Agent 在用户不操作时主动执行任务 |
-| KAIROS | 自主 Agent 系统 — 根据用户注意力动态调整主动性 |
-| BRIDGE_MODE | IDE 桥接模式 |
-| DAEMON | 后台守护进程模式 |
-| VOICE_MODE | 语音输入模式 |
-| AGENT_TRIGGERS | Agent 触发器（定时/事件驱动） |
-| MONITOR_TOOL | 监控工具 |
-| BUDDY | 虚拟宠物系统（含多物种、稀有度、配饰） |
+### 第一层：假工具注入（Fake Tools）
+
+```typescript
+// claude.ts (line 301-313)
+// 当 ANTI_DISTILLATION_CC 启用时，API 请求中包含：
+anti_distillation: ['fake_tools']
+// 服务端会静默注入虚假工具定义到系统提示中
+```
+
+触发条件（四个条件同时满足）：
+1. `ANTI_DISTILLATION_CC` 编译时 Flag 启用
+2. CLI 入口点（非 SDK）
+3. 使用第一方 API Provider
+4. GrowthBook 远程开关 `tengu_anti_distill_fake_tool_injection` 为 true
+
+**原理：** 如果有人录制 Claude Code 的 API 流量来训练竞争模型，假工具定义会污染训练数据。不是防止复制，而是让你复制到错误的东西。
+
+### 第二层：连接器文本摘要（Connector-Text Summarization）
+
+```typescript
+// betas.ts (lines 279-298)
+// 服务端缓冲助手在工具调用之间的文本，生成摘要并附带加密签名
+// 后续轮次可通过签名恢复原文
+// 录制 API 流量的人只能获得摘要，而非完整推理链
+```
+
+**对我们的启示：** 在 AI 产品中，技术防护（假数据注入）+ 法律手段是保护知识产权的组合拳。但正如分析者指出的，"认真做蒸馏的人大约一小时就能找到绕过方法"，真正的保护可能还是法律层面。
+
+## 11. 原生客户端认证（Native Client Attestation）
+
+这是 Anthropic 阻止第三方工具使用 Claude Code 内部 API 的技术手段：
+
+```typescript
+// system.ts (lines 59-95)
+// API 请求中包含 cch=00000 占位符
+// 在请求离开进程前，Bun 的原生 HTTP 栈（Zig 编写）
+// 将这 5 个零替换为计算出的哈希值
+// 服务端验证哈希以确认请求来自真正的 Claude Code 二进制文件
+```
+
+**设计细节：**
+- 占位符与替换值长度相同，不改变 Content-Length 头
+- 计算发生在 JavaScript 运行时之下（Zig 层），JS 层不可见
+- 本质上是 API 调用的 DRM，在 HTTP 传输层实现
+
+**这解释了为什么 OpenCode 社区被迫使用 session-stitching hack** — Anthropic 不仅法律上要求第三方工具不使用其 API，二进制文件本身也在加密证明自己是正版客户端。
+
+## 12. Prompt Cache 经济学（成本驱动架构）
+
+泄露揭示了 Prompt Cache 如何深刻影响整个架构设计：
+
+### 缓存命中 vs 未命中的成本差异
+
+以 Claude Opus 4.6 为例：
+- 标准输入：$5 / 百万 Token
+- 缓存命中：$0.5 / 百万 Token（**90% 折扣**）
+- 每次缓存未命中，成本增加 10 倍
+
+### 14 种缓存失效向量
+
+```typescript
+// promptCacheBreakDetection.ts
+// 追踪 14 种可能导致 Prompt Cache 失效的情况
+// 包括：模式切换、上下文变更、系统提示修改等
+
+// "sticky latches" 机制：防止模式切换破坏已建立的缓存
+// 一个函数被标注为 DANGEROUS_uncachedSystemPromptSection()
+```
+
+### cache_edits 机制（长会话不变慢的秘密）
+
+```
+传统做法：删除旧消息 → 缓存连续性断裂 → 整个历史重新处理 → 延迟飙升
+Claude Code：标记旧消息为 "skip" → 模型不再看到 → 但缓存连续性不断裂
+结果：数小时长会话，清除数百条旧消息后，下一轮响应速度几乎和第一轮一样快
+```
+
+### 25 万次浪费的 API 调用
+
+```typescript
+// autoCompact.ts (lines 68-70) 注释，日期 2026-03-10：
+// "1,279 个会话有 50+ 次连续失败（最多 3,272 次），
+//  全球每天浪费约 250,000 次 API 调用"
+// 修复：MAX_CONSECUTIVE_AUTOCOMPACT_FAILURES = 3
+// 三行代码，每天节省 25 万次 API 调用
+```
+
+**核心洞察：** 对 AI 产品来说，模型推理成本可能不是最贵的层面；失败的缓存管理才是。
+
+## 13. Undercover 模式（隐身模式）
+
+```typescript
+// undercover.ts (~90 行)
+// 在非内部仓库中使用时，剥离所有 Anthropic 内部痕迹
+// 指示模型永远不要提及：
+// - 内部代号（"Capybara"、"Tengu"）
+// - 内部 Slack 频道
+// - 仓库名称
+// - "Claude Code" 本身
+
+// line 15: "There is NO force-OFF. This guards against model codename leaks."
+// 可以用 CLAUDE_CODE_UNDERCOVER=1 强制开启，但没有办法强制关闭
+// 在外部构建中，整个函数被死代码消除为空返回
+```
+
+**争议点：** 这意味着 Anthropic 员工在开源项目中提交的 AI 生成代码，不会有任何 AI 编写的标识。隐藏内部代号是合理的，但让 AI 主动假装是人类写的代码，这是另一回事。
+
+## 14. 用户情绪检测（Regex 方式）
+
+```typescript
+// userPromptKeywords.ts
+// 用正则表达式检测用户挫败感：
+/\b(wtf|wth|ffs|omfg|shit(ty|tiest)?|dumbass|horrible|awful|
+piss(ed|ing)? off|piece of (shit|crap|junk)|what the (fuck|hell)|
+fucking? (broken|useless|terrible|awful|horrible)|fuck you|
+screw (this|you)|so frustrating|this sucks|damn it)\b/
+```
+
+**讽刺之处：** 一家 LLM 公司用正则表达式做情感分析。但也合理 — regex 比一次 LLM 推理调用快得多、便宜得多，只是用来检测用户是否在骂工具。
+
+## 15. Bash 安全系统（23 项检查）
+
+```typescript
+// bashSecurity.ts
+// 每个 Bash 命令经过 23 项编号安全检查：
+// - 18 个被阻止的 Zsh 内置命令
+// - 防御 Zsh 等号扩展（=curl 绕过 curl 的权限检查）
+// - Unicode 零宽空格注入防御
+// - IFS null-byte 注入防御
+// - HackerOne 审查中发现的畸形 Token 绕过
+```
+
+**对我们的启示：** 这是目前已知最细致的 Zsh 威胁模型。如果你在构建允许 Agent 执行 Shell 命令的系统，这 23 项检查是一个很好的安全基线参考。
+
+## 16. KAIROS 自主 Agent 系统（深度分析）
+
+KAIROS 在源码中被引用超过 150 次，是一个完整的后台自主 Agent 系统：
+
+### 注意力感知的自主性调节
+
+```
+用户在终端 → 协作模式（报告 + 征求意见）
+用户切走窗口 → 自主模式（主动执行、直接提交）
+用户切回终端 → 立即报告刚才做了什么
+
+规则：任何可能阻塞用户超过 15 秒的操作都会被延迟
+```
+
+**这解决了 AI 工具的核心矛盾：** 完全自主让人不安，完全被动又低效。KAIROS 的方案是让 AI 的主动性随用户注意力动态波动 — 你看着它就乖，你走了它就干活。
+
+### autoDream 记忆蒸馏
+
+```
+触发条件：累积 5 个会话 或 每 24 小时
+四步流程：
+1. 扫描现有记忆 → 了解当前已知内容
+2. 从对话日志提取新知识
+3. 合并新旧知识 → 修正矛盾、去除重复
+4. 精炼索引 → 删除过时条目
+```
+
+借鉴了认知科学中的记忆巩固理论 — 人类在睡眠中巩固白天的记忆，KAIROS 在用户离开时巩固项目上下文。
+
+### KAIROS 完整子系统
+
+- `/dream` Skill — 夜间记忆蒸馏
+- 每日追加日志
+- GitHub Webhook 订阅
+- 后台守护进程
+- Cron 定时刷新（每 5 分钟）
+
+## 17. 终端渲染优化（游戏引擎技术）
+
+```typescript
+// ink/screen.ts + ink/optimizer.ts
+// 借鉴游戏引擎的终端渲染技术：
+// - Int32Array 支持的 ASCII 字符池
+// - 位掩码编码的样式元数据
+// - 补丁优化器：合并光标移动、取消 hide/show 对
+// - 自驱逐的行宽缓存（源码声称 "~50x reduction in stringWidth calls"）
+```
+
+看似过度工程化，但考虑到 Token 是逐个流式输出的，终端渲染性能直接影响用户体验。
+
+## 18. 代码质量的真实面貌
+
+泄露也暴露了一些"不那么优雅"的代码：
+
+- `print.ts` — 5,594 行，其中一个函数 3,167 行，12 层嵌套
+- 使用 Axios 做 HTTP（讽刺的是 Axios 刚在 npm 上被投毒）
+- 模型只占 1.6% 的代码量（~8,000 行），98.4% 是工程脚手架
+
+**核心洞察：** 同一个 Claude 模型，在 Web 版和 Claude Code 中表现差异巨大，原因不在模型本身，而在于围绕模型构建的 512,000 行工程代码 — 仓库上下文加载、工具调度、缓存策略、子 Agent 协作。ML 研究员 Sebastian Raschka 指出，将同样的工程架构应用到 DeepSeek 或 Kimi 等模型上，可能获得类似的编程性能提升。
+
+## 19. 泄露原因与供应链安全教训
+
+```
+根因链：
+Anthropic 2025 年底收购 Bun
+→ Claude Code 基于 Bun 构建
+→ Bun 有一个已知 Bug（oven-sh/bun#28001，2026-03-11 提交）：
+   生产模式下仍然提供 Source Map
+→ .map 文件未被 .npmignore 排除
+→ npm publish 时 57MB Source Map 被包含在包中
+→ Source Map 指向 R2 存储桶中的未混淆源码
+→ 512,000 行代码完全暴露
+
+讽刺：Anthropic 自己的工具链暴露了自己产品的源码
+Twitter 评论："意外把 Source Map 发到 npm 上，这种错误听起来不可能，
+直到你想起代码库的很大一部分可能是被你正在发布的 AI 写的"
+```
+
+## 20. 特性开关系统（44 个 Flag，5 大类）
+
+泄露揭示了 44 个特性开关，分为 5 大类：
+
+### 按功能域分类
+
+| 类别 | 数量 | 代表 Flag | 说明 |
+|------|------|----------|------|
+| 自主 Agent | 12 | KAIROS, PROACTIVE, DAEMON | 后台自主运行、注意力感知 |
+| 反蒸馏与安全 | 8 | ANTI_DISTILLATION_CC, NATIVE_CLIENT_ATTESTATION | 假工具注入、客户端认证 |
+| IDE 桥接 | 6 | BRIDGE_MODE | VS Code/JetBrains 双向通信 |
+| 交互增强 | 10 | VOICE_MODE, BUDDY, VIM_MODE | 语音输入、虚拟宠物、Vim 模式 |
+| Agent 编排 | 8 | AGENT_TRIGGERS, MONITOR_TOOL | 定时触发、监控工具 |
+
+### 模型代号泄露
+
+源码中出现了代号 **Capybara**（水豚），分为三个层级：
+- Standard（标准版）
+- Fast（快速版）
+- Million-context（百万上下文窗口版）
+
+社区广泛推测这是 Claude 5 系列的内部代号。
 
 **实现方式（Bun 编译时消除）：**
 
@@ -415,9 +639,9 @@ startKeychainPrefetch()  // 预取密钥链
    项目配置在每轮对话中重新加载
    → 最高杠杆的 Agent 行为控制手段
 
-4. Prompt Cache 共享
-   子 Agent 共享父上下文的缓存
-   → 多 Agent 并行的成本优化关键
+4. Prompt Cache 共享 + cache_edits
+   子 Agent 共享父上下文缓存 + 标记删除而非真删除
+   → 多 Agent 并行成本优化 + 长会话不变慢的秘密
 
 5. 文件系统通信
    Agent 间通过 JSON 文件通信
@@ -434,6 +658,22 @@ startKeychainPrefetch()  // 预取密钥链
 8. 特性开关 + 编译时消除
    未启用功能零成本
    → Agent 功能演进的最佳实践
+
+9. 反蒸馏机制
+   假工具注入 + 连接器文本摘要
+   → AI 产品知识产权保护的新范式
+
+10. 注意力感知自主性（KAIROS）
+    根据用户是否在看终端动态调整 Agent 主动性
+    → 解决"全自主 vs 全被动"的核心矛盾
+
+11. 23 项 Bash 安全检查
+    Zsh 内置命令阻止、零宽空格注入防御等
+    → Agent 执行 Shell 命令的安全基线
+
+12. 缓存经济学驱动架构
+    14 种缓存失效向量追踪、sticky latches
+    → 缓存未命中成本 10x，架构设计必须以缓存为中心
 ```
 
 ### 安全教训
@@ -442,14 +682,22 @@ startKeychainPrefetch()  // 预取密钥链
 1. Source Map 泄露
    → 生产构建必须排除 .map 文件
    → npm publish 前检查包内容（npm pack --dry-run）
+   → 注意构建工具的默认行为（Bun 默认生成 Source Map）
 
 2. 供应链安全
    → CI/CD 中加入包内容审计步骤
    → 使用 .npmignore 或 package.json files 字段精确控制发布内容
+   → 收购的工具链也需要安全审计
 
 3. 凭证管理
    → Claude Code 使用 OS 原生密钥链（macOS Keychain）
    → 不在文件系统中明文存储 Token
+   → 原生客户端认证（Zig 层哈希）防止第三方冒用
+
+4. 模型即 1.6%
+   → 512,000 行代码中只有 ~8,000 行直接调用模型
+   → 98.4% 是工程脚手架（安全、缓存、编排、UI）
+   → AI 产品的竞争壁垒在工程层，不在模型层
 ```
 
 ## 14. 与其他 Coding Agent 的架构对比
@@ -476,7 +724,11 @@ startKeychainPrefetch()  // 预取密钥链
 - [Claude Code 源码泄露分析](https://www.bilibili.com/video/BV1Bm421N7BH) — 中文架构分析
 
 ### 📖 参考资料
+- [alex000kim - Fake Tools, Frustration Regexes, Undercover Mode](https://alex000kim.com/posts/2026-03-31-claude-code-source-leak/) — 最详细的源码分析（本文主要参考）
+- [Odaily - 500,000 行 Claude Code 泄露完整分析](https://www.odaily.news/en/post/5210047) — 中文深度分析
 - [Claude Code Leak: What Developers Can Learn](https://www.startuphub.ai/ai-news/artificial-intelligence/2026/claude-code-leak-what-developers-can-learn) — 开发者视角分析
 - [Ars Technica - Claude Code Source Leak](https://arstechnica.com/ai/2026/03/entire-claude-code-cli-source-code-leaks-thanks-to-exposed-map-file/) — 事件报道
+- [The Hacker News - Claude Code Leaked via npm](https://thehackernews.com/2026/04/claude-code-tleaked-via-npm-packaging.html) — 安全视角报道
+- [CTOL - 512,000-Line Agent Blueprint](https://www.ctol.digital/news/claude-code-cli-source-map-leak-anthropic-512000-line-agent-blueprint/) — 架构蓝图分析
 - [Claude Code Camp - Agent Teams Under the Hood](https://www.claudecodecamp.com/p/claude-code-agent-teams-how-they-work-under-the-hood) — 多 Agent 系统内部机制
 - [GitHub Archive](https://github.com/WalterHandsome/claude-code) — 源码存档（教育研究用途）
