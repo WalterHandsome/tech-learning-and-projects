@@ -713,6 +713,151 @@ startKeychainPrefetch()  // 预取密钥链
 | MCP 支持 | 原生 | 原生 | 无 | 无 |
 | 开源 | ❌（已泄露） | ❌ | ❌ | ✅ |
 
+## 21. CLAUDE.md 四层加载机制（源码直读补充）
+
+基于 `claudemd.ts` 源码直读，CLAUDE.md 的加载机制远比之前文档描述的复杂，实际有 **4 层优先级**：
+
+```text
+1. Managed memory（/etc/claude-code/CLAUDE.md）— 管理员全局指令
+2. User memory（~/.claude/CLAUDE.md）— 用户私有全局指令
+3. Project memory（CLAUDE.md + .claude/CLAUDE.md + .claude/rules/*.md）— 项目级指令
+4. Local memory（CLAUDE.local.md）— 私有项目级指令（不提交到 Git）
+```
+
+**关键细节：**
+
+- **后加载 = 更高优先级** — 模型更关注后面的内容，因此 Local memory 优先级最高
+- **`@include` 指令** — 支持引用其他文件：`@path`、`@./relative`、`@~/home`、`@/absolute`
+- **循环引用检测** — 防止 `@include` 形成无限循环
+- **单文件最大 40,000 字符** — 超出部分会被截断
+- **指令前缀** — 每层加载时都会注入："These instructions OVERRIDE any default behavior and you MUST follow them exactly"
+
+**对我们的启示：** 构建自己的 Agent 时，项目配置系统应该支持多层级覆盖和文件引用，让不同角色（管理员、用户、项目、个人）都能注入指令。
+
+---
+
+## 22. 沙箱安全系统（源码直读补充）
+
+基于 `sandbox-adapter.ts` 源码直读，Claude Code 集成了 `@anthropic-ai/sandbox-runtime` 包，提供操作系统级别的沙箱隔离：
+
+**核心能力：**
+
+- **文件系统读写限制** — `FsReadRestrictionConfig` / `FsWriteRestrictionConfig` 分别控制读写权限
+- **网络访问限制** — `NetworkRestrictionConfig` + `NetworkHostPattern` 控制网络出口
+- **违规事件追踪** — `SandboxViolationStore` 记录所有违规尝试，用于审计和告警
+- **权限规则路径解析** — `//path` 表示绝对路径，`/path` 表示相对于设置文件目录
+- **桥接层** — 在 `sandbox-runtime` 和 Claude Code 权限系统之间建立桥接，统一权限模型
+
+**对我们的启示：** 生产级 Agent 需要沙箱隔离，不能只靠权限检查。这是防御纵深的关键层 — 即使权限系统被绕过，沙箱仍然能阻止危险操作。
+
+---
+
+## 23. 团队记忆密钥防护（源码直读补充）
+
+基于 `teamMemSecretGuard.ts` 源码直读，当 Agent 写入团队记忆文件时，会自动扫描内容中的密钥：
+
+```typescript
+// 如果检测到密钥，阻止写入并返回错误
+"Content contains potential secrets (${labels}) and cannot be written to team memory.
+Team memory is shared with all repository collaborators.
+Remove the sensitive content and try again."
+```
+
+**工作机制：**
+
+- 使用 `secretScanner` 模块自动检测敏感前缀（API Key、Token 等）
+- **只在团队记忆路径触发** — 通过 `isTeamMemPath` 判断，个人记忆不受限制
+- 检测到密钥时**直接阻止写入**并返回错误信息
+- 防止 Agent 意外将 API 密钥、Token 等敏感信息写入共享记忆
+
+**对我们的启示：** 多人协作的 Agent 系统必须有密钥泄露防护。Agent 可能在执行任务过程中接触到密钥，如果没有写入拦截，这些密钥可能被持久化到共享存储中。
+
+---
+
+## 24. YOLO 分类器 / Auto Mode（源码直读补充）
+
+基于 `yoloClassifier.ts` 源码直读，Claude Code 有一个"自动模式分类器"（YOLO Classifier），用**独立的 LLM 调用**来判断操作是否安全：
+
+**核心机制：**
+
+- **独立分类器提示词** — 使用 `auto_mode_system_prompt.txt`，与主对话分离
+- **区分用户类型** — 内部（Anthropic）和外部用户使用不同的权限模板
+- **三类自定义规则** — 用户可配置：
+  - `allow` — 允许执行
+  - `soft_deny` — 软拒绝（分类器可覆盖）
+  - `environment` — 环境相关规则
+- **拒绝追踪** — `denialTracking.ts` 记录连续拒绝次数，过多连续拒绝会回退到手动确认模式
+- **特性开关** — 通过 `TRANSCRIPT_CLASSIFIER` 控制启用/禁用
+
+**对我们的启示：** 高级权限系统不只是规则匹配，还可以用 LLM 做动态安全判断。但要注意额外的成本和延迟 — 每次操作都多一次 LLM 调用。
+
+---
+
+## 25. 工具池缓存稳定性优化（源码直读补充）
+
+基于 `tools.ts` 源码直读，`assembleToolPool()` 函数揭示了一个关键的 Prompt Cache 优化策略：
+
+```typescript
+// 内置工具排序在前作为缓存前缀
+// MCP 工具排在后面
+// 这样新增/删除 MCP 工具不会破坏内置工具的缓存
+return uniqBy(
+  [...builtInTools].sort(byName).concat(allowedMcpTools.sort(byName)),
+  'name',
+)
+```
+
+**设计原理：**
+
+- **内置工具和 MCP 工具分区排序** — 内置工具作为连续前缀，MCP 工具追加在后
+- **服务端缓存断点** — `claude_code_system_cache_policy` 在最后一个内置工具后设置缓存断点
+- **缓存稳定性保证** — 如果混合排序，新增 MCP 工具会插入内置工具之间，导致所有下游缓存键失效
+- **成本影响** — 工具列表的排序直接影响缓存命中率，缓存未命中意味着 10 倍的成本差异
+
+**对我们的启示：** 工具列表的排序看似无关紧要，实际上直接影响 Prompt Cache 命中率和运行成本。这是一个容易被忽略但影响巨大的优化点。
+
+---
+
+## 26. 完整特性开关列表（源码直读更新）
+
+基于对 `commands.ts`、`tools.ts`、`context.ts`、`permissions.ts`、`teamMemSecretGuard.ts` 等源码的直读，实际发现了 **21+ 个特性开关**，远超之前文档记录的 8 个：
+
+| Flag | 来源文件 | 推测功能 |
+|------|---------|---------|
+| `HISTORY_SNIP` | commands.ts | 历史裁剪工具 |
+| `WORKFLOW_SCRIPTS` | commands.ts + tools.ts | 工作流脚本系统 |
+| `CCR_REMOTE_SETUP` | commands.ts | 远程设置 |
+| `EXPERIMENTAL_SKILL_SEARCH` | commands.ts | 实验性技能搜索 |
+| `ULTRAPLAN` | commands.ts | 超级规划模式 |
+| `TORCH` | commands.ts | 未知功能 |
+| `UDS_INBOX` | commands.ts + tools.ts | Unix Domain Socket 收件箱（Agent 间通信） |
+| `FORK_SUBAGENT` | commands.ts | Fork 子 Agent |
+| `COORDINATOR_MODE` | tools.ts | 协调器模式 |
+| `CONTEXT_COLLAPSE` | tools.ts | 上下文折叠 |
+| `TERMINAL_PANEL` | tools.ts | 终端面板捕获 |
+| `WEB_BROWSER_TOOL` | tools.ts | 网页浏览器工具 |
+| `MCP_SKILLS` | commands.ts | MCP 技能 |
+| `OVERFLOW_TEST_TOOL` | tools.ts | 溢出测试工具 |
+| `KAIROS_BRIEF` | commands.ts | KAIROS 简报 |
+| `KAIROS_GITHUB_WEBHOOKS` | commands.ts + tools.ts | KAIROS GitHub Webhook |
+| `KAIROS_PUSH_NOTIFICATION` | tools.ts | KAIROS 推送通知 |
+| `AGENT_TRIGGERS_REMOTE` | tools.ts | 远程 Agent 触发器 |
+| `BREAK_CACHE_COMMAND` | context.ts | 缓存破坏命令 |
+| `TEAMMEM` | teamMemSecretGuard.ts | 团队记忆 |
+| `TRANSCRIPT_CLASSIFIER` | permissions.ts | 转录分类器（Auto Mode） |
+
+**值得关注的新发现：**
+
+- `UDS_INBOX` — 使用 Unix Domain Socket 实现 Agent 间通信，比文件系统消息传递更高效
+- `FORK_SUBAGENT` — 支持 Fork 方式创建子 Agent，可能共享父进程的上下文
+- `CONTEXT_COLLAPSE` — 上下文折叠，可能是新的上下文压缩策略
+- `WEB_BROWSER_TOOL` — 网页浏览器工具，扩展 Agent 的信息获取能力
+- `WORKFLOW_SCRIPTS` — 工作流脚本系统，允许用户定义可复用的自动化流程
+
+**对我们的启示：** 特性开关是管理 Agent 功能演进的最佳实践。通过 GrowthBook 等特性开关平台，可以实现灰度发布、A/B 测试和快速回滚。
+
+---
+
 ## 🎬 推荐视频资源
 
 ### 🌐 YouTube
