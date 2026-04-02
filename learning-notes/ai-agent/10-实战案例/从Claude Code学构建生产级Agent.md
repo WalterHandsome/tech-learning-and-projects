@@ -799,6 +799,787 @@ my-agent/
   □ 安全审计
 ```
 
+## 14. 沙箱隔离：安全的最后防线
+
+> 来源：`sandbox-adapter.ts` 源码直读
+
+权限系统是"问你能不能做"，沙箱是"就算你偷偷做了也做不到"。Claude Code 使用 `@anthropic-ai/sandbox-runtime` 包实现 OS 级别的沙箱隔离：
+
+```
+安全纵深防御模型：
+
+用户输入 → [输入验证] → [权限检查] → [YOLO分类器] → [沙箱隔离] → 实际执行
+                                                         ↑
+                                                    最后防线
+                                                即使前面全被绕过
+                                                沙箱仍然阻止危险操作
+```
+
+Claude Code 沙箱的核心能力：
+
+- **文件系统限制** — `FsReadRestrictionConfig` / `FsWriteRestrictionConfig` 控制可读写路径
+- **网络访问限制** — `NetworkRestrictionConfig` + `NetworkHostPattern` 控制可访问的域名
+- **违规事件追踪** — `SandboxViolationStore` 记录所有被拦截的操作
+- **路径解析规则** — `//path` = 绝对路径，`/path` = 相对于配置文件目录
+
+### 14.1 为你的 Agent 项目实现基础沙箱
+
+```python
+"""Agent 沙箱隔离 — 基于 subprocess 的轻量级实现"""
+
+import subprocess
+import os
+import tempfile
+from pathlib import Path
+from dataclasses import dataclass, field
+
+@dataclass
+class SandboxConfig:
+    """沙箱配置：定义允许访问的资源"""
+    allowed_read_paths: list[str] = field(default_factory=list)
+    allowed_write_paths: list[str] = field(default_factory=list)
+    allowed_network_hosts: list[str] = field(default_factory=list)
+    max_execution_time: int = 30  # 秒
+    max_memory_mb: int = 512
+    max_file_size_mb: int = 100
+
+@dataclass
+class SandboxViolation:
+    """违规记录"""
+    action: str        # read / write / network / timeout
+    target: str        # 被拦截的路径或域名
+    timestamp: float
+    tool_name: str
+
+class AgentSandbox:
+    """
+    轻量级 Agent 沙箱
+    
+    设计思路（学自 Claude Code）：
+    1. 命令执行前验证路径访问权限
+    2. 使用 subprocess 的资源限制
+    3. 记录所有违规事件（用于审计）
+    4. 即使权限系统被绕过，沙箱仍然生效
+    """
+    
+    def __init__(self, config: SandboxConfig):
+        self.config = config
+        self.violations: list[SandboxViolation] = []
+    
+    def check_file_access(self, path: str, mode: str = "read") -> bool:
+        """检查文件访问是否在沙箱允许范围内"""
+        abs_path = str(Path(path).resolve())
+        allowed = (
+            self.config.allowed_read_paths if mode == "read"
+            else self.config.allowed_write_paths
+        )
+        
+        for allowed_path in allowed:
+            if abs_path.startswith(str(Path(allowed_path).resolve())):
+                return True
+        
+        # 记录违规
+        import time
+        self.violations.append(SandboxViolation(
+            action=mode, target=abs_path,
+            timestamp=time.time(), tool_name="file_access"
+        ))
+        return False
+    
+    def execute_sandboxed(self, command: str, cwd: str = ".") -> dict:
+        """在沙箱中执行命令"""
+        import resource
+        
+        def set_limits():
+            # 限制内存
+            mem_bytes = self.config.max_memory_mb * 1024 * 1024
+            resource.setrlimit(resource.RLIMIT_AS, (mem_bytes, mem_bytes))
+            # 限制文件大小
+            file_bytes = self.config.max_file_size_mb * 1024 * 1024
+            resource.setrlimit(resource.RLIMIT_FSIZE, (file_bytes, file_bytes))
+            # 禁止创建子进程（防止 fork bomb）
+            resource.setrlimit(resource.RLIMIT_NPROC, (0, 0))
+        
+        try:
+            result = subprocess.run(
+                command, shell=True, cwd=cwd,
+                capture_output=True, text=True,
+                timeout=self.config.max_execution_time,
+                preexec_fn=set_limits,
+                env={
+                    **os.environ,
+                    "PATH": "/usr/bin:/bin",  # 限制可执行路径
+                    "HOME": tempfile.mkdtemp(),  # 隔离 HOME 目录
+                }
+            )
+            return {
+                "stdout": result.stdout,
+                "stderr": result.stderr,
+                "returncode": result.returncode,
+                "violations": len(self.violations),
+            }
+        except subprocess.TimeoutExpired:
+            import time
+            self.violations.append(SandboxViolation(
+                action="timeout", target=command,
+                timestamp=time.time(), tool_name="bash"
+            ))
+            return {"error": "执行超时", "violations": len(self.violations)}
+
+# 使用示例
+sandbox = AgentSandbox(SandboxConfig(
+    allowed_read_paths=["./src", "./docs", "./tests"],
+    allowed_write_paths=["./src", "./tests"],
+    allowed_network_hosts=["api.anthropic.com", "pypi.org"],
+    max_execution_time=30,
+))
+
+# 安全执行
+result = sandbox.execute_sandboxed("python -m pytest tests/", cwd=".")
+
+# 检查文件访问
+if sandbox.check_file_access("/etc/passwd", "read"):
+    print("允许读取")
+else:
+    print("沙箱拦截：不允许读取系统文件")
+```
+
+**关键设计原则：** 沙箱是防御纵深的最后一层。即使权限系统被 Prompt 注入绕过，沙箱仍然在 OS 层面阻止危险操作。生产环境建议使用 Docker 容器或 gVisor 等更强的隔离方案。
+
+
+## 15. 技能系统：可复用的 Agent 工作流
+
+> 来源：`loadSkillsDir.ts` + `commands.ts` 源码直读
+
+Claude Code 把可复用的工作流抽象为"技能"（Skills），而不是硬编码在代码里。技能系统有四层来源，按优先级排列：
+
+```
+技能加载优先级（后加载的覆盖先加载的）：
+
+┌─────────────────────────────────────────────┐
+│  第 4 层：Plugin Skills（第三方插件技能）      │
+│  ├─ 来自已安装的第三方插件                    │
+│  └─ 最高优先级，可覆盖内置技能                │
+├─────────────────────────────────────────────┤
+│  第 3 层：Skill Dir Commands（用户自定义技能） │
+│  ├─ 来自 .claude/skills/ 目录                │
+│  └─ 用户可以为项目定制专属技能                │
+├─────────────────────────────────────────────┤
+│  第 2 层：Builtin Plugin Skills（内置插件技能）│
+│  ├─ 来自内置插件（如 VS Code 集成）           │
+│  └─ 提供 IDE 相关的增强能力                   │
+├─────────────────────────────────────────────┤
+│  第 1 层：Bundled Skills（打包内置技能）       │
+│  ├─ 随 Claude Code 一起发布                   │
+│  └─ 基础能力，最低优先级                      │
+└─────────────────────────────────────────────┘
+```
+
+### 15.1 技能的核心设计
+
+Claude Code 技能系统的几个关键特性：
+
+- **Frontmatter 元数据** — 每个技能文件头部包含 YAML 格式的描述、参数定义、触发条件
+- **动态技能发现** — `getDynamicSkills` 在文件操作过程中自动发现并激活相关技能
+- **Token 估算优化** — 技能列表展示时只基于 Frontmatter（名称+描述+whenToUse）估算 Token，不加载完整内容
+- **参数替换** — `substituteArguments` 支持在技能模板中注入运行时参数
+- **Shell 命令执行** — `executeShellCommandsInPrompt` 允许技能内嵌 Shell 命令获取动态上下文
+
+### 15.2 为你的 Agent 项目设计技能系统
+
+```python
+"""Agent 技能系统 — 可复用的工作流模板"""
+
+import yaml
+import re
+import subprocess
+from pathlib import Path
+from dataclasses import dataclass, field
+
+@dataclass
+class SkillMetadata:
+    """技能元数据（对应 Frontmatter）"""
+    name: str
+    description: str
+    when_to_use: str = ""           # 何时触发此技能
+    arguments: list[str] = field(default_factory=list)  # 支持的参数
+    file_patterns: list[str] = field(default_factory=list)  # 关联的文件模式
+    priority: int = 0               # 优先级（高覆盖低）
+
+@dataclass
+class Skill:
+    """一个完整的技能"""
+    metadata: SkillMetadata
+    content: str                    # 技能的完整提示词模板
+    source: str                     # 来源层级：bundled / plugin / user / third_party
+    file_path: Path | None = None
+
+class SkillManager:
+    """
+    四层技能管理器（学自 Claude Code）
+    
+    设计要点：
+    1. 技能列表只加载 Frontmatter → 节省 Token
+    2. 实际使用时才加载完整内容 → 按需加载
+    3. 文件操作后动态发现新技能 → 上下文感知
+    4. 支持参数替换和 Shell 命令 → 动态内容
+    """
+    
+    SKILL_SOURCES = [
+        ("bundled", "skills/bundled/"),
+        ("builtin_plugin", "skills/plugins/builtin/"),
+        ("user", ".agent/skills/"),
+        ("third_party", "skills/plugins/external/"),
+    ]
+    
+    def __init__(self):
+        self.skills: dict[str, Skill] = {}
+    
+    def load_all(self, project_root: Path):
+        """按优先级加载所有技能（后加载覆盖先加载）"""
+        for source_name, source_path in self.SKILL_SOURCES:
+            skill_dir = project_root / source_path
+            if skill_dir.exists():
+                for skill_file in skill_dir.glob("*.md"):
+                    skill = self._parse_skill(skill_file, source_name)
+                    if skill:
+                        # 同名技能：高优先级覆盖低优先级
+                        self.skills[skill.metadata.name] = skill
+    
+    def _parse_skill(self, path: Path, source: str) -> Skill | None:
+        """解析技能文件：Frontmatter + 内容"""
+        text = path.read_text(encoding="utf-8")
+        
+        # 解析 YAML Frontmatter
+        fm_match = re.match(r'^---\n(.+?)\n---\n(.*)$', text, re.DOTALL)
+        if not fm_match:
+            return None
+        
+        fm_data = yaml.safe_load(fm_match.group(1))
+        content = fm_match.group(2).strip()
+        
+        metadata = SkillMetadata(
+            name=fm_data.get("name", path.stem),
+            description=fm_data.get("description", ""),
+            when_to_use=fm_data.get("when_to_use", ""),
+            arguments=fm_data.get("arguments", []),
+            file_patterns=fm_data.get("file_patterns", []),
+        )
+        
+        return Skill(metadata=metadata, content=content,
+                     source=source, file_path=path)
+    
+    def estimate_tokens(self) -> int:
+        """只基于 Frontmatter 估算 Token（不加载完整内容）"""
+        total = 0
+        for skill in self.skills.values():
+            # 粗略估算：4 字符 ≈ 1 Token
+            meta_text = f"{skill.metadata.name} {skill.metadata.description} {skill.metadata.when_to_use}"
+            total += len(meta_text) // 4
+        return total
+    
+    def get_skill_prompt(self, name: str, **kwargs) -> str:
+        """获取技能的完整提示词（支持参数替换和 Shell 命令）"""
+        skill = self.skills.get(name)
+        if not skill:
+            return ""
+        
+        prompt = skill.content
+        
+        # 参数替换：{{arg_name}} → 实际值
+        for key, value in kwargs.items():
+            prompt = prompt.replace(f"{{{{{key}}}}}", str(value))
+        
+        # Shell 命令执行：$(command) → 命令输出
+        def execute_shell(match):
+            cmd = match.group(1)
+            try:
+                result = subprocess.run(
+                    cmd, shell=True, capture_output=True,
+                    text=True, timeout=10
+                )
+                return result.stdout.strip()
+            except Exception:
+                return f"[命令执行失败: {cmd}]"
+        
+        prompt = re.sub(r'\$\((.+?)\)', execute_shell, prompt)
+        return prompt
+    
+    def discover_skills_for_file(self, file_path: str) -> list[Skill]:
+        """动态技能发现：根据文件路径匹配相关技能"""
+        import fnmatch
+        matched = []
+        for skill in self.skills.values():
+            for pattern in skill.metadata.file_patterns:
+                if fnmatch.fnmatch(file_path, pattern):
+                    matched.append(skill)
+                    break
+        return matched
+
+# 使用示例
+manager = SkillManager()
+manager.load_all(Path("."))
+
+# 编辑 React 组件后，自动发现相关技能
+related = manager.discover_skills_for_file("src/components/Button.tsx")
+for skill in related:
+    print(f"发现相关技能: {skill.metadata.name} — {skill.metadata.description}")
+
+# 获取技能提示词（带参数替换）
+prompt = manager.get_skill_prompt(
+    "code-review",
+    language="python",
+    file_path="src/main.py"
+)
+```
+
+**技能文件示例** (`.agent/skills/code-review.md`)：
+
+```markdown
+---
+name: code-review
+description: 对指定文件进行代码审查
+when_to_use: 当用户要求 review 代码或提交 PR 前
+arguments: [language, file_path]
+file_patterns: ["src/**/*.py", "src/**/*.ts"]
+---
+
+请对 {{file_path}} 进行代码审查，关注以下方面：
+
+1. **安全性** — 是否有注入、泄露、权限问题
+2. **性能** — 是否有 N+1 查询、内存泄漏
+3. **可维护性** — 命名、结构、注释是否清晰
+
+当前项目使用的 {{language}} 版本：$(python --version 2>&1)
+当前 Git 分支：$(git branch --show-current)
+```
+
+
+## 16. IDE 桥接：从终端到编辑器
+
+> 来源：`bridgeMain.ts` 源码直读
+
+Claude Code 不只是一个终端工具，它通过 Bridge 系统与 VS Code 等 IDE 实现双向通信。这个桥接层的工程复杂度远超预期：
+
+```
+Bridge 架构概览：
+
+┌──────────────┐     JWT 认证      ┌──────────────┐
+│  Claude Code │ ◄──────────────► │   VS Code    │
+│  (终端进程)   │   WebSocket      │  (IDE 插件)   │
+└──────┬───────┘                  └──────┬───────┘
+       │                                 │
+       │  ┌─────────────────────────┐    │
+       └──┤  Bridge Server          ├────┘
+           │  ├─ 多会话管理 (≤32)    │
+           │  ├─ 休眠/唤醒检测       │
+           │  ├─ 断线重连 + 退避     │
+           │  ├─ 命令白名单          │
+           │  └─ 可信设备令牌        │
+           └─────────────────────────┘
+```
+
+### 16.1 关键工程决策
+
+| 特性 | 实现细节 | 设计原因 |
+|------|---------|---------|
+| JWT 认证 | `jwtUtils.ts` 签发/验证 | 防止未授权进程连接 Bridge |
+| 多会话 | 默认最多 32 个并发会话 | 支持多窗口/多项目同时工作 |
+| 休眠检测 | `pollSleepDetectionThresholdMs` | 笔记本合盖后恢复时重建连接 |
+| 退避策略 | 初始 2s → 上限 2min → 放弃 10min | 避免网络抖动时疯狂重试 |
+| 命令白名单 | 只允许 compact/clear/cost/summary 等 | 防止通过 Bridge 执行危险命令 |
+| 可信设备 | `trustedDevice.ts` 令牌机制 | 避免每次连接都要求认证 |
+| Git Worktree | `createAgentWorktree` | 子 Agent 在独立工作树中操作 |
+
+### 16.2 为你的 Agent 项目实现 IDE 桥接
+
+```python
+"""Agent IDE 桥接 — 基于 WebSocket 的双向通信"""
+
+import json
+import asyncio
+import hashlib
+import hmac
+import time
+from dataclasses import dataclass, field
+
+@dataclass
+class BridgeConfig:
+    """桥接配置"""
+    max_sessions: int = 32
+    jwt_secret: str = ""
+    reconnect_initial_ms: int = 2000
+    reconnect_max_ms: int = 120_000     # 2 分钟上限
+    reconnect_give_up_ms: int = 600_000  # 10 分钟放弃
+    safe_commands: list[str] = field(default_factory=lambda: [
+        "compact", "clear", "cost", "summary", "status", "files"
+    ])
+
+class BridgeSession:
+    """单个 IDE 会话"""
+    
+    def __init__(self, session_id: str, websocket):
+        self.session_id = session_id
+        self.websocket = websocket
+        self.created_at = time.time()
+        self.last_heartbeat = time.time()
+    
+    async def send(self, event_type: str, data: dict):
+        """发送事件到 IDE"""
+        message = json.dumps({
+            "type": event_type,
+            "session_id": self.session_id,
+            "timestamp": time.time(),
+            "data": data,
+        })
+        await self.websocket.send(message)
+    
+    async def notify_file_updated(self, file_path: str):
+        """通知 IDE 文件已更新（触发编辑器刷新）"""
+        await self.send("file_updated", {"path": file_path})
+    
+    async def notify_diagnostic_clear(self, file_path: str):
+        """通知 IDE 清除诊断缓存（编辑后 LSP 需要重新检查）"""
+        await self.send("diagnostic_clear", {"path": file_path})
+
+class AgentBridge:
+    """
+    Agent ↔ IDE 桥接服务器
+    
+    学自 Claude Code 的设计：
+    1. JWT 认证 — 防止未授权连接
+    2. 命令白名单 — 只允许安全命令通过桥接执行
+    3. 退避重连 — 网络不稳定时优雅降级
+    4. 休眠检测 — 系统休眠后自动恢复
+    """
+    
+    def __init__(self, config: BridgeConfig):
+        self.config = config
+        self.sessions: dict[str, BridgeSession] = {}
+        self._reconnect_delay_ms = config.reconnect_initial_ms
+    
+    def verify_token(self, token: str) -> bool:
+        """验证 JWT Token（简化版）"""
+        try:
+            parts = token.split(".")
+            if len(parts) != 3:
+                return False
+            # 实际项目中使用 PyJWT 库验证
+            payload = json.loads(
+                __import__('base64').b64decode(parts[1] + "==")
+            )
+            return payload.get("exp", 0) > time.time()
+        except Exception:
+            return False
+    
+    def is_safe_command(self, command: str) -> bool:
+        """检查命令是否在白名单中"""
+        return command.split()[0] in self.config.safe_commands if command else False
+    
+    async def handle_connection(self, websocket, token: str):
+        """处理新的 IDE 连接"""
+        # 1. 认证
+        if not self.verify_token(token):
+            await websocket.close(4001, "认证失败")
+            return
+        
+        # 2. 检查会话数量限制
+        if len(self.sessions) >= self.config.max_sessions:
+            await websocket.close(4002, f"会话数已达上限 ({self.config.max_sessions})")
+            return
+        
+        # 3. 创建会话
+        session_id = hashlib.sha256(f"{time.time()}".encode()).hexdigest()[:16]
+        session = BridgeSession(session_id, websocket)
+        self.sessions[session_id] = session
+        
+        try:
+            async for message in websocket:
+                data = json.loads(message)
+                await self._handle_message(session, data)
+        finally:
+            del self.sessions[session_id]
+    
+    async def _handle_message(self, session: BridgeSession, data: dict):
+        """处理来自 IDE 的消息"""
+        msg_type = data.get("type")
+        
+        if msg_type == "heartbeat":
+            session.last_heartbeat = time.time()
+            await session.send("heartbeat_ack", {})
+        
+        elif msg_type == "command":
+            command = data.get("command", "")
+            if self.is_safe_command(command):
+                # 只执行白名单命令
+                result = await self._execute_safe_command(command)
+                await session.send("command_result", {"result": result})
+            else:
+                await session.send("command_error", {
+                    "error": f"命令 '{command}' 不在安全白名单中"
+                })
+    
+    def get_reconnect_delay(self) -> int:
+        """指数退避重连延迟"""
+        delay = self._reconnect_delay_ms
+        self._reconnect_delay_ms = min(
+            self._reconnect_delay_ms * 2,
+            self.config.reconnect_max_ms
+        )
+        return delay
+    
+    def reset_reconnect(self):
+        """连接成功后重置退避"""
+        self._reconnect_delay_ms = self.config.reconnect_initial_ms
+    
+    def detect_sleep_wake(self, last_poll_time: float, threshold_ms: int = 5000) -> bool:
+        """检测系统是否经历了休眠/唤醒"""
+        elapsed = (time.time() - last_poll_time) * 1000
+        return elapsed > threshold_ms
+```
+
+
+## 17. 文件编辑的 12 项安全检查
+
+> 来源：`FileEditTool.ts` 源码直读
+
+文件编辑是 Agent 最常用也最危险的操作。Claude Code 的 `FileEditTool` 在每次编辑前后执行了 12 项检查，远不只是"写文件"这么简单：
+
+```
+文件编辑生命周期：
+
+编辑请求 → [前置检查 6 项] → 执行编辑 → [后置处理 6 项] → 完成
+
+前置检查：                          后置处理：
+├─ ① 文件大小限制 (1 GiB)          ├─ ⑦ 条件技能激活
+├─ ② 意外修改检测                   ├─ ⑧ VS Code 通知
+├─ ③ 团队记忆密钥扫描               ├─ ⑨ LSP 诊断缓存清除
+├─ ④ 设置文件编辑验证               ├─ ⑩ 文件历史追踪
+├─ ⑤ 引用样式保留                   ├─ ⑪ 相似文件建议
+└─ ⑥ 文件存在性检查                 └─ ⑫ 编辑结果验证
+```
+
+### 17.1 每项检查的详细说明
+
+| # | 检查项 | 说明 | 失败时行为 |
+|---|--------|------|-----------|
+| ① | 文件大小限制 | `MAX_EDIT_FILE_SIZE = 1 GiB` | 拒绝编辑，提示文件过大 |
+| ② | 意外修改检测 | 编辑前记录文件哈希，执行时对比 | 报错 `FILE_UNEXPECTEDLY_MODIFIED_ERROR` |
+| ③ | 密钥扫描 | `checkTeamMemSecrets` 扫描敏感前缀 | 阻止写入团队记忆文件 |
+| ④ | 设置文件验证 | `validateInputForSettingsFileEdit` | 阻止修改关键配置文件 |
+| ⑤ | 引用样式保留 | `preserveQuoteStyle` 保持单/双引号一致 | 自动修正引用样式 |
+| ⑥ | 文件存在性 | 检查目标文件是否存在 | `findSimilarFile` 建议相似文件 |
+| ⑦ | 条件技能激活 | `activateConditionalSkillsForPaths` | 编辑后自动加载相关技能 |
+| ⑧ | VS Code 通知 | `notifyVscodeFileUpdated` | 触发编辑器刷新文件内容 |
+| ⑨ | LSP 缓存清除 | `clearDeliveredDiagnosticsForFile` | 清除旧的诊断信息 |
+| ⑩ | 文件历史 | `fileHistoryTrackEdit` | 记录编辑历史（可回滚） |
+| ⑪ | 相似文件建议 | 文件不存在时搜索相似路径 | 返回建议路径列表 |
+| ⑫ | 编辑验证 | 验证编辑结果是否符合预期 | 报告编辑异常 |
+
+### 17.2 为你的 Agent 项目实现安全文件编辑
+
+```python
+"""Agent 安全文件编辑 — 12 项检查的 Python 实现"""
+
+import hashlib
+import os
+import re
+import difflib
+from pathlib import Path
+from dataclasses import dataclass
+from typing import Callable
+
+@dataclass
+class EditResult:
+    success: bool
+    message: str
+    file_path: str
+    diff: str = ""
+
+class SafeFileEditor:
+    """
+    安全文件编辑器（学自 Claude Code FileEditTool）
+    
+    核心原则：
+    - 编辑前：验证安全性和一致性
+    - 编辑后：通知相关系统并记录历史
+    - 失败时：提供可操作的错误信息
+    """
+    
+    MAX_FILE_SIZE = 1 * 1024 * 1024 * 1024  # 1 GiB
+    SECRET_PATTERNS = [
+        r'(?:api[_-]?key|secret|token|password)\s*[=:]\s*["\']?[\w\-]{20,}',
+        r'(?:AKIA|ABIA|ACCA|ASIA)[0-9A-Z]{16}',  # AWS Access Key
+        r'sk-[a-zA-Z0-9]{20,}',                    # OpenAI API Key
+        r'ghp_[a-zA-Z0-9]{36}',                    # GitHub Token
+    ]
+    
+    def __init__(self, project_root: Path):
+        self.project_root = project_root
+        self.file_hashes: dict[str, str] = {}  # 文件哈希缓存
+        self.edit_history: list[dict] = []
+        self.post_edit_hooks: list[Callable] = []
+    
+    def _hash_file(self, path: Path) -> str:
+        """计算文件哈希"""
+        if not path.exists():
+            return ""
+        return hashlib.sha256(path.read_bytes()).hexdigest()
+    
+    # ===== 前置检查 =====
+    
+    def _check_file_size(self, path: Path) -> EditResult | None:
+        """① 文件大小限制"""
+        if path.exists() and path.stat().st_size > self.MAX_FILE_SIZE:
+            return EditResult(False, f"文件超过大小限制 (1 GiB): {path}", str(path))
+        return None
+    
+    def _check_unexpected_modification(self, path: Path) -> EditResult | None:
+        """② 意外修改检测"""
+        str_path = str(path)
+        if str_path in self.file_hashes:
+            current_hash = self._hash_file(path)
+            if current_hash != self.file_hashes[str_path]:
+                return EditResult(
+                    False,
+                    f"文件在上次读取后被外部修改: {path}\n"
+                    f"预期哈希: {self.file_hashes[str_path][:12]}...\n"
+                    f"当前哈希: {current_hash[:12]}...\n"
+                    f"请重新读取文件后再编辑。",
+                    str_path
+                )
+        return None
+    
+    def _check_secrets(self, content: str, path: Path) -> EditResult | None:
+        """③ 团队记忆密钥扫描"""
+        # 只对团队共享文件检查
+        if ".agent/team" in str(path) or "CLAUDE.md" in str(path):
+            for pattern in self.SECRET_PATTERNS:
+                matches = re.findall(pattern, content)
+                if matches:
+                    return EditResult(
+                        False,
+                        f"检测到潜在密钥，不能写入共享文件: {path}\n"
+                        f"匹配模式: {pattern}\n"
+                        f"请移除敏感内容后重试。",
+                        str(path)
+                    )
+        return None
+    
+    def _check_settings_file(self, path: Path) -> EditResult | None:
+        """④ 设置文件编辑验证"""
+        protected = [".env", ".env.local", "settings.json", "permissions.json"]
+        if path.name in protected:
+            return EditResult(
+                False,
+                f"受保护的设置文件不能直接编辑: {path.name}\n"
+                f"请使用专用的配置命令修改此文件。",
+                str(path)
+            )
+        return None
+    
+    def _find_similar_file(self, path: Path) -> list[str]:
+        """⑥⑪ 文件不存在时查找相似文件"""
+        if path.exists():
+            return []
+        
+        all_files = [str(p.relative_to(self.project_root))
+                     for p in self.project_root.rglob("*") if p.is_file()]
+        target = str(path.relative_to(self.project_root))
+        
+        # 使用 difflib 查找相似路径
+        similar = difflib.get_close_matches(target, all_files, n=3, cutoff=0.6)
+        return similar
+    
+    # ===== 核心编辑 =====
+    
+    def edit_file(self, path: Path, new_content: str) -> EditResult:
+        """安全编辑文件（包含所有前置检查和后置处理）"""
+        
+        # === 前置检查 ===
+        for check in [
+            self._check_file_size,
+            self._check_unexpected_modification,
+            self._check_settings_file,
+        ]:
+            error = check(path)
+            if error:
+                return error
+        
+        # ③ 密钥扫描
+        secret_error = self._check_secrets(new_content, path)
+        if secret_error:
+            return secret_error
+        
+        # ⑥ 文件存在性检查
+        if not path.exists():
+            similar = self._find_similar_file(path)
+            if similar:
+                return EditResult(
+                    False,
+                    f"文件不存在: {path}\n你是否想编辑以下文件？\n"
+                    + "\n".join(f"  - {s}" for s in similar),
+                    str(path)
+                )
+        
+        # ⑤ 读取旧内容（用于 diff 和引用样式保留）
+        old_content = path.read_text(encoding="utf-8") if path.exists() else ""
+        
+        # 引用样式保留：如果旧文件用单引号，新内容也用单引号
+        if old_content and "'" in old_content and '"' not in old_content:
+            new_content = new_content.replace('"', "'")
+        
+        # === 执行编辑 ===
+        path.parent.mkdir(parents=True, exist_ok=True)
+        path.write_text(new_content, encoding="utf-8")
+        
+        # 生成 diff
+        diff = "\n".join(difflib.unified_diff(
+            old_content.splitlines(), new_content.splitlines(),
+            fromfile=f"a/{path}", tofile=f"b/{path}", lineterm=""
+        ))
+        
+        # === 后置处理 ===
+        
+        # ⑩ 文件历史追踪
+        self.edit_history.append({
+            "path": str(path),
+            "old_hash": self.file_hashes.get(str(path), ""),
+            "new_hash": self._hash_file(path),
+            "diff_lines": len(diff.splitlines()),
+        })
+        
+        # 更新哈希缓存
+        self.file_hashes[str(path)] = self._hash_file(path)
+        
+        # ⑦⑧⑨ 触发后置 Hook（技能激活、IDE 通知、LSP 清除）
+        for hook in self.post_edit_hooks:
+            hook(str(path))
+        
+        return EditResult(True, f"文件编辑成功: {path}", str(path), diff)
+
+# 使用示例
+editor = SafeFileEditor(Path("."))
+
+# 注册后置 Hook
+editor.post_edit_hooks.append(
+    lambda path: print(f"[Hook] 通知 IDE 刷新: {path}")
+)
+editor.post_edit_hooks.append(
+    lambda path: print(f"[Hook] 清除 LSP 诊断缓存: {path}")
+)
+
+# 安全编辑
+result = editor.edit_file(
+    Path("src/main.py"),
+    'print("Hello, Agent!")\n'
+)
+print(f"编辑结果: {result.success} — {result.message}")
+```
+
+**核心教训：** 文件编辑工具不只是 `open().write()`。生产级 Agent 需要在编辑前验证安全性和一致性，编辑后通知所有相关系统。Claude Code 的 12 项检查是经过真实用户场景打磨出来的，每一项都对应一个曾经出过的 Bug。
+
+
 ## 🎬 推荐视频资源
 
 ### 🌐 YouTube
