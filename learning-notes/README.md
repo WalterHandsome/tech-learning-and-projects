@@ -65,201 +65,63 @@ learning-notes/
 │   ├── 09-跨平台/                  # Flutter集成、KMM、Compose与View混合
 │   └── 10-面试准备/                # Kotlin面试题、Android系统面试题、架构面试题
 │
-├── ai-agent/                      # AI Agent 技术栈（22个分类，80个文档）
+├── ai-agent/                      # AI Agent 技术栈（24个分类，90个文档）
 │   ├── 00-基础概念/                # Agent概述、大语言模型、Prompt Engineering
-│   ├── 01-Agent协议/              # MCP/A2A/ACP/ANP/AG-UI + 协议转换工具
-│   ├── 02-Agent框架/              # LangGraph、CrewAI、OpenAI SDK、ADK、Strands、MS Agent FW
-│   ├── 03-RAG进阶/                # RAG架构、向量数据库、高级RAG、GraphRAG
-│   ├── 04-工具与Function Calling/  # Function Calling、MCP Server开发、工具安全
-│   ├── 05-多Agent系统/            # 架构模式、通信协调、人机协作
-│   ├── 06-记忆与状态/              # 短期/长期记忆、对话管理、知识库
-│   ├── 07-模型服务/                # API接入、开源模型部署、模型路由
-│   ├── 08-可观测与评估/            # 可观测性平台、评估基准、安全对齐
-│   ├── 09-低代码平台/              # Dify、Coze/FastGPT、n8n/Flowise
-│   ├── 10-实战案例/                # 客服/代码/数据/研究/运维/内容创作 Agent
-│   ├── 11-云厂商Agent方案/         # AWS/Azure/GCP/阿里云 + 全面对比
-│   ├── 12-Coding Agent/           # Claude Code、IDE Agent、Devin/OpenHands
-│   ├── 13-OpenClaw与Agent生态/     # 浏览器自动化、AgentOS、Skills生态
-│   ├── 14-Agent安全与治理/         # 身份权限、治理框架
-│   ├── 15-Agentic设计模式/        # Anthropic模式、15+设计模式、工作流编排
-│   ├── 16-Agent记忆框架/          # Mem0、Letta/MemGPT、Zep/LangMem
-│   ├── 17-工具平台与沙箱/          # Composio、E2B、工具生态总览
-│   ├── 18-AI网关与路由/            # LiteLLM、Vercel AI SDK、Portkey
-│   ├── 19-Java-TS Agent生态/      # Spring AI、Vercel AI SDK、Dapr Agents
-│   ├── 20-Agent框架补充/          # LlamaIndex、Claude能力、框架选型指南
-│   └── 21-Harness Engineering/    # 完整指南、Context Eng、Kiro配置、CI/CD集成
+│   ├── 01-Agentic设计模式/        # Anthropic模式、15+设计模式、工作流编排
+│   ├── 02-Agent协议/              # MCP/A2A/ACP/ANP/AG-UI + 协议转换工具
+│   ├── 03-Agent框架/              # LangGraph、CrewAI、OpenAI SDK、ADK、Strands
+│   ├── 04-Agent框架补充/          # LlamaIndex、Claude能力、框架选型指南
+│   ├── 05-Java-TS Agent生态/      # Spring AI、Vercel AI SDK、Dapr Agents
+│   ├── 06-RAG进阶/                # RAG架构、向量数据库、高级RAG、GraphRAG
+│   ├── 07-工具与Function Calling/  # Function Calling、MCP Server开发、工具安全
+│   ├── 08-工具平台与沙箱/          # Composio、E2B、工具生态总览
+│   ├── 09-多Agent系统/            # 架构模式、通信协调、人机协作
+│   ├── 10-记忆与状态/              # 短期/长期记忆、对话管理、知识库
+│   ├── 11-Agent记忆框架/          # Mem0、Letta/MemGPT、Zep/LangMem
+│   ├── 12-模型服务/                # API接入、开源模型部署、模型路由
+│   ├── 13-AI网关与路由/            # LiteLLM、Vercel AI SDK、Portkey
+│   ├── 14-可观测与评估/            # 可观测性平台、评估基准、安全对齐
+│   ├── 15-Agent安全与治理/         # 身份权限、治理框架
+│   ├── 16-Harness Engineering/    # 完整指南、Context Eng、Kiro配置、CI/CD集成
+│   ├── 17-Coding Agent/           # Claude Code、IDE Agent、Devin/OpenHands
+│   ├── 18-OpenClaw与Agent生态/     # 浏览器自动化、AgentOS、Skills生态
+│   ├── 19-Voice Agent/            # 语音Agent、实时交互
+│   ├── 20-Agent支付/              # 支付基础、术语字典、行业全景、AgentToken分析
+│   ├── 21-云厂商Agent方案/         # AWS/Azure/GCP/阿里云 + 全面对比
+│   ├── 22-低代码平台/              # Dify、Coze/FastGPT、n8n/Flowise
+│   └── 23-实战案例/                # 客服/代码/数据/研究/运维/内容创作 Agent
 │
 ├── java/                          # Java 技术栈（按类别组织）
-│   ├── 00-Java基础/               # Java 语言基础（12个文档）
-│   │   ├── Java新特性8-17.md
-│   │   ├── JVM内存模型与垃圾回收.md
-│   │   ├── Java并发编程.md
-│   │   ├── Java集合框架.md
-│   │   ├── Java反射与注解.md
-│   │   ├── Java异常处理.md
-│   │   ├── Java泛型.md
-│   │   ├── Java枚举.md
-│   │   ├── Java IO与NIO.md
-│   │   ├── Java字符串.md
-│   │   ├── Java包装类与自动装箱拆箱.md
-│   │   ├── Java内部类.md
-│   │   └── Java正则表达式.md
-│   │
-│   ├── 01-框架/                   # Spring 生态框架
-│   │   ├── Spring基础01.md
-│   │   ├── Spring基础02.md
-│   │   ├── Spring基础03.md
-│   │   ├── SpringBoot基础.md
-│   │   ├── spring高级50讲.md
-│   │   ├── SpringMVC基础01.md
-│   │   ├── SpringMVC基础02.md
-│   │   ├── SpringCloud01.md
-│   │   ├── SpringCloud02.md
-│   │   ├── MyBatisPlus.md
-│   │   ├── 微服务保护-Sentinel.md
-│   │   ├── 分布式事务.md
-│   │   ├── spring-boot-best-practices.md
-│   │   └── microservices-patterns.md
-│   │
-│   ├── 02-中间件/                 # 中间件技术
-│   │   ├── RabbitMQ.md
-│   │   ├── RabbitMQ高级篇.md
-│   │   ├── Elasticsearch基础.md
-│   │   ├── Elasticsearch进阶.md
-│   │   ├── Elasticsearch高级.md
-│   │   ├── Nginx简介.md
-│   │   ├── Nginx常用配置.md
-│   │   ├── Caffeine缓存.md
-│   │   ├── Redis分布式缓存.md
-│   │   ├── 多级缓存.md
-│   │   └── kafka-event-driven-architecture.md
-│   │
-│   ├── 03-容器化/                 # 容器化与编排
-│   │   ├── Docker实用篇.md
-│   │   ├── docker-basics.md
-│   │   ├── Kubernetes第1天.md
-│   │   ├── Kubernetes第2天.md
-│   │   ├── Kubernetes第3天.md
-│   │   ├── Kubernetes第4天.md
-│   │   ├── Kubernetes第5天.md
-│   │   └── kubernetes-overview.md
-│   │
-│   ├── 04-设计模式/               # 设计模式
-│   │   ├── 设计模式.md
-│   │   └── design-patterns-summary.md
-│   │
-│   ├── 05-网络编程/               # 网络编程
-│   │   ├── Netty01-nio.md
-│   │   ├── Netty02-入门.md
-│   │   ├── Netty03-进阶.md
-│   │   ├── Netty04-优化与源码.md
-│   │   └── gRPC-Java.md
-│   │
-│   ├── 06-构建工具/               # 构建工具
-│   │   ├── Maven基础.md
-│   │   ├── Maven高级.md
-│   │   └── Gradle基础.md
-│   │
-│   ├── 07-数据库/                 # 数据库
-│   │   ├── MySQL基础.md
-│   │   ├── MySQL中级.md
-│   │   └── MySQL高级.md
-│   │
-│   ├── 08-部署与运维/             # 部署与运维
-│   │   ├── Nacos安装指南.md
-│   │   ├── Nacos集群搭建.md
-│   │   ├── RabbitMQ部署指南.md
-│   │   ├── Elasticsearch安装指南.md
-│   │   ├── CentOS7安装Docker.md
-│   │   ├── Sentinel规则持久化.md
-│   │   ├── Seata部署和集成.md
-│   │   ├── Redis集群部署.md
-│   │   ├── Canal安装配置.md
-│   │   └── OpenResty安装配置.md
-│   │
-│   ├── 09-源码分析/               # 源码分析
-│   │   ├── Nacos源码分析.md
-│   │   └── Sentinel源码分析.md
-│   │
-│   ├── 10-工具与测试/             # 工具与测试
-│   │   └── Jmeter快速入门.md
-│   │
-│   ├── 11-面试准备/               # 面试准备
-│   │   └── 微服务常见面试题.md
-│   │
-│   └── README.md                  # Java 技术栈索引
+│   ├── 00-Java基础/               # 新特性、字符串、泛型、集合、并发、IO、JVM
+│   ├── 01-框架/                   # Spring/SpringBoot/SpringMVC/SpringCloud/MyBatis
+│   ├── 02-中间件/                 # Redis、RabbitMQ、Kafka、Elasticsearch、Nginx
+│   ├── 03-容器化/                 # Docker、Kubernetes
+│   ├── 04-设计模式/               # 23种设计模式
+│   ├── 05-网络编程/               # Netty、gRPC
+│   ├── 06-构建工具/               # Maven、Gradle
+│   ├── 07-数据库/                 # MySQL基础/中级/高级
+│   ├── 08-部署与运维/             # Nacos、RabbitMQ、ES、Redis集群部署
+│   ├── 09-源码分析/               # Nacos、Sentinel源码
+│   ├── 10-工具与测试/             # Jmeter
+│   └── 11-面试准备/               # 微服务面试题
 │
 ├── python/                        # Python 技术栈（按类别组织）
-│   ├── 00-Python基础/              # Python 语言基础（16个文档）
-│   │   ├── Python简介与安装.md
-│   │   ├── Python变量与数据类型.md
-│   │   ├── Python运算符.md
-│   │   ├── Python分支结构.md
-│   │   ├── Python循环结构.md
-│   │   ├── Python数据结构-列表.md
-│   │   ├── Python数据结构-元组.md
-│   │   ├── Python数据结构-字典.md
-│   │   ├── Python数据结构-集合.md
-│   │   ├── Python数据结构-字符串.md
-│   │   ├── Python函数.md
-│   │   ├── Python面向对象编程.md
-│   │   ├── Python异常处理.md
-│   │   ├── Python文件操作.md
-│   │   ├── Python正则表达式.md
-│   │   └── Python高级特性.md
-│   │
-│   ├── 01-Web开发/                 # Web 开发框架
-│   │   ├── FastAPI快速入门.md
-│   │   ├── Django基础.md
-│   │   └── Flask基础.md
-│   │
-│   ├── 02-数据分析/                # 数据分析与科学计算
-│   │   ├── 数据分析概述.md
-│   │   ├── NumPy应用.md
-│   │   ├── Pandas应用.md
-│   │   └── 数据可视化.md
-│   │
-│   ├── 03-机器学习/                # 机器学习与AI
-│   │   ├── 浅谈机器学习.md
-│   │   └── RAG检索增强生成.md
-│   │
-│   ├── 04-并发编程/                 # 并发编程
-│   │   └── Python并发编程.md
-│   │
-│   ├── 05-网络编程/                 # 网络编程
-│   │   └── Python网络编程.md
-│   │
-│   ├── 06-爬虫/                     # 网络爬虫
-│   │   └── Python爬虫.md
-│   │
-│   ├── 07-数据库操作/               # 数据库操作
-│   │   └── Python数据库操作.md
-│   │
-│   ├── 08-测试/                     # 测试
-│   │   └── Python测试.md
-│   │
-│   ├── 09-工具与规范/               # 开发工具与代码规范
-│   │   └── Python工具与规范.md
-│   │
-│   ├── 10-设计模式/                 # 设计模式
-│   │   └── Python设计模式.md
-│   │
-│   ├── 11-部署与运维/               # 部署与运维
-│   │   └── Python部署与运维.md
-│   │
-│   ├── 12-性能优化/                 # 性能优化
-│   │   └── Python性能优化.md
-│   │
-│   ├── 13-安全编程/                 # 安全编程
-│   │   └── Python安全编程.md
-│   │
-│   ├── 14-算法与数据结构/           # 算法与数据结构
-│   │   └── Python算法与数据结构.md
-│   │
-│   ├── 15-消息队列/                 # 消息队列
-│   │   └── Python消息队列.md
-│   │
-│   └── README.md                   # Python 技术栈索引
+│   ├── 00-Python基础/             # 语法、数据类型、数据结构、函数、OOP、高级特性
+│   ├── 01-Web开发/                # Flask、Django、FastAPI、WebSocket、GraphQL
+│   ├── 02-数据分析/               # NumPy、Pandas、可视化、统计分析
+│   ├── 03-机器学习/               # ML基础、深度学习、LangChain、RAG、Agent
+│   ├── 04-并发编程/               # 多线程、进程池、协程、异步
+│   ├── 05-网络编程/               # Socket、HTTP、gRPC
+│   ├── 06-爬虫/                   # Scrapy、反爬虫、分布式爬虫
+│   ├── 07-数据库操作/             # SQLAlchemy、NoSQL、连接池
+│   ├── 08-测试/                   # pytest、Mock、TDD
+│   ├── 09-工具与规范/             # 虚拟环境、代码质量、日志
+│   ├── 10-设计模式/               # Python设计模式
+│   ├── 11-部署与运维/             # CI/CD、K8s、监控
+│   ├── 12-性能优化/               # 性能分析、内存优化、缓存
+│   ├── 13-安全编程/               # 漏洞防护、加密认证
+│   ├── 14-算法与数据结构/         # 经典算法、高级数据结构
+│   └── 15-消息队列/               # RabbitMQ、Kafka、Celery
 │
 └── architecture/                  # 架构设计
     └── event-driven-architecture.md
