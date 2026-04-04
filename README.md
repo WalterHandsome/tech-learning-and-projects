@@ -1,90 +1,120 @@
-# Tech Learning & Projects
+# 🚀 Tech Learning & Projects
 
-> 个人技术学习笔记与实践项目集合
+> 全栈技术学习笔记与 AI Agent 实战项目集合
 
-## 📚 项目简介
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](./LICENSE)
+[![AI Agent](https://img.shields.io/badge/AI-Agent-orange)](./learning-notes/ai-agent/)
+[![Java](https://img.shields.io/badge/Java-17+-red)](./learning-notes/java/)
+[![Python](https://img.shields.io/badge/Python-3.12+-green)](./learning-notes/python/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5.x-blue)](./learning-notes/frontend/)
 
-本项目包含技术学习笔记和实际项目代码，涵盖 Java 后端、Python AI、前端、iOS/Android 移动端、AI Agent 等领域。
+---
 
-## 📁 项目结构
+## 👋 关于这个项目
+
+这是我的个人技术学习与实践仓库，涵盖全栈开发和 AI Agent 领域。包含体系化的学习笔记（90+ 篇 AI Agent 文档）和多个可运行的实战项目。
+
+> 📌 本仓库为私有仓库，如需查看完整代码和笔记内容，请联系我获取访问权限。
+
+## 📊 内容概览
 
 ```
-.
-├── learning-notes/              # 技术学习笔记
-│   ├── java/                   # Java 技术栈（12个分类）
-│   ├── python/                 # Python 技术栈（16个分类）
-│   ├── frontend/               # 前端技术栈（16个分类）
-│   ├── ios/                    # iOS 技术栈（11个分类）
-│   ├── android/                # Android 技术栈（11个分类）
-│   ├── ai-agent/               # AI Agent 技术栈（23个分类，85个文档）
-│   └── architecture/           # 架构设计
+📁 learning-notes/          200+ 篇技术笔记
 │
-├── spring-boot-microservice-demo/  # Spring Boot 微服务项目
-├── rag-llm-agent-platform/         # RAG + LLM Agent 平台
-├── langgraph-mcp-agent-demo/       # LangGraph + MCP Agent 示例
-├── crewai-multi-agent-demo/        # CrewAI 多 Agent 协作示例
-└── scripts/                        # 工具脚本
+├── 🤖 ai-agent/            24 个分类 · 90 篇文档
+│   Agent 协议 · 框架对比 · RAG · MCP · 多Agent · 记忆系统
+│   Harness Engineering · Voice Agent · Agent 支付 · 云厂商方案
+│
+├── ☕ java/                 12 个分类
+│   Spring 全家桶 · 微服务 · 中间件 · JVM · 设计模式
+│
+├── 🐍 python/              16 个分类
+│   FastAPI · 数据分析 · 机器学习 · 并发 · 爬虫
+│
+├── 🌐 frontend/            16 个分类
+│   React · Vue3 · TypeScript · Node.js · 工程化 · 性能优化
+│
+├── 🍎 ios/                 11 个分类
+│   Swift · SwiftUI · UIKit · 架构模式 · 系统框架
+│
+├── 🤖 android/             11 个分类
+│   Kotlin · Jetpack Compose · 架构模式 · 性能优化
+│
+└── 🏗️ architecture/        架构设计
+    事件驱动架构
 ```
 
-## 🎯 核心内容
+## 🎯 实战项目
 
-### 学习笔记
+### LangGraph + MCP 智能 Agent
 
-| 技术栈 | 分类数 | 核心内容 |
-|--------|--------|---------|
-| [Java](./learning-notes/java/README.md) | 12 | Spring 全家桶、中间件、容器化、网络编程、数据库 |
-| [Python](./learning-notes/python/README.md) | 16 | Web 开发、数据分析、机器学习、并发、爬虫 |
-| [前端](./learning-notes/frontend/README.md) | 16 | React/Vue、TypeScript、Node.js、工程化、性能优化 |
-| [iOS](./learning-notes/ios/README.md) | 11 | Swift、SwiftUI/UIKit、架构模式、系统框架 |
-| [Android](./learning-notes/android/README.md) | 11 | Kotlin、Jetpack Compose、Jetpack 组件、架构模式 |
-| [AI Agent](./learning-notes/ai-agent/README.md) | 23 | Agent 协议/框架/RAG/工具/Voice/Harness Engineering（85个文档） |
+基于 LangGraph 工作流编排 + MCP 工具协议的生产级 Agent 示例。
 
-### 实战项目
+| 特性 | 说明 |
+|------|------|
+| 工作流编排 | LangGraph 图结构，条件路由，状态持久化 |
+| MCP 工具 | 文件系统、数据库查询等 MCP Server |
+| RAG 检索 | ChromaDB 向量存储，混合检索 + Reranker |
+| 记忆管理 | LangGraph State + Mem0 长期记忆 |
+| 人机协作 | 敏感操作审批节点 |
 
-| 项目 | 技术栈 | 核心功能 |
-|------|--------|---------|
-| [Spring Boot 微服务](./spring-boot-microservice-demo/README.md) | Java, Spring Cloud, Kafka, K8s | 事件驱动、全链路追踪、容器化部署 |
-| [RAG LLM Agent 平台](./rag-llm-agent-platform/README.md) | Python, FastAPI, LlamaIndex, pgvector | RAG 检索、30+ Function Calling、流式交互 |
-| [LangGraph + MCP Agent](./langgraph-mcp-agent-demo/README.md) | Python, LangGraph, MCP, ChromaDB | 图工作流、MCP 工具、RAG、人机交互 |
-| [CrewAI 多 Agent 协作](./crewai-multi-agent-demo/README.md) | Python, CrewAI, FastAPI | 四角色 Agent 团队、顺序/层级执行、记忆系统 |
+```
+用户请求 → 意图路由 → RAG检索 / MCP工具 / 人工审批 → LLM生成 → 响应
+```
 
-## 🛠️ 技术栈
+### CrewAI 多 Agent 协作
 
-### 后端开发
-- **Java**: JDK 17+, Spring Boot 3.x, Spring Cloud
-- **Python**: Python 3.12+, FastAPI
-- **消息队列**: Kafka, RabbitMQ
-- **数据库**: PostgreSQL, MongoDB, Redis, Elasticsearch
-- **向量数据库**: PostgreSQL + pgvector, ChromaDB
+四角色 Agent 团队协作完成技术博客内容创作流水线。
 
-### AI Agent
-- **框架**: LangGraph, CrewAI, OpenAI Agents SDK
-- **协议**: MCP, A2A, AG-UI
-- **RAG**: LlamaIndex, LangChain, ChromaDB
-- **LLM**: OpenAI GPT-4o, Anthropic Claude, Gemini, Qwen
-- **工程化**: Harness Engineering, LangSmith, LangFuse
+| 角色 | 职责 |
+|------|------|
+| 🔍 高级研究员 | 深度调研主题，收集权威资料 |
+| ✍️ 技术作家 | 基于研究成果撰写技术文章 |
+| 📝 内容编辑 | 审校质量，优化结构与表达 |
+| 📈 SEO 优化师 | 关键词优化，搜索引擎友好化 |
 
-### 前端
-- **框架**: React, Vue3, Next.js, Nuxt3
-- **语言**: TypeScript, JavaScript
-- **工程化**: Vite, Webpack, pnpm, ESLint
+```
+主题输入 → 研究 → 写作 → 编辑 → SEO优化 → 成品文章
+```
 
-### 移动端
-- **iOS**: Swift, SwiftUI, UIKit
-- **Android**: Kotlin, Jetpack Compose
+## 🛠️ 技术栈全景
 
-### 工程化
-- **容器化**: Docker, Docker Compose
-- **编排**: Kubernetes
-- **CI/CD**: GitHub Actions
-- **监控**: Prometheus, Grafana
 
-## 📝 说明
+| 领域 | 技术 |
+|------|------|
+| 后端 | Java 17+, Spring Boot 3.x, Spring Cloud, Python 3.12+, FastAPI |
+| AI Agent | LangGraph, CrewAI, OpenAI Agents SDK, MCP, A2A, AG-UI |
+| RAG | LlamaIndex, LangChain, ChromaDB, pgvector |
+| LLM | GPT-4o, Claude, Gemini, Qwen |
+| 前端 | React, Vue3, Next.js, TypeScript |
+| 移动端 | Swift/SwiftUI, Kotlin/Jetpack Compose |
+| 数据库 | PostgreSQL, MongoDB, Redis, Elasticsearch |
+| 工程化 | Docker, Kubernetes, GitHub Actions, Prometheus |
 
-- 学习笔记内容已移除所有敏感信息
-- 项目代码为技术实践示例，不包含商业机密
-- 所有配置使用环境变量，不包含硬编码密钥
+## 🤖 AI Agent 笔记亮点
+
+这是目前最完整的部分，覆盖 AI Agent 全生态：
+
+- Agent 协议生态：MCP / A2A / ACP / ANP / AG-UI 全面解析 + 协议转换工具
+- 8 大主流框架对比：LangGraph / CrewAI / OpenAI SDK / Google ADK / AWS Strands / Spring AI / Vercel AI SDK / Dapr Agents
+- RAG 进阶：架构设计 → 向量数据库选型 → 高级 RAG → GraphRAG
+- 记忆框架：Mem0 / Letta(MemGPT) / Zep / LangMem
+- Harness Engineering：完整指南 + Context Engineering + CI/CD 集成
+- 实战案例：客服 / 代码 / 数据 / 研究 / 运维 / 内容创作 Agent
+
+## 📬 联系方式
+
+如果你对以下内容感兴趣，欢迎联系我获取访问权限：
+
+- 📖 完整的技术学习笔记
+- 💻 实战项目源码
+- 🤝 技术交流与讨论
+
+> 联系方式：[请通过 GitHub Issues 或邮件联系]
+
+---
 
 ## 📄 License
 
 MIT License - 详见 [LICENSE](./LICENSE) 文件
+
