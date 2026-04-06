@@ -36,7 +36,7 @@ Content was rephrased for compliance with licensing restrictions.
 | 玩家 | 动作 | 意义 |
 |------|------|------|
 | Mastercard | 推出 Agent Pay 框架 + Agentic Token | 让现有卡网络直接支持 Agent 交易，Citi、US Bank 持卡人已可使用 |
-| Visa | 大规模推进 Network Tokenization | 基础设施层面为 Agent 支付铺路 |
+| Visa | 推出 Visa Intelligent Commerce 平台 + 大规模推进 Network Tokenization | 100+ 合作伙伴接入，30+ 在沙箱测试，2026 年进入主流落地阶段 |
 
 Mastercard 的策略很聪明：不另起炉灶，而是在现有卡网络上加一层 Agent 专用的 Token 机制，商户几乎不需要改造。
 
@@ -69,6 +69,7 @@ Mastercard 的策略很聪明：不另起炉灶，而是在现有卡网络上加
 | ACP | Stripe + OpenAI | 商户结账层 | 否 | 是（开放规范） | Agent 代用户在商户购物 |
 | UCP | Google + Shopify | 全链路商务 | 否 | 部分 | 从搜索到购买到履约 |
 | AP2 | Google | 授权信任层 | 否 | 部分 | Agent 身份验证、授权链 |
+| MPP | Stripe + Tempo | 会话支付层 | 是（USDC）+ 法币 | 是 | 高频微支付、Agent 工具调用 |
 
 来源：[Agent payment protocols compared](https://atxp.ai/blog/agent-payment-protocols-compared/) (Content was rephrased for compliance with licensing restrictions)
 
