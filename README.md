@@ -1,5 +1,7 @@
 # AI Agent 学习路线图 & 实战项目
 
+> 🇨🇳 中文 | [🇬🇧 English](./README_EN.md)
+>
 > 从零开始系统学习 AI Agent 开发：99 篇体系化笔记 + 2 个可运行项目，覆盖协议、框架、RAG、记忆、安全、支付全生态。
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](./LICENSE)
