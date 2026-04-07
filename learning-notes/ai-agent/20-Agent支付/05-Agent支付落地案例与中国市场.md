@@ -412,6 +412,187 @@ e-CNY 的可编程特性（与 Agent 支付相关）：
    目前法律上没有明确答案
 ```
 
+### 3.5 协议分层全景：谁解决哪一层？
+
+前面 3.2 提出了三种方案，但实际落地时你会发现：没有任何单一产品能端到端解决多 Agent 链式支付的所有问题。这是一个需要组合多层协议的架构问题。
+
+截至 2026 年 4 月，Agent 支付生态已经形成了清晰的分层格局：
+
+```text
+┌─────────────────────────────────────────────────────────────────┐
+│                  Agent 支付协议分层全景                           │
+├──────────┬──────────────────────┬───────────────────────────────┤
+│ 层级      │ 解决什么问题          │ 代表产品/协议                  │
+├──────────┼──────────────────────┼───────────────────────────────┤
+│ Layer 4  │ 全链路商务            │ Google UCP                    │
+│ 发现→履约 │ 从搜索到购买到履约     │ (Google + Shopify, 2026.1)    │
+├──────────┼──────────────────────┼───────────────────────────────┤
+│ Layer 3  │ 授权与信任            │ Google AP2                    │
+│ 谁批准    │ 谁批准 Agent 花钱？   │ (60+ 合作伙伴, 2025.9)       │
+│ 花钱？    │ 审计追踪、消费策略     │                               │
+├──────────┼──────────────────────┼───────────────────────────────┤
+│ Layer 2  │ 商户结账              │ Stripe ACP                    │
+│ 商户怎么  │ Agent 在商户侧完成    │ Mastercard Agent Pay          │
+│ 收钱？    │ 结账流程              │ 支付宝 Trust Protocol         │
+├──────────┼──────────────────────┼───────────────────────────────┤
+│ Layer 1  │ 支付协议              │ Coinbase x402 (HTTP 微支付)   │
+│ 钱怎么    │ 钱从 A 到 B 的通道    │ Stripe MPP (会话式流式扣款)   │
+│ 付？      │                      │                               │
+├──────────┼──────────────────────┼───────────────────────────────┤
+│ Layer 0  │ Agent 身份与信任基础   │ Affinidi Trust Fabric         │
+│ Agent 是  │ DID 身份、策略执行、   │ (DID + OPA + 多跳路由)       │
+│ 谁？      │ 多跳路由、审计        │ ATXP (身份+邮箱+支付+工具)   │
+└──────────┴──────────────────────┴───────────────────────────────┘
+
+关键洞察：
+  - 每个协议只解决 1-2 层的问题
+  - 生产环境需要组合 2-3 个协议
+  - Layer 0（身份层）是所有上层协议的前提，但目前最薄弱
+  - 业务编排层（预算分配、Saga 事务）需要自建，没有现成产品
+```
+
+各层产品的覆盖范围对照 3.1 的五个问题：
+
+| 问题 | Layer 0 (身份) | Layer 1 (支付) | Layer 2 (结账) | Layer 3 (授权) |
+|------|---------------|---------------|---------------|---------------|
+| 1. 谁来分配预算？ | ❌ | ❌ | ❌ | ✅ AP2 消费策略 |
+| 2. 子 Agent 支付凭证从哪来？ | ✅ DID 身份 | ❌ | ✅ Agentic Token | ✅ 可验证凭证 |
+| 3. 预算动态调整？ | ❌ | ❌ | ❌ | ⚠️ 需自建编排 |
+| 4. Prompt injection 损失限制？ | ✅ OPA 策略 | ❌ | ✅ Token 限额 | ✅ 授权范围隔离 |
+| 5. 审计链追溯？ | ✅ DID 关联 | ✅ 链上记录 | ✅ 交易记录 | ✅ 审计追踪 |
+
+结论：问题 3（预算动态调整）是目前所有协议都没有覆盖的空白地带，需要在业务编排层自建。
+
+#### Affinidi Trust Fabric 在多 Agent 支付中的定位
+
+Affinidi Trust Fabric（详见 `15-Agent安全与治理/04-Affinidi Trust Fabric.md`）是目前最接近 Layer 0 完整方案的产品。它在多 Agent 支付场景中的价值：
+
+```text
+Trust Fabric 能覆盖的：
+  ✅ 为主 Agent 和每个子 Agent 分配 DID 身份（自动生成，基于 Ed25519）
+  ✅ 通过 OPA 策略执行预算上限和商户类别限制
+  ✅ 多跳路由：用户 → 主 Agent Gateway → 子 Agent Gateway → 商户
+  ✅ 完整审计日志（关联 ID 追踪每一跳）
+  ✅ 熔断器防止级联故障（某个子 Agent 挂了不影响其他）
+  ✅ 原生支持 A2A / MCP / AP2 / UCP / x402 / DIDComm 多协议
+
+Trust Fabric 不覆盖的：
+  ❌ 支付处理（它是通信层，不是支付层）
+  ❌ 预算分配逻辑（OPA 可以做限额检查，但分配策略需自建）
+  ❌ 分布式事务协调（Saga 补偿逻辑需自建）
+  ❌ 统一对账（需要额外的对账服务）
+```
+
+### 3.6 生产实践方案：多 Agent 链式支付架构
+
+基于当前（2026 年 4 月）可用的产品和协议，针对 3.1 的东京旅行场景，推荐的生产架构如下：
+
+```text
+┌─────────────────────────────────────────────────────────────┐
+│                      用户授权层                               │
+│  Google AP2：签发根授权凭证，定义总预算 ¥15,000               │
+│  + 消费策略（商户类别限制）+ 审计追踪                         │
+│                                                              │
+│  为什么选 AP2：                                               │
+│  - 唯一专门解决"谁批准 Agent 花钱"的协议                     │
+│  - 60+ 合作伙伴（含 Mastercard、PayPal、Amex）               │
+│  - 支持可验证凭证链（对应方案三）                             │
+└──────────────────────────┬──────────────────────────────────┘
+                           │
+┌──────────────────────────▼──────────────────────────────────┐
+│                  Agent 信任网关层                              │
+│  Affinidi Trust Fabric：                                      │
+│  - 为主 Agent 和 5 个子 Agent 各分配 DID 身份                 │
+│  - OPA 策略示例：                                             │
+│    机票 Agent → 只能访问航空类 API，单笔 ≤ ¥4,000            │
+│    酒店 Agent → 只能访问酒店类 API，单笔 ≤ ¥5,000            │
+│  - Channel 配置：每个子 Agent 一个独立 Channel                │
+│  - 多跳路由 + DIDComm 加密通信                                │
+│  - 熔断器：某个子 Agent 超时不影响其他                        │
+│                                                              │
+│  为什么选 Trust Fabric：                                      │
+│  - DID 身份 + OPA 策略恰好对应"层级 Token 委托模型"          │
+│  - 原生支持 AP2/A2A/MCP/x402 多协议                          │
+│  - 多跳路由天然适合 Agent 链式调用                            │
+└──────────────────────────┬──────────────────────────────────┘
+                           │
+┌──────────────────────────▼──────────────────────────────────┐
+│                  支付执行层（按场景选择）                       │
+│                                                              │
+│  Agent → 商户支付（机票/酒店/门票/餐厅）：                    │
+│    Stripe ACP + Mastercard Agent Pay                         │
+│    走传统卡组织通道，商户不需要任何改造                        │
+│    中国商户场景可替换为支付宝 Trust Protocol                   │
+│                                                              │
+│  Agent → Agent 微支付（调用专业 Agent 服务）：                │
+│    x402（按次付费）或 MPP（会话式流式扣款）                   │
+│    适合 Agent 调用翻译 Agent、汇率 Agent 等场景               │
+│                                                              │
+│  为什么分两条通道：                                           │
+│  - 商户支付走 ACP/Agent Pay，因为商户接受度高、合规成熟       │
+│  - Agent 间支付走 x402/MPP，因为轻量、支持亚美分级微支付      │
+└──────────────────────────┬──────────────────────────────────┘
+                           │
+┌──────────────────────────▼──────────────────────────────────┐
+│                  业务编排层（需要自建）                         │
+│                                                              │
+│  主 Agent（旅行规划）负责：                                    │
+│                                                              │
+│  1. 动态预算池管理（方案二）                                   │
+│     - 维护全局预算池 ¥15,000                                  │
+│     - 子 Agent 每次支付前向主 Agent 申请额度                   │
+│     - 主 Agent 根据剩余预算和优先级批准/拒绝                   │
+│                                                              │
+│  2. Saga 模式处理分布式事务                                    │
+│     - 定义补偿链：机票成功但酒店失败 → 触发退票               │
+│     - 每个子 Agent 的操作都有对应的补偿操作                    │
+│     - 可用 LangGraph 或 Temporal 实现工作流编排                │
+│                                                              │
+│  3. 统一对账汇总                                               │
+│     - 收集所有子 Agent 的交易记录                              │
+│     - 汇总为用户可读的账单                                     │
+│     - 处理不同商户的结算周期差异（T+1 到 T+3）                │
+│                                                              │
+│  技术选型建议：                                                │
+│  - 工作流编排：LangGraph / Temporal / AWS Step Functions      │
+│  - 状态管理：Redis（预算池）+ PostgreSQL（交易记录）          │
+│  - 事件驱动：Kafka/SQS（子 Agent 支付事件通知主 Agent）       │
+└─────────────────────────────────────────────────────────────┘
+```
+
+#### 方案选型理由总结
+
+| 层级 | 选型 | 理由 |
+|------|------|------|
+| 授权层 | AP2 | 唯一专注授权链的协议，VC 凭证链可审计 |
+| 信任网关 | Affinidi Trust Fabric | DID + OPA + 多跳路由，多协议支持 |
+| 商户支付 | ACP + Agent Pay | 商户零改造，传统卡通道合规成熟 |
+| Agent 间支付 | x402 / MPP | 轻量微支付，适合 Agent-to-Agent |
+| 业务编排 | 自建（LangGraph/Temporal） | 预算分配、Saga 事务是业务逻辑，无现成产品 |
+
+#### 当前方案的局限性（诚实评估）
+
+```text
+1. AP2 尚无公开的消费者产品
+   - 目前主要面向 Google Cloud 企业客户
+   - 开发者社区和文档不如 x402 成熟
+   - 替代方案：用 Mastercard Agentic Token 的限额机制做简化版授权
+
+2. Affinidi Trust Fabric 是新产品
+   - 2025 年底才推出，生产案例有限
+   - 替代方案：用传统 API Gateway（如 Kong）+ 自建 DID 服务
+
+3. 分布式事务没有银弹
+   - Saga 模式只能做"最终一致性"，不能做"强一致性"
+   - 跨商户退款可能需要人工介入
+   - 这是分布式系统的固有限制，不是协议能解决的
+
+4. 责任归属仍无法律答案
+   - 技术上可以追溯完整的授权链和执行链
+   - 但法律上"Agent 的行为谁负责"仍是开放问题
+   - 建议：在用户授权环节明确免责条款
+```
+
 ---
 
 > 参考来源：
@@ -423,3 +604,8 @@ e-CNY 的可编程特性（与 Agent 支付相关）：
 > - [China digital yuan enters new era](https://www.kucoin.com/news/flash/china-tightens-crypto-oversight-expands-digital-yuan-in-2026) (Content was rephrased for compliance with licensing restrictions)
 > - [Agentic payments protocols compared - Crossmint](https://www.crossmint.com/learn/agentic-payments-protocols-compared) (Content was rephrased for compliance with licensing restrictions)
 > - [A2A with x402 micropayments - arXiv](https://arxiv.org/html/2507.19550v1) (Content was rephrased for compliance with licensing restrictions)
+> - [Every Agent Payment Protocol Compared - ATXP](https://atxp.ai/blog/agent-payment-protocols-compared/) (Content was rephrased for compliance with licensing restrictions)
+> - [Affinidi Trust Fabric Documentation](https://docs.affinidi.com/products/affinidi-trust-fabric/) (Content was rephrased for compliance with licensing restrictions)
+> - [Google AP2 Announcement](https://cloud.google.com/blog/products/ai-machine-learning/announcing-agents-to-payments-ap2-protocol) (Content was rephrased for compliance with licensing restrictions)
+> - [Stripe MPP - Zuplo](https://zuplo.com/blog/stripe-mpp-for-agentic-payments) (Content was rephrased for compliance with licensing restrictions)
+> - [Mastercard Agent Pay Acceptance Framework](https://www.mastercard.com/am/en/news-and-trends/stories/2025/agentic-commerce-framework.html) (Content was rephrased for compliance with licensing restrictions)
