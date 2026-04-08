@@ -89,7 +89,64 @@ Mastercard 的优势在于网络效应——全球商户已经接入，不需要
 
 两者其实不完全竞争——ACP 解决的是"Agent 怎么和商户交互"，AgentToken 解决的是"Agent 用什么凭证付款"。理论上可以互补。
 
-### 3. x402 生态
+### 3. Stripe Issuing for Agents
+
+2026 年，Stripe 在其发卡服务 Stripe Issuing 基础上推出了专门面向 Agent 场景的扩展——Issuing for Agents。这是目前最成熟的、可直接用于生产的 Agent 发卡方案。
+
+核心能力：
+
+- 通过 API 即时创建一次性虚拟卡，Agent 用完即废
+- 实时消费控制：按交易金额、MCC（商户类别码）、地理位置动态限制
+- Webhook 实时审批：每笔授权请求到达时，你的服务端可以程序化地批准或拒绝
+- 完整交易可见性：每笔 Agent 发起的交易都有实时事件和详细数据
+- 卡的 metadata 可绑定 `agent_id` 和 `task_id`，方便审计追溯
+
+```json
+// Stripe Issuing Webhook 示例：实时审批 Agent 交易
+{
+  "type": "issuing_authorization.request",
+  "data": {
+    "object": {
+      "id": "iauth_1abc...",
+      "amount": 4999,
+      "currency": "usd",
+      "merchant_data": {
+        "name": "Example Store",
+        "category_code": "5411"
+      },
+      "card": {
+        "id": "ic_1xyz...",
+        "metadata": {
+          "agent_id": "agent_shopping_001",
+          "task_id": "task_abc123"
+        }
+      }
+    }
+  }
+}
+```
+
+典型场景：采购 Agent、旅行 Agent（按行程发卡）、订阅管理 Agent。
+
+| 维度 | AgentToken | Stripe Issuing for Agents |
+|------|-----------|--------------------------|
+| 定位 | 多令牌类型中间层 | Stripe 生态内的 Agent 发卡服务 |
+| 令牌类型 | VCN + Network Token + X402 VC | 仅虚拟卡（Visa/Mastercard） |
+| 策略引擎 | 自建策略引擎，高度灵活 | Webhook 实时审批 + 消费规则 |
+| 微支付支持 | 支持（X402 VC） | 不适合（卡网络有最低手续费） |
+| 稳定币支持 | 支持 | 不支持 |
+| 开发者体验 | CLI + API | Stripe Dashboard + API（生态成熟） |
+| 商户覆盖 | 取决于底层网络 | 所有接受 Visa/MC 的商户 |
+| 合规基础设施 | 需要自建或依赖合作方 | Stripe 自带（PCI DSS Level 1） |
+| 成熟度 | 早期产品 | 生产就绪，Stripe 发卡业务已运营多年 |
+
+Stripe Issuing 的优势在于开箱即用——如果你已经在用 Stripe，几行代码就能给 Agent 发卡。它的局限是只支持传统卡网络，不覆盖稳定币微支付场景，且绑定在 Stripe 生态内。
+
+与 3.6 生产实践方案的关系：在"支付执行层"中，Stripe Issuing for Agents 可以替代或补充 ACP，作为"主 Agent 为子 Agent 动态发卡"的具体实现。这恰好对应了第三章 3.2 中"方案一：主 Agent 统一管理"的落地路径。
+
+来源：[Stripe Issuing for Agents](https://docs.stripe.com/issuing/agents) (Content was rephrased for compliance with licensing restrictions)
+
+### 4. x402 生态
 
 | 维度 | AgentToken | x402 原生 |
 |------|-----------|----------|
@@ -272,3 +329,5 @@ AgentToken 的产品设计抓住了一个真实的市场空白：AI Agent 需要
 > - [Agent payment protocols compared - ATXP](https://atxp.ai/blog/agent-payment-protocols-compared/) (Content was rephrased for compliance with licensing restrictions)
 > - [Virtual cards, IOU tokens, and crypto - ATXP](https://atxp.ai/blog/agent-payment-models-virtual-cards-iou-crypto) (Content was rephrased for compliance with licensing restrictions)
 > - [x402 protocol - Chainstack](https://chainstack.com/x402-protocol-for-ai-agents/) (Content was rephrased for compliance with licensing restrictions)
+> - [Stripe Issuing for Agents](https://docs.stripe.com/issuing/agents) (Content was rephrased for compliance with licensing restrictions)
+> - [Stripe Issuing Overview](https://docs.stripe.com/issuing) (Content was rephrased for compliance with licensing restrictions)
