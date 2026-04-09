@@ -2,10 +2,10 @@
 
 > 🇨🇳 中文 | [🇬🇧 English](./README_EN.md)
 >
-> 从零开始系统学习 AI Agent 开发：99 篇体系化笔记 + 2 个可运行项目，覆盖协议、框架、RAG、记忆、安全、支付全生态。
+> 从零开始系统学习 AI Agent 开发：101 篇体系化笔记 + 2 个可运行项目，覆盖协议、框架、RAG、记忆、安全、支付全生态。
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](./LICENSE)
-[![AI Agent Notes](https://img.shields.io/badge/AI_Agent-99_篇笔记-orange)](./learning-notes/ai-agent/)
+[![AI Agent Notes](https://img.shields.io/badge/AI_Agent-101_篇笔记-orange)](./learning-notes/ai-agent/)
 [![Total Notes](https://img.shields.io/badge/全部笔记-422_篇-green)](./learning-notes/)
 
 ## 谁适合看
@@ -86,7 +86,7 @@
 | 12 | [模型服务](./learning-notes/ai-agent/12-模型服务/) | 3 | OpenAI/Claude API、开源模型部署、模型路由 |
 | 13 | [AI 网关与路由](./learning-notes/ai-agent/13-AI网关与路由/) | 3 | LiteLLM / Vercel AI Gateway / Portkey |
 | 14 | [可观测与评估](./learning-notes/ai-agent/14-可观测与评估/) | 6 | LLM 可观测性、评估基准、测试工程、成本优化 |
-| 15 | [Agent 安全与治理](./learning-notes/ai-agent/15-Agent安全与治理/) | 4 | 身份权限、治理框架、纵深防御、Affinidi Trust Fabric |
+| 15 | [Agent 安全与治理](./learning-notes/ai-agent/15-Agent安全与治理/) | 6 | 身份权限、治理框架、纵深防御、Affinidi Trust Fabric、MCP 安全漏洞、Prompt 注入与记忆投毒 |
 | 16 | [Harness Engineering](./learning-notes/ai-agent/16-Harness%20Engineering/) | 5 | 完整指南、Context Engineering、CI/CD 集成 |
 
 </details>

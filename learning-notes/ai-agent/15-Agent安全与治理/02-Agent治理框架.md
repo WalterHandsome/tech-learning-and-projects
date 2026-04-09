@@ -115,6 +115,124 @@ SOC2 合规：
 └─ 事件响应：Agent 安全事件处理流程
 ```
 
+### 2.1 EU AI Act 对 Agent 的要求
+
+EU AI Act 是全球首部全面的 AI 监管法律，2024 年 8 月生效，高风险 AI 义务于 2026 年 8 月 2 日全面执行。
+
+```
+EU AI Act 时间线：
+  2024.08    法案生效
+  2025.02    禁止性 AI 实践生效（社会评分、实时远程生物识别等）
+  2026.08.02 高风险 AI 系统义务全面生效 ← 关键节点
+  罚款上限：全球年营收 7% 或 3500 万欧元（取较高者）
+
+Agent 在 EU AI Act 中的分类：
+  EU AI Act 将 Agent 视为"GPAI 模型 + 脚手架（scaffolding）"
+  → 链式推理（Chain-of-Thought）= 脚手架
+  → 外部工具访问 = 脚手架
+  → Agent 的风险等级取决于其应用场景，而非技术本身
+
+风险分级与 Agent 的对应：
+  ┌─────────────────────────────────────────────────────┐
+  │ 风险等级    │ Agent 场景示例           │ 要求         │
+  ├─────────────┼─────────────────────────┼──────────────┤
+  │ 不可接受    │ 社会信用评分 Agent       │ 完全禁止     │
+  │ 高风险      │ 金融决策 Agent           │ 全面合规义务  │
+  │             │ 招聘筛选 Agent           │              │
+  │             │ 医疗诊断 Agent           │              │
+  │ 有限风险    │ 客服聊天 Agent           │ 透明度义务    │
+  │ 最低风险    │ 内容推荐 Agent           │ 自愿行为准则  │
+  └─────────────┴─────────────────────────┴──────────────┘
+
+高风险 AI Agent 的合规义务（2026.08 生效）：
+  ├─ 风险管理系统：建立并维护持续的风险管理流程
+  ├─ 数据治理：训练数据和运行数据的质量管理
+  ├─ 技术文档：详细记录 Agent 的设计、开发和部署
+  ├─ 日志记录：自动记录 Agent 的运行日志，可追溯
+  ├─ 透明度：向用户明确告知正在与 AI 交互
+  ├─ 人工监督：确保人类可以有效监督和干预 Agent
+  ├─ 准确性和鲁棒性：确保 Agent 输出的准确性和安全性
+  └─ 网络安全：保护 Agent 免受网络攻击
+```
+
+来源：[EU AI Act Service Desk FAQ](https://ai-act-service-desk.ec.europa.eu/en/faq) (Content was rephrased for compliance with licensing restrictions)
+来源：[Innobu: AI Agent Governance 2026](https://www.innobu.com/en/articles/ai-agent-governance-enterprise-aws-microsoft-anthropic.html) (Content was rephrased for compliance with licensing restrictions)
+来源：[FAR AI: Governing AI Agents Under EU AI Act](https://far.ai/events/sessions/robin-staes-polet-governing-ai-agents-under-the-eu-ai-act) (Content was rephrased for compliance with licensing restrictions)
+
+### 2.2 NIST AI RMF（AI 风险管理框架）
+
+NIST AI RMF 是美国国家标准与技术研究院发布的自愿性 AI 风险管理框架，虽然不具法律强制力，但正在被越来越多的监管机构采纳。
+
+```
+NIST AI RMF 四大核心功能：
+
+  ┌─────────── GOVERN（治理）───────────┐
+  │ 建立 AI 风险管理的组织文化和流程      │
+  │ ├─ 定义 AI 治理政策和角色            │
+  │ ├─ 建立问责机制                      │
+  │ └─ 培训和意识提升                    │
+  └──────────────────────────────────────┘
+           │
+  ┌────────▼──── MAP（映射）────────────┐
+  │ 识别和分类 AI 系统的风险              │
+  │ ├─ 识别 Agent 的使用场景和利益相关者  │
+  │ ├─ 评估 Agent 可能产生的影响          │
+  │ └─ 记录 Agent 的局限性和已知风险      │
+  └──────────────────────────────────────┘
+           │
+  ┌────────▼── MEASURE（度量）──────────┐
+  │ 量化和评估 AI 风险                    │
+  │ ├─ 定义 Agent 的性能和安全指标        │
+  │ ├─ 建立测试和评估流程（红队测试等）    │
+  │ └─ 持续监控 Agent 的行为偏差          │
+  └──────────────────────────────────────┘
+           │
+  ┌────────▼── MANAGE（管理）──────────┐
+  │ 处理和缓解已识别的风险                │
+  │ ├─ 实施风险缓解措施                   │
+  │ ├─ 建立事件响应流程                   │
+  │ └─ 持续改进风险管理实践               │
+  └──────────────────────────────────────┘
+
+NIST AI RMF 与 Agent 治理的映射：
+  GOVERN → Agent 治理政策、角色定义、问责机制
+  MAP    → Agent 风险评估、使用场景分析、影响评估
+  MEASURE → Agent 测试（红队测试、Eval）、监控指标
+  MANAGE → 事件响应、权限管理、持续改进
+```
+
+来源：[FordelStudios: NIST AI RMF vs EU AI Act](https://fordelstudios.com/research/ai-governance-nist-rmf-vs-eu-ai-act) (Content was rephrased for compliance with licensing restrictions)
+
+### 2.3 全球 Agent 监管对比
+
+```
+┌──────────────── 全球 Agent 监管对比 ────────────────┐
+│                                                      │
+│ 地区    │ 法规/框架          │ 性质    │ Agent 影响   │
+│─────────┼───────────────────┼────────┼─────────────│
+│ 欧盟    │ EU AI Act          │ 强制   │ 高风险 Agent │
+│         │                    │        │ 需全面合规   │
+│─────────┼───────────────────┼────────┼─────────────│
+│ 美国    │ NIST AI RMF        │ 自愿   │ 框架指导，   │
+│         │ 各州立法（加州等）   │ 部分强制│ 逐步收紧    │
+│─────────┼───────────────────┼────────┼─────────────│
+│ 中国    │ 生成式 AI 管理办法  │ 强制   │ 备案制，     │
+│         │ 算法推荐管理规定    │ 强制   │ 内容安全审查 │
+│─────────┼───────────────────┼────────┼─────────────│
+│ 英国    │ AI Safety Institute │ 自愿   │ 原则导向，   │
+│         │ Consumer Duty      │ 强制   │ 行业自律     │
+│─────────┼───────────────────┼────────┼─────────────│
+│ 日本    │ AI 事业者指南       │ 自愿   │ 宽松监管，   │
+│         │                    │        │ 促进创新     │
+└──────────────────────────────────────────────────────┘
+
+企业合规建议：
+├─ 面向全球市场 → 以 EU AI Act 为基线（最严格）
+├─ 仅面向美国 → NIST AI RMF + SOC2
+├─ 面向中国 → 备案 + 内容安全 + 数据本地化
+└─ 通用建议 → 建立可审计的 Agent 治理体系，适配多地区要求
+```
+
 ## 3. 成本治理
 
 ```python
@@ -250,18 +368,128 @@ ALERTS = [
 
 ## 7. 事件响应
 
+### 7.1 行业数据背景
+
 ```
-Agent 事件响应流程：
-├─ 检测：监控系统发现异常
-├─ 分类：判断严重程度（P0-P3）
-├─ 响应：
-│   ├─ P0（紧急）：立即停止 Agent，通知 On-Call
-│   ├─ P1（严重）：限制 Agent 权限，1h 内响应
-│   ├─ P2（一般）：记录问题，24h 内处理
-│   └─ P3（低）：下个迭代处理
-├─ 修复：定位根因，修复问题
-├─ 恢复：验证修复，恢复服务
-└─ 复盘：事后分析，更新策略
+2025-2026 年 Agent 安全事件数据：
+
+  CrowdStrike 2026 全球威胁报告：
+  ├─ AI 驱动的攻击同比增长 89%
+  ├─ 从初始访问到横向移动的平均时间：29 分钟
+  └─ 首次记录国家级 AI Agent 自主执行 80-90% 攻击链
+
+  CrowdStrike + Mandiant 联合数据：
+  ├─ 1/8 企业安全事件涉及 Agent 系统
+  ├─ Agent 既是攻击目标，也是攻击向量
+  └─ 大部分组织缺乏 Agent 专项事件响应流程
+
+  Northeastern University "Agents of Chaos" 研究（2026.02）：
+  ├─ 对开源 AI Agent 框架进行红队测试
+  └─ 发现 11 个关键漏洞
+```
+
+来源：[Repello AI: Agentic AI Security Threats 2026](https://repello.ai/blog/agentic-ai-security-threats-2026) (Content was rephrased for compliance with licensing restrictions)
+来源：[DigitalApplied: 1 in 8 Breaches from Agentic Systems](https://www.digitalapplied.com/blog/ai-agent-security-2026-1-in-8-breaches-agentic-systems) (Content was rephrased for compliance with licensing restrictions)
+
+### 7.2 事件响应流程
+
+```
+Agent 事件响应流程（增强版）：
+
+  ┌─ 检测 ─────────────────────────────────────────┐
+  │ ├─ 监控系统告警（异常行为、成本飙升、权限失败）   │
+  │ ├─ 用户报告（Agent 行为异常）                    │
+  │ ├─ 安全扫描（定期红队测试发现漏洞）              │
+  │ └─ 外部通报（CVE 披露、供应链攻击通知）          │
+  └────────────────────────────────────────────────┘
+           │
+  ┌────────▼── 分类与评估 ─────────────────────────┐
+  │ P0（紧急）：Agent 被劫持执行恶意操作              │
+  │   → 数据泄露、未授权支付、系统破坏               │
+  │   → 响应时间：立即（< 15 分钟）                  │
+  │                                                  │
+  │ P1（严重）：Agent 安全防线被突破但未造成实际损害   │
+  │   → Prompt 注入成功但被权限控制拦截               │
+  │   → 响应时间：1 小时内                           │
+  │                                                  │
+  │ P2（一般）：发现潜在漏洞但未被利用                │
+  │   → 红队测试发现新攻击向量                       │
+  │   → 响应时间：24 小时内                          │
+  │                                                  │
+  │ P3（低）：配置优化、非紧急安全改进                │
+  │   → 响应时间：下个迭代                           │
+  └────────────────────────────────────────────────┘
+           │
+  ┌────────▼── 遏制 ──────────────────────────────┐
+  │ P0 遏制措施：                                    │
+  │ ├─ 立即停止受影响的 Agent（Kill Switch）          │
+  │ ├─ 撤销 Agent 的所有 Token 和凭证                │
+  │ ├─ 隔离受影响的 MCP Server                       │
+  │ ├─ 保留现场证据（日志、内存快照）                 │
+  │ └─ 通知安全团队和管理层                          │
+  └────────────────────────────────────────────────┘
+           │
+  ┌────────▼── 修复与恢复 ────────────────────────┐
+  │ ├─ 根因分析（RCA）                              │
+  │ ├─ 修复漏洞（Prompt 加固、权限收紧、补丁更新）   │
+  │ ├─ 红队验证（确认修复有效）                      │
+  │ ├─ 灰度恢复（先恢复低风险功能）                  │
+  │ └─ 全面恢复（确认稳定后恢复全部功能）            │
+  └────────────────────────────────────────────────┘
+           │
+  ┌────────▼── 复盘与改进 ────────────────────────┐
+  │ ├─ 事后分析报告（时间线、影响范围、根因）        │
+  │ ├─ 更新防御策略（新增检测规则、收紧权限）        │
+  │ ├─ 更新红队测试用例（覆盖新发现的攻击向量）      │
+  │ ├─ 更新事件响应手册                             │
+  │ └─ 团队培训和知识分享                           │
+  └────────────────────────────────────────────────┘
+```
+
+### 7.3 Kill Switch 实现
+
+```python
+import asyncio
+from datetime import datetime
+
+class AgentKillSwitch:
+    """Agent 紧急停止开关"""
+
+    def __init__(self):
+        self.killed_agents: dict[str, dict] = {}
+        self.global_kill: bool = False
+
+    async def kill_agent(self, agent_id: str, reason: str, operator: str):
+        """停止特定 Agent"""
+        self.killed_agents[agent_id] = {
+            "killed_at": datetime.utcnow().isoformat(),
+            "reason": reason,
+            "operator": operator,
+        }
+        # 撤销 Agent 的所有活跃 Token
+        await self._revoke_tokens(agent_id)
+        # 断开 Agent 的所有 MCP 连接
+        await self._disconnect_mcp(agent_id)
+        # 发送告警
+        await self._alert(f"Agent {agent_id} 已被紧急停止: {reason}")
+
+    async def global_shutdown(self, reason: str, operator: str):
+        """全局紧急停止（所有 Agent）"""
+        self.global_kill = True
+        await self._alert(f"全局 Agent 紧急停止: {reason} (by {operator})")
+
+    def is_killed(self, agent_id: str) -> bool:
+        """检查 Agent 是否被停止（每次工具调用前检查）"""
+        return self.global_kill or agent_id in self.killed_agents
+
+    async def revive_agent(self, agent_id: str, operator: str):
+        """恢复 Agent（需要不同于停止操作者的人确认）"""
+        if agent_id in self.killed_agents:
+            original_operator = self.killed_agents[agent_id]["operator"]
+            if operator == original_operator:
+                raise PermissionError("恢复操作需要不同于停止操作者的人确认")
+            del self.killed_agents[agent_id]
+            await self._alert(f"Agent {agent_id} 已恢复 (by {operator})")
 ```
 
 ## 8. 企业部署检查清单
@@ -302,3 +530,11 @@ Agent 事件响应流程：
 ### 🌐 YouTube
 - [DeepLearning.AI - Quality and Safety for LLM Applications](https://www.deeplearning.ai/short-courses/quality-safety-llm-applications/) — LLM安全与质量（免费）
 - [DeepLearning.AI - Red Teaming LLM Applications](https://www.deeplearning.ai/short-courses/red-teaming-llm-applications/) — LLM红队测试（免费）
+
+### 📖 参考资料
+- [EU AI Act Service Desk FAQ](https://ai-act-service-desk.ec.europa.eu/en/faq) — EU AI Act 官方 FAQ
+- [Virtido: EU AI Act Compliance Guide 2026](https://virtido.com/blog/en/ai-governance-eu-ai-act-compliance-guide) — EU AI Act 企业合规指南
+- [FordelStudios: NIST AI RMF vs EU AI Act](https://fordelstudios.com/research/ai-governance-nist-rmf-vs-eu-ai-act) — NIST 与 EU AI Act 对比
+- [Innobu: AI Agent Governance 2026](https://www.innobu.com/en/articles/ai-agent-governance-enterprise-aws-microsoft-anthropic.html) — AWS/Microsoft/Anthropic Agent 治理对比
+- [ENZ AI: EU AI Act and Agentic AI](https://www.enz.ai/blog/the-eu-ai-act-bends-for-agentic-ai-it-need-not-break) — EU AI Act 与 Agentic AI
+- [PointGuard AI: AI Security Incident Tracker](https://www.pointguardai.com/ai-security-incident-tracker) — AI 安全事件追踪器

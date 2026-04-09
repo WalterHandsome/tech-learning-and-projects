@@ -2,10 +2,10 @@
 
 > [🇨🇳 中文](./README.md) | 🇬🇧 English
 >
-> A systematic learning path for AI Agent development: 99 structured notes + 2 runnable projects covering protocols, frameworks, RAG, memory, security, and payments.
+> A systematic learning path for AI Agent development: 101 structured notes + 2 runnable projects covering protocols, frameworks, RAG, memory, security, and payments.
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](./LICENSE)
-[![AI Agent Notes](https://img.shields.io/badge/AI_Agent-99_Notes-orange)](./learning-notes/ai-agent/)
+[![AI Agent Notes](https://img.shields.io/badge/AI_Agent-101_Notes-orange)](./learning-notes/ai-agent/)
 [![Total Notes](https://img.shields.io/badge/Total-422_Notes-green)](./learning-notes/)
 
 ## Who Is This For
@@ -38,7 +38,7 @@ Every note includes:
 | Working on RAG / Memory | [Advanced RAG](./learning-notes/ai-agent/06-RAG进阶/) → [Memory & State](./learning-notes/ai-agent/10-记忆与状态/) → [Memory Frameworks](./learning-notes/ai-agent/11-Agent记忆框架/) |
 | Interested in security & protocols | [Protocols](./learning-notes/ai-agent/02-Agent协议/) → [Security & Governance](./learning-notes/ai-agent/15-Agent安全与治理/) → [Agent Payments](./learning-notes/ai-agent/20-Agent支付/) |
 
-## 🤖 AI Agent Learning Roadmap (99 Notes)
+## 🤖 AI Agent Learning Roadmap (101 Notes)
 
 > Note: All notes are written in Chinese with English code examples.
 
@@ -86,7 +86,7 @@ Every note includes:
 | 12 | [Model Serving](./learning-notes/ai-agent/12-模型服务/) | 3 | OpenAI/Claude API, open-source model deployment, model routing |
 | 13 | [AI Gateway & Routing](./learning-notes/ai-agent/13-AI网关与路由/) | 3 | LiteLLM / Vercel AI Gateway / Portkey |
 | 14 | [Observability & Evaluation](./learning-notes/ai-agent/14-可观测与评估/) | 6 | LLM observability, benchmarks, testing, cost optimization |
-| 15 | [Security & Governance](./learning-notes/ai-agent/15-Agent安全与治理/) | 4 | Identity, governance frameworks, defense in depth, Affinidi Trust Fabric |
+| 15 | [Security & Governance](./learning-notes/ai-agent/15-Agent安全与治理/) | 6 | Identity, governance frameworks, defense in depth, Affinidi Trust Fabric, MCP security vulnerabilities, prompt injection & memory poisoning |
 | 16 | [Harness Engineering](./learning-notes/ai-agent/16-Harness%20Engineering/) | 5 | Complete guide, Context Engineering, CI/CD integration |
 
 </details>
