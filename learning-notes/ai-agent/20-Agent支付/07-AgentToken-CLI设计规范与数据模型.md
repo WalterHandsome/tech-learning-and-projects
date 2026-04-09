@@ -1,8 +1,10 @@
-# AgentToken CLI 设计规范与数据模型
+# AgentToken CLI 设计规范与数据模型分析
 
-> 本文档整理自 AgentToken（Agenzo）产品的原始 CLI 设计稿，翻译为中文并补充背景说明。
+> 本文档基于 AgentToken 产品的公开文档和产品体验，分析其 CLI 工具的数据模型和交互设计。
 > AgentToken 是一个 Agent 支付中间件，通过 `agent-token-admin` CLI 工具管理用户、密钥、成员和支付凭证。
 > 建议先阅读 01（支付基础）和 04（AgentToken 产品分析）后再看本文。
+>
+> 声明：本文为第三方产品分析学习笔记，所有内容基于公开可获取的信息整理。
 
 ---
 
@@ -170,7 +172,7 @@ Token 是 Agent 实际用来付款的凭证，有三种类型：
 
 ### 2.1 前置条件
 
-用户需要先在 [www.agenzo.ai](http://www.agenzo.ai) 注册账号，完成 KYC/KYB 后才能使用 CLI。
+用户需要先在 AgentToken 官网注册账号，完成 KYC/KYB 后才能使用 CLI。
 
 ### 2.2 命令分组
 
@@ -200,7 +202,7 @@ $ agent-token-admin login
   请检查收件箱并点击链接继续...
 ⠋ 等待验证中...
 ✓ 已登录为 alice@example.com
-  凭证已保存到 ~/.agent-cards-admin.json
+  凭证已保存到 ~/.agent-token/credentials.json
 ```
 
 #### 登录（API Key 方式）
@@ -370,7 +372,7 @@ $ agent-token-admin members add
 
   Member ID mem_abc123
   Email     bob@acme.com
-  Pay_ID    pay_evo_xxx
+  Pay_ID    pay_xxx
   Role      admin
 ```
 
