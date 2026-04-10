@@ -1,0 +1,18 @@
+{
+  "name": "x402-demo",
+  "version": "1.0.0",
+  "description": "x402 协议最小可运行 Demo（买方 + 卖方）",
+  "type": "module",
+  "scripts": {
+    "seller": "node seller.js",
+    "buyer": "node buyer.js",
+    "setup": "node setup-wallet.js"
+  },
+  "dependencies": {
+    "express": "^4.21.0",
+    "@x402/express": "^0.1.0",
+    "@x402/client": "^0.1.0",
+    "viem": "^2.21.0",
+    "dotenv": "^16.4.0"
+  }
+}
