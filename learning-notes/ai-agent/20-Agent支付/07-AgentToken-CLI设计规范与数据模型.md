@@ -733,11 +733,11 @@ $ agent-token-admin developer get org_abc123
 Key 格式：`sk_test_*`（沙箱）/ `sk_live_*`（生产）。默认沙箱。
 
 ```bash
-agent-token-admin keys create          # 创建
-agent-token-admin keys list --user org_abc123  # 列出
-agent-token-admin keys set             # 切换活跃 Key
-agent-token-admin keys renew           # 轮换（旧 Key 立即失效）
-agent-token-admin keys revoke          # 撤销（不可逆）
+agent-token-admin keys create                          # 创建（会提示选择 Developer）
+agent-token-admin keys list --user org_abc123          # 列出
+agent-token-admin keys set                             # 切换活跃 Key
+agent-token-admin keys renew                           # 轮换（旧 Key 立即失效）
+agent-token-admin keys revoke                          # 撤销（不可逆）
 ```
 
 Key 解析优先级：`--key` 参数 > 本地存储 > 交互式选择 > 粘贴输入
@@ -748,8 +748,8 @@ Member 有两种角色：
 
 | 角色 | 权限 |
 | ---- | ---- |
-| Admin | 管理成员和 API Key，不能转让所有权 |
-| Member | 只读访问支付方式，不能管理 Key 和成员 |
+| Admin | 管理成员，代为操作 User 层面的 API Key，不能转让所有权 |
+| Member | 只读访问支付方式，不能管人，不能碰 API Key |
 
 ```bash
 # 添加成员
