@@ -134,27 +134,54 @@ User（公司/个人账户 —— 顶层管理实体）
 蓝图原文："Members can hold multiple AI agents."
 
 Member 有两种角色：
-  Admin：管理成员和 API Key，不能转让所有权
-  Member：只读访问支付方式，不能管理 Key 和成员
+  Admin：管理成员，代为操作 User 层面的 API Key，不能转让所有权
+  Member：只读访问支付方式，不能管人，不能碰 API Key
 ```
 
-**Member 角色设计详解：为什么要分 Admin 和 Member？**
+**Member 角色设计详解：RBAC 权限模型**
+
+先搞清楚一个关键问题：**API Key 属于谁？**
+
+```text
+API Key 属于 User（公司账户），不属于任何 Member。
+但不同角色的 Member 对 API Key 有不同的操作权限。
+
+这和 Stripe 的设计一模一样：
+  Stripe 的 API Key 属于 Account（账户）
+  Administrator 角色可以创建/删除 API Key
+  Developer 角色也可以创建/删除 API Key
+  Analyst 角色不能碰 API Key
+  → Key 始终属于 Account，角色只决定"谁有权操作"
+
+AgentToken 的设计：
+  API Key 属于 User（公司账户）
+  Admin 角色可以代为创建/撤销 API Key
+  Member 角色不能碰 API Key
+  → Key 始终属于 User，角色只决定"谁有权操作"
+
+类比：
+  公司的门禁系统（API Key）属于公司（User）
+  部门经理（Admin）被授权可以帮公司申请/注销门禁卡
+  但门禁卡属于公司，不属于经理个人
+  普通员工（Member）没有这个权限
+```
 
 用一个完整的例子来说明。假设 Acme Inc 的老板创建了"采购助手"这个 Developer，
 然后加了三个人进来：
 
 ```text
-采购助手（Developer）
-  ├── 张三（Admin）—— 财务总监，老板任命的管理员
-  ├── 李四（Member）—— 采购员
-  └── 王五（Member）—— 采购员
+Acme Inc（User）—— 拥有 API Key
+  └── 采购助手（Developer）
+        ├── 张三（Admin）—— 财务总监，老板任命的管理员
+        ├── 李四（Member）—— 采购员
+        └── 王五（Member）—— 采购员
 
 各自能做什么：
 
 张三（Admin）：
   ✅ 添加新成员（招了新采购员赵六，可以直接加进来）
   ✅ 移除成员（李四离职了，可以把他踢出去）
-  ✅ 代为管理 API Key（Key 属于 User，但 Admin 有权创建/撤销）
+  ✅ 代为操作 API Key（帮公司创建/撤销 Key，Key 属于 Acme Inc）
   ✅ 绑定自己的信用卡
   ✅ 给 Agent 创建 Token
   ❌ 不能删除整个"采购助手"这个业务线
@@ -172,7 +199,7 @@ Member 有两种角色：
 为什么李四不能有 Admin 权限？
 
   场景 1：李四不小心撤销了 API Key
-    → API Key 属于 User 层面，影响的是整个公司的 Agent 服务
+    → API Key 属于 User（Acme Inc），影响的是整个公司的 Agent 服务
     → 所有正在运行的 Agent 突然拿不到 Token 了
     → 采购流程全部中断
 
@@ -190,22 +217,36 @@ Member 有两种角色：
 
   蓝图特意写了 "Cannot transfer ownership"。
   这意味着还有一个隐含的第三级角色：Owner（所有者）。
-  Owner 是创建这个 Developer 的人（通常是公司老板或 CTO）。
+  Owner 是创建这个 User 的人（通常是公司老板或 CTO）。
 
   三级权限对应企业里的真实权限结构：
     Owner（老板）→ 能做一切，包括删除业务线、转让所有权
-    Admin（部门经理）→ 能管人、代管 Key，但不能动业务线本身
+    Admin（部门经理）→ 能管人、代操作 Key，但不能动业务线本身
     Member（普通员工）→ 只能管自己（绑卡、发 Token）
 
   类比：
     老板能卖掉整个部门
-    部门经理能管部门里的人，但不能卖部门
+    部门经理能管部门里的人，能帮公司申请门禁卡，但不能卖部门
     普通员工只能干自己的活
+```
 
-行业参考：
-  Stripe 团队管理分 Administrator / Developer / Analyst 三级
-  AgentCard.sh 分 owner / admin 两级
-  本质上都是同一个思路：谁能管人、谁能管钱、谁只能干活，必须分清楚
+**与 Stripe RBAC 的对比**
+
+```text
+| AgentToken 角色 | Stripe 对应角色 | 能管人 | 能管 Key | 能管支付 | 能转让 |
+|----------------|----------------|--------|---------|---------|--------|
+| Owner（隐含）   | Super Admin    | ✅     | ✅      | ✅      | ✅     |
+| Admin          | Administrator  | ✅     | ✅      | ✅      | ❌     |
+| Member         | Analyst        | ❌     | ❌      | ✅      | ❌     |
+
+Stripe 比 AgentToken 多了几个角色（Developer、View Only、Dispute Analyst 等），
+因为 Stripe 的业务更复杂。AgentToken 目前只需要三级就够了。
+
+关键共同点：
+  1. API Key 都属于账户（User / Account），不属于个人
+  2. 角色只决定"操作权限"，不决定"资源归属"
+  3. 最高权限（Owner / Super Admin）才能转让所有权
+  4. 管人和管 Key 是高权限操作，普通角色不能碰
 ```
 
 **Token（凭证层）—— 解决"Agent 拿什么去付款"**
