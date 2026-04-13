@@ -78,6 +78,11 @@ User（公司/个人账户 —— 顶层管理实体）
   User 的职责只有三个：管理 API Key、管理 Developer、管理计费。
   如果 User 想发起交易，必须先在 User 下面创建 Member。
 
+  注意：蓝图中有一句 "add a payment method to this User"，
+  这里的意思不是 User 本身绑卡，而是"在 User 账户下创建 Member，由 Member 绑定支付方式"。
+  User（公司）不能绑卡，只有 Member（真人）才能绑卡。
+  数据模型中 PayMethod 挂在 Member 下面，不是 User 下面。
+
 为什么这样设计？
   1. 管理权和支付权分离——公司 CEO 管账户，但不一定亲自刷卡
   2. 合规要求——支付行为必须追溯到具体的真人（Member），不能只追溯到公司（User）
