@@ -714,6 +714,286 @@ Mastercard Agent Pay 的费用结构（和普通卡交易类似）：
 
 ---
 
+## 六B、Network Token（EvoNet）：完整生命周期
+
+> 这是 AgentToken 产品本次要实现的核心能力之一。
+> Network Token 通过 EvoNet（EVO Payment）对接 Visa/Mastercard Token Service，
+> 是比 VCN 更安全的卡网络支付方式。
+
+### 6B.1 正常支付流程
+
+```text
+AgentToken 平台          EvoNet（EVO Payment）       Visa/MC TSP          商家           卡网络
+  │                          │                          │                  │               │
+  │  ═══ 阶段一：申请网络令牌（一次性，可复用于多次交易）═══                │               │
+  │                          │                          │                  │               │
+  │  1. POST /paymentMethod  │                          │                  │               │
+  │     {                    │                          │                  │               │
+  │       networkTokenOnly: true,                       │                  │               │
+  │       paymentMethod.type: "card",                   │                  │               │
+  │       paymentMethod.card: {                         │                  │               │
+  │         cardSource: "PAN",                          │                  │               │
+  │         number: "4111...1111",                      │                  │               │
+  │         expMonth: "12",                             │                  │               │
+  │         expYear: "2028"                             │                  │               │
+  │       },                 │                          │                  │               │
+  │       userInfo: {        │                          │                  │               │
+  │         email: "...",    │                          │                  │               │
+  │         locale: "en_US"  │                          │                  │               │
+  │       }                  │                          │                  │               │
+  │     }                    │                          │                  │               │
+  ├─────────────────────────>│                          │                  │               │
+  │                          │  2. 向 Visa/MC TSP 请求   │                  │               │
+  │                          │     Token 化              │                  │               │
+  │                          ├─────────────────────────>│                  │               │
+  │                          │                          │                  │               │
+  │                          │  3. TSP 返回 Network Token│                  │               │
+  │                          │     { tokenID, status,   │                  │               │
+  │                          │       tokenExpMonth/Year }│                  │               │
+  │                          │<─────────────────────────┤                  │               │
+  │                          │                          │                  │               │
+  │  4. 返回令牌信息         │                          │                  │               │
+  │     { paymentMethod.status: "Success",              │                  │               │
+  │       paymentMethod.networkToken: {                 │                  │               │
+  │         tokenID: "tok_xxx",                         │                  │               │
+  │         status: "ACTIVE" } }                        │                  │               │
+  │<─────────────────────────┤                          │                  │               │
+  │                          │                          │                  │               │
+  │  ═══ 阶段二：每次交易前获取动态密码 ═══              │                  │               │
+  │                          │                          │                  │               │
+  │  5. POST /cryptogram     │                          │                  │               │
+  │     {                    │                          │                  │               │
+  │       paymentMethod.type: "networkToken",           │                  │               │
+  │       paymentMethod.networkToken: {                 │                  │               │
+  │         tokenID: "tok_xxx"                          │                  │               │
+  │       }                  │                          │                  │               │
+  │     }                    │                          │                  │               │
+  ├─────────────────────────>│                          │                  │               │
+  │                          │  6. 向 TSP 请求 Cryptogram│                  │               │
+  │                          ├─────────────────────────>│                  │               │
+  │                          │  7. 返回一次性动态密码     │                  │               │
+  │                          │<─────────────────────────┤                  │               │
+  │  8. 返回 Cryptogram      │                          │                  │               │
+  │     { cryptogram.status: "Success",                 │                  │               │
+  │       paymentMethod.networkToken: {                 │                  │               │
+  │         cryptogram: "abc123..." } }                 │                  │               │
+  │<─────────────────────────┤                          │                  │               │
+  │                          │                          │                  │               │
+  │  ═══ 阶段三：用 token_id + cryptogram 发起支付 ═══  │                  │               │
+  │                          │                          │                  │               │
+  │  9. POST /payment        │                          │                  │               │
+  │     {                    │                          │                  │               │
+  │       paymentMethod.type: "networkToken",           │                  │               │
+  │       paymentMethod.networkToken: {                 │                  │               │
+  │         tokenID: "tok_xxx",                         │                  │               │
+  │         cryptogram: "abc123..."                     │                  │               │
+  │       },                 │                          │                  │               │
+  │       transAmount: { value: 4999, currency: "USD" } │                  │               │
+  │     }                    │                          │                  │               │
+  ├─────────────────────────>│                          │                  │               │
+  │                          │                          │  10. 发起授权请求 │               │
+  │                          │                          │     (token_id +  │               │
+  │                          │                          │      cryptogram) │               │
+  │                          ├──────────────────────────────────────────────────────────>│
+  │                          │                          │                  │               │
+  │                          │                          │  11. 卡网络验证   │               │
+  │                          │                          │      token 有效性 │               │
+  │                          │                          │      cryptogram  │               │
+  │                          │                          │      匹配        │               │
+  │                          │                          │                  │               │
+  │                          │                          │  12. 授权通过     │               │
+  │                          │<────────────────────────────────────────────────────────────┤
+  │                          │                          │                  │               │
+  │  13. 返回支付结果        │                          │                  │               │
+  │      { payment.status: "Authorised" / "Captured" }  │                  │               │
+  │<─────────────────────────┤                          │                  │               │
+
+关键特点：
+  → 阶段一只需做一次（令牌可复用）
+  → 阶段二每次交易都要做（cryptogram 是一次性的）
+  → 真实卡号（PAN）只在阶段一出现，之后所有交易都用 token_id
+```
+
+### 6B.2 授权后操作（Capture / Refund）
+
+```text
+授权成功后，根据 EvoNet 的 captureAfterHours 设置，有三种情况：
+
+  captureAfterHours = 0 → payment.status = "Captured"
+    → 立即扣款，无需额外操作
+
+  captureAfterHours = 1~168 → payment.status = "Capturing"
+    → 延迟扣款，到时间自动结算
+    → 也可以提前调用 POST /capture 手动触发
+
+  captureAfterHours 未设置 → payment.status = "Authorised"
+    → 只是预授权，必须手动调用 POST /capture 才会扣款
+    → 如果不 capture，授权最终会过期释放
+
+退款（Refund）：
+  → 调用 POST /refund，指定原始交易的 merchantTransID
+  → 支持全额退款和多次部分退款
+  → 部分退款总额不能超过原始授权金额
+  → 单笔订单最多 50 次部分退款
+  → 两次退款之间至少间隔 1 分钟
+  → 最长退款期限：365 天
+
+撤销（Cancel/Void）：
+  → 如果授权还没有 capture，可以撤销授权
+  → 撤销后冻结的资金立即释放
+  → 调用 POST /cancelOrRefund
+```
+
+### 6B.3 令牌生命周期管理
+
+```text
+Network Token 不是用完即废的（和 VCN 不同），它有自己的生命周期：
+
+令牌状态：
+  ACTIVE   → 正常可用
+  INACTIVE → 已删除/已失效
+  SUSPENDED → 暂停（发卡行暂停了底层卡）
+
+令牌状态变更的触发场景：
+  1. 底层卡过期 → TSP 自动更新令牌的有效期（你不用管）
+  2. 底层卡换卡（如卡片丢失补办）→ TSP 自动将令牌映射到新卡号
+  3. 底层卡注销 → 令牌变为 INACTIVE
+  4. 发卡行暂停卡 → 令牌变为 SUSPENDED
+  5. 你主动删除 → DELETE /paymentMethod → 令牌变为 INACTIVE
+
+异步通知（EvoNet 会主动推送）：
+  eventCode: tokenUpdate
+    → 令牌状态变更时推送
+    → 包含最新的 networkToken 信息
+    → 你需要更新本地存储的令牌状态
+
+  eventCode: paymentMethod
+    → 令牌申请成功/失败时推送
+    → 如果是异步申请，结果通过这个通知返回
+
+  eventCode: Cryptogram
+    → 动态密码生成完成时推送
+    → 如果是异步获取 cryptogram，结果通过这个通知返回
+
+这是 Network Token 相比 VCN 的一个额外复杂度：
+  VCN 是一次性的，用完关卡就行
+  Network Token 是长期存在的，需要处理状态变更
+```
+
+### 6B.4 错误处理
+
+```text
+Network Token 可能遇到的错误：
+
+错误 1：令牌申请失败
+  触发时机：POST /paymentMethod 返回 status: "Failed"
+  原因：
+    → 卡号无效或已过期
+    → 发卡行不支持 Token 化
+    → 卡组织（Visa/MC）拒绝
+  处理：
+    → 检查 result.code 和 result.message
+    → 如果是卡的问题 → 提示 Member 更换卡
+    → 如果是发卡行不支持 → 回退到 VCN 方案
+  资金风险：无（还没到支付环节）
+
+错误 2：Cryptogram 获取失败
+  触发时机：POST /cryptogram 返回 status: "Failed"
+  原因：
+    → 令牌已失效（INACTIVE/SUSPENDED）
+    → TSP 服务暂时不可用
+  处理：
+    → 如果令牌失效 → 需要重新申请令牌
+    → 如果 TSP 不可用 → 等待重试
+    → 如果持续失败 → 回退到 VCN 方案
+
+错误 3：支付授权被拒
+  触发时机：POST /payment 返回非成功状态
+  原因：
+    → 余额不足
+    → 商户类别（MCC）被限制
+    → 风控拦截
+    → Cryptogram 已过期（每个 cryptogram 有时效）
+  处理：
+    → 检查 payment.failureCode 和 payment.failureReason
+    → 如果是 cryptogram 过期 → 重新获取 cryptogram 再试
+    → 如果是余额不足 → 通知 Member
+    → 如果是风控 → 记录日志，可能需要人工介入
+
+错误 4：未收到 EvoNet 响应
+  触发时机：POST 请求发出后网络超时
+  处理：
+    → 调用对应的 GET 接口查询结果
+    → GET /paymentMethod → 查询令牌申请结果
+    → GET /cryptogram → 查询 cryptogram 结果
+    → GET /payment → 查询支付结果
+    → 不要盲目重试 POST（可能导致重复操作）
+
+错误 5：令牌状态变更（异步）
+  触发时机：收到 tokenUpdate 通知，令牌变为 SUSPENDED 或 INACTIVE
+  处理：
+    → 更新本地令牌状态
+    → 如果有正在使用该令牌的 Token → 标记为 FROZEN
+    → 通知 Member 底层卡可能有问题
+    → 如果是换卡 → TSP 会自动更新映射，等待新的 tokenUpdate 通知
+```
+
+### 6B.5 退款机制
+
+```text
+Network Token 的退款走标准卡网络流程（和 Mastercard Agent Pay / Stripe Issuing 一样）：
+
+通过 EvoNet 退款：
+  → POST /refund，指定原始交易的 merchantTransID
+  → 支持全额退款和部分退款
+  → 退款到账：5-10 个工作日（标准卡网络周期）
+  → 退款金额退回到 Member 的原始卡
+
+争议/Chargeback：
+  → 和普通卡交易一样，走卡组织争议流程
+  → AgentToken 平台作为"商户"角色（因为是 AgentToken 发起的交易）
+  → 需要保留交易记录和 Agent 决策日志作为争议证据
+
+与 VCN 退款的区别：
+  → VCN 退款是 AgentToken 作为"持卡人"向商家发起争议
+  → Network Token 退款是 AgentToken 作为"商户"直接退款给 Member
+  → 角色不同！VCN 场景中 AgentToken 是买方，Network Token 场景中 AgentToken 是中间方
+```
+
+### 6B.6 费用明细
+
+```text
+Network Token 的费用结构：
+
+  EvoNet 网关费用（AgentToken 承担）：
+  ├── 令牌申请费：取决于 EvoNet 合同（通常包含在网关月费中）
+  ├── Cryptogram 获取费：取决于 EvoNet 合同
+  ├── 每笔交易费：EvoNet 网关手续费（通常 0.1%-0.3%）
+  └── 月费/年费：取决于 EvoNet 合同
+
+  卡网络费用（和普通卡交易一样）：
+  ├── 交换费（Interchange）：~1.5%-2.1%
+  ├── 卡组织费（Assessment）：~0.13%-0.14%
+  └── 总费率：~1.5%-3.5%（和 Mastercard Agent Pay 类似）
+
+  Network Token 的费用优势：
+  ├── 比 VCN 更低的欺诈率 → 可能获得更低的交换费
+  │   （卡组织对 Token 化交易有费率优惠，因为安全性更高）
+  ├── 令牌可复用 → 不需要每次交易都创建新凭证
+  └── 自动换卡 → 减少因卡过期导致的交易失败
+
+  对比 VCN（AgentCard.sh）：
+  ├── VCN：每次创建新虚拟卡，单卡上限 $500，用完即废
+  ├── Network Token：一次申请，多次使用，无单笔上限（取决于卡额度）
+  └── Network Token 在重复交易场景下更经济
+
+来源：[EvoNet Network Token Management](https://docs.everonet.com/en-us/gateway/developer-portal/online/network-token-management) (Content was rephrased for compliance with licensing restrictions)
+来源：[EvoNet Payment API](https://docs.everonet.com/en-us/gateway/developer-portal/online/authorization) (Content was rephrased for compliance with licensing restrictions)
+```
+
+
+---
+
 ## 七、Stripe Issuing（虚拟卡方案）：完整生命周期
 
 ### 7.1 正常支付流程
