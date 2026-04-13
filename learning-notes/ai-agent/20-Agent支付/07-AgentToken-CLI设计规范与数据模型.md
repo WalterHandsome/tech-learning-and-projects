@@ -652,6 +652,186 @@ x402 的核心优势：
         └─ X402（最适合 Agent 间微支付）
 ```
 
+### 2.7 资金池运作机制：钱从哪来？
+
+不管是 VCN 还是 X402，AgentToken 都需要一个"资金池"来支撑 Token 的发放。
+两种 Token 类型的资金池形态不同，但运作模式是一样的：**总池子 → 创建临时凭证 → Agent 使用 → 回收剩余 → 销毁凭证**。
+
+#### 2.7.1 VCN 的资金池（Stripe Issuing Balance）
+
+```text
+什么是 Stripe Issuing Balance？
+  → 这是 AgentToken 在 Stripe 里的一个法币（美元）余额账户
+  → 法币 = 法定货币 = 政府发行的钱（美元、欧元、人民币等）
+  → 和你银行账户里的美元一样，是真实的钱，不是加密货币
+  → 每次创建虚拟卡时，Stripe 从这个余额里冻结对应金额
+
+VCN 的完整资金流：
+
+  Member 的真实信用卡
+       │
+       │ ① Member 绑卡时不扣钱，只是验证卡有效
+       │
+       ▼
+  AgentToken 内部账本（记录 Member 的可用额度）
+       │
+       │ ② 创建 Token 时，AgentToken 做两件事：
+       │    a. 内部账本：冻结 Member 的额度（member_available → member_held）
+       │    b. Stripe Issuing：从 Issuing Balance 创建虚拟卡
+       │
+       ▼
+  Stripe Issuing Balance（AgentToken 的法币资金池）
+       │
+       │ ③ Agent 拿虚拟卡去商家消费
+       │    Stripe 从 Issuing Balance 扣款给商家
+       │
+       ▼
+  商家收到钱
+
+  ④ 关卡时：
+     Stripe 释放未消费的冻结金额回 Issuing Balance
+     AgentToken 内部账本释放 Member 的冻结额度
+
+  ⑤ 定期结算：
+     AgentToken 从 Member 的真实信用卡扣款，补充 Issuing Balance
+
+Issuing Balance 的钱从哪来？三种方式：
+
+  方式 A：AgentToken 自己垫资
+    → 先往 Issuing Balance 充一笔钱（如 $10,000）
+    → 每次发虚拟卡从池子里扣
+    → 定期从 Member 的真实信用卡收款补充
+    → 风险：AgentToken 需要垫资，有资金压力
+    → 好处：发卡速度快
+
+  方式 B：实时从 Member 扣款
+    → 创建虚拟卡时，先从 Member 的信用卡扣款
+    → 扣款成功后资金进入 Issuing Balance
+    → 再创建虚拟卡
+    → 风险：Member 的卡可能扣款失败
+    → 好处：不用垫资
+
+  方式 C：PrefundedAccount 预充值
+    → Member 先充值到 AgentToken 的 PrefundedAccount
+    → 创建虚拟卡时从 PrefundedAccount 扣减
+    → AgentToken 用这笔钱补充 Issuing Balance
+    → 风险：最小（钱已经在手里了）
+    → 好处：发卡快、无垫资、无扣款失败风险
+
+  实际生产中大概率是混合模式：
+    → 企业客户用 PrefundedAccount（先充值）
+    → 个人用户用实时扣款（方式 B）
+    → AgentToken 维护 Issuing Balance 的最低水位线
+```
+
+#### 2.7.2 X402 的资金池（链上钱包）
+
+```text
+X402 的资金池是一个链上钱包，里面存的是 USDC（稳定币，1 USDC ≈ 1 美元）。
+
+X402 有三种设计方案：
+
+方案 A：总钱包直接付款（不创建临时钱包）
+
+  AgentToken 总钱包（$10,000 USDC）
+       │
+       │ Agent 需要付 $0.10
+       │ 直接从总钱包转 $0.10 USDC 到服务方
+       │
+       ▼
+  服务方收到 $0.10
+
+  优点：简单
+  缺点：总钱包私钥暴露风险大，泄露就全丢
+
+方案 B：创建临时钱包（推荐，和 VCN 思路一致）
+
+  AgentToken 总钱包（$10,000 USDC）
+       │
+       │ ① 创建 X402 Token（$10 额度）
+       │    创建临时钱包 → 转 $10 USDC 进去
+       │
+       ▼
+  临时钱包（$10 USDC）
+       │
+       │ ② Agent 用临时钱包付 $0.10
+       │ ③ 再付 $0.05
+       │ ④ 任务完成，关闭 Token
+       │    剩余 $9.85 转回总钱包
+       │    销毁临时钱包私钥
+       │
+       ▼
+  总钱包收回 $9.85
+
+  优点：安全隔离（最多丢 $10）、审计清晰、和 VCN 设计一致
+  缺点：多两笔 Gas 费（转入 + 转回）
+
+方案 C：智能合约授权（不转账，只授权）
+
+  AgentToken 总钱包（$10,000 USDC）
+       │
+       │ ① 通过 USDC 合约的 approve 功能
+       │    授权临时地址最多可以花 $10
+       │
+       │ ② Agent 用临时地址调用 transferFrom
+       │    从总钱包转 $0.10 给服务方
+       │
+       │ ③ 任务完成，撤销授权
+       │
+       ▼
+  总钱包余额：$9,999.85
+
+  优点：省 Gas（不需要转入转回）
+  缺点：临时地址私钥泄露可花掉授权额度
+
+推荐方案 B（临时钱包），因为和 VCN 的设计思路完全一致。
+
+X402 资金池的钱从哪来？详见 09 文档第五章：
+  → 方案一：交易所购买 USDC
+  → 方案二：OTC 大宗购买
+  → 方案三：法币入金 API（Circle / MoonPay）
+  → 方案四：预充值模式（平台预购 USDC，用户付法币给平台）
+```
+
+#### 2.7.3 统一模型：VCN 和 X402 本质上是一样的
+
+```text
+不管是 VCN 还是 X402，资金流的模式完全一样：
+
+  VCN：
+    Issuing Balance（法币资金池）
+      → 创建虚拟卡（临时凭证，限额 $50）
+        → Agent 拿虚拟卡去商家刷卡
+          → 关卡，未消费金额回到 Issuing Balance
+
+  X402（方案 B）：
+    总钱包（USDC 资金池）
+      → 创建临时钱包（临时凭证，转入 $50 USDC）
+        → Agent 拿临时钱包去链上付款
+          → 销毁临时钱包，剩余 USDC 回到总钱包
+
+  统一模型：
+    总池子 → 创建临时受限凭证 → Agent 使用 → 回收剩余 → 销毁凭证
+
+  对比表：
+  | 维度 | VCN | X402 |
+  |------|-----|------|
+  | 资金池形态 | Stripe Issuing Balance（法币/美元） | 链上钱包（USDC/稳定币） |
+  | 临时凭证 | 虚拟信用卡（PAN + CVV） | 临时钱包（私钥 + 地址） |
+  | 充值方式 | 银行转账 / Stripe 内部转入 | 交易所购买 USDC / 法币入金 API |
+  | 创建凭证时 | 从 Balance 冻结金额 | 从总钱包转 USDC 到临时钱包 |
+  | Agent 消费时 | Stripe 从 Balance 扣款给商家 | 临时钱包链上转账给服务方 |
+  | 关闭凭证时 | 释放冻结金额回 Balance | 剩余 USDC 转回总钱包 |
+  | 结算速度 | T+1~T+3 | 秒级 |
+  | 退款 | 可以（卡组织争议） | 不可逆 |
+
+  在 AgentToken 的内部账本里，两种模式的记账方式也是一样的：
+    创建 Token：member_available → member_held（冻结）
+    Agent 消费：member_held → system_settlement（扣款）
+    关闭 Token：member_held → member_available（释放剩余）
+    详见 10 文档第三章"复式账本系统"
+```
+
 ---
 
 ## 三、CLI 工具：`agent-token-admin`
