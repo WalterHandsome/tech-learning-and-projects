@@ -233,14 +233,23 @@ Acme Inc（User）—— 拥有 API Key
 **与 Stripe RBAC 的对比**
 
 ```text
-| AgentToken 角色 | Stripe 对应角色 | 能管人 | 能管 Key | 能管支付 | 能转让 |
-|----------------|----------------|--------|---------|---------|--------|
-| Owner（隐含）   | Super Admin    | ✅     | ✅      | ✅      | ✅     |
-| Admin          | Administrator  | ✅     | ✅      | ✅      | ❌     |
-| Member         | Analyst        | ❌     | ❌      | ✅      | ❌     |
+| AgentToken 角色 | Stripe 对应角色   | 能管人 | 能管 Key | 能管支付 | 能转让 |
+|----------------|-------------------|--------|---------|---------|--------|
+| Owner（隐含）   | Super Admin       | ✅     | ✅      | ✅      | ✅     |
+| Admin          | Administrator     | ✅     | ✅      | ✅      | ❌     |
+| （暂无）        | Developer         | ❌     | ✅      | ✅      | ❌     |
+| Member         | Analyst           | ❌     | ❌      | ✅      | ❌     |
+
+Stripe 的 Developer 角色很有意思：能管 Key 但不能管人。
+  → 适合开发工程师：需要创建/查看 API Key 来做集成开发，
+    但不需要管理团队成员。
+  → AgentToken 目前没有这个角色，Admin 同时管人和管 Key。
+  → 如果未来 AgentToken 的用户量增长，可能需要拆分出 Developer 角色，
+    让工程师能独立管理 Key 而不用给 Admin 权限。
 
 Stripe 比 AgentToken 多了几个角色（Developer、View Only、Dispute Analyst 等），
-因为 Stripe 的业务更复杂。AgentToken 目前只需要三级就够了。
+因为 Stripe 的业务更复杂。AgentToken 目前只需要三级就够了，
+但 Developer 角色是最值得未来考虑加入的。
 
 关键共同点：
   1. API Key 都属于账户（User / Account），不属于个人
