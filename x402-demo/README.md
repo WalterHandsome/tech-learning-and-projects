@@ -76,8 +76,8 @@ npm run buyer
 | 文件 | 说明 |
 |------|------|
 | `setup-wallet.js` | 生成测试钱包的工具脚本 |
-| `seller.js` | 卖方服务：Express + x402 付费墙中间件 |
-| `buyer.js` | 买方 Agent：自动处理 402 支付的客户端 |
+| `seller.js` | 卖方服务：Express + x402 付费墙中间件（使用 `@x402/express`） |
+| `buyer.js` | 买方 Agent：使用 `@x402/fetch` 自动处理 402 支付的客户端 |
 | `.env.example` | 环境变量模板 |
 
 ## 使用的网络和服务
@@ -85,6 +85,7 @@ npm run buyer
 | 项目 | 值 | 说明 |
 |------|-----|------|
 | 区块链网络 | Base Sepolia | 测试网，免费 |
+| 网络标识 | eip155:84532 | x402 v2 协议使用的 CAIP-2 格式 |
 | 支付代币 | 测试 USDC | 从 Circle Faucet 免费获取 |
 | Facilitator | x402.org | 免费测试网 Facilitator |
 | 每次调用价格 | $0.001 USDC | 测试用，不花真钱 |
@@ -98,4 +99,4 @@ A: 买方钱包没有测试 USDC。去 https://faucet.circle.com 领取。
 A: 先运行 `npm run setup` 生成钱包，再把地址填入 `.env`。
 
 **Q: 想改价格怎么办？**
-A: 修改 `seller.js` 中 `maxAmountRequired` 的值。1000 = $0.001 USDC。
+A: 修改 `seller.js` 中 `price` 的值，如 `"$0.01"` 表示每次调用 $0.01 USDC。

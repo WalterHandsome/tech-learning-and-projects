@@ -8,7 +8,9 @@
  */
 
 import express from "express";
-import { paymentMiddleware } from "@x402/express";
+import { paymentMiddleware, x402ResourceServer } from "@x402/express";
+import { ExactEvmScheme } from "@x402/evm/exact/server";
+import { HTTPFacilitatorClient } from "@x402/core/server";
 import dotenv from "dotenv";
 
 dotenv.config();
@@ -28,39 +30,42 @@ if (!sellerAddress) {
 // Facilitator 地址（测试网用 x402.org 的免费服务）
 const facilitatorUrl = "https://x402.org/facilitator";
 
-// === 付费 API 路由 ===
+// === 创建 x402 资源服务器 ===
+const facilitatorClient = new HTTPFacilitatorClient({ url: facilitatorUrl });
+const resourceServer = new x402ResourceServer(facilitatorClient)
+  .register("eip155:84532", new ExactEvmScheme()); // Base Sepolia 测试网
 
-// 这个路由需要付费才能访问
-// 价格：$0.001（即 1000 个 USDC 最小单位）
-app.get(
-  "/api/weather",
-  // x402 中间件：自动处理 402 响应和支付验证
-  paymentMiddleware(
-    sellerAddress,       // 收款地址
-    {
-      // 定价：每次调用 $0.001 USDC
-      maxAmountRequired: 1000,  // 1000 = 0.001 USDC（6 位小数）
-      network: "base-sepolia",  // 测试网
-      asset: "USDC",
+// === 路由配置 ===
+// 定义哪些路由需要付费，以及价格
+const routes = {
+  "GET /api/weather": {
+    accepts: {
+      scheme: "exact",
+      price: "$0.001",              // 每次调用 $0.001 USDC
+      network: "eip155:84532",      // Base Sepolia 测试网
+      payTo: sellerAddress,         // 收款地址
     },
-    {
-      url: facilitatorUrl,      // Facilitator 地址
-    }
-  ),
-  // 支付验证通过后，执行业务逻辑
-  (req, res) => {
-    console.log("✅ 收到付费请求，返回天气数据");
-    res.json({
-      city: "上海",
-      temperature: "26°C",
-      weather: "晴天",
-      humidity: "65%",
-      wind: "东南风 3 级",
-      timestamp: new Date().toISOString(),
-      message: "🎉 你成功通过 x402 协议付费获取了这条数据！",
-    });
-  }
-);
+    description: "天气数据 API",
+  },
+};
+
+// 应用 x402 付费墙中间件
+app.use(paymentMiddleware(routes, resourceServer));
+
+// === 付费 API 路由 ===
+// 支付验证通过后，执行业务逻辑
+app.get("/api/weather", (req, res) => {
+  console.log("✅ 收到付费请求，返回天气数据");
+  res.json({
+    city: "上海",
+    temperature: "26°C",
+    weather: "晴天",
+    humidity: "65%",
+    wind: "东南风 3 级",
+    timestamp: new Date().toISOString(),
+    message: "🎉 你成功通过 x402 协议付费获取了这条数据！",
+  });
+});
 
 // 免费路由（用于测试服务是否正常运行）
 app.get("/", (req, res) => {

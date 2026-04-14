@@ -1,0 +1,4 @@
+x402[fastapi,httpx,evm]
+uvicorn
+python-dotenv
+eth-account

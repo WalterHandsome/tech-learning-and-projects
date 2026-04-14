@@ -783,8 +783,85 @@ X402 有三种设计方案：
 
   优点：省 Gas（不需要转入转回）
   缺点：临时地址私钥泄露可花掉授权额度
+  和 x402 兼容性差：x402 用 EIP-3009 签名，不是 transferFrom
 
-推荐方案 B（临时钱包），因为和 VCN 的设计思路完全一致。
+方案 D：MPC 钱包 + 子账户
+
+  用 MPC（多方计算）钱包服务（如 Fireblocks、Circle MPC、Turnkey），
+  私钥被拆成多个分片，签名时多方协作完成。
+
+  AgentToken 总钱包（MPC 托管）
+       │
+       │ ① 创建 X402 Token（$10 额度）
+       │    通过 MPC 服务创建子账户，设置限额 $10
+       │
+       │ ② Agent 请求签名时
+       │    MPC 服务验证限额 → 多方协作签名 → 返回签名结果
+       │
+       │ ③ 任务完成，撤销子账户
+
+  优点：私钥从不以完整形式出现（最高安全性），不需要链上转账（省 Gas）
+  缺点：依赖第三方 MPC 服务，集成复杂度高，签名延迟 200-500ms
+
+方案 E：ERC-4337 智能钱包 + Session Key
+
+  用智能合约钱包（ERC-4337），通过 Session Key 给 Agent 受限权限。
+  代表产品：Coinbase Smart Wallet、thirdweb、Alchemy Account Kit、ZeroDev。
+
+  平台为 Member 创建智能合约钱包（Smart Account）
+       │
+       │ ① 钱包里存 USDC
+       │
+       │ ② 创建 Token 时，签发 Session Key：
+       │    { permissions: ["transfer USDC"], spendingLimit: "$10",
+       │      validUntil: "2026-04-15", allowedRecipients: [...] }
+       │
+       │ ③ Agent 用 Session Key 签名
+       │    智能合约验证权限后执行转账
+       │
+       │ ④ Token 关闭时，撤销 Session Key
+
+  优点：不需要创建临时钱包和转账（省 Gas），限额由合约强制执行，
+        支持 Paymaster（Gas 由平台代付）
+  缺点：智能合约首次部署需要 Gas，和 x402 Facilitator 的兼容性需验证，
+        复杂度高，目前主要支持 EVM 链
+
+方案 F：Circle Programmable Wallet（全托管）
+
+  Circle 是 USDC 发行方，提供完整的钱包托管服务。
+  你不碰私钥，全部交给 Circle 管。
+
+  平台调用 Circle API 创建钱包
+       │
+       │ ① Circle 用 MPC 生成密钥（你永远看不到私钥）
+       │ ② 充值 USDC
+       │ ③ Agent 要付款时，平台调用 Circle API 发起转账
+       │    Circle 在后台完成签名 + 链上广播
+       │ ④ Token 关闭时，调用 Circle API 回收资金
+
+  优点：完全不用管私钥/RPC/Gas（Circle 全包），合规友好，
+        支持多链，上线速度最快
+  缺点：完全依赖 Circle（宕机=停摆），不是自托管，
+        API 有延迟，免费额度之后收费
+
+六种方案对比：
+
+  | 维度 | A：总钱包 | B：临时钱包 | C：合约授权 | D：MPC | E：智能钱包 | F：Circle |
+  |------|---------|-----------|-----------|-------|-----------|----------|
+  | 安全性 | 低 | 高 | 中 | 最高 | 高 | 高 |
+  | Gas/Token | 1笔 | 3笔 | 2笔 | 1笔 | 0-1笔 | 0笔 |
+  | 复杂度 | 最低 | 中 | 中 | 高 | 高 | 低 |
+  | 限额机制 | 无 | 余额 | approve | 策略 | Session Key | API 策略 |
+  | 自托管 | ✅ | ✅ | ✅ | ⚠️ | ✅ | ❌ |
+  | x402 兼容 | ✅ | ✅ | ❌ | ✅ | ⚠️ 需验证 | ⚠️ 需验证 |
+  | 适合阶段 | demo | V1 | 不推荐 | V2 | V2-V3 | V1（快速） |
+
+推荐路径：
+  自己掌控：V1 方案 B → V2 方案 D 或 E
+  快速上线：V1 方案 F → V2 迁移到方案 B 或 D
+  最前沿：V1 方案 E（需要智能合约经验）
+
+当前 AgentToken V1 推荐方案 B（临时钱包），因为和 VCN 的设计思路完全一致。
 
 X402 资金池的钱从哪来？详见 09 文档第五章：
   → 方案一：交易所购买 USDC

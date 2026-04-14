@@ -9,10 +9,9 @@
  * 用法：npm run buyer（确保卖方服务已启动）
  */
 
-import { createPublicClient, createWalletClient, http } from "viem";
+import { wrapFetchWithPaymentFromConfig } from "@x402/fetch";
+import { ExactEvmScheme } from "@x402/evm";
 import { privateKeyToAccount } from "viem/accounts";
-import { baseSepolia } from "viem/chains";
-import { payForRequest } from "@x402/client";
 import dotenv from "dotenv";
 
 dotenv.config();
@@ -27,17 +26,23 @@ if (!BUYER_PRIVATE_KEY) {
   process.exit(1);
 }
 
-// === 创建钱包客户端 ===
-// 用买方的私钥创建一个钱包，用于签名支付
+// === 创建钱包账户 ===
+// 用买方的私钥创建一个账户，用于签名支付
 const account = privateKeyToAccount(BUYER_PRIVATE_KEY);
-const walletClient = createWalletClient({
-  account,
-  chain: baseSepolia,
-  transport: http(),
-});
-const publicClient = createPublicClient({
-  chain: baseSepolia,
-  transport: http(),
+
+// === 创建带支付功能的 fetch ===
+// wrapFetchWithPaymentFromConfig 会自动处理 402 响应：
+// 1. 发送请求 → 收到 402
+// 2. 解析支付要求
+// 3. 用钱包签名 EIP-712 支付授权
+// 4. 带签名重新请求
+const fetchWithPayment = wrapFetchWithPaymentFromConfig(fetch, {
+  schemes: [
+    {
+      network: "eip155:84532",  // Base Sepolia 测试网
+      client: new ExactEvmScheme(account),
+    },
+  ],
 });
 
 async function main() {
@@ -47,46 +52,38 @@ async function main() {
   console.log(`   目标 API：${SELLER_URL}`);
   console.log("");
 
-  // === 第一步：直接请求（会收到 402） ===
-  console.log("📡 第一步：发送普通请求...");
+  // === 第一步：先用普通 fetch 看看会收到什么 ===
+  console.log("📡 第一步：发送普通请求（不带支付）...");
   const firstResponse = await fetch(SELLER_URL);
   console.log(`   响应状态：${firstResponse.status}`);
 
   if (firstResponse.status === 402) {
     console.log("   💰 收到 HTTP 402 - 需要付费！");
 
-    // 打印支付要求（从响应头中解析）
+    // 打印支付要求
     const paymentHeader = firstResponse.headers.get("x-payment");
     if (paymentHeader) {
       try {
         const paymentInfo = JSON.parse(paymentHeader);
         console.log("   支付要求：");
-        console.log(`     金额：${paymentInfo.maxAmountRequired} 最小单位`);
-        console.log(`     折合：$${Number(paymentInfo.maxAmountRequired) / 1_000_000} USDC`);
-        console.log(`     收款地址：${paymentInfo.payTo}`);
-        console.log(`     网络：${paymentInfo.network}`);
+        console.log(`     价格：${paymentInfo.accepts?.[0]?.price || paymentInfo.maxAmountRequired || "未知"}`);
+        console.log(`     收款地址：${paymentInfo.accepts?.[0]?.payTo || paymentInfo.payTo || "未知"}`);
+        console.log(`     网络：${paymentInfo.accepts?.[0]?.network || paymentInfo.network || "未知"}`);
       } catch {
-        console.log(`   支付信息：${paymentHeader}`);
+        console.log(`   支付信息：${paymentHeader.substring(0, 200)}...`);
       }
     }
     console.log("");
 
-    // === 第二步：使用 x402 客户端自动处理支付 ===
-    console.log("🔐 第二步：签名支付并重新请求...");
+    // === 第二步：使用带支付功能的 fetch 自动处理 ===
+    console.log("🔐 第二步：使用 x402 自动支付并重新请求...");
     console.log("   （Agent 自动完成：解析 402 → 签名 → 重新请求）");
     console.log("");
 
     try {
-      // payForRequest 会自动：
-      // 1. 解析 402 响应中的支付要求
-      // 2. 用钱包私钥签名 EIP-712 支付授权
-      // 3. 带着签名重新发送请求
-      const paidResponse = await payForRequest(
-        SELLER_URL,
-        {},  // 请求选项（GET 请求不需要额外选项）
-        walletClient,
-        publicClient,
-      );
+      const paidResponse = await fetchWithPayment(SELLER_URL, {
+        method: "GET",
+      });
 
       if (paidResponse.ok) {
         const data = await paidResponse.json();
@@ -119,7 +116,6 @@ async function main() {
       }
     }
   } else if (firstResponse.ok) {
-    // 如果第一次请求就成功了（不应该发生，除非中间件没生效）
     const data = await firstResponse.json();
     console.log("   ⚠️ 请求直接成功了（没有触发 402），数据：");
     console.log(data);
