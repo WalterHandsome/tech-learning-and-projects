@@ -2,13 +2,13 @@
   "enabled": true,
   "name": "📋 文档写入规范守卫",
   "description": "Agent 写入 learning-notes/ 下的 .md 文件前，校验基本格式规范。",
-  "version": "3",
+  "version": "4",
   "when": {
     "type": "preToolUse",
     "toolTypes": ["write"]
   },
   "then": {
     "type": "askAgent",
-    "prompt": "检查即将写入的文件路径。\n\n**判断规则：**\n- 如果路径不以 `learning-notes/` 开头，或者不是 `.md` 文件 → 直接回复 \"✅ 跳过\"\n- 如果路径是 learning-notes/ 下的 .md 文件 → 检查写入内容：\n  1. 是否以 `# 标题` 开头（README.md 除外）\n  2. 更新现有文件时，新增部分是否有 `> 🔄 更新于` 标记\n\n**不要检查的内容（容易误判）：**\n- 不要检查代码块是否标注了语言（ASCII 图表和流程图不需要语言标记）\n- 不要检查标题层级是否连续\n\n回复 \"✅ 跳过\" 或 \"✅ 通过\" 或简述问题。一句话回复，不要解释。"
+    "prompt": "检查即将写入的文件路径。\n\n**快速判断：**\n- 路径不以 `learning-notes/` 开头 → 回复 \"✅ 跳过\"\n- 不是 `.md` 文件 → 回复 \"✅ 跳过\"\n\n**如果是 learning-notes/ 下的 .md 文件，只检查一件事：**\n- 如果是 fsWrite 创建新文件：内容是否以 `# 标题` 开头（README.md 除外）\n- 如果是 strReplace 修改现有文件：直接回复 \"✅ 通过\"（局部修改无法判断全局格式）\n\n一句话回复，不要解释。"
   }
 }
