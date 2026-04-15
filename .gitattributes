@@ -1,0 +1,4 @@
+# git-crypt 加密配置：以下文件在 GitHub 上显示为乱码，本地正常读写
+learning-notes/ai-agent/20-Agent支付/X402-*.md filter=git-crypt diff=git-crypt
+learning-notes/ai-agent/20-Agent支付/11-*.md filter=git-crypt diff=git-crypt
+learning-notes/ai-agent/20-Agent支付/ExportBlock-*/** filter=git-crypt diff=git-crypt
