@@ -33,7 +33,6 @@ jobs:
           elif [ "${{ github.event_name }}" = "schedule" ]; then
             FILES="learning-notes/**/*.md"
           else
-            # push 事件：对比上一个 commit，如果是首次推送则检查所有文件
             if git rev-parse HEAD~1 >/dev/null 2>&1; then
               FILES=$(git diff --name-only HEAD~1 HEAD -- 'learning-notes/**/*.md' | tr '\n' ' ')
             else
@@ -49,7 +48,6 @@ jobs:
         with:
           globs: ${{ steps.changed.outputs.files }}
           config: '.markdownlint.jsonc'
-        # 现阶段不阻塞 PR，只报告问题
         continue-on-error: true
 
   # ============================================
@@ -62,16 +60,15 @@ jobs:
       - uses: actions/checkout@v4
 
       - name: 检查内部 Markdown 链接
-        uses: tcort/github-action-markdown-link-check@v2
+        uses: tcort/github-action-markdown-link-check@v1
         with:
           folder-path: 'learning-notes/'
           file-extension: '.md'
           config-file: '.markdown-link-check.json'
-        # 外部链接可能暂时不可达，不阻塞 PR
         continue-on-error: true
 
   # ============================================
-  # Job 3: 自定义文档质量检查
+  # Job 3: 文档质量检查（内联脚本，不依赖加密的 doc-lint.sh）
   # ============================================
   doc-quality:
     name: Doc Quality
@@ -79,10 +76,36 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: 运行文档质量检查脚本
+      - name: 检查内部链接引用
         run: |
-          chmod +x scripts/doc-lint.sh
-          ./scripts/doc-lint.sh learning-notes
+          echo "🔍 检查断裂的内部链接..."
+          ERRORS=0
+          find learning-notes/ -name "*.md" -type f | sort | while read -r file; do
+            dir=$(dirname "$file")
+            grep -oE '\([^)]+\.md\)' "$file" 2>/dev/null | sed 's/^(//;s/)$//' | while read -r link; do
+              case "$link" in http*) continue ;; esac
+              decoded=$(echo "$link" | sed 's/%20/ /g')
+              if [ ! -f "$dir/$decoded" ]; then
+                echo "❌ 断裂链接: $file → $link"
+              fi
+            done
+          done
+
+      - name: 检查文件头部规范
+        run: |
+          echo "🔍 检查文件头部..."
+          find learning-notes/ -name "*.md" -type f ! -name "README.md" ! -name ".*" | sort | while read -r file; do
+            first=$(grep -m1 -v '^\s*$' "$file" 2>/dev/null)
+            if ! echo "$first" | grep -qE '^# '; then
+              echo "⚠️  缺少一级标题: $file"
+            fi
+          done
+
+      - name: 检查版本标记覆盖率
+        run: |
+          VERSIONED=$(grep -rl "version-check:" learning-notes/ --include="*.md" 2>/dev/null | wc -l | tr -d ' ')
+          TOTAL=$(find learning-notes/ -name "*.md" -type f ! -name "README.md" ! -name ".*" | wc -l | tr -d ' ')
+          echo "📊 版本标记覆盖率: $VERSIONED / $TOTAL"
 
   # ============================================
   # Job 4: 文档统计报告（仅 schedule 触发）
@@ -100,13 +123,10 @@ jobs:
           echo "" >> doc-stats-report.md
           echo "生成时间: $(date -u '+%Y-%m-%d %H:%M UTC')" >> doc-stats-report.md
           echo "" >> doc-stats-report.md
-
-          # 统计各目录文档数
           echo "## 文档数量" >> doc-stats-report.md
           echo "" >> doc-stats-report.md
           echo "| 目录 | 文件数 | 总行数 |" >> doc-stats-report.md
           echo "|------|--------|--------|" >> doc-stats-report.md
-
           for dir in learning-notes/ai-agent/*/; do
             if [ -d "$dir" ]; then
               dirname=$(basename "$dir")
@@ -115,24 +135,12 @@ jobs:
               echo "| $dirname | $file_count | $line_count |" >> doc-stats-report.md
             fi
           done
-
           echo "" >> doc-stats-report.md
-
-          # 统计版本标记覆盖率
           versioned=$(grep -rl "version-check:" learning-notes/ --include="*.md" 2>/dev/null | wc -l | tr -d ' ')
           total=$(find learning-notes/ -name "*.md" -type f ! -name "README.md" | wc -l | tr -d ' ')
           echo "## 版本标记覆盖率" >> doc-stats-report.md
           echo "" >> doc-stats-report.md
           echo "- 有版本标记的文件: $versioned / $total" >> doc-stats-report.md
-          echo "" >> doc-stats-report.md
-
-          # 最近修改的文件
-          echo "## 最近 30 天修改的文件" >> doc-stats-report.md
-          echo "" >> doc-stats-report.md
-          find learning-notes/ -name "*.md" -type f -mtime -30 | sort | while read -r f; do
-            echo "- $f" >> doc-stats-report.md
-          done
-
           cat doc-stats-report.md
 
       - name: 上传统计报告
