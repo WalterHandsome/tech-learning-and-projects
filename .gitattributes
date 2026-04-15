@@ -15,6 +15,17 @@ learning-notes/ai-agent/20-Agent支付/ExportBlock-*/** filter=git-crypt diff=gi
 learning-notes/ai-agent/20-Agent支付/Markdown*.md filter=git-crypt diff=git-crypt
 
 # ============================================
+# Agent 支付数据库设计（公司内部架构）
+# ============================================
+learning-notes/ai-agent/20-Agent支付/AGENT_PAY_DB_DESIGN.md filter=git-crypt diff=git-crypt
+
+# ============================================
+# 隐形水印工具（核心算法，暴露后可被绕过）
+# ============================================
+shared/watermark.py filter=git-crypt diff=git-crypt
+shared/watermark_cli.py filter=git-crypt diff=git-crypt
+
+# ============================================
 # Kiro 自动化方案（Hook + Steering + 脚本）
 # ============================================
 # Hook 文件：自动化工作流的核心 prompt 设计
