@@ -21,6 +21,8 @@ learning-notes/ai-agent/20-Agent支付/Markdown*.md filter=git-crypt diff=git-cr
 .kiro/hooks/*.kiro.hook filter=git-crypt diff=git-crypt
 # Steering 规范：文档维护标准
 .kiro/steering/doc-maintenance.md filter=git-crypt diff=git-crypt
+# Steering 规范：项目通用规范
+.kiro/steering/project-conventions.md filter=git-crypt diff=git-crypt
 # 文档检查脚本：自定义质量检查逻辑
 scripts/doc-lint.sh filter=git-crypt diff=git-crypt
 
