@@ -91,7 +91,7 @@ const title = await page.extract("提取文章标题");
 | Agent-S | GUI/截图 | Python | 通用计算机操作 | 5k+ | ✅ | ❌ |
 | Page-Agent | 网页 AI 化 | TypeScript | 网站 AI 原生化 | 2k+ | ✅ | ❌ |
 
-与已有工具对比（详见 → Computer Use与浏览器Agent.md）：
+与已有工具对比（详见 → [Computer Use与浏览器Agent](./02-Computer%20Use与浏览器Agent.md)）：
 
 | 工具 | 类型 | 适用场景 |
 |------|------|----------|

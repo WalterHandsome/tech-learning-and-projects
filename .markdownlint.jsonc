@@ -1,0 +1,38 @@
+{
+  // markdownlint 配置 - 适配中文技术文档
+  // 文档: https://github.com/DavidAnson/markdownlint/blob/main/doc/Rules.md
+
+  // 行长度：中文文档不限制（中文字符宽度不同）
+  "MD013": false,
+
+  // 允许内联 HTML（用于注释标记如 <!-- version-check -->）
+  "MD033": false,
+
+  // 允许重复标题（不同章节可能有相同子标题如"安装"、"配置"）
+  "MD024": {
+    "siblings_only": true
+  },
+
+  // 允许标题以标点结尾（中文标题可能以问号结尾）
+  "MD026": false,
+
+  // 第一行必须是标题
+  "MD041": true,
+
+  // 无序列表样式统一用 -
+  "MD004": {
+    "style": "dash"
+  },
+
+  // 代码块语言标注：关闭
+  // 原因：ASCII 图表/流程图/决策树不需要语言标记，强制标注会破坏格式
+  "MD040": false,
+
+  // 允许空链接（某些占位链接）
+  "MD042": false,
+
+  // 列表缩进 2 空格
+  "MD007": {
+    "indent": 2
+  }
+}

@@ -1595,6 +1595,6 @@ print(f"编辑结果: {result.success} — {result.message}")
 ### 📖 参考资料
 - [Anthropic - Writing Tools for Agents](https://www.anthropic.com/engineering/writing-tools-for-agents) — 工具设计原则（本文主要参考）
 - [Building Production-Grade AI Agents](https://pub.towardsai.net/building-production-grade-ai-agents-in-2025-the-complete-technical-guide-9f02eff84ea2) — 生产级 Agent 技术指南
-- [Claude Code 架构深度解析](./Claude%20Code架构深度解析.md) — 本目录，源码泄露分析
+- [Claude Code 架构深度解析](../17-Coding%20Agent/02-Claude%20Code架构深度解析.md) — 源码泄露分析
 - [15 Hard-Earned Lessons to Ship AI Agents](https://medium.com/data-science-collective/beyond-the-prototype-15-hard-earned-lessons-to-ship-production-ready-ai-agents-e58139d80299) — 15 条实战教训
 - [Portkey - Scaling Claude Code Agents](https://portkey.ai/blog/claude-code-agents/) — 团队级 Agent 扩展
