@@ -33,9 +33,33 @@ fileMatchPattern: "learning-notes/**/*.md"
 ```
 
 ### 代码块规范
-- 所有代码块必须标注语言（python、typescript、bash、yaml 等）
+- 真正的代码（Python、TypeScript、Bash 等）必须标注语言
+- ASCII 图表、流程图、决策树、架构图使用无语言标记的 ` ``` ` 即可，**不要**强制加 `text`
 - 代码注释使用中文
 - import 路径使用完整路径
+
+**正确示例：**
+````markdown
+```python
+# 这是代码，需要标注语言
+from langchain import LangGraph
+```
+
+```
+┌──────────────┐
+│  这是图表     │  ← 不需要标注语言
+└──────────────┘
+```
+````
+
+**错误示例：**
+````markdown
+```text
+┌──────────────┐
+│  这是图表     │  ← 不要加 text，会影响渲染
+└──────────────┘
+```
+````
 
 ### 内部链接
 引用其他文档时使用相对路径：

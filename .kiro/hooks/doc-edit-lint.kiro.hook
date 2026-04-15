@@ -1,8 +1,8 @@
 {
   "enabled": true,
   "name": "✏️ 新文档创建检查",
-  "description": "在 learning-notes/ 下创建新的 .md 文件时，检查是否符合文档规范。只在新建文件时触发，不在每次保存时触发，避免频繁打扰。",
-  "version": "3",
+  "description": "在 learning-notes/ 下创建新的 .md 文件时，检查是否符合文档规范。只在新建文件时触发。",
+  "version": "4",
   "when": {
     "type": "fileCreated",
     "patterns": [
@@ -11,6 +11,6 @@
   },
   "then": {
     "type": "askAgent",
-    "prompt": "新建了一个文档文件。请快速检查：\n\n1. 文件是否以 `# 标题` 开头\n2. 是否包含 `> Author: Walter Wang`\n3. 代码块是否标注了语言\n4. 如果是在现有目录下新建，检查 learning-notes/ai-agent/README.md 是否需要同步更新目录结构\n\n**回复规则：**\n- 没问题 → \"✅ 新文档格式正确\"\n- 有问题 → 最多 3 条，格式：`⚠️ 问题描述`\n- 使用中文，保持极简"
+    "prompt": "新建了一个文档文件。请快速检查：\n\n1. 文件是否以 `# 标题` 开头\n2. 是否包含 `> Author: Walter Wang`\n3. 如果是在现有目录下新建，检查 learning-notes/ai-agent/README.md 是否需要同步更新目录结构\n\n**不要检查代码块语言标注**（ASCII 图表和流程图不需要语言标记）。\n\n**回复规则：**\n- 没问题 → \"✅ 新文档格式正确\"\n- 有问题 → 最多 3 条，格式：`⚠️ 问题描述`\n- 使用中文，保持极简"
   }
 }
