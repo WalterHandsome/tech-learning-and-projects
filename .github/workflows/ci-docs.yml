@@ -62,7 +62,7 @@ jobs:
       - uses: actions/checkout@v4
 
       - name: 检查内部 Markdown 链接
-        uses: tcort/markdown-link-check-action@v2
+        uses: tcort/github-action-markdown-link-check@v2
         with:
           folder-path: 'learning-notes/'
           file-extension: '.md'
