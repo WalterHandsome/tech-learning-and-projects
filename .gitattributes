@@ -13,3 +13,18 @@ learning-notes/ai-agent/20-Agent支付/10-*.md filter=git-crypt diff=git-crypt
 learning-notes/ai-agent/20-Agent支付/ExportBlock-*/** filter=git-crypt diff=git-crypt
 # CLI 草案原始文档（如果存在）
 learning-notes/ai-agent/20-Agent支付/Markdown*.md filter=git-crypt diff=git-crypt
+
+# ============================================
+# Kiro 自动化方案（Hook + Steering + 脚本）
+# ============================================
+# Hook 文件：自动化工作流的核心 prompt 设计
+.kiro/hooks/*.kiro.hook filter=git-crypt diff=git-crypt
+# Steering 规范：文档维护标准
+.kiro/steering/doc-maintenance.md filter=git-crypt diff=git-crypt
+# 文档检查脚本：自定义质量检查逻辑
+scripts/doc-lint.sh filter=git-crypt diff=git-crypt
+
+# ============================================
+# 2026 技术更新研究文档
+# ============================================
+learning-notes/ai-agent/24-2026技术更新/*.md filter=git-crypt diff=git-crypt
