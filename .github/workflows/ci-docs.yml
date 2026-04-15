@@ -1,0 +1,138 @@
+name: Docs Quality CI
+
+on:
+  push:
+    branches: [ main, develop ]
+    paths:
+      - 'learning-notes/**'
+  pull_request:
+    branches: [ main, develop ]
+    paths:
+      - 'learning-notes/**'
+  # 每周一早上 9 点（UTC+8）自动运行一次完整检查
+  schedule:
+    - cron: '0 1 * * 1'
+
+jobs:
+  # ============================================
+  # Job 1: Markdown 格式 Lint（仅检查本次变更的文件）
+  # ============================================
+  markdown-lint:
+    name: Markdown Lint
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: 获取变更的 Markdown 文件
+        id: changed
+        run: |
+          if [ "${{ github.event_name }}" = "pull_request" ]; then
+            FILES=$(git diff --name-only ${{ github.event.pull_request.base.sha }} HEAD -- 'learning-notes/**/*.md' | tr '\n' ' ')
+          elif [ "${{ github.event_name }}" = "schedule" ]; then
+            FILES="learning-notes/**/*.md"
+          else
+            FILES=$(git diff --name-only HEAD~1 HEAD -- 'learning-notes/**/*.md' | tr '\n' ' ')
+          fi
+          echo "files=$FILES" >> $GITHUB_OUTPUT
+          echo "变更文件: $FILES"
+
+      - name: markdownlint（变更文件）
+        if: steps.changed.outputs.files != ''
+        uses: DavidAnson/markdownlint-cli2-action@v19
+        with:
+          globs: ${{ steps.changed.outputs.files }}
+          config: '.markdownlint.jsonc'
+        # 现阶段不阻塞 PR，只报告问题
+        continue-on-error: true
+
+  # ============================================
+  # Job 2: 内部链接检查
+  # ============================================
+  link-check:
+    name: Link Check
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: 检查内部 Markdown 链接
+        uses: tcort/markdown-link-check-action@v1
+        with:
+          folder-path: 'learning-notes/'
+          file-extension: '.md'
+          config-file: '.markdown-link-check.json'
+        # 外部链接可能暂时不可达，不阻塞 PR
+        continue-on-error: true
+
+  # ============================================
+  # Job 3: 自定义文档质量检查
+  # ============================================
+  doc-quality:
+    name: Doc Quality
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: 运行文档质量检查脚本
+        run: |
+          chmod +x scripts/doc-lint.sh
+          ./scripts/doc-lint.sh learning-notes
+
+  # ============================================
+  # Job 4: 文档统计报告（仅 schedule 触发）
+  # ============================================
+  doc-stats:
+    name: Doc Stats Report
+    runs-on: ubuntu-latest
+    if: github.event_name == 'schedule'
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: 生成文档统计报告
+        run: |
+          echo "# 📊 文档统计报告" > doc-stats-report.md
+          echo "" >> doc-stats-report.md
+          echo "生成时间: $(date -u '+%Y-%m-%d %H:%M UTC')" >> doc-stats-report.md
+          echo "" >> doc-stats-report.md
+
+          # 统计各目录文档数
+          echo "## 文档数量" >> doc-stats-report.md
+          echo "" >> doc-stats-report.md
+          echo "| 目录 | 文件数 | 总行数 |" >> doc-stats-report.md
+          echo "|------|--------|--------|" >> doc-stats-report.md
+
+          for dir in learning-notes/ai-agent/*/; do
+            if [ -d "$dir" ]; then
+              dirname=$(basename "$dir")
+              file_count=$(find "$dir" -name "*.md" -type f | wc -l | tr -d ' ')
+              line_count=$(find "$dir" -name "*.md" -type f -exec cat {} + 2>/dev/null | wc -l | tr -d ' ')
+              echo "| $dirname | $file_count | $line_count |" >> doc-stats-report.md
+            fi
+          done
+
+          echo "" >> doc-stats-report.md
+
+          # 统计版本标记覆盖率
+          versioned=$(grep -rl "version-check:" learning-notes/ --include="*.md" 2>/dev/null | wc -l | tr -d ' ')
+          total=$(find learning-notes/ -name "*.md" -type f ! -name "README.md" | wc -l | tr -d ' ')
+          echo "## 版本标记覆盖率" >> doc-stats-report.md
+          echo "" >> doc-stats-report.md
+          echo "- 有版本标记的文件: $versioned / $total" >> doc-stats-report.md
+          echo "" >> doc-stats-report.md
+
+          # 最近修改的文件
+          echo "## 最近 30 天修改的文件" >> doc-stats-report.md
+          echo "" >> doc-stats-report.md
+          find learning-notes/ -name "*.md" -type f -mtime -30 | sort | while read -r f; do
+            echo "- $f" >> doc-stats-report.md
+          done
+
+          cat doc-stats-report.md
+
+      - name: 上传统计报告
+        uses: actions/upload-artifact@v4
+        with:
+          name: doc-stats-report
+          path: doc-stats-report.md
+          retention-days: 30

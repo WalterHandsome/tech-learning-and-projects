@@ -1,0 +1,14 @@
+{
+  "enabled": true,
+  "name": "📋 文档写入规范守卫",
+  "description": "Agent 写入 learning-notes/ 下的 .md 文件前，校验格式规范。只拦截文档文件的写入，不影响其他文件。",
+  "version": "2",
+  "when": {
+    "type": "preToolUse",
+    "toolTypes": ["write"]
+  },
+  "then": {
+    "type": "askAgent",
+    "prompt": "检查即将写入的文件路径。\n\n**判断规则：**\n- 如果路径不以 `learning-notes/` 开头，或者不是 `.md` 文件 → 直接回复 \"✅ 跳过\"\n- 如果路径是 learning-notes/ 下的 .md 文件 → 检查写入内容：\n  1. 是否以 `# 标题` 开头（README.md 除外）\n  2. 代码块是否标注了语言\n  3. 更新现有文件时，新增部分是否有 `> 🔄 更新于` 标记\n\n回复 \"✅ 跳过\" 或 \"✅ 通过\" 或简述问题。一句话回复，不要解释。"
+  }
+}
