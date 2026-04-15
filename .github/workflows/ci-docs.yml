@@ -33,7 +33,12 @@ jobs:
           elif [ "${{ github.event_name }}" = "schedule" ]; then
             FILES="learning-notes/**/*.md"
           else
-            FILES=$(git diff --name-only HEAD~1 HEAD -- 'learning-notes/**/*.md' | tr '\n' ' ')
+            # push 事件：对比上一个 commit，如果是首次推送则检查所有文件
+            if git rev-parse HEAD~1 >/dev/null 2>&1; then
+              FILES=$(git diff --name-only HEAD~1 HEAD -- 'learning-notes/**/*.md' | tr '\n' ' ')
+            else
+              FILES="learning-notes/**/*.md"
+            fi
           fi
           echo "files=$FILES" >> $GITHUB_OUTPUT
           echo "变更文件: $FILES"

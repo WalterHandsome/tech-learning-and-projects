@@ -8,11 +8,20 @@
     },
     {
       "pattern": "^https://127\\.0\\.0\\.1"
+    },
+    {
+      "pattern": "^mailto:"
     }
   ],
-  "replacementPatterns": [],
+  "replacementPatterns": [
+    {
+      "pattern": "%20",
+      "replacement": " ",
+      "global": true
+    }
+  ],
   "httpHeaders": [],
-  "timeout": "10s",
+  "timeout": "15s",
   "retryOn429": true,
   "retryCount": 3,
   "fallbackRetryDelay": "5s",
