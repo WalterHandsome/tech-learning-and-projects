@@ -119,5 +119,6 @@ submitted → working → input-required → working → completed
 ```
 ## 🎬 推荐视频资源
 
+<!-- 修复于 2026-04-16: 移除重复的视频链接 -->
 - [Google Cloud - A2A Protocol Overview](https://www.youtube.com/watch?v=4Fy0gDqSVOg) — Google官方A2A协议介绍
-- [AI Jason - A2A vs MCP](https://www.youtube.com/watch?v=4Fy0gDqSVOg) — A2A与MCP对比讲解
+- [AI Jason - Agent Protocols Explained](https://www.youtube.com/watch?v=Ox9DBiJMnHY) — Agent协议生态讲解（含A2A与MCP对比）

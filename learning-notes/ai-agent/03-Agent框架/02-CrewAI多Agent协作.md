@@ -6,8 +6,9 @@
 
 > 🔄 更新于 2026-04-16
 
-<!-- version-check: CrewAI 47.8K+ Stars, v1.10.1, A2A+MCP 集成, checked 2026-04-16 -->
-CrewAI 是一个角色化多 Agent 协作框架，核心理念是将 AI Agent 组织为一个"团队"（Crew），每个 Agent 扮演特定角色，协作完成复杂任务。GitHub 47.8K+ Stars，2700 万+ PyPI 下载量，20 亿+ Agent 执行次数。最新版本 v1.10.1（2026 年 3 月）新增 Gemini GenAI 升级、A2A 和 MCP 集成修复。支持 A2A 协议和 MCP 工具集成。来源：[CrewAI 统计](https://www.getpanto.ai/blog/crewai-platform-statistics)、[v1.10.1 更新](https://markaicode.com/crewai-1-10-1-new-features/)
+<!-- version-check: CrewAI 47.8K+ Stars, v1.14.x, A2A+MCP 集成, checked 2026-04-16 -->
+<!-- 修复于 2026-04-16: CrewAI 版本从 v1.10.1 更新到 v1.14.x -->
+CrewAI 是一个角色化多 Agent 协作框架，核心理念是将 AI Agent 组织为一个"团队"（Crew），每个 Agent 扮演特定角色，协作完成复杂任务。GitHub 47.8K+ Stars，2700 万+ PyPI 下载量，20 亿+ Agent 执行次数。最新版本 v1.14.x（2026 年 4 月），已完全独立于 LangChain，从零构建。支持 A2A 协议和 MCP 工具集成、Flows 事件驱动编排。来源：[CrewAI 统计](https://www.getpanto.ai/blog/crewai-platform-statistics)、[CrewAI Changelog](https://docs.crewai.com/en/changelog)
 
 ## 2. 核心概念
 

@@ -572,7 +572,7 @@ Agent 支付安全要点：
 - Agent 协议全景 → `Agent协议全景图.md`（本目录，协议关系图）
 - A2A 协议 → `A2A Agent间通信协议.md`（AP2 的基础协议）
 - Agent 安全 → `15-Agent安全与治理/01-Agent身份与权限.md`
-- Agent 治理 → `15-Agent安全与治理/Agent治理框架.md`
+- Agent 治理 → `15-Agent安全与治理/02-Agent治理框架.md`
 - MCP 协议 → `MCP模型上下文协议.md`（工具调用基础）
 - Agent 支付深度学习 → `20-Agent支付/`（支付基础、术语字典、行业全景、AgentToken 产品分析）
 ## 🎬 推荐视频资源
