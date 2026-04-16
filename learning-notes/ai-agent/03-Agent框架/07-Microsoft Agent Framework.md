@@ -34,10 +34,11 @@ from microsoft.agents import (
 )
 
 # ChatCompletionAgent — 最常用，基于 Chat Completions API
+<!-- version-check: gpt-5.2, checked 2026-04-16 -->
 agent = ChatCompletionAgent(
     name="assistant",
     instructions="你是一个有帮助的助手。",
-    model="gpt-4o",
+    model="gpt-5.2",
     plugins=[search_plugin, math_plugin],
 )
 
@@ -45,7 +46,7 @@ agent = ChatCompletionAgent(
 assistant = OpenAIAssistantAgent(
     name="data_analyst",
     instructions="你是数据分析师，使用代码解释器分析数据。",
-    model="gpt-4o",
+    model="gpt-5.2",
     enable_code_interpreter=True,
 )
 
@@ -53,7 +54,7 @@ assistant = OpenAIAssistantAgent(
 azure_agent = AzureAIAgent(
     name="enterprise_bot",
     project_endpoint="https://xxx.services.ai.azure.com",
-    model="gpt-4o",
+    model="gpt-5.2",
 )
 ```
 
@@ -147,7 +148,7 @@ var agent = new ChatCompletionAgent
 {
     Name = "assistant",
     Instructions = "你是一个有帮助的助手。",
-    Model = "gpt-4o",
+    model="gpt-5.2",
     Plugins = [new WeatherPlugin(), new SearchPlugin()],
 };
 
@@ -164,7 +165,7 @@ from microsoft.agents import AzureAIAgent
 agent = AzureAIAgent.create(
     name="enterprise_agent",
     project_endpoint="https://myproject.services.ai.azure.com",
-    model="gpt-4o",
+    model="gpt-5.2",
     plugins=[crm_plugin, erp_plugin],
     guardrails=["content_safety", "pii_filter"],
 )

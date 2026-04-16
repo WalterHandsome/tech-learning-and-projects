@@ -24,12 +24,13 @@ def search_flights(origin: str, destination: str, date: str) -> str:
     """搜索航班"""
     return f"{origin} → {destination} ({date}): 3个航班可选"
 
+<!-- version-check: gpt-5.2, checked 2026-04-16 -->
 # 创建 Agent
 travel_agent = Agent(
     name="旅行助手",
     instructions="你是一个旅行规划助手，帮助用户规划旅行行程。",
     tools=[get_weather, search_flights],
-    model="gpt-4o",
+    model="gpt-5.2",
 )
 
 # 运行
@@ -47,12 +48,14 @@ billing_agent = Agent(
     name="账单专员",
     instructions="你负责处理账单和支付相关问题。",
     tools=[query_billing, process_refund],
+    model="gpt-5.2",
 )
 
 tech_agent = Agent(
     name="技术支持",
     instructions="你负责处理技术问题和故障排查。",
     tools=[check_system_status, create_ticket],
+    model="gpt-5.2",
 )
 
 # 主 Agent（路由）
@@ -62,6 +65,7 @@ triage_agent = Agent(
     - 账单/支付问题 → 转接账单专员
     - 技术/故障问题 → 转接技术支持""",
     handoffs=[billing_agent, tech_agent],  # 可交接的 Agent
+    model="gpt-5.2",
 )
 
 # 运行（自动路由到合适的 Agent）
@@ -103,6 +107,7 @@ async def check_output_pii(ctx, agent, output_text):
 agent = Agent(
     name="安全助手",
     instructions="...",
+    model="gpt-5.2",
     input_guardrails=[check_input_safety],
     output_guardrails=[check_output_pii],
 )

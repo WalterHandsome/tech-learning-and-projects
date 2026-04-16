@@ -13,7 +13,7 @@ from autogen import ConversableAgent
 assistant = ConversableAgent(
     name="assistant",
     system_message="你是一个有帮助的AI助手，擅长编程和分析。",
-    llm_config={"model": "gpt-4o", "api_key": "..."},
+    llm_config={"model": "gpt-5.2", "api_key": "..."},
 )
 
 user_proxy = ConversableAgent(
@@ -62,8 +62,9 @@ class CityInfo(BaseModel):
     famous_for: list[str]
 
 # 创建类型安全的 Agent
+<!-- version-check: gpt-5.2, checked 2026-04-16 -->
 agent = Agent(
-    model="openai:gpt-4o",
+    model="openai:gpt-5.2",
     result_type=CityInfo,  # 强制输出类型
     system_prompt="你是一个地理知识专家，提供准确的城市信息。",
 )
@@ -82,7 +83,7 @@ class Deps:
     db_conn: any
     api_key: str
 
-agent = Agent(model="openai:gpt-4o", deps_type=Deps)
+agent = Agent(model="openai:gpt-5.2", deps_type=Deps)
 
 @agent.tool
 async def query_database(ctx, sql: str) -> str:
@@ -108,7 +109,7 @@ from agno.tools.yfinance import YFinanceTools
 
 # 创建 Agent
 agent = Agent(
-    model=OpenAIChat(id="gpt-4o"),
+    model=OpenAIChat(id="gpt-5.2"),
     tools=[DuckDuckGoTools(), YFinanceTools(stock_price=True)],
     instructions="你是一个金融分析师，用中文回答。",
     show_tool_calls=True,
@@ -127,7 +128,7 @@ finance_agent = Agent(name="finance", tools=[YFinanceTools()])
 team = Team(
     agents=[web_agent, finance_agent],
     mode="coordinate",  # coordinate / route / collaborate
-    model=OpenAIChat(id="gpt-4o"),
+    model=OpenAIChat(id="gpt-5.2"),
 )
 team.print_response("对比特斯拉和比亚迪的市场表现")
 ```

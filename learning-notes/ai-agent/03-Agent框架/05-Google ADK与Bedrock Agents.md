@@ -11,9 +11,10 @@ from google.adk.agents import Agent
 from google.adk.tools import google_search, code_execution
 
 # 创建基础 Agent
+<!-- version-check: gemini-3-flash, checked 2026-04-16 -->
 agent = Agent(
     name="research_agent",
-    model="gemini-2.0-flash",
+    model="gemini-3-flash",
     description="一个能搜索和分析信息的研究助手",
     instruction="""你是一位研究助手。
     1. 使用搜索工具获取最新信息
@@ -47,20 +48,20 @@ from google.adk.agents import Agent, SequentialAgent, LoopAgent
 # 子 Agent 定义
 planner = Agent(
     name="planner",
-    model="gemini-2.0-flash",
+    model="gemini-3-flash",
     instruction="将用户任务分解为具体步骤",
 )
 
 executor = Agent(
     name="executor",
-    model="gemini-2.0-flash",
+    model="gemini-3-flash",
     instruction="执行计划中的每个步骤",
     tools=[google_search, code_execution],
 )
 
 reviewer = Agent(
     name="reviewer",
-    model="gemini-2.0-flash",
+    model="gemini-3-flash",
     instruction="审查执行结果，决定是否需要改进",
 )
 
@@ -90,7 +91,8 @@ bedrock_agent = boto3.client("bedrock-agent", region_name="us-east-1")
 # 创建 Agent
 response = bedrock_agent.create_agent(
     agentName="customer-service-agent",
-    foundationModel="anthropic.claude-3-5-sonnet-20241022-v2:0",
+<!-- version-check: claude-sonnet-4-6-20260401, checked 2026-04-16 -->
+    foundationModel="anthropic.claude-sonnet-4-6-20260401-v1:0",
     instruction="""你是客服助手。
     - 查询订单状态
     - 处理退换货请求
@@ -141,7 +143,7 @@ for event in response["completion"]:
 | 特性 | Google ADK | Bedrock Agents | Azure AI Agent |
 |------|-----------|----------------|----------------|
 | 类型 | 开源框架 | 全托管服务 | 全托管服务 |
-| 模型 | Gemini 为主 | Claude/Llama/Titan | GPT/开源 |
+| 模型 | Gemini 为主 | Claude/Llama/Nova | GPT/开源 |
 | 工具定义 | Python 函数 | OpenAPI Schema | Function Calling |
 | 多 Agent | 原生支持 | 协作模式 | AutoGen 集成 |
 | MCP 支持 | 原生 | 有限 | 有限 |

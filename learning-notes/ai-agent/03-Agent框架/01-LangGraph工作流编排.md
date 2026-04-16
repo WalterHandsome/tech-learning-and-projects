@@ -4,7 +4,8 @@
 
 ## 1. 概述
 
-LangGraph 是 LangChain 团队推出的 Agent 工作流编排框架，基于图结构定义 Agent 的执行流程。2025 年 10 月发布 1.0 GA，是目前生产级 Agent 开发的行业标准。
+<!-- version-check: LangGraph 1.0 GA (2025-10), 现已到 1.1.x, checked 2026-04-16 -->
+LangGraph 是 LangChain 团队推出的 Agent 工作流编排框架，基于图结构定义 Agent 的执行流程。2025 年 10 月发布 1.0 GA，目前最新版本为 1.1.x，是目前生产级 Agent 开发的行业标准。
 
 核心优势：图结构控制流、模型无关、内置检查点、人机交互支持。
 

@@ -31,9 +31,10 @@ from google.adk.runners import Runner
 from google.adk.sessions import InMemorySessionService
 
 # Agent：核心智能体
+<!-- version-check: gemini-3-flash, checked 2026-04-16 -->
 agent = Agent(
     name="helper",
-    model="gemini-2.0-flash",
+    model="gemini-3-flash",
     description="通用助手",
     instruction="你是一个有帮助的助手，用中文回答。",
     tools=[],
@@ -70,7 +71,7 @@ from google.adk.agents import (
 # LlmAgent — 核心 Agent，由 LLM 驱动
 researcher = LlmAgent(
     name="researcher",
-    model="gemini-2.0-flash",
+    model="gemini-3-flash",
     instruction="搜索并收集信息",
     tools=[google_search],
 )
@@ -112,7 +113,7 @@ bmi_tool = FunctionTool(func=calculate_bmi)
 # 内置工具
 agent = LlmAgent(
     name="smart_agent",
-    model="gemini-2.0-flash",
+    model="gemini-3-flash",
     instruction="你可以搜索信息和执行代码。",
     tools=[google_search, code_execution, bmi_tool],
 )
@@ -132,7 +133,7 @@ mcp_github = MCPTool(
 
 agent = LlmAgent(
     name="dev_agent",
-    model="gemini-2.0-flash",
+    model="gemini-3-flash",
     tools=[mcp_github],
 )
 ```
@@ -149,7 +150,7 @@ remote_agent = A2ATool(
 
 coordinator = LlmAgent(
     name="coordinator",
-    model="gemini-2.0-flash",
+    model="gemini-3-flash",
     instruction="协调远程 Agent 完成任务。",
     tools=[remote_agent],
 )
@@ -163,14 +164,14 @@ from google.adk.agents import Agent, SequentialAgent
 # 子 Agent 通过 output_key 传递数据
 planner = Agent(
     name="planner",
-    model="gemini-2.0-flash",
+    model="gemini-3-flash",
     instruction="将任务分解为步骤，输出 JSON 格式的计划。",
     output_key="plan",  # 结果存入 session state
 )
 
 executor = Agent(
     name="executor",
-    model="gemini-2.0-flash",
+    model="gemini-3-flash",
     instruction="根据 {plan} 执行每个步骤。",  # 引用上游输出
     tools=[google_search, code_execution],
     output_key="result",
@@ -224,7 +225,7 @@ from google.adk.streaming import LiveAgent
 
 live_agent = LiveAgent(
     name="video_assistant",
-    model="gemini-2.0-flash",
+    model="gemini-3-flash",
     instruction="你可以看到用户的视频流并实时回答问题。",
     modalities=["audio", "video"],
 )
