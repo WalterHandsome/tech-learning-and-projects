@@ -42,11 +42,17 @@ def code_review(code: str, language: str) -> str:
 
 ### 2.2 传输层
 
+> 🔄 更新于 2026-04-16
+
+<!-- version-check: MCP spec 2026-03-26, Streamable HTTP 替代 SSE, checked 2026-04-16 -->
+
 ```
-stdio    — 本地进程通信（最常用，IDE集成）
-SSE      — HTTP Server-Sent Events（远程服务）
-Streamable HTTP — 新一代 HTTP 传输（替代 SSE）
+stdio            — 本地进程通信（最常用，IDE集成）
+Streamable HTTP  — 新一代 HTTP 传输（推荐，替代 SSE）
+SSE              — HTTP Server-Sent Events（已废弃，2026-03-26 规范正式移除）
 ```
+
+> **重要变更**：MCP 2025-03-26 规范引入 Streamable HTTP 传输，使用单一 `/mcp` 端点处理所有双向通信。2026-03-26 规范正式废弃 SSE 传输。认证从 OAuth 2.0 升级到 OAuth 2.1（强制 PKCE + HTTPS）。来源：[MCP Specification Changelog](https://www.mcpserverspot.com/learn/fundamentals/mcp-specification-changelog)
 
 ## 3. MCP Server 开发（Python）
 

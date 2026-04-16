@@ -4,7 +4,11 @@
 
 ## 1. 概述
 
-Microsoft Agent Framework 是微软于 2026 年推出的统一 Agent 开发框架，由 Semantic Kernel（企业级 AI 编排）和 AutoGen（多 Agent 研究框架）合并而来。融合了 SK 的类型安全、遥测、安全能力与 AutoGen 的多 Agent 协作模式。
+> 🔄 更新于 2026-04-16
+
+<!-- version-check: Microsoft Agent Framework RC, A2A 集成, checked 2026-04-16 -->
+
+Microsoft Agent Framework 是微软于 2026 年推出的统一 Agent 开发框架，由 Semantic Kernel（企业级 AI 编排）和 AutoGen（多 Agent 研究框架）合并而来。融合了 SK 的类型安全、遥测、安全能力与 AutoGen 的多 Agent 协作模式。目前已达 Release Candidate 阶段，API 表面稳定，v1.0 GA 所有功能已完成。已集成 A2A 协议（通过 Azure AI Foundry 和 Copilot Studio），支持 Python/.NET/Java 三种语言。来源：[Microsoft DevBlogs](https://devblogs.microsoft.com/foundry/microsoft-agent-framework-reaches-release-candidate)、[Azure Blog](https://azure.microsoft.com/en-us/blog/introducing-microsoft-agent-framework/)
 
 ```
 ┌─────────────── Microsoft Agent Framework ───────────────┐
