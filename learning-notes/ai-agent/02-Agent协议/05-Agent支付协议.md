@@ -578,5 +578,5 @@ Agent 支付安全要点：
 ## 🎬 推荐视频资源
 
 ### 🌐 YouTube
-- [a]16z - AI Agent Payments](https://www.youtube.com/watch?v=JhCl-GeT4jw) — AI Agent支付未来趋势
+- [a16z - AI Agent Payments](https://www.youtube.com/watch?v=JhCl-GeT4jw) — AI Agent支付未来趋势
 - [Stripe - AI Payment Integration](https://www.youtube.com/watch?v=F8NKVhkZZWI) — AI支付集成方案

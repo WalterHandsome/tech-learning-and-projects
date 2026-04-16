@@ -6,6 +6,9 @@
 
 所有 Agent 的基础构建块：LLM + 检索 + 工具 + 记忆。
 
+<!-- version-check: OpenAI gpt-5.2, checked 2026-04-16 -->
+<!-- 修复于 2026-04-16: gpt-4o → gpt-5.2（gpt-4o 已于 2026-02 退役） -->
+
 ```
 ┌─────────────────────────────────┐
 │         Augmented LLM           │
@@ -27,7 +30,7 @@ client = OpenAI()
 
 # 增强型 LLM = 模型 + 工具 + 上下文
 response = client.chat.completions.create(
-    model="gpt-4o",
+    model="gpt-5.2",
     messages=[
         {"role": "system", "content": "你是助手。使用工具回答问题。"},
         {"role": "user", "content": "查询北京天气"},
@@ -61,7 +64,7 @@ def search(query: str) -> str:
     """搜索互联网"""
     return f"搜索结果：{query} 的相关信息..."
 
-llm = ChatOpenAI(model="gpt-4o")
+llm = ChatOpenAI(model="gpt-5.2")
 agent = create_react_agent(llm, tools=[search])
 result = agent.invoke({"messages": [("user", "2025年AI Agent发展趋势")]})
 ```
@@ -153,7 +156,7 @@ def tool_use_agent(query: str) -> str:
     """工具使用模式"""
     messages = [{"role": "user", "content": query}]
     response = client.chat.completions.create(
-        model="gpt-4o", messages=messages,
+        model="gpt-5.2", messages=messages,
         tools=[{"type": "function", "function": {"name": k, "description": k,
                 "parameters": {"type": "object", "properties": {"input": {"type": "string"}}}}}
                for k in tools_registry],
@@ -162,7 +165,7 @@ def tool_use_agent(query: str) -> str:
         for tc in response.choices[0].message.tool_calls:
             result = tools_registry[tc.function.name](tc.function.arguments)
             messages.append({"role": "tool", "tool_call_id": tc.id, "content": result})
-        return client.chat.completions.create(model="gpt-4o", messages=messages).choices[0].message.content
+        return client.chat.completions.create(model="gpt-5.2", messages=messages).choices[0].message.content
     return response.choices[0].message.content
 ```
 
@@ -173,8 +176,8 @@ def tool_use_agent(query: str) -> str:
 ```python
 from crewai import Agent, Task, Crew
 
-researcher = Agent(role="研究员", goal="深度调研", llm="gpt-4o")
-writer = Agent(role="作者", goal="撰写报告", llm="gpt-4o")
+researcher = Agent(role="研究员", goal="深度调研", llm="gpt-5.2")
+writer = Agent(role="作者", goal="撰写报告", llm="gpt-5.2")
 
 research_task = Task(description="调研 AI Agent 趋势", agent=researcher)
 write_task = Task(description="撰写调研报告", agent=writer)
@@ -354,18 +357,25 @@ async def streaming_agent(query: str):
 
 多个平等 Agent 通过 handoff 机制协作，无中央控制。
 
+<!-- version-check: OpenAI Agents SDK (openai-agents), checked 2026-04-16 -->
+<!-- 修复于 2026-04-16: 旧 Swarm API 已废弃，更新为 OpenAI Agents SDK -->
+
 ```python
-from openai import OpenAI
-from openai.types.beta import Agent as SwarmAgent
+from agents import Agent, Runner
 
-client = OpenAI()
+# OpenAI Agents SDK（Swarm 的生产级继任者）
+sales = Agent(name="sales", instructions="处理销售相关问题")
+support = Agent(name="support", instructions="处理技术支持问题")
 
-triage = SwarmAgent(name="triage", instructions="根据问题类型转交给专业Agent")
-sales = SwarmAgent(name="sales", instructions="处理销售相关问题")
-support = SwarmAgent(name="support", instructions="处理技术支持问题")
+# handoffs 参数接受 Agent 对象列表（不是字符串）
+triage = Agent(
+    name="triage",
+    instructions="根据问题类型转交给专业Agent",
+    handoffs=[sales, support],
+)
 
 # Agent 间通过 handoff 转交控制权
-triage.handoffs = [sales, support]
+result = Runner.run_sync(triage, "我想了解产品价格")
 ```
 
 ## 16. 模式选型速查

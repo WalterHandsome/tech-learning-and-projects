@@ -4,7 +4,8 @@
 
 ## 1. 概述
 
-CrewAI 是一个角色化多 Agent 协作框架，核心理念是将 AI Agent 组织为一个"团队"（Crew），每个 Agent 扮演特定角色，协作完成复杂任务。GitHub 44K+ Stars，支持 MCP 集成。
+<!-- version-check: CrewAI 47.8K+ Stars, checked 2026-04-16 -->
+CrewAI 是一个角色化多 Agent 协作框架，核心理念是将 AI Agent 组织为一个"团队"（Crew），每个 Agent 扮演特定角色，协作完成复杂任务。GitHub 47.8K+ Stars，支持 MCP 集成。
 
 ## 2. 核心概念
 
@@ -25,12 +26,13 @@ def write_file(filename: str, content: str) -> str:
     return f"已写入 {filename}"
 
 # 2. 定义 Agent（角色）
+<!-- version-check: gpt-5.2, checked 2026-04-16 -->
 researcher = Agent(
     role="高级研究员",
     goal="深入研究给定主题，收集全面准确的信息",
     backstory="你是一位经验丰富的研究员，擅长从多个来源收集和分析信息",
     tools=[search_web],
-    llm="gpt-4o",
+    llm="gpt-5.2",
     verbose=True,
 )
 
@@ -39,14 +41,14 @@ writer = Agent(
     goal="将研究成果转化为高质量的技术文章",
     backstory="你是一位专业的技术作家，擅长将复杂概念用通俗易懂的方式表达",
     tools=[write_file],
-    llm="gpt-4o",
+    llm="gpt-5.2",
 )
 
 reviewer = Agent(
     role="内容审核员",
     goal="审核文章质量，确保准确性和可读性",
     backstory="你是一位严格的编辑，对内容质量有极高的要求",
-    llm="gpt-4o",
+    llm="gpt-5.2",
 )
 
 # 3. 定义任务
@@ -91,7 +93,7 @@ process=Process.sequential  # 任务按顺序执行
 
 # 层级执行（Manager Agent 分配任务）
 process=Process.hierarchical
-manager_llm="gpt-4o"  # Manager 使用的模型
+manager_llm="gpt-5.2"  # Manager 使用的模型
 ```
 
 ## 4. MCP 集成
@@ -137,9 +139,9 @@ crew = Crew(
 | 核心理念 | 角色协作 | 图工作流 | 快速原型 |
 | 多 Agent | 原生支持 | 需手动编排 | Handoff 模式 |
 | 学习曲线 | 低 | 中高 | 低 |
-| 模型锁定 | 无 | 无 | OpenAI |
+| 模型锁定 | 无 | 无 | OpenAI 为主 |
 | MCP 支持 | 原生 | 通过工具 | 通过工具 |
-| 适用场景 | 团队协作 | 复杂工作流 | GPT 原型 |
+| 适用场景 | 团队协作 | 复杂工作流 | GPT 快速原型 |
 ## 🎬 推荐视频资源
 
 - [DeepLearning.AI - Multi AI Agent Systems with crewAI](https://www.deeplearning.ai/short-courses/multi-ai-agent-systems-with-crewai/) — 吴恩达出品多Agent系统（免费）

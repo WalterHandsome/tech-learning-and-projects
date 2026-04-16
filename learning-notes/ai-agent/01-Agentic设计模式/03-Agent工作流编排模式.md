@@ -151,7 +151,7 @@ class ResearchWriteWorkflow(Workflow):
         return WritingDone(draft=draft.content)
 
     @step
-    async def review(self, ev: WritingDone) -> ReviewDone | WritingDone:
+    async def review(self, ev: WritingDone) -> StopEvent | WritingDone:
         """审查阶段"""
         review = await llm.ainvoke(f"审查文章质量，回答PASS/FAIL：{ev.draft[:500]}")
         if "PASS" in review.content:
