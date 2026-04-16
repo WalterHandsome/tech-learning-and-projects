@@ -146,6 +146,47 @@ set_trace_processors([custom_processor])
 - 复杂的图结构工作流
 - 需要精细状态管理的场景
 ```
+
+> 🔄 更新于 2026-04-16
+
+## 7. 2026 年 4 月重大更新：沙箱与 Harness 架构
+
+<!-- version-check: OpenAI Agents SDK 2026-04-15 update, sandbox + harness, checked 2026-04-16 -->
+
+OpenAI 于 2026 年 4 月 15 日发布 Agents SDK 重大更新，引入沙箱执行和增强的 harness 架构，将 SDK 从原型工具推向企业级生产平台。来源：[TechCrunch](https://techcrunch.com/2026/04/15/openai-updates-its-agents-sdk-to-help-enterprises-build-safer-more-capable-agents/)、[OpenAI 社区](https://community.openai.com/t/the-next-evolution-of-the-agents-sdk/1379072)
+
+### 核心变化
+
+```
+Agents SDK 架构演进：
+├─ Harness（编排层）
+│   ├─ instructions — Agent 指令
+│   ├─ tools — 工具注册
+│   ├─ approvals — 审批流程
+│   ├─ tracing — 追踪
+│   ├─ handoffs — Agent 交接
+│   └─ resume bookkeeping — 恢复记账
+│
+├─ Sandbox（沙箱执行）
+│   ├─ 隔离的计算环境
+│   ├─ 文件操作、命令执行、代码编辑
+│   └─ 类似 Codex 风格的 Agent 行为
+│
+└─ 关键理念：Harness 与 Compute 分离
+    ├─ Harness 负责编排和控制
+    └─ Sandbox 负责安全执行
+```
+
+### 企业级特性
+
+```
+新增能力：
+├─ 沙箱执行 — Agent 在受控环境中运行，防止意外行为
+├─ 增强 Harness — 标准化的 Agent 基础设施
+├─ 审批工作流 — 敏感操作需人工确认
+├─ 恢复机制 — 中断后可恢复执行
+└─ 生产级追踪 — 完整的执行链路追踪
+```
 ## 🎬 推荐视频资源
 
 - [OpenAI - Agents SDK Introduction](https://www.youtube.com/watch?v=JhCl-GeT4jw) — OpenAI官方Agents SDK介绍

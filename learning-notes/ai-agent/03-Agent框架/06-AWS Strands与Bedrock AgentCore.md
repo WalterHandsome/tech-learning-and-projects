@@ -4,7 +4,11 @@
 
 ## 1. Strands Agents SDK 概述
 
-Strands Agents SDK 是 AWS 于 2025 年 5 月开源的 Python Agent 框架，7 月发布 v1.0 正式版并新增多 Agent 编排能力。核心理念是"模型驱动"——Agent 自主规划、推理并选择工具，开发者只需定义工具和目标。
+> 🔄 更新于 2026-04-16
+
+<!-- version-check: Strands Agents v1.0 (2025-07), 14M+ 下载, Strands Labs, checked 2026-04-16 -->
+
+Strands Agents SDK 是 AWS 于 2025 年 5 月开源的 Python Agent 框架，7 月发布 v1.0 正式版并新增多 Agent 编排能力。核心理念是"模型驱动"——Agent 自主规划、推理并选择工具，开发者只需定义工具和目标。截至 2026 年，SDK 已被下载 1400 万+ 次。AWS 还推出了 Strands Labs 实验性项目，包含 Steering（引导）等前沿功能，支持活跃的开发者社区。同时支持 Python 和 TypeScript/JavaScript 两种语言。来源：[AWS Blog](https://aws.amazon.com/blogs/opensource/introducing-strands-labs-get-hands-on-today-with-state-of-the-art-experimental-approaches-to-agentic-development/)、[Strands Agents 官网](https://strandsagents.com/)
 
 ```
 ┌─────────────────────────────────────────────┐

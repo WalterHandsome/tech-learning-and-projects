@@ -4,7 +4,12 @@
 
 ## 1. 概述
 
-Google Agent Development Kit（ADK）是 Google 推出的开源、代码优先的 Agent 开发框架。深度集成 Gemini 模型生态，原生支持 A2A 协议和 MCP，提供从原型到生产的完整路径。
+> 🔄 更新于 2026-04-16
+
+<!-- version-check: Google ADK v1.28+, Python v1.0.0 stable, checked 2026-04-16 -->
+<!-- 修复于 2026-04-16: ADK 版本从 v1.22+ 更新到 v1.28+ -->
+
+Google Agent Development Kit（ADK）是 Google 推出的开源、代码优先的 Agent 开发框架。深度集成 Gemini 模型生态，原生支持 A2A 协议和 MCP，提供从原型到生产的完整路径。Python ADK 于 2025 年 5 月发布 v1.0.0 稳定版，目前已迭代到 v1.28+（约双周发布一次）。支持 YAML 定义 Agent（Agent Config）、可视化拖拽 UI、Cloud Run 一键部署，SDK 覆盖 Python/TypeScript/Go/Java 四种语言。A2A 协议已内置到 ADK 中，使用 ADK 构建的 Agent 自动获得 A2A 通信能力。来源：[Google Developers Blog](https://developers.googleblog.com/en/agents-adk-agent-engine-a2a-enhancements-google-io/)、[PyPI](https://pypi.org/project/google-adk/)、[PyPI Stats](https://pypistats.org/packages/google-adk)
 
 ```
 ┌──────────────────── Google ADK ────────────────────┐
