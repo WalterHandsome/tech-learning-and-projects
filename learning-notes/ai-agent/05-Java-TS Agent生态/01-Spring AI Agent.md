@@ -4,7 +4,19 @@
 
 ## 1. 概述
 
+<!-- version-check: Spring AI 2.0.0-M4 / 1.1.4, checked 2026-04-18 -->
+
+> 🔄 更新于 2026-04-18
+
 Spring AI 是 Spring 生态的 AI 框架，为 Java/Kotlin 开发者提供统一的 AI 模型接口、工具调用、RAG、MCP 客户端等能力。
+
+最新版本：
+- **Spring AI 2.0.0-M4**（2026-03-26）— 19 项改进、29 个 Bug 修复、3 个安全升级
+- **Spring AI 1.1.4**（2026-03-26）— 稳定版维护更新
+- **MCP Streamable HTTP**：替代 SSE 传输，支持 MCP Server Boot Starter
+- **Bedrock AgentCore SDK GA**：Spring AI SDK for Amazon Bedrock AgentCore 正式可用
+
+> 来源：[Spring AI 2.0.0-M4 发布公告](https://spring.io/blog/2026/03/26/spring-ai-2-0-0-M4-and-1-1-4-and-1-0-5-available)、[AWS Bedrock AgentCore GA](https://aws.amazon.com/blogs/machine-learning/spring-ai-sdk-for-amazon-bedrock-agentcore-is-now-generally-available/)
 
 ```
 ┌─────────────────────────────────────────────┐

@@ -4,7 +4,18 @@
 
 ## 1. 概述
 
-Composio 提供 1000+ 预构建工具集成，让 AI Agent 能连接 GitHub、Slack、Jira、Gmail 等外部服务。核心价值：统一认证管理 + 元工具发现 + MCP Gateway。
+> 🔄 更新于 2026-04-18
+
+<!-- version-check: Composio SDK TS 0.6.0+, Python 0.11.0+, 50000+ 工具, checked 2026-04-18 -->
+
+Composio 提供 **50,000+** 预构建工具集成（覆盖 **1,000+** 应用、**10,000+** API），让 AI Agent 能连接 GitHub、Slack、Jira、Gmail 等外部服务。核心价值：统一认证管理 + 元工具发现 + MCP Gateway + AI 反馈循环自动优化工具。
+
+> **2026 重大更新**（[来源](https://docs.composio.dev/changelog)）：
+> - **SDK 0.6.0+**（2026-01-29）：TypeScript 0.6.0+ / Python 0.11.0+，支持 **Cloudflare Workers**，Breaking Changes
+> - **50,000+ 工具**：从 1,000+ 增长到 50,000+ 工具，覆盖 1,000+ 应用（[来源](https://www.cognitiverevolution.ai/your-agent-s-self-improving-swiss-army-knife-composio-cto-karan-vaidya-on-building-smart-tools/)）
+> - **AI 反馈循环**：工具执行结果自动反馈，AI 驱动的工具质量持续优化
+> - **多账户支持**：Sessions 支持 `multiAccount` 配置，同一 toolkit 可连接多个账户（如工作和个人 Gmail）
+> - **废弃工具标记**：~230 个工具（70+ 应用）已标记 `deprecated = True`，通过交叉引用官方 API 文档识别
 
 ```
 ┌─────────────────────────────────────────────┐
@@ -247,12 +258,13 @@ CRM：    Salesforce, HubSpot, Pipedrive
 
 | 特性         | Composio        | Toolhouse       | Arcade AI       |
 |-------------|-----------------|-----------------|-----------------|
-| 工具数量     | 1000+           | 100+            | 50+             |
+| 工具数量     | 50,000+         | 100+            | 50+             |
 | 认证管理     | ✅ OAuth2 统一  | ✅              | ✅              |
 | MCP 支持    | ✅ Gateway      | ✅              | ❌              |
 | 框架集成     | 广泛            | OpenAI/LangChain| OpenAI          |
 | 元工具发现   | ✅              | ❌              | ❌              |
 | 自托管       | ❌ 仅云服务     | ❌              | ❌              |
+| AI 反馈优化  | ✅              | ❌              | ❌              |
 ## 🎬 推荐视频资源
 
 ### 🌐 YouTube

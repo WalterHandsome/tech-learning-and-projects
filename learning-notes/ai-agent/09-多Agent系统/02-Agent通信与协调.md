@@ -121,8 +121,13 @@ final = await resolver.resolve_by_synthesis({
 
 ## 5. A2A 协议实践
 
+> 🔄 更新于 2026-04-18
+
+<!-- version-check: A2A v1.0 (Draft), spec v0.3.0, 150+ 组织, Linux Foundation 托管, checked 2026-04-18 -->
+
 ```python
 # Google A2A 协议：Agent 间标准化通信
+# A2A v1.0 稳定版，Linux Foundation 托管，150+ 组织支持
 import httpx
 
 # Agent Card（能力描述）
@@ -138,6 +143,9 @@ agent_card = {
         {"id": "sql_query", "name": "SQL 查询", "description": "执行数据库查询"},
         {"id": "visualize", "name": "数据可视化", "description": "生成图表"},
     ],
+    "authentication": {
+        "schemes": ["oauth2", "apiKey"],  # v0.3.0 新增安全认证
+    },
 }
 
 # 发送任务
@@ -172,6 +180,14 @@ async def check_task_status(agent_url: str, task_id: str):
         )
         return response.json()  # status: submitted/working/completed/failed
 ```
+
+> **A2A 2026 生态现状**：
+> - **v1.0 稳定版**：Linux Foundation 托管，150+ 组织支持（AWS、Cisco、Microsoft、Salesforce、SAP 等）（[来源](https://letsdatascience.com/blog/a2a-protocol-agent-to-agent)）
+> - **spec v0.3.0**：新增 gRPC 支持、签名安全卡（Signed Security Cards）、扩展 Python SDK（[来源](https://reptile.haus/journal/a2a-protocol-agent-to-agent-communication-ai-strategy-2026/)）
+> - **官方 SDK**：Python、Go、JavaScript、Java、.NET 五种语言
+> - **MCP + A2A 互补**：MCP 处理 Agent→工具连接，A2A 处理 Agent→Agent 委派和跨组织协作
+> - **JetBrains Central**（2026-03）：首个以多 Agent 互操作为核心的编排平台
+> - **主流框架集成**：CrewAI、Google ADK、Dapr Agents 等均已内置 A2A 支持
 ## 🎬 推荐视频资源
 
 ### 🌐 YouTube

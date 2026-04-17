@@ -4,7 +4,22 @@
 
 ## 1. 概述
 
-Letta（前身 MemGPT）是 UC Berkeley 研究团队开发的有状态 Agent 运行时，采用操作系统启发的分层记忆架构，让 Agent 能自主管理自己的记忆。
+<!-- version-check: Letta v0.16.7, checked 2026-04-18 -->
+
+Letta（前身 MemGPT）是 UC Berkeley 研究团队开发的有状态 Agent 运行时，采用操作系统启发的分层记忆架构，让 Agent 能自主管理自己的记忆。GitHub 21K+ Stars。
+
+> 🔄 更新于 2026-04-18
+>
+> **Letta v0.16.7**（2026-03-31）：默认上下文窗口 32K→128K，压缩（compaction）机制全面重构（21 项修复），Block 大小限制移除，GPT-5.4/Opus 4.6/Sonnet 4.6 全面支持，WebSocket 传输支持 OpenAI Responses API，安全加固（阻止 `file:///` URL 和内部 MCP 目标）。
+> 来源：[Letta Releases](https://github.com/letta-ai/letta/releases)
+>
+> **Memory Omni-Tool**：Agent 可动态创建和删除记忆块（memory blocks），不再局限于固定记忆架构。Claude Sonnet 4.5 专门针对此工具做了后训练，但该工具兼容所有模型。
+> 来源：[Letta Blog](https://www.letta.com/blog/introducing-sonnet-4-5-and-the-memory-omni-tool-in-letta)
+>
+> **Letta Code**：记忆优先的编码 Agent，基于 Letta API 构建，支持跨会话持久化 Agent、Context Repositories（Git 式记忆管理）。
+> 来源：[Letta Blog](https://www.letta.com/blog/letta-code)
+>
+> **Conversations API**：会话分叉（forking）、幂等流式传输（OTID）、按最后消息时间排序、请求级系统提示覆盖。
 
 ```
 ┌─────────────────────────────────────────────┐
@@ -238,7 +253,9 @@ writer = client.create_agent(
 | 记忆管理       | Agent 自主管理（系统调用） | 框架自动提取              |
 | 记忆层级       | 三层（核心/回忆/归档）     | 扁平（向量 + 图）         |
 | Agent 运行时   | ✅ 完整运行时             | ❌ 仅记忆层              |
+| Memory Omni-Tool | ✅ 动态创建/删除记忆块  | ❌                       |
 | 可视化调试     | ✅ ADE                   | ❌ 基础 API              |
+| 编码 Agent     | ✅ Letta Code            | ✅ Skill Graph + Plugin  |
 | 集成方式       | 独立运行时               | 嵌入现有框架              |
 | 学习曲线       | 中高                     | 低                      |
 | 适用场景       | 需要深度记忆管理的Agent    | 快速为现有Agent添加记忆   |

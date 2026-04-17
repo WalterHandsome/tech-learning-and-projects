@@ -4,6 +4,12 @@
 
 ## 1. 事件循环
 
+<!-- version-check: Node.js 24.14.1 LTS, checked 2026-04-18 -->
+
+> 🔄 更新于 2026-04-18：Node.js 24（Krypton）是当前 Active LTS 版本（2025-10-28 进入 LTS，支持至 2028-04），搭载 V8 13.6、npm 11（安装速度提升 65%）、Undici 7。Node.js 22 仍在维护中。
+
+来源：[Node.js 24 LTS 公告](https://nodesource.com/blog/nodejs-24-becomes-lts)、[Node.js 24.14.1 安全更新](https://nodejs.org/en/blog/release/v24.14.1)
+
 ```
    ┌───────────────────────────┐
 ┌─>│           timers          │  ← setTimeout, setInterval

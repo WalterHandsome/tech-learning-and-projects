@@ -4,6 +4,12 @@
 
 ## 1. tsconfig.json 配置
 
+<!-- version-check: TypeScript 5.9, checked 2026-04-18 -->
+
+> 🔄 更新于 2026-04-18：TypeScript 5.9（2025-07 发布）是当前稳定版，新增 `--strictInference` 标志（在 `--strict` 下默认启用）、重新设计的 `tsc --init` 生成精简 tsconfig、`import defer` 支持。TypeScript 7.0 正在开发中，使用 Go 重写编译器，构建速度预计提升 10x。
+
+来源：[TypeScript 5.9 文档](https://www.typescriptlang.org/docs/handbook/release-notes/typescript-5-9.html)
+
 ```jsonc
 {
   "compilerOptions": {

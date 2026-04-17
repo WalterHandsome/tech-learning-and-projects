@@ -40,7 +40,7 @@ response = litellm.completion(
 
 # Anthropic Claude
 response = litellm.completion(
-    model="claude-sonnet-4-20250514",
+    model="claude-sonnet-4-6-20260217",
     messages=[{"role": "user", "content": "你好"}],
 )
 
@@ -52,7 +52,7 @@ response = litellm.completion(
 
 # AWS Bedrock
 response = litellm.completion(
-    model="bedrock/anthropic.claude-sonnet-4-20250514-v1:0",
+    model="bedrock/anthropic.claude-sonnet-4-6-20260217-v1:0",
     messages=[{"role": "user", "content": "你好"}],
 )
 
@@ -68,7 +68,7 @@ import litellm
 
 # 流式输出
 response = litellm.completion(
-    model="claude-sonnet-4-20250514",
+    model="claude-sonnet-4-6-20260217",
     messages=[{"role": "user", "content": "写一首诗"}],
     stream=True,
 )
@@ -103,7 +103,7 @@ model_list:
 
   - model_name: claude-sonnet
     litellm_params:
-      model: anthropic/claude-sonnet-4-20250514
+      model: anthropic/claude-sonnet-4-6-20260217
       api_key: sk-ant-xxx
 
   - model_name: fast-model  # 负载均衡：多个模型轮询
@@ -160,7 +160,7 @@ model_list:
   # 备用模型（Fallback）
   - model_name: main-model
     litellm_params:
-      model: anthropic/claude-sonnet-4-20250514
+      model: anthropic/claude-sonnet-4-6-20260217
       api_key: sk-ant-xxx
     model_info:
       priority: 2
@@ -181,7 +181,7 @@ from litellm import Router
 router = Router(
     model_list=[
         {"model_name": "primary", "litellm_params": {"model": "gpt-4o", "api_key": "sk-xxx"}},
-        {"model_name": "fallback", "litellm_params": {"model": "claude-sonnet-4-20250514", "api_key": "sk-ant-xxx"}},
+        {"model_name": "fallback", "litellm_params": {"model": "claude-sonnet-4-6-20260217", "api_key": "sk-ant-xxx"}},
     ],
     fallbacks=[{"primary": ["fallback"]}],
     num_retries=2,

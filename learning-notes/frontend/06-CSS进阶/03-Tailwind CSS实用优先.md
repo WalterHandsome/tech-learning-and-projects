@@ -4,14 +4,51 @@
 
 ## 1. 核心理念
 
+<!-- version-check: Tailwind CSS 4.2.0, checked 2026-04-18 -->
+
 - 工具类优先（Utility-First）：直接在 HTML 中使用预定义的工具类
 - JIT 模式：按需生成 CSS，构建产物极小
 - 高度可定制：通过配置文件自定义设计系统
 
+> 🔄 更新于 2026-04-18
+
+**Tailwind CSS v4**（2025-01 发布）是一次完全重写：
+- **Rust 引擎（Oxide）**：全量构建 < 100ms，增量构建微秒级，比 v3 快 5x~100x
+- **CSS-first 配置**：`tailwind.config.js` 被 CSS 中的 `@theme` 指令替代
+- **原生 CSS 特性**：使用 Cascade Layers、注册自定义属性、`color-mix()` 等现代 CSS
+- **容器查询**：原生支持 `@container` 查询
+
+**Tailwind CSS v4.2**（2026-02-18）：
+- 新增 `@tailwindcss/webpack` 插件（webpack 项目无需手动配置 PostCSS）
+- 4 个新色板：mauve、olive、mist、taupe
+- 逻辑属性扩展：`pbs-*`、`pbe-*`、`mbs-*`、`mbe-*` 等 block 方向工具类
+- 重编译性能提升 3.8x（[Tim Neutkens 测试](https://infoq.com/news/2026/04/tailwind-css-4-2-webpack)）
+
+来源：[Tailwind CSS v4 文档](https://tailwindcss.com/docs)、[InfoQ: Tailwind CSS 4.2](https://infoq.com/news/2026/04/tailwind-css-4-2-webpack)
+
 ## 2. 安装与配置
 
+> 🔄 更新于 2026-04-18：v4 采用 CSS-first 配置，`tailwind.config.js` 不再是必需的。
+
+**v4 CSS-first 配置（推荐）**：
+
+```css
+/* app.css — v4 使用 @theme 指令直接在 CSS 中定义主题 */
+@import "tailwindcss";
+
+@theme {
+  --color-primary-50: #eff6ff;
+  --color-primary-500: #3b82f6;
+  --color-primary-900: #1e3a5f;
+  --spacing-128: 32rem;
+  --font-sans: 'Inter', sans-serif;
+}
+```
+
+**v3 JS 配置（仍兼容，但不推荐新项目使用）**：
+
 ```javascript
-// tailwind.config.js
+// tailwind.config.js（v3 风格）
 export default {
   content: ['./index.html', './src/**/*.{js,ts,jsx,tsx,vue}'],
   darkMode: 'class', // 'media' | 'class'

@@ -35,6 +35,8 @@ for chunk in stream:
 
 ## 2. Anthropic Messages API
 
+<!-- version-check: Claude Sonnet 4.6 claude-sonnet-4-6-20260217, checked 2026-04-18 -->
+
 ```python
 import anthropic
 
@@ -42,7 +44,7 @@ client = anthropic.Anthropic()  # 自动读取 ANTHROPIC_API_KEY
 
 # 基础调用
 response = client.messages.create(
-    model="claude-sonnet-4-20250514",
+    model="claude-sonnet-4-6-20260217",  # Sonnet 4.6，$3/$15 per MTok
     max_tokens=1024,
     system="你是一个专业的技术顾问",
     messages=[{"role": "user", "content": "对比 MCP 和 A2A 协议"}],
@@ -52,13 +54,21 @@ print(f"Token: {response.usage.input_tokens} + {response.usage.output_tokens}")
 
 # 流式响应
 with client.messages.stream(
-    model="claude-sonnet-4-20250514",
+    model="claude-sonnet-4-6-20260217",
     max_tokens=1024,
     messages=[{"role": "user", "content": "解释 Transformer 架构"}],
 ) as stream:
     for text in stream.text_stream:
         print(text, end="", flush=True)
 ```
+
+> 🔄 更新于 2026-04-18
+>
+> **Claude 4.6 系列**（2026-02）：Opus 4.6（`claude-opus-4-6`，$5/$25 per MTok，128K 输出）和 Sonnet 4.6（`claude-sonnet-4-6`，$3/$15 per MTok，64K 输出），均支持 1M 上下文窗口（beta）、Extended Thinking。Sonnet 4.6 在 Claude Code 测试中 70% 的情况下优于 Sonnet 4.5，59% 优于 Opus 4.5。
+> 来源：[Anthropic 官网](https://www.anthropic.com/claude/sonnet)、[Claude API 定价](https://developer.puter.com/tutorials/claude-api-pricing/)
+>
+> **OpenAI Assistants API 废弃**：2026-08-26 正式关闭，迁移至 Responses API + Conversations API。Responses API 支持内置工具（deep research、MCP、computer use），单次调用可运行多步工作流。
+> 来源：[OpenAI 社区公告](https://community.openai.com/t/assistants-api-beta-deprecation-august-26-2026-sunset/1354666)
 
 ## 3. 多模态输入
 
@@ -84,7 +94,7 @@ response = client.chat.completions.create(
 
 # Claude 图片输入
 response = anthropic_client.messages.create(
-    model="claude-sonnet-4-20250514",
+    model="claude-sonnet-4-6-20260217",
     max_tokens=1024,
     messages=[{
         "role": "user",
@@ -151,14 +161,14 @@ def select_model(task_complexity: str) -> str:
     models = {
         "simple": "gpt-4o-mini",       # $0.15/1M input — 简单任务
         "medium": "gpt-4o",            # $2.50/1M input — 常规任务
-        "complex": "claude-sonnet-4-20250514",  # 复杂推理
+        "complex": "claude-opus-4-6",     # $5/1M input — 复杂推理
     }
     return models.get(task_complexity, "gpt-4o-mini")
 
 # 策略 2：Prompt 缓存（Claude）
 # 对于重复的 system prompt，Claude 自动缓存，节省 90% 输入成本
 response = anthropic_client.messages.create(
-    model="claude-sonnet-4-20250514",
+    model="claude-sonnet-4-6-20260217",
     max_tokens=1024,
     system=[{
         "type": "text",

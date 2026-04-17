@@ -141,7 +141,7 @@ agent:
 
   sub_agents:
     - name: code-helper
-      model: claude-sonnet-4-20250514
+      model: claude-sonnet-4-6-20260217
       skills: [code-review, code-generation]
       trigger: "当用户询问编程相关问题时"
 

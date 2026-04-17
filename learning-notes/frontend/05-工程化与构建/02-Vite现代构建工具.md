@@ -4,9 +4,21 @@
 
 ## 1. 核心原理
 
+<!-- version-check: Vite 7.x (stable), Vite 8 (Rolldown), checked 2026-04-18 -->
+
 - 开发环境：基于浏览器原生 ESM，按需编译，启动极快
 - 生产环境：使用 Rollup 打包，支持 Tree Shaking、代码分割
 - 依赖预构建：使用 esbuild 将 CommonJS/UMD 转为 ESM，合并小模块
+
+> 🔄 更新于 2026-04-18
+
+**Vite 7**（2025-06 发布）：要求 Node.js 20.19+/22.12+，默认浏览器目标改为 Baseline Widely Available，分发为 ESM-only。
+
+**Vite 8**（2026-03 VueConf Amsterdam 发布）：最重大的架构变更——使用 [Rolldown](https://rolldown.rs/)（Rust 重写的 Rollup）替代 esbuild + Rollup 双引擎，构建性能大幅提升。
+
+**Vite+**（2026-03 Alpha，MIT 开源）：VoidZero 推出的统一工具链，整合 Vite 8 + Vitest + Oxlint + Oxfmt + Rolldown + tsdown，通过 `vp` CLI 管理开发全流程（dev/test/lint/format/build），生产构建比 Vite 7 快 1.6x~7.7x。
+
+来源：[Vite 7 发布公告](https://v7.vite.dev/blog/announcing-vite7)、[Vite+ Alpha 公告](https://voidzero.dev/posts/announcing-vite-plus-alpha)、[State of Vue & Vite 2026](https://laurentcazanove.com/blog/state-of-vue-vite-2026-amsterdam-recap)
 
 ## 2. 基本配置
 

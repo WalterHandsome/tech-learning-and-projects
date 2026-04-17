@@ -193,6 +193,39 @@ export function useFetch(url) {
 const { x, y } = useMouse();
 const { data, loading } = useFetch('/api/users');
 ```
+
+## 6. Vue 3.5/3.6 新特性
+
+> 🔄 更新于 2026-04-18
+
+<!-- version-check: Vue 3.5.28 (stable), Vue 3.6 (beta), checked 2026-04-18 -->
+
+**Vue 3.5**（当前稳定版 3.5.28）：性能优化、SSR 兼容性修复、HMR 改进。
+
+**Vue 3.6**（Beta）：两个革命性特性：
+
+### Vapor Mode（无虚拟 DOM 编译模式）
+
+Vapor Mode 跳过 Virtual DOM diffing，直接编译为 DOM 操作，渲染性能提升 3-5x，接近 Solid.js 水平：
+
+```vue
+<!-- 使用 Vapor Mode 的组件（编译时自动优化，无需改代码） -->
+<script setup>
+import { ref } from 'vue';
+const count = ref(0);
+</script>
+
+<template>
+  <!-- Vapor Mode 下，这段模板直接编译为 DOM 操作，不经过 Virtual DOM -->
+  <button @click="count++">{{ count }}</button>
+</template>
+```
+
+### Alien Signals（新响应式引擎）
+
+Vue 3.6 重构了响应式系统，采用 alien-signals 算法，响应式追踪和触发性能大幅提升。
+
+来源：[Vue.js 2025 回顾与 2026 展望](https://vueschool.io/articles/news/vue-js-2025-in-review-and-a-peek-into-2026/)、[State of Vue & Vite 2026](https://laurentcazanove.com/blog/state-of-vue-vite-2026-amsterdam-recap)
 ## 🎬 推荐视频资源
 
 - [freeCodeCamp - Vue 3 Full Course](https://www.youtube.com/watch?v=VeNfHj6MhgA) — Vue 3完整课程（6小时）

@@ -65,7 +65,7 @@ portkey = Portkey(
             },
             {
                 "virtual_key": "anthropic-key",
-                "override_params": {"model": "claude-sonnet-4-20250514"},
+                "override_params": {"model": "claude-sonnet-4-6-20260217"},
                 "retry": {"attempts": 2},
             },
             {

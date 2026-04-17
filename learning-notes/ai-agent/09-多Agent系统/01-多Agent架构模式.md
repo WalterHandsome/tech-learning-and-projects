@@ -174,12 +174,20 @@ network.register(reviewer)
 
 ## 6. 模式选型指南
 
+> 🔄 更新于 2026-04-18
+
 | 模式 | 复杂度 | 适用场景 | 优点 | 缺点 |
 |------|--------|---------|------|------|
 | Supervisor | 低 | 任务明确、角色固定 | 简单可控 | 主管是瓶颈 |
 | Hierarchical | 中 | 大型团队、多职能 | 可扩展 | 层级延迟 |
 | Swarm | 中 | 客服、动态路由 | 灵活自主 | 难以调试 |
 | Network | 高 | 复杂协作、头脑风暴 | 最灵活 | 消息爆炸 |
+
+> **2026 架构趋势**：
+> - **A2A v1.0 + MCP 双协议栈**：MCP 连接 Agent→工具，A2A 连接 Agent→Agent，两者互补形成完整的多 Agent 通信基础设施
+> - **跨组织 Agent 协作**：A2A 的 Agent Card 发现机制 + OAuth2/API Key 认证，使不同厂商/框架的 Agent 可以跨组织边界协作
+> - **Swarm 模式标准化**：OpenAI Agents SDK 的 Handoff 机制 + A2A 的 Task 生命周期管理，让 Swarm 模式从框架特定走向标准化
+> - **Dapr Agents v1.0 GA**：CNCF 托管的分布式 Agent 运行时，为 Network 模式提供生产级基础设施（事件驱动、状态管理、Actor 模型）
 ## 🎬 推荐视频资源
 
 - [DeepLearning.AI - Multi AI Agent Systems with crewAI](https://www.deeplearning.ai/short-courses/multi-ai-agent-systems-with-crewai/) — 多Agent系统实战（免费）

@@ -1121,8 +1121,78 @@ Nacos和Eureka整体结构类似，服务注册、服务拉取、心跳等待，
   - Nacos集群默认采用AP方式，当集群中存在非临时实例时，采用CP模式；Eureka采用AP方式
 ## 🎬 推荐视频资源
 
+> ⚠️ 注意：本文档基于 Spring Cloud Hoxton（对应 Spring Boot 2.3.x），部分技术已过时。
+> 详见下方「Spring Cloud 版本演进」章节了解最新变化。
+
 - [Daily Code Buffer - Spring Cloud Tutorial](https://www.youtube.com/watch?v=BnknNTN8icw) — Spring Cloud微服务完整教程
 - [Java Brains - Microservices with Spring Boot](https://www.youtube.com/playlist?list=PLqq-6Pq4lTTZSKAFG6aCDVDP86Qx4lNas) — 微服务系统教程
 ### 📺 B站（Bilibili）
 - [尚硅谷 - SpringCloud完整教程](https://www.bilibili.com/video/BV1LQ4y127n4) — 微服务全家桶
 - [黑马程序员 - 微服务实战](https://www.bilibili.com/video/BV1LQ4y127n4) — 微服务项目实战
+
+## Spring Cloud 版本演进
+
+> 🔄 更新于 2026-04-18
+
+<!-- version-check: Spring Cloud 2025.1 Oakwood, checked 2026-04-18 -->
+
+### 本文档版本说明
+
+本文档编写时基于以下版本：
+- Spring Cloud：Hoxton.SR10
+- Spring Boot：2.3.x
+- 注册中心：Eureka + Nacos
+- 负载均衡：Ribbon
+
+### 当前最新版本（2026-04）
+
+| 组件 | 本文版本 | 当前版本 | 变化说明 |
+|------|---------|---------|---------|
+| Spring Boot | 2.3.x | **4.0.x** | 3.0 迁移 Jakarta EE，4.0 升级 Spring Framework 7 |
+| Spring Cloud | Hoxton | **2025.1 (Oakwood)** | 对齐 Spring Boot 4.0 |
+| 注册中心 | Eureka | **Nacos 2.x** | Eureka 已停止维护，Nacos 成为国内标准 |
+| 负载均衡 | Ribbon | **Spring Cloud LoadBalancer** | Ribbon 已停止维护 |
+| 熔断降级 | — | **Sentinel / Resilience4j** | Hystrix 已停止维护 |
+| 链路追踪 | — | **Micrometer Tracing** | Sleuth 已合并到 Micrometer |
+| HTTP 客户端 | RestTemplate | **RestClient / HTTP Interface** | RestTemplate 进入维护模式 |
+
+### 关键迁移变化
+
+**1. javax → jakarta 命名空间（Spring Boot 3.0+）**
+```java
+// 旧（Spring Boot 2.x）
+import javax.servlet.http.HttpServletRequest;
+
+// 新（Spring Boot 3.0+）
+import jakarta.servlet.http.HttpServletRequest;
+```
+
+**2. Ribbon → Spring Cloud LoadBalancer**
+```java
+// 旧：Ribbon 负载均衡（已废弃）
+@Bean
+@LoadBalanced
+public RestTemplate restTemplate() {
+    return new RestTemplate();
+}
+
+// 新：Spring Cloud LoadBalancer（自动配置）
+// 只需引入 spring-cloud-starter-loadbalancer 依赖
+// @LoadBalanced 注解仍然有效
+```
+
+**3. RestTemplate → RestClient（Spring Boot 3.2+）**
+```java
+// 新：RestClient（推荐）
+RestClient restClient = RestClient.builder()
+    .baseUrl("http://userservice")
+    .build();
+
+User user = restClient.get()
+    .uri("/user/{id}", userId)
+    .retrieve()
+    .body(User.class);
+```
+
+> 建议新项目直接使用 Spring Boot 3.5.x 或 4.0.x + Spring Cloud 2024.0/2025.1。
+> 详见 → [Spring Boot 最佳实践](./07-spring-boot-best-practices.md) 和 [微服务架构模式](./12-microservices-patterns.md)

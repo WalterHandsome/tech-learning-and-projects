@@ -4,7 +4,19 @@
 
 ## 1. 概述
 
+<!-- version-check: Dapr Agents v1.0 GA, checked 2026-04-18 -->
+
+> 🔄 更新于 2026-04-18
+
 Dapr Agents 基于 Dapr 的 Sidecar 架构，为 AI Agent 提供分布式运行时能力：Agent 间通信、状态管理、工作流编排、弹性伸缩。
+
+**v1.0 GA 里程碑**（2026-03-23，KubeCon Europe Amsterdam）：
+- **CNCF 托管**：由 Cloud Native Computing Foundation 正式发布 GA 版本
+- **生产就绪**：持久化工作流、状态管理、安全多 Agent 协调
+- **NVIDIA 合作**：与 NVIDIA 和 Dapr 开源社区联合开发
+- **企业级特性**：内置可观测性、遥测、安全性
+
+> 来源：[CNCF 公告](https://cloudnativenow.com/kubecon-cloudnativecon-europe-2026/cncf-announces-general-availability-of-dapr-agents-v1-0-for-production-ai-workloads/)、[Forbes 报道](https://www.forbes.com/sites/janakirammsv/2026/03/28/cncfs-dapr-agents-tackles-the-problem-most-ai-frameworks-ignore/)
 
 ```
 ┌─────────────────────────────────────────────────┐
@@ -308,13 +320,16 @@ class AgentMicroserviceIntegration:
 
 ## 9. 适用场景
 
+> 🔄 更新于 2026-04-18
+
 ```
-Dapr Agents 最适合：
+Dapr Agents v1.0 GA 最适合：
 ├─ 已有 Dapr/微服务架构的团队
 ├─ 需要 Agent 与现有服务集成
 ├─ 需要分布式部署和弹性伸缩
 ├─ 多语言 Agent 协作（Python + Go + Java）
-└─ 企业级生产环境
+├─ 企业级生产环境（CNCF 托管，生产就绪）
+└─ 需要持久化工作流保证任务完成
 
 不太适合：
 ├─ 简单的单 Agent 应用

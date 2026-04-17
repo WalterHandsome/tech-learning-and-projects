@@ -4,9 +4,13 @@
 
 ## 1. 框架全景
 
+<!-- version-check: Agent 框架全景, checked 2026-04-18 -->
+
+> 🔄 更新于 2026-04-18
+
 ```
 ┌─────────────────────────────────────────────────────────┐
-│                 AI Agent 框架全景（2025）                  │
+│                 AI Agent 框架全景（2026）                  │
 ├──────────────┬──────────────┬──────────────┬────────────┤
 │  Python 原生  │  云厂商       │  Java/TS     │  轻量级     │
 │  LangGraph   │  AWS Strands │  Spring AI   │  smolagents│
@@ -59,7 +63,7 @@
 | Google ADK    | Python  | ★★     | ★★★★  | ✅      | ✅  | 无*     | 中    |
 | AWS Strands   | Python  | ★★     | ★★★★  | ❌      | ✅  | 无      | 中    |
 | MS Agent FW   | .NET    | ★★★    | ★★★★  | ✅      | ✅  | 无      | 中    |
-| LlamaIndex    | Python  | ★★     | ★★★★  | ✅      | ❌  | 无      | 大    |
+| LlamaIndex    | Python  | ★★     | ★★★★  | ✅      | ✅  | 无      | 大    |
 | PydanticAI    | Python  | ★★     | ★★★   | ❌      | ✅  | 无      | 中    |
 | Agno          | Python  | ★      | ★★★   | ✅      | ✅  | 无      | 小    |
 | smolagents    | Python  | ★      | ★★    | ✅      | ✅  | 无      | 中    |
@@ -135,7 +139,7 @@ from strands import Agent
 from strands.models import BedrockModel
 from strands_tools import http_request, shell
 
-model = BedrockModel(model_id="anthropic.claude-sonnet-4-20250514-v1:0")
+model = BedrockModel(model_id="us.anthropic.claude-sonnet-4-20250514-v1:0")
 agent = Agent(model=model, tools=[http_request, shell])
 response = agent("检查 API 健康状态")
 ```

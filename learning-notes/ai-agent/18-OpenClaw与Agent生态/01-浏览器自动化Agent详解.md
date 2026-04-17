@@ -36,7 +36,7 @@ def save_to_file(content: str, filename: str):
 
 agent = Agent(
     task="搜索 AI Agent 框架，对比特点，保存到 report.md",
-    llm=ChatAnthropic(model="claude-sonnet-4-20250514"),
+    llm=ChatAnthropic(model="claude-sonnet-4-6-20260217"),
     controller=controller,
 )
 ```

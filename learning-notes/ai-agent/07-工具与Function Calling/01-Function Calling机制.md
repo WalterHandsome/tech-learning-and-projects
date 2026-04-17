@@ -91,7 +91,7 @@ tools = [
 ]
 
 response = client.messages.create(
-    model="claude-sonnet-4-20250514",
+    model="claude-sonnet-4-20250514",  # 或 claude-opus-4-7（最新旗舰）
     max_tokens=1024,
     tools=tools,
     messages=[{"role": "user", "content": "查询上月销售额最高的产品"}],
@@ -177,6 +177,10 @@ for idx, tc in tool_calls_buffer.items():
 
 ## 6. 多模型对比
 
+> 🔄 更新于 2026-04-18
+
+<!-- version-check: OpenAI Responses API (replacing Assistants API, deadline 2026-08-26), Claude Opus 4.7, checked 2026-04-18 -->
+
 | 特性 | OpenAI | Claude | Gemini |
 |------|--------|--------|--------|
 | 工具定义 | JSON Schema | input_schema | FunctionDeclaration |
@@ -185,6 +189,12 @@ for idx, tc in tool_calls_buffer.items():
 | 强制调用 | tool_choice | tool_choice | tool_config |
 | 嵌套对象 | 支持 | 支持 | 支持 |
 | 最大工具数 | 128 | 64 | 128 |
+| 工具可靠性 | 6.3/10 | 8.4/10 | 7.9/10 |
+
+> **2026 重要变化**：
+> - **OpenAI Assistants API 将于 2026-08-26 关闭**，替代方案为 [Responses API](https://platform.openai.com/docs/api-reference/responses)，需在截止日期前完成迁移
+> - **Claude 工具可靠性领先**：Q1 2026 评测中，Anthropic 工具调用可靠性评分 8.4/10，content-block 架构将工具调用与文本响应清晰分离，strict mode 确保 Schema 合规（[来源](https://www.digitalapplied.com/blog/ai-function-calling-guide-openai-anthropic-google)）
+> - **OpenAI Agents SDK** 引入沙箱执行和 Harness 架构，从原型工具向企业级平台转型
 ## 🎬 推荐视频资源
 
 - [DeepLearning.AI - Functions, Tools and Agents with LangChain](https://www.deeplearning.ai/short-courses/functions-tools-agents-langchain/) — Function Calling实战（免费）

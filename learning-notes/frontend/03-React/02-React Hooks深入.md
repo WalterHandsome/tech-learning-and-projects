@@ -148,7 +148,122 @@ function usePrevious(value) {
 }
 ```
 
-## 7. 自定义 Hook
+## 7. React 19 新增 Hooks
+
+> 🔄 更新于 2026-04-18
+
+<!-- version-check: React 19.2.4, checked 2026-04-18 -->
+
+React 19（2024-12 稳定版，当前最新补丁 19.2.4）引入了多个面向异步和表单场景的新 Hook，配合 React Compiler 实现自动记忆化优化。
+
+```jsx
+// use() — 在渲染期间读取 Promise 或 Context（替代 useContext）
+import { use, Suspense } from 'react';
+
+// 读取 Promise（配合 Suspense 使用）
+function UserProfile({ userPromise }) {
+  const user = use(userPromise); // 渲染期间直接读取
+  return <h1>{user.name}</h1>;
+}
+
+// 读取 Context（可在条件语句中使用，比 useContext 更灵活）
+function ThemeButton() {
+  if (someCondition) {
+    const theme = use(ThemeContext); // useContext 不能在条件中使用，use 可以
+    return <button className={theme}>按钮</button>;
+  }
+}
+
+// useActionState — 管理表单 Action 的状态（替代手动 useState + loading）
+import { useActionState } from 'react';
+
+function LoginForm() {
+  const [state, submitAction, isPending] = useActionState(
+    async (previousState, formData) => {
+      const email = formData.get('email');
+      const result = await login(email, formData.get('password'));
+      if (result.error) return { error: result.error };
+      return { success: true };
+    },
+    { error: null } // 初始状态
+  );
+
+  return (
+    <form action={submitAction}>
+      <input name="email" type="email" />
+      <input name="password" type="password" />
+      <button disabled={isPending}>
+        {isPending ? '登录中...' : '登录'}
+      </button>
+      {state.error && <p className="error">{state.error}</p>}
+    </form>
+  );
+}
+
+// useFormStatus — 获取父级 <form> 的提交状态
+import { useFormStatus } from 'react-dom';
+
+function SubmitButton() {
+  const { pending, data, method } = useFormStatus();
+  return (
+    <button disabled={pending}>
+      {pending ? '提交中...' : '提交'}
+    </button>
+  );
+}
+
+// useOptimistic — 乐观更新 UI
+import { useOptimistic } from 'react';
+
+function TodoList({ todos, addTodoAction }) {
+  const [optimisticTodos, addOptimisticTodo] = useOptimistic(
+    todos,
+    (currentTodos, newTodo) => [...currentTodos, { ...newTodo, sending: true }]
+  );
+
+  async function handleSubmit(formData) {
+    const title = formData.get('title');
+    addOptimisticTodo({ title, id: Date.now() }); // 立即显示
+    await addTodoAction(title); // 实际请求
+  }
+
+  return (
+    <div>
+      <form action={handleSubmit}>
+        <input name="title" />
+        <button>添加</button>
+      </form>
+      <ul>
+        {optimisticTodos.map(todo => (
+          <li key={todo.id} style={{ opacity: todo.sending ? 0.5 : 1 }}>
+            {todo.title}
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+}
+```
+
+### React Compiler（自动记忆化）
+
+React Compiler 在 React 19 中稳定，自动为组件添加 `useMemo`、`useCallback`、`React.memo` 等优化，开发者无需手动编写：
+
+```jsx
+// React 19 之前：手动优化
+const MemoChild = React.memo(({ data }) => <div>{data.name}</div>);
+const handleClick = useCallback(() => setCount(c => c + 1), []);
+const filtered = useMemo(() => items.filter(i => i.active), [items]);
+
+// React 19 + Compiler：自动优化，直接写即可
+function Child({ data }) {
+  return <div>{data.name}</div>; // Compiler 自动判断是否需要 memo
+}
+const handleClick = () => setCount(c => c + 1); // 自动缓存
+const filtered = items.filter(i => i.active); // 自动 memo
+```
+
+## 8. 自定义 Hook
 
 ```jsx
 // useLocalStorage

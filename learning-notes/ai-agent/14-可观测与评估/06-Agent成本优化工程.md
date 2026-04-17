@@ -167,7 +167,7 @@ class TaskComplexity(Enum):
 
 MODEL_MAP = {
     TaskComplexity.SIMPLE: "claude-3-5-haiku-20241022",
-    TaskComplexity.STANDARD: "claude-sonnet-4-20250514",
+    TaskComplexity.STANDARD: "claude-sonnet-4-6-20260217",
     TaskComplexity.COMPLEX: "claude-opus-4-20250918",
 }
 

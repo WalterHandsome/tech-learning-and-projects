@@ -536,3 +536,73 @@ Gradle是一个功能强大的构建工具，相比Maven具有更好的灵活性
 3. 熟悉常用插件和任务
 4. 优化构建性能
 5. 遵循最佳实践
+
+## 11. Gradle 版本演进
+
+> 🔄 更新于 2026-04-18
+
+<!-- version-check: Gradle 9.x, checked 2026-04-18 -->
+
+### Gradle 8.x → 9.x 重要变化
+
+| 版本 | 关键变化 |
+|------|---------|
+| **Gradle 8.x** | Kotlin DSL 成为默认、版本目录（Version Catalog）正式发布、配置缓存改进 |
+| **Gradle 9.x** | Spring Boot 4.0 支持、构建性能进一步优化、废弃 API 清理 |
+
+### Kotlin DSL（推荐）
+
+Gradle 8+ 推荐使用 Kotlin DSL（`.gradle.kts`）替代 Groovy DSL：
+
+```kotlin
+// build.gradle.kts（Kotlin DSL，推荐）
+plugins {
+    java
+    id("org.springframework.boot") version "4.0.0"
+    id("io.spring.dependency-management") version "1.1.7"
+}
+
+group = "com.example"
+version = "1.0.0"
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(21)
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation("org.springframework.boot:spring-boot-starter-web")
+    testImplementation("org.springframework.boot:spring-boot-starter-test")
+}
+```
+
+### 版本目录（Version Catalog）
+
+```toml
+# gradle/libs.versions.toml（推荐的依赖版本管理方式）
+[versions]
+spring-boot = "4.0.0"
+junit = "5.11.0"
+
+[libraries]
+spring-boot-starter-web = { module = "org.springframework.boot:spring-boot-starter-web", version.ref = "spring-boot" }
+junit-jupiter = { module = "org.junit.jupiter:junit-jupiter", version.ref = "junit" }
+
+[plugins]
+spring-boot = { id = "org.springframework.boot", version.ref = "spring-boot" }
+```
+
+```kotlin
+// build.gradle.kts 中引用
+dependencies {
+    implementation(libs.spring.boot.starter.web)
+    testImplementation(libs.junit.jupiter)
+}
+```
+
+> 来源：[Gradle 官方文档](https://docs.gradle.org/current/userguide/userguide.html)

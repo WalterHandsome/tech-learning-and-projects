@@ -69,7 +69,7 @@ pip install openhands
 # Docker 方式运行（推荐）
 docker run -it \
   -e LLM_API_KEY="sk-xxx" \
-  -e LLM_MODEL="claude-sonnet-4-20250514" \
+  -e LLM_MODEL="claude-sonnet-4-6-20260217" \
   -p 3000:3000 \
   ghcr.io/all-hands-ai/openhands:latest
 
@@ -81,7 +81,7 @@ docker run -it \
 from openhands import Agent
 
 agent = Agent(
-    model="claude-sonnet-4-20250514",
+    model="claude-sonnet-4-6-20260217",
     workspace="/workspace/my-project",
 )
 
@@ -106,7 +106,7 @@ pip install swe-agent
 
 # 修复 GitHub Issue
 swe-agent run \
-  --model claude-sonnet-4-20250514 \
+  --model claude-sonnet-4-6-20260217 \
   --issue "https://github.com/user/repo/issues/42" \
   --repo "https://github.com/user/repo"
 

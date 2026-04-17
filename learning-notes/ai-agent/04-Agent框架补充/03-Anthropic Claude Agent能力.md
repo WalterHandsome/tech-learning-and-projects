@@ -4,22 +4,39 @@
 
 ## 1. Claude 模型家族
 
+<!-- version-check: Claude Opus 4.7, checked 2026-04-18 -->
+
+> 🔄 更新于 2026-04-18
+
 ```
-┌─────────────────────────────────────────────────┐
-│              Claude 模型家族（2025）               │
-├──────────┬──────────┬──────────┬────────────────┤
-│  Opus    │  Sonnet  │  Haiku   │  定位           │
-│  最强推理 │  均衡     │  快速    │                 │
-│  复杂Agent│  通用Agent│  简单任务│                 │
-│  $15/M   │  $3/M    │  $0.25/M │  输入价格/1M    │
-└──────────┴──────────┴──────────┴────────────────┘
+┌──────────────────────────────────────────────────────────────┐
+│              Claude 模型家族（2026）                            │
+├──────────┬──────────┬──────────┬──────────┬─────────────────┤
+│  Opus    │  Sonnet  │  Haiku   │  Mythos  │  定位            │
+│  最强推理 │  均衡     │  快速    │  前沿预览 │                  │
+│  复杂Agent│  通用Agent│  简单任务│  研究级   │                  │
+│  $5/M    │  $3/M    │  $0.25/M │  未公开   │  输入价格/1M     │
+└──────────┴──────────┴──────────┴──────────┴─────────────────┘
+
+最新模型（2026-04-16）：
+├─ Claude Opus 4.7（claude-opus-4-7）— 最新旗舰，SWE-bench Pro 64.3%
+│   ├─ 1M Token 上下文窗口
+│   ├─ 3.75MP 高分辨率视觉
+│   ├─ xhigh 推理层级（Extended Thinking 增强）
+│   ├─ 文件系统级记忆
+│   └─ 新 Tokenizer 2.0（同文本可能多 ~35% Token）
+├─ Claude Sonnet 4（claude-sonnet-4-20250514）— 通用性价比最优
+├─ Claude Haiku 3.5 — 高吞吐简单任务
+└─ Claude Mythos Preview — 最强但受限访问
 
 Agent 场景推荐：
-├─ 复杂推理/规划 → Claude Opus
-├─ 通用 Agent → Claude Sonnet（性价比最优）
+├─ 复杂推理/长时 Agent 工作流 → Claude Opus 4.7
+├─ 通用 Agent → Claude Sonnet 4（性价比最优）
 ├─ 高吞吐简单任务 → Claude Haiku
-└─ 代码生成 → Claude Sonnet（Coding 能力强）
+└─ 代码生成 → Claude Opus 4.7（SWE-bench Pro 64.3%，CursorBench 70%）
 ```
+
+> 来源：[Anthropic Newsroom](https://www.anthropic.com/news)、[Axios 报道](https://www.axios.com/2026/04/16/anthropic-claude-opus-model-mythos)
 
 ## 2. Extended Thinking（扩展思考）
 
@@ -299,23 +316,27 @@ def select_model(task_complexity: str) -> str:
     models = {
         "simple": "claude-haiku-3-5",       # 简单分类/提取
         "medium": "claude-sonnet-4-20250514",  # 通用任务
-        "complex": "claude-opus-4-20250514",   # 复杂推理
+        "complex": "claude-opus-4-7",          # 复杂推理（2026-04-16 发布）
     }
     return models.get(task_complexity, "claude-sonnet-4-20250514")
 ```
 
 ## 9. 与其他模型对比（Agent 场景）
 
-| 能力           | Claude Sonnet    | GPT-4o          | Gemini 2.5 Pro  |
+> 🔄 更新于 2026-04-18
+
+| 能力           | Claude Opus 4.7  | GPT-5.4         | Gemini 3.1 Pro  |
 |---------------|------------------|-----------------|-----------------|
 | 工具调用       | ✅ 原生          | ✅ 原生         | ✅ 原生          |
-| 扩展思考       | ✅ Extended      | ✅ o1/o3        | ✅ Thinking     |
+| 扩展思考       | ✅ xhigh 层级    | ✅ o3/o4        | ✅ Thinking     |
 | 计算机操作     | ✅ Computer Use  | ❌              | ❌              |
-| 多模态         | ✅ 图片+PDF      | ✅ 图片+音频    | ✅ 全模态        |
-| 上下文窗口     | 200K             | 128K            | 1M              |
+| 多模态         | ✅ 图片+PDF+3.75MP| ✅ 图片+音频   | ✅ 全模态        |
+| 上下文窗口     | 1M               | 128K            | 1M              |
 | 批量 API      | ✅ 50% 折扣     | ✅ 50% 折扣    | ❌              |
-| 代码能力       | ★★★★★          | ★★★★★         | ★★★★           |
+| 代码能力       | ★★★★★（SWE-bench Pro 64.3%）| ★★★★★ | ★★★★          |
 | 指令遵循       | ★★★★★          | ★★★★           | ★★★★           |
+
+> 来源：[devtoolpicks.com 评测](https://devtoolpicks.com/blog/claude-opus-4-7-launch-review-2026)
 ## 🎬 推荐视频资源
 
 ### 🌐 YouTube

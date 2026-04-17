@@ -119,19 +119,34 @@ await server.connect(transport);
 
 ## 3. 传输层实现
 
+> 🔄 更新于 2026-04-18
+
+<!-- version-check: MCP Python SDK 1.27+, 97M+ 月下载量, checked 2026-04-18 -->
+
 ```python
-# stdio 传输（本地 IDE 集成）
+# stdio 传输（本地 IDE 集成，最常用）
 if __name__ == "__main__":
     mcp.run(transport="stdio")
 
-# SSE 传输（远程 HTTP 服务）
+# Streamable HTTP（推荐的远程传输，替代已废弃的 SSE）
+# 支持有状态和无状态两种模式
 if __name__ == "__main__":
-    mcp.run(transport="sse", host="0.0.0.0", port=8080)
+    mcp.run(transport="streamable-http", host="0.0.0.0", port=8080)
 
-# Streamable HTTP（新一代传输）
+# 无状态 Streamable HTTP（适合简单工具，无需持久连接）
+from mcp.server.fastmcp import FastMCP
+mcp = FastMCP("my-server", stateless_http=True)
 if __name__ == "__main__":
     mcp.run(transport="streamable-http", host="0.0.0.0", port=8080)
 ```
+
+> **MCP 生态 2026 现状**：
+> - MCP Python SDK 已达 **v1.27+**，月下载量超过 **9700 万**（[来源](https://www.aimagicx.com/blog/mcp-production-server-tutorial-97-million-downloads-2026)）
+> - GitHub 上已有 **13,000+** MCP Server 实现
+> - Gartner 预测到 2026 年底 **75%** 的 API 网关厂商将支持 MCP
+> - **SSE 传输已正式废弃**（2025-03-26 规范），Streamable HTTP 成为标准远程传输
+> - **FastMCP 独立项目**：[PrefectHQ/fastmcp](https://github.com/jlowin/fastmcp) 提供更 Pythonic 的 MCP Server/Client 开发体验
+> - 支持 `stateless_http` 参数控制有状态/无状态模式，有状态模式支持 Sampling（服务端请求客户端 LLM 调用）
 
 ## 4. 认证与安全
 

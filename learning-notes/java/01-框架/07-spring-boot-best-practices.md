@@ -187,9 +187,159 @@ COPY --from=build /app/target/*.jar app.jar
 ENTRYPOINT ["java", "-jar", "app.jar"]
 ```
 
+## 11. Spring Boot 版本演进
+
+> 🔄 更新于 2026-04-18
+
+<!-- version-check: Spring Boot 4.0.0, checked 2026-04-18 -->
+
+### Spring Boot 3.x 重大变化（2022-11 至 2025-05）
+
+Spring Boot 3.0 是自 2.x 以来最大的版本升级：
+
+| 变化 | 说明 |
+|------|------|
+| **Java 17 基线** | 最低要求 Java 17，推荐 Java 21 |
+| **Jakarta EE 10** | `javax.*` → `jakarta.*` 命名空间迁移 |
+| **GraalVM 原生镜像** | 一等公民支持，启动时间 < 100ms |
+| **可观测性** | Micrometer Observation API + OpenTelemetry 集成 |
+| **Virtual Threads** | 3.2+ 支持 `spring.threads.virtual.enabled=true` |
+| **HTTP Interface Client** | 声明式 HTTP 客户端（类似 Feign） |
+| **RestClient** | 3.2+ 新增，替代 RestTemplate 的现代 API |
+
+```yaml
+# Spring Boot 3.2+ 启用虚拟线程
+spring:
+  threads:
+    virtual:
+      enabled: true
+```
+
+```java
+// RestClient（Spring Boot 3.2+，替代 RestTemplate）
+@Configuration
+public class RestClientConfig {
+    @Bean
+    RestClient restClient(RestClient.Builder builder) {
+        return builder
+            .baseUrl("https://api.example.com")
+            .defaultHeader("Accept", "application/json")
+            .build();
+    }
+}
+
+// 使用 RestClient
+@Service
+public class UserService {
+    private final RestClient restClient;
+
+    public User getUser(Long id) {
+        return restClient.get()
+            .uri("/users/{id}", id)
+            .retrieve()
+            .body(User.class);
+    }
+}
+```
+
+### Spring Boot 4.0（2025-11-20）
+
+> Spring Boot 4.0 基于 Spring Framework 7，是继 3.0 之后的又一次重大升级。
+> 来源：[Spring Boot 4.0 Release Notes](https://github.com/spring-projects/spring-boot/wiki/Spring-Boot-4.0-Release-Notes)
+
+**核心变化：**
+
+| 变化 | 说明 |
+|------|------|
+| **Spring Framework 7** | 底层框架大版本升级 |
+| **Jakarta EE 11** | 从 Jakarta EE 10 升级 |
+| **Jackson 3** | 默认序列化库升级到 Jackson 3 |
+| **JSpecify Null-Safety** | 全面采用 JSpecify 空安全注解 |
+| **原生 API 版本控制** | 内置 `spring.mvc.apiversion.*` 配置 |
+| **HTTP Service Clients** | 自动配置声明式 HTTP 客户端 |
+| **OpenTelemetry Starter** | 新增 `spring-boot-starter-opentelemetry` |
+| **Gradle 9 支持** | 支持 Gradle 9，保留 Gradle 8.14+ 兼容 |
+
+```java
+// Spring Boot 4.0：HTTP Service Client（自动配置）
+@HttpExchange(url = "https://api.example.com")
+public interface UserService {
+
+    @GetExchange("/users/{id}")
+    User getUser(@PathVariable Long id);
+
+    @PostExchange("/users")
+    User createUser(@RequestBody User user);
+}
+
+// 直接注入使用，无需手动配置
+@RestController
+public class UserController {
+    private final UserService userService;
+
+    @GetMapping("/users/{id}")
+    public User getUser(@PathVariable Long id) {
+        return userService.getUser(id);
+    }
+}
+```
+
+```java
+// Spring Boot 4.0：API 版本控制（原生支持）
+@RestController
+@RequestMapping("/api/users")
+public class UserController {
+
+    @GetMapping(produces = "application/vnd.api.v1+json")
+    public List<UserV1> getUsersV1() { /* ... */ }
+
+    @GetMapping(produces = "application/vnd.api.v2+json")
+    public List<UserV2> getUsersV2() { /* ... */ }
+}
+```
+
+### 版本选择建议
+
+```
+┌─────────────────────────────────────────────────────┐
+│            Spring Boot 版本选择指南                   │
+├─────────────────────────────────────────────────────┤
+│                                                     │
+│  新项目（2026 年）                                   │
+│  ├── 保守选择 → Spring Boot 3.5.x + Java 21        │
+│  └── 前沿选择 → Spring Boot 4.0.x + Java 21        │
+│                                                     │
+│  现有项目迁移路径                                    │
+│  ├── 2.x → 先升级到 3.5.x → 再升级到 4.0           │
+│  └── 3.x → 升级到 3.5.x → 再升级到 4.0             │
+│                                                     │
+│  ⚠️ Spring Boot 3.5 是 3.x 最后一个 minor 版本     │
+│                                                     │
+└─────────────────────────────────────────────────────┘
+```
+
+### Dockerfile 更新
+
+```dockerfile
+# Spring Boot 4.0 推荐 Dockerfile（Java 21）
+FROM maven:3.9-eclipse-temurin-21 AS build
+WORKDIR /app
+COPY pom.xml .
+RUN mvn dependency:go-offline
+COPY src ./src
+RUN mvn clean package -DskipTests
+
+FROM eclipse-temurin:21-jre-alpine
+COPY --from=build /app/target/*.jar app.jar
+# 启用虚拟线程和 ZGC
+ENTRYPOINT ["java", "-XX:+UseZGC", "-jar", "app.jar"]
+```
+
 ## 参考资料
 
 - [Spring Boot 官方文档](https://spring.io/projects/spring-boot)
+- [Spring Boot 4.0 Release Notes](https://github.com/spring-projects/spring-boot/wiki/Spring-Boot-4.0-Release-Notes)
+- [Spring Boot 3.5 Release Notes](https://github.com/spring-projects/spring-boot/wiki/Spring-Boot-3.5-Release-Notes)
 - [Spring Cloud 文档](https://spring.io/projects/spring-cloud)
 - [微服务最佳实践](https://microservices.io/)
 

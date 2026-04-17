@@ -4,20 +4,36 @@
 
 ## 1. 概述
 
-LlamaIndex 提供事件驱动的 Workflow 引擎和多种 Agent 类型，专注于 RAG 和数据处理场景的 Agent 开发。
+<!-- version-check: LlamaIndex 0.12.x, checked 2026-04-18 -->
+
+> 🔄 更新于 2026-04-18
+
+LlamaIndex 提供事件驱动的 Workflow 引擎和多种 Agent 类型，专注于 RAG 和数据处理场景的 Agent 开发。截至 2026 年 4 月，LlamaIndex 已拥有 29K+ GitHub Stars、1500万+ PyPI 年下载量，被 40% 的 Fortune 500 公司采用。
+
+最新动态：
+- **MCP 集成**：支持将 LlamaIndex Workflows 和 Tools 转换为 MCP Server，也支持使用 MCP Tools
+- **AG-UI 动态工具**：支持 Agent-UI 协议的动态工具注册
+- **多模型支持**：集成 Anthropic 结构化输出、Bedrock Converse 改进
+- **LlamaParse 增强**：企业级 OCR、解析、提取和索引
+
+> 来源：[LlamaIndex PyPI](https://pypi.org/project/llama-index/)、[releasebot.io](https://releasebot.io/updates/run-llama/llamaindex)
 
 ```
-┌─────────────────────────────────────────────┐
-│              LlamaIndex                      │
-│  ┌──────────┐ ┌──────────┐ ┌────────────┐  │
-│  │Workflow  │ │Agent     │ │Agentic RAG │  │
-│  │事件驱动   │ │ReAct/FC │ │智能检索     │  │
-│  └──────────┘ └──────────┘ └────────────┘  │
-│  ┌──────────┐ ┌──────────┐ ┌────────────┐  │
-│  │LlamaParse│ │VectorStore│ │LlamaCloud │  │
-│  │文档解析   │ │向量存储   │ │托管服务    │  │
-│  └──────────┘ └──────────┘ └────────────┘  │
-└─────────────────────────────────────────────┘
+┌─────────────────────────────────────────────────┐
+│              LlamaIndex                          │
+│  ┌──────────┐ ┌──────────┐ ┌────────────┐      │
+│  │Workflow  │ │Agent     │ │Agentic RAG │      │
+│  │事件驱动   │ │ReAct/FC │ │智能检索     │      │
+│  └──────────┘ └──────────┘ └────────────┘      │
+│  ┌──────────┐ ┌──────────┐ ┌────────────┐      │
+│  │LlamaParse│ │VectorStore│ │LlamaCloud │      │
+│  │文档解析   │ │向量存储   │ │托管服务    │      │
+│  └──────────┘ └──────────┘ └────────────┘      │
+│  ┌──────────┐ ┌──────────┐                      │
+│  │MCP Server│ │AG-UI     │                      │
+│  │协议集成   │ │动态工具   │                      │
+│  └──────────┘ └──────────┘                      │
+└─────────────────────────────────────────────────┘
 ```
 
 ## 2. Workflow 核心概念
@@ -271,6 +287,7 @@ agent = ReActAgent.from_tools(
 | 编排模型     | 事件驱动 Workflow | 图（StateGraph）  | 顺序/层级         |
 | RAG 能力    | ✅ 核心优势       | ✅ 需自建         | ✅ 基础           |
 | 文档解析     | ✅ LlamaParse    | ❌               | ❌               |
+| MCP 支持    | ✅ 双向集成       | ✅               | ✅               |
 | Agent 类型  | ReAct / FC       | 自定义            | 角色 Agent        |
 | 学习曲线     | 中               | 中高              | 低               |
 | 适用场景     | RAG/数据密集型    | 复杂自定义流程     | 团队协作任务       |

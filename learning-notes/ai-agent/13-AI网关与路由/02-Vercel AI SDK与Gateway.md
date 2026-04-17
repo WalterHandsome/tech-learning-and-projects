@@ -43,7 +43,7 @@ const { text } = await generateText({
 
 // 切换模型只需改一行
 const { text: claudeText } = await generateText({
-  model: anthropic('claude-sonnet-4-20250514'),
+  model: anthropic('claude-sonnet-4-6-20260217'),
   prompt: '解释什么是 AI Agent',
 });
 
