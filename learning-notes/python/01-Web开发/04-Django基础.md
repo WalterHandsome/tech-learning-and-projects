@@ -55,6 +55,97 @@ django-admin --version
 | 4.0        | 3.8、3.9、3.10                            |
 | 4.1        | 3.8、3.9、3.10、3.11                      |
 | 4.2        | 3.8、3.9、3.10、3.11                      |
+| 5.2 (LTS)  | 3.10、3.11、3.12、3.13、3.14              |
+| **6.0**    | **3.12、3.13、3.14**                      |
+
+> 🔄 更新于 2026-04-18
+
+<!-- version-check: Django 6.0.x, checked 2026-04-18 -->
+
+### 2.4 Django 版本演进与选择
+
+| 版本 | 发布日期 | 支持状态 | 说明 |
+|------|---------|---------|------|
+| 5.2 LTS | 2025-04 | LTS 支持至 2028-04 | 最后支持 Python 3.10/3.11 的版本 |
+| **6.0** | **2025-12** | **当前稳定版** | 内置后台任务、CSP 支持、模板 Partials |
+| 6.1 | 2026-08（预计） | 开发中 | — |
+
+#### Django 6.0 核心新特性
+
+**1. 内置后台任务框架（Background Tasks）**
+
+不再需要为简单的后台任务强制引入 Celery：
+
+```python
+# settings.py
+INSTALLED_APPS = [
+    ...
+    'django.contrib.tasks',
+]
+
+# 定义后台任务
+from django.tasks import task
+
+@task()
+def send_welcome_email(user_id):
+    """后台发送欢迎邮件"""
+    user = User.objects.get(id=user_id)
+    # 发送邮件逻辑...
+
+# 在视图中调用
+def register(request):
+    user = User.objects.create(...)
+    send_welcome_email.enqueue(user.id)  # 异步执行
+    return redirect('home')
+```
+
+**2. 内置 Content Security Policy（CSP）支持**
+
+原生支持 CSP 标准，防护 XSS 等内容注入攻击：
+
+```python
+# settings.py
+MIDDLEWARE = [
+    ...
+    'django.middleware.security.ContentSecurityPolicyMiddleware',
+]
+
+CONTENT_SECURITY_POLICY = {
+    "default-src": ["'self'"],
+    "script-src": ["'self'", "'nonce'"],
+    "style-src": ["'self'", "'nonce'"],
+}
+```
+
+**3. 模板 Partials**
+
+支持在模板文件内定义可复用的命名片段：
+
+```html
+{% partial "card" %}
+  <div class="card">
+    <h3>{{ title }}</h3>
+    <p>{{ content }}</p>
+  </div>
+{% endpartial %}
+
+{# 在同一模板或其他模板中复用 #}
+{% render_partial "card" title="Hello" content="World" %}
+```
+
+**4. 现代化 Email API**
+
+采用 Python 现代 `email` 库替代旧实现。
+
+#### 版本选择建议
+
+- **新项目**：直接使用 Django 6.0
+- **保守升级**：Django 5.2 LTS（支持至 2028-04）
+- **迁移路径**：5.x → 5.2 LTS → 6.0
+
+> ⚠️ Django 5.1 已于 2025-12-31 EOL，不再接收安全补丁
+
+> 来源：[Django 6.0 Release Notes](https://docs.djangoproject.com/en/stable/releases/6.0/)、[InfoQ 报道](https://www.infoq.com/news/2026/01/django-6-release/)
 
 ## 3. 创建Django项目
 

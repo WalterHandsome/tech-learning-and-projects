@@ -508,6 +508,100 @@ print(Color.RED.value) # 1
 ## 14. 总结
 
 Python 提供了许多高级特性，包括生成器、迭代器、上下文管理器、装饰器、闭包、元类等。这些特性让 Python 代码更加优雅、高效和灵活。掌握这些高级特性可以帮助你写出更专业的 Python 代码。
+
+> 🔄 更新于 2026-04-18
+
+## 15. Python 3.14 新增高级特性
+
+<!-- version-check: Python 3.14 t-strings, checked 2026-04-18 -->
+
+### 15.1 模板字符串（t-strings，PEP 750）
+
+Python 3.14 引入了 t-string（模板字符串），使用 `t` 前缀。与 f-string 不同，t-string 不会立即求值为字符串，而是返回一个 `Template` 对象，允许你在组装前拦截和处理插值。
+
+```python
+from string.templatelib import Template, Interpolation
+
+# f-string：立即求值为 str
+name = "Alice"
+greeting_f = f"Hello, {name}!"  # "Hello, Alice!"
+
+# t-string：返回 Template 对象
+greeting_t = t"Hello, {name}!"  # Template 对象，包含字面量和插值
+
+# Template 对象可以自定义处理
+def html_escape(template: Template) -> str:
+    """安全的 HTML 模板处理"""
+    parts = []
+    for item in template:
+        if isinstance(item, Interpolation):
+            # 对插值进行 HTML 转义
+            import html
+            parts.append(html.escape(str(item.value)))
+        else:
+            parts.append(item)
+    return "".join(parts)
+
+user_input = "<script>alert('xss')</script>"
+safe_html = html_escape(t"<p>用户输入: {user_input}</p>")
+# "<p>用户输入: &lt;script&gt;alert('xss')&lt;/script&gt;</p>"
+```
+
+**t-string 的典型应用场景**：
+- **安全的 HTML 模板**：自动转义用户输入
+- **SQL 查询构建**：防止 SQL 注入
+- **国际化（i18n）**：延迟翻译处理
+- **日志格式化**：结构化日志
+
+### 15.2 延迟注解求值（PEP 649）
+
+Python 3.14 默认启用延迟注解求值，不再需要 `from __future__ import annotations`：
+
+```python
+# Python 3.14 之前需要这行来支持前向引用
+# from __future__ import annotations
+
+# Python 3.14 默认延迟求值
+class TreeNode:
+    value: int
+    left: "TreeNode | None" = None   # 前向引用自然工作
+    right: "TreeNode | None" = None
+
+# 运行时获取注解
+import typing
+hints = typing.get_type_hints(TreeNode)
+```
+
+### 15.3 Free-threaded Python（无 GIL）
+
+Python 3.14 的 free-threaded 构建不再是实验性的，可以在生产环境中使用：
+
+```python
+import threading
+import time
+
+# 在 free-threaded Python 3.14t 中，这些线程真正并行执行
+def cpu_intensive(n):
+    """CPU 密集型任务"""
+    total = 0
+    for i in range(n):
+        total += i * i
+    return total
+
+# 多线程真正利用多核
+threads = []
+for _ in range(4):
+    t = threading.Thread(target=cpu_intensive, args=(10_000_000,))
+    threads.append(t)
+    t.start()
+
+for t in threads:
+    t.join()
+# 在 3.14t 上，4 线程接近 4x 加速
+# 在传统 Python 上，受 GIL 限制无法并行
+```
+
+> 来源：[Python 3.14 Release](https://iscinumpy.dev/post/python-314/)、[PEP 750 - Template Strings](https://peps.python.org/pep-0750/)、[Real Python - T-Strings](https://realpython.com/python-t-strings/)
 ## 🎬 推荐视频资源
 
 - [Corey Schafer - Generators](https://www.youtube.com/watch?v=bD05uGo_sVI) — 生成器详解

@@ -503,16 +503,17 @@ project/
 
 ### 13.2 配置管理
 
+> 🔄 更新于 2026-04-18：Pydantic v2 使用 `model_config` 替代 `class Config`，`BaseSettings` 移至 `pydantic-settings` 包
+
 ```python
-from pydantic import BaseSettings
+from pydantic_settings import BaseSettings
 
 class Settings(BaseSettings):
     app_name: str = "My API"
     database_url: str
     secret_key: str
     
-    class Config:
-        env_file = ".env"
+    model_config = {"env_file": ".env"}
 
 settings = Settings()
 ```

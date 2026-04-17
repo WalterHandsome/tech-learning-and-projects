@@ -505,3 +505,105 @@ Python测试工具：
 
 编写良好的测试可以提高代码质量和可维护性。
 
+> 🔄 更新于 2026-04-18
+
+<!-- version-check: pytest 8.3.5+, checked 2026-04-18 -->
+
+## 11. pytest 2026 年最新实践
+
+### 11.1 版本状态
+
+pytest 8.3.5 是当前稳定版（2025-03-02），支持 Python 3.14。pytest 是 2026 年 Python 测试的事实标准。
+
+### 11.2 与 uv 集成
+
+```bash
+# 使用 uv 管理测试依赖
+uv add --dev pytest pytest-cov pytest-asyncio
+
+# 运行测试
+uv run pytest
+
+# 带覆盖率
+uv run pytest --cov=src --cov-report=html
+```
+
+### 11.3 pyproject.toml 配置（推荐）
+
+2026 年推荐在 `pyproject.toml` 中统一配置 pytest，替代 `pytest.ini` 或 `setup.cfg`：
+
+```toml
+[tool.pytest.ini_options]
+# 测试目录
+testpaths = ["tests"]
+# 最小 Python 版本
+minversion = "8.0"
+# 默认参数
+addopts = [
+    "-ra",           # 显示所有非通过测试的摘要
+    "--strict-markers",  # 未注册的 marker 报错
+    "--tb=short",    # 简短的 traceback
+]
+# 自定义 marker
+markers = [
+    "slow: 标记为慢速测试",
+    "integration: 集成测试",
+]
+# 异步模式（pytest-asyncio）
+asyncio_mode = "auto"
+```
+
+### 11.4 异步测试（pytest-asyncio）
+
+```python
+import pytest
+
+# asyncio_mode = "auto" 时，不需要 @pytest.mark.asyncio
+async def test_async_endpoint():
+    """异步测试示例"""
+    from httpx import AsyncClient
+    from app.main import app
+
+    async with AsyncClient(app=app, base_url="http://test") as client:
+        response = await client.get("/")
+        assert response.status_code == 200
+
+# 异步 fixture
+@pytest.fixture
+async def async_db():
+    """异步数据库 fixture"""
+    db = await create_async_connection()
+    yield db
+    await db.close()
+```
+
+### 11.5 2026 年推荐的 CI 配置
+
+```yaml
+name: Tests
+
+on: [push, pull_request]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install uv
+        uses: astral-sh/setup-uv@v5
+      - name: Set up Python
+        run: uv python install 3.14
+      - name: Install dependencies
+        run: uv sync
+      - name: Lint
+        run: uv run ruff check .
+      - name: Type check
+        run: uv run mypy src/
+      - name: Test
+        run: uv run pytest --cov=src --cov-report=xml
+      - name: Upload coverage
+        uses: codecov/codecov-action@v4
+```
+
+> 来源：[pytest 官方文档](https://docs.pytest.org/)、[GitHub Releases](https://github.com/pytest-dev/pytest/releases)
+

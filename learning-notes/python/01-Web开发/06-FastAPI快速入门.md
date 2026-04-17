@@ -6,21 +6,32 @@
 
 ## FastAPI 简介
 
-FastAPI 是一个现代、快速的 Web 框架，用于构建 API，基于 Python 3.6+ 的类型提示。
+FastAPI 是一个现代、快速的 Web 框架，用于构建 API，基于 Python 类型提示。
+
+> 🔄 更新于 2026-04-18
+
+<!-- version-check: FastAPI 0.136.0, checked 2026-04-18 -->
+
+**当前版本**：FastAPI 0.136.0（2026-04-16），支持 free-threaded Python 3.14t。
 
 ## 核心特性
 
-- **高性能**：与 NodeJS 和 Go 相当
+- **高性能**：JSON 基准测试下可达 15,000-20,000 RPS，与 NodeJS 和 Go 相当
 - **快速开发**：开发速度提升约 200% 到 300%
-- **类型提示**：基于 Python 类型提示
+- **类型提示**：基于 Python 类型提示（要求 Pydantic ≥ 2.9.0）
 - **自动文档**：自动生成 OpenAPI 和 Swagger 文档
 - **异步支持**：原生支持 async/await
+- **Free-threaded 支持**：0.136.0 起支持 Python 3.14t（无 GIL）
 
 ## 快速开始
 
 ### 安装
 
 ```bash
+# 使用 uv（推荐）
+uv add fastapi uvicorn
+
+# 或使用 pip
 pip install fastapi uvicorn
 ```
 
