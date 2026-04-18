@@ -151,6 +151,98 @@ GeometryReader { geometry in
     }
 }
 ```
+## 6. iOS 26 / SwiftUI 新特性（WWDC 2025）
+
+> 🔄 更新于 2026-04-18
+
+<!-- version-check: SwiftUI iOS 26 (Xcode 26.4), checked 2026-04-18 -->
+
+iOS 26（WWDC 2025）带来了 SwiftUI 自发布以来最大的视觉更新 — **Liquid Glass** 设计语言，以及多项实用新功能。来源：[SwiftUI for iOS 26](https://www.infoq.com/news/2025/06/swiftui-ios26-liquid-glass/)、[SwiftUI What's New](https://developer.apple.com/swiftui/whats-new/)
+
+### Liquid Glass 设计语言
+
+Liquid Glass 是一种动态半透明材质，结合了玻璃的光学特性和流体感。应用只需用 Xcode 26 重新编译即可自动获得新设计。
+
+```swift
+// .glassEffect() — 一行代码应用 Liquid Glass 效果
+Button("操作") {
+    performAction()
+}
+.glassEffect()  // 自动适配明暗模式和背景内容
+
+// 自定义 Liquid Glass 效果
+VStack {
+    Text("浮动面板")
+    Text("内容区域")
+}
+.padding()
+.glassEffect()  // 半透明、折射、反射效果
+```
+
+### WebView — 原生 Web 内容展示
+
+SwiftUI 新增原生 `WebView` 类型，支持在应用内展示 HTML/CSS/JavaScript 内容。
+
+```swift
+import SwiftUI
+
+struct BrowserView: View {
+    @State private var page = WebPage()
+
+    var body: some View {
+        WebView(page)
+            .onAppear {
+                page.load(URLRequest(url: URL(string: "https://example.com")!))
+            }
+    }
+}
+```
+
+### 富文本编辑
+
+`TextEditor` 新增 `AttributedString` 支持，轻松实现富文本编辑。
+
+```swift
+struct RichEditorView: View {
+    @State private var text = AttributedString()
+
+    var body: some View {
+        TextEditor(text: $text)  // 自动支持富文本格式
+    }
+}
+```
+
+### 3D Swift Charts
+
+Swift Charts 新增 3D 图表支持，可以在三维空间中可视化数据。
+
+### 工具栏改进
+
+```swift
+// ToolbarSpacer — 控制工具栏按钮间距
+.toolbar {
+    ToolbarItem(placement: .topBarTrailing) {
+        Button("上移", systemImage: "arrow.up") { }
+    }
+    ToolbarSpacer(.fixed)  // 固定间距
+    ToolbarItem(placement: .topBarTrailing) {
+        Button("下移", systemImage: "arrow.down") { }
+    }
+}
+
+// 工具栏按钮着色
+.toolbar {
+    ToolbarItem {
+        Button("保存") { save() }
+            .tint(.green)  // 直接对工具栏按钮着色
+    }
+}
+```
+
+### 滚动边缘模糊效果
+
+iOS 26 在用户滚动时自动为工具栏边缘添加模糊效果，确保工具栏内容在滚动内容上方保持可读性。
+
 ## 🎬 推荐视频资源
 
 - [Swiftful Thinking - SwiftUI Bootcamp](https://www.youtube.com/playlist?list=PLwvDm4VfkdphqETTBf-DdjCoAvhai1QpO) — SwiftUI完整入门系列

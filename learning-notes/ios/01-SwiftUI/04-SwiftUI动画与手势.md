@@ -95,21 +95,49 @@ struct GestureDemo: View {
 }
 ```
 
-## 4. matchedGeometryEffect
+## 5. iOS 26 动画新特性
+
+> 🔄 更新于 2026-04-18
+
+<!-- version-check: SwiftUI Animation iOS 26, checked 2026-04-18 -->
+
+iOS 26 引入了 `@Animatable` 宏，大幅简化自定义动画的实现。来源：[SwiftUI for iOS 26](https://www.infoq.com/news/2025/06/swiftui-ios26-liquid-glass/)
+
+### @Animatable 宏
+
+`@Animatable` 宏自动合成 `Animatable` 协议的 `animatableData` 属性，无需手动实现。
 
 ```swift
-struct HeroAnimation: View {
-    @Namespace private var animation
-    @State private var isExpanded = false
+// iOS 26 之前：需要手动实现 animatableData
+struct OldWave: Shape {
+    var amplitude: CGFloat
+    var frequency: CGFloat
 
-    var body: some View {
-        if isExpanded {
-            DetailCard(namespace: animation)
-                .onTapGesture { withAnimation(.spring()) { isExpanded = false } }
-        } else {
-            ThumbnailCard(namespace: animation)
-                .onTapGesture { withAnimation(.spring()) { isExpanded = true } }
+    var animatableData: AnimatablePair<CGFloat, CGFloat> {
+        get { AnimatablePair(amplitude, frequency) }
+        set {
+            amplitude = newValue.first
+            frequency = newValue.second
         }
     }
+
+    func path(in rect: CGRect) -> Path { /* ... */ }
 }
+
+// iOS 26：使用 @Animatable 宏自动合成
+@Animatable
+struct Wave: Shape {
+    var amplitude: CGFloat    // 自动参与动画
+    var frequency: CGFloat    // 自动参与动画
+    @AnimatableIgnored var lineWidth: CGFloat  // 排除在动画之外
+
+    func path(in rect: CGRect) -> Path { /* ... */ }
+}
+
+// 使用
+Wave(amplitude: isActive ? 50 : 10, frequency: 3, lineWidth: 2)
+    .stroke(.blue, lineWidth: 2)
+    .animation(.easeInOut(duration: 1), value: isActive)
 ```
+
+`@Animatable` 适用于 View、ViewModifier、Shape、TextRenderer 等类型，显著减少动画相关的样板代码。

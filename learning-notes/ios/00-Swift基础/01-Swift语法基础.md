@@ -217,6 +217,68 @@ do {
 // try? 转为可选值
 let isValid = try? validate(email: "test@example.com", password: "123")
 ```
+## 8. Swift 6.2 新增特性（2025-09）
+
+> 🔄 更新于 2026-04-18
+
+<!-- version-check: Swift 6.2, checked 2026-04-18 -->
+
+Swift 6.2 于 2025 年 9 月随 Xcode 26 发布，带来了性能和安全性方面的重要新特性。来源：[Swift 6.2 Released](https://www.swift.org/blog/swift-6.2-released)
+
+### InlineArray — 固定大小内联数组
+
+`InlineArray` 是一种新的固定大小数组类型，元素直接存储在栈上或嵌入到其他类型中，避免额外的堆分配。
+
+```swift
+// InlineArray：固定大小，栈分配，零堆开销
+struct Game {
+    // 简写语法：[数量 of 类型]
+    var bricks: [40 of Sprite]
+
+    init(_ brickSprite: Sprite) {
+        bricks = .init(repeating: brickSprite)
+    }
+}
+
+// 完整语法
+let buffer: InlineArray<10, Int> = .init(repeating: 0)
+```
+
+### Span — 安全的连续内存访问
+
+`Span` 提供对连续内存的安全直接访问，是 `UnsafeBufferPointer` 的安全替代方案。编译时检查内存有效性，零运行时开销。
+
+```swift
+// Span 确保内存在使用期间保持有效
+func processData(_ span: Span<UInt8>) {
+    for byte in span {
+        // 安全访问，无 use-after-free 风险
+    }
+}
+```
+
+### WebAssembly 支持
+
+Swift 6.2 新增 Wasm SDK，可以将 Swift 代码编译为 WebAssembly 并运行。
+
+```bash
+# 编译为 Wasm 并运行
+swift build --swift-sdk wasm
+swift run --swift-sdk wasm
+```
+
+### 严格内存安全模式
+
+新增 opt-in 的严格内存安全检查，可以检测代码中的不安全构造。
+
+```swift
+// 在 Package.swift 中启用
+.target(
+    name: "MyTarget",
+    swiftSettings: [.strictMemorySafety]
+)
+```
+
 ## 🎬 推荐视频资源
 
 - [CodeWithChris - Swift Tutorial for Beginners](https://www.youtube.com/watch?v=comQ1-x2a1Q) — Swift入门教程

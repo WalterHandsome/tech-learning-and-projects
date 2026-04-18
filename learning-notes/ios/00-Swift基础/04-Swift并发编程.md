@@ -137,6 +137,92 @@ group.notify(queue: .main) {
     print("全部完成")
 }
 ```
+## 6. Swift 6.2 Approachable Concurrency（2025-09）
+
+> 🔄 更新于 2026-04-18
+
+<!-- version-check: Swift 6.2 Approachable Concurrency, checked 2026-04-18 -->
+
+Swift 6.2 引入了 **Approachable Concurrency**（易用并发），这是 Swift 并发模型最重大的改进。核心理念：**默认单线程，显式并发**。来源：[Swift 6.2 Released](https://www.swift.org/blog/swift-6.2-released)、[Donny Wals - Approachable Concurrency](https://www.donnywals.com/what-is-approachable-concurrency-in-xcode-26/)
+
+### 默认 MainActor 隔离
+
+Xcode 26 新建项目默认启用 MainActor 隔离，代码默认运行在主线程上，无需手动标注 `@MainActor`。
+
+```swift
+// 在 '-default-isolation MainActor' 模式下
+// 所有代码默认在主线程执行，无需 @MainActor 标注
+
+struct ImageCache {
+    // 缓存受 MainActor 保护，线程安全
+    static var cachedImages: [URL: Image] = [:]
+
+    static func create(from url: URL) async throws -> Image {
+        if let image = cachedImages[url] {
+            return image
+        }
+
+        // fetchImage 标记为 @concurrent，在并发线程池执行
+        let image = try await fetchImage(at: url)
+
+        cachedImages[url] = image
+        return image
+    }
+
+    // @concurrent 显式标记需要并发执行的代码
+    @concurrent
+    static func fetchImage(at url: URL) async throws -> Image {
+        let (data, _) = try await URLSession.shared.data(from: url)
+        return await decode(data: data)
+    }
+}
+```
+
+### @concurrent 属性
+
+当需要代码在并发线程池上执行时，使用 `@concurrent` 显式标记：
+
+```swift
+// 默认：代码在调用者的执行上下文中运行（通常是主线程）
+func processData() async {
+    // 在主线程执行
+}
+
+// @concurrent：显式声明在并发线程池执行
+@concurrent
+func heavyComputation() async -> Result {
+    // 在后台线程池执行，不阻塞主线程
+    return performExpensiveWork()
+}
+```
+
+### async 函数行为变化
+
+Swift 6.2 中，`nonisolated async` 方法默认在调用者的执行上下文中运行，而不是自动切换到全局并发线程池。这使得异步代码的行为更加可预测。
+
+```swift
+class DataManager {
+    var data: [String] = []
+
+    // Swift 6.1：自动切换到全局线程池，可能导致数据竞争
+    // Swift 6.2：在调用者上下文执行，更安全
+    func loadData() async {
+        data = await fetchFromNetwork()
+    }
+}
+```
+
+### 迁移建议
+
+| 场景 | Swift 6.1 | Swift 6.2 |
+|------|-----------|-----------|
+| UI 代码 | 需要 `@MainActor` | 默认在主线程 |
+| 后台计算 | 默认并发 | 需要 `@concurrent` |
+| async 方法 | 切换到全局线程池 | 在调用者上下文执行 |
+| 数据竞争检查 | 编译器警告 | 编译器错误（Swift 6 模式） |
+
+> **注意**：Swift 6 严格并发检查将数据竞争从警告升级为编译器错误。所有主流框架在 2026 年已完成 Swift 6 适配。来源：[Swift Concurrency Safety in 2026](https://vocal.media/01/swift-concurrency-safety-navigating-xcode-checks-in-2026)
+
 ## 🎬 推荐视频资源
 
 - [Sean Allen - Swift Concurrency](https://www.youtube.com/watch?v=U6lQOo5aGmE) — Swift并发编程教程

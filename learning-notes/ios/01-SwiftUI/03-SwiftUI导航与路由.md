@@ -95,4 +95,62 @@ class Router: ObservableObject {
     func pop() { path.removeLast() }
     func popToRoot() { path = NavigationPath() }
 }
+
+## 5. iOS 26 导航与 TabView 新特性
+
+> 🔄 更新于 2026-04-18
+
+<!-- version-check: SwiftUI Navigation iOS 26, checked 2026-04-18 -->
+
+iOS 26 为 TabView 和搜索功能带来了重要改进。来源：[SwiftUI in iOS 26 - What's new](https://differ.blog/p/swift-ui-in-ios-26-what-s-new-from-wwdc-2025-819b42)
+
+### TabView 搜索标签
+
+可以在 TabView 中添加专用的搜索标签页，类似 Apple 健康和音乐应用的体验。
+
+```swift
+struct MainTabView: View {
+    var body: some View {
+        TabView {
+            Tab("首页", systemImage: "house") {
+                HomeView()
+            }
+            // 新增：搜索标签页（.search role）
+            Tab("搜索", systemImage: "magnifyingglass", role: .search) {
+                SearchView()
+            }
+            Tab("我的", systemImage: "person") {
+                ProfileView()
+            }
+        }
+    }
+}
+```
+
+### iPad 菜单栏命令
+
+SwiftUI 应用现在可以在 iPad 上添加原生菜单栏命令，与 macOS 体验一致。
+
+```swift
+@main
+struct MyApp: App {
+    var body: some Scene {
+        WindowGroup {
+            ContentView()
+        }
+        .commands {
+            TextEditingCommands()  // 标准编辑命令（剪切、复制、粘贴）
+            // 自定义命令
+            CommandMenu("工具") {
+                Button("格式化") { format() }
+                    .keyboardShortcut("f", modifiers: [.command, .shift])
+            }
+        }
+    }
+}
+```
+
+### UIHostingSceneDelegate
+
+新增 `UIHostingSceneDelegate`，可以将 SwiftUI Scene 桥接到 UIKit，扩展了 SwiftUI 与 UIKit 的集成能力。
 ```

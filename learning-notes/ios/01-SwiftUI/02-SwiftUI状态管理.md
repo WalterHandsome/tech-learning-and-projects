@@ -148,6 +148,79 @@ struct UserListView: View {
     }
 }
 ```
+## 6. @Observable 改进与 iOS 26 更新
+
+> 🔄 更新于 2026-04-18
+
+<!-- version-check: SwiftUI @Observable iOS 26, checked 2026-04-18 -->
+
+### @Observable 成为推荐方案
+
+随着 iOS 17+ 的 `@Observable` 宏成熟，它已成为 SwiftUI 状态管理的推荐方案。在 iOS 26 / Xcode 26 中，`@Observable` 与 Liquid Glass 设计语言完全兼容，性能进一步优化。
+
+```swift
+import Observation
+
+// 推荐：使用 @Observable（iOS 17+）
+@Observable
+class AppState {
+    var isLoggedIn = false
+    var currentUser: User?
+    var theme: Theme = .light
+
+    // 计算属性自动追踪依赖
+    var greeting: String {
+        guard let user = currentUser else { return "请登录" }
+        return "你好，\(user.name)"
+    }
+}
+
+// 使用 @State 持有（替代 @StateObject）
+struct ContentView: View {
+    @State private var appState = AppState()
+
+    var body: some View {
+        // 直接传递，无需 @EnvironmentObject
+        NavigationStack {
+            HomeView(appState: appState)
+        }
+        // 也可以通过 Environment 注入
+        .environment(appState)
+    }
+}
+
+// 子视图直接接收
+struct HomeView: View {
+    var appState: AppState  // 无需 @ObservedObject
+
+    var body: some View {
+        Text(appState.greeting)
+    }
+}
+
+// 或通过 @Environment 获取
+struct ProfileView: View {
+    @Environment(AppState.self) private var appState
+
+    var body: some View {
+        Text(appState.greeting)
+    }
+}
+```
+
+### 状态管理方案选择指南（2026）
+
+| 方案 | 适用场景 | 最低版本 |
+|------|---------|---------|
+| `@State` | 视图内部简单状态 | iOS 13+ |
+| `@Binding` | 父子组件共享状态 | iOS 13+ |
+| `@Observable` + `@State` | **推荐**：ViewModel 和共享状态 | iOS 17+ |
+| `@Observable` + `@Environment` | **推荐**：跨层级共享 | iOS 17+ |
+| `@StateObject` / `@ObservedObject` | 兼容 iOS 13-16 的旧项目 | iOS 13+ |
+| `@EnvironmentObject` | 兼容 iOS 13-16 的旧项目 | iOS 13+ |
+
+> **迁移建议**：新项目最低支持 iOS 17 时，全面使用 `@Observable` 替代 `ObservableObject`。`@StateObject` / `@ObservedObject` / `@EnvironmentObject` 仅在需要兼容旧版本时使用。
+
 ## 🎬 推荐视频资源
 
 - [Swiftful Thinking - SwiftUI State Management](https://www.youtube.com/watch?v=KD4OAjQJYPc) — SwiftUI状态管理
