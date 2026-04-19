@@ -33,6 +33,11 @@ shared/watermark_cli.py filter=git-crypt diff=git-crypt
 scripts/doc-lint.sh filter=git-crypt diff=git-crypt
 
 # ============================================
+# AI Agent 每日简报（采集分析内容）
+# ============================================
+learning-notes/ai-agent/briefings/*.md filter=git-crypt diff=git-crypt
+
+# ============================================
 # 2026 技术更新研究文档
 # ============================================
 learning-notes/ai-agent/24-2026技术更新/*.md filter=git-crypt diff=git-crypt
