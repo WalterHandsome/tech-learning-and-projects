@@ -62,13 +62,22 @@ with client.messages.stream(
         print(text, end="", flush=True)
 ```
 
-> 🔄 更新于 2026-04-18
+> 🔄 更新于 2026-04-20
+>
+> **Claude Opus 4.7**（2026-04-16）：Anthropic 最强 GA 模型，替代 Opus 4.6 成为默认 Opus。`claude-opus-4-7`，定价不变 $5/$25 per MTok，1M 上下文窗口，128K 输出。核心提升：编码基准 +13%、Rakuten-SWE-Bench 生产任务 3x、高分辨率视觉 3.75MP（之前 1.15MP）、新增 xhigh 推理等级、Task Budgets 公测、文件系统级跨会话记忆。SWE-bench Verified 87.6%，CursorBench 70%。注意：新 tokenizer 可能导致 token 数量增加 1.0-1.35x。
+> 来源：[Anthropic 官方](https://www.anthropic.com/news/) / [felloai](https://felloai.com/anthropic-claude-opus-4-7/)
 >
 > **Claude 4.6 系列**（2026-02）：Opus 4.6（`claude-opus-4-6`，$5/$25 per MTok，128K 输出）和 Sonnet 4.6（`claude-sonnet-4-6`，$3/$15 per MTok，64K 输出），均支持 1M 上下文窗口（beta）、Extended Thinking。Sonnet 4.6 在 Claude Code 测试中 70% 的情况下优于 Sonnet 4.5，59% 优于 Opus 4.5。
 > 来源：[Anthropic 官网](https://www.anthropic.com/claude/sonnet)、[Claude API 定价](https://developer.puter.com/tutorials/claude-api-pricing/)
 >
+> **GPT-5.4-Cyber**（2026-04-14）：OpenAI 发布首个防御性网络安全微调模型，基于 GPT-5.4，降低安全场景的拒绝边界，增强二进制逆向工程能力。通过 Trusted Access for Cyber（TAC）计划面向验证用户开放。
+> 来源：[OpenAI 官方博客](https://openai.com/index/scaling-trusted-access-for-cyber-defense/)
+>
 > **OpenAI Assistants API 废弃**：2026-08-26 正式关闭，迁移至 Responses API + Conversations API。Responses API 支持内置工具（deep research、MCP、computer use），单次调用可运行多步工作流。
 > 来源：[OpenAI 社区公告](https://community.openai.com/t/assistants-api-beta-deprecation-august-26-2026-sunset/1354666)
+
+<!-- version-check: Claude Opus 4.7 claude-opus-4-7, checked 2026-04-20 -->
+<!-- version-check: GPT-5.4-Cyber, checked 2026-04-20 -->
 
 ## 3. 多模态输入
 
