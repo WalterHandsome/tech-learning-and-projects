@@ -189,3 +189,53 @@ fun SwipeItem(onDismiss: () -> Unit, content: @Composable () -> Unit) {
     ) { content() }
 }
 ```
+
+
+## 7. Compose 动画 2026 更新
+
+<!-- version-check: Compose Animation 1.10.x, checked 2026-04-21 -->
+
+> 🔄 更新于 2026-04-21
+
+### SharedTransitionLayout（共享元素过渡）
+
+```kotlin
+// Compose 1.7+ 引入共享元素过渡动画
+// 依赖: androidx.compose.animation:animation
+SharedTransitionLayout {
+    AnimatedContent(targetState = showDetail) { isDetail ->
+        if (isDetail) {
+            DetailScreen(
+                modifier = Modifier.sharedElement(
+                    state = rememberSharedContentState(key = "image-$id"),
+                    animatedVisibilityScope = this@AnimatedContent
+                )
+            )
+        } else {
+            ListScreen(
+                modifier = Modifier.sharedElement(
+                    state = rememberSharedContentState(key = "image-$id"),
+                    animatedVisibilityScope = this@AnimatedContent
+                )
+            )
+        }
+    }
+}
+```
+
+### 动画性能提示
+
+```kotlin
+// 使用 graphicsLayer 进行高性能动画（不触发重组）
+Box(
+    modifier = Modifier.graphicsLayer {
+        // 这些属性变化不会触发重组，直接在渲染层处理
+        alpha = animatedAlpha
+        scaleX = animatedScale
+        scaleY = animatedScale
+        translationY = animatedOffset
+    }
+)
+```
+
+> 来源：[Compose Animation](https://developer.android.com/develop/ui/compose/animation)

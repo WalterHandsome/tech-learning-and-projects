@@ -391,7 +391,51 @@ ALERTS = [
 来源：[Repello AI: Agentic AI Security Threats 2026](https://repello.ai/blog/agentic-ai-security-threats-2026) (Content was rephrased for compliance with licensing restrictions)
 来源：[DigitalApplied: 1 in 8 Breaches from Agentic Systems](https://www.digitalapplied.com/blog/ai-agent-security-2026-1-in-8-breaches-agentic-systems) (Content was rephrased for compliance with licensing restrictions)
 
-### 7.2 事件响应流程
+### 7.2 Agentic Security Graph 模型（Salt Security，2026.04）
+
+> 🔄 更新于 2026-04-20
+
+Salt Security 于 2026 年 4 月 8 日发布 1H 2026 State of AI and API Security 报告，提出了 Agentic Security Graph 安全分析模型：
+
+```
+Agentic Security Graph — 三层安全分析框架：
+
+  ┌─────────────────────────────────────────────┐
+  │  LLM 层（推理层）                             │
+  │  → 模型安全、prompt 注入防御、输出过滤         │
+  ├─────────────────────────────────────────────┤
+  │  MCP Server 层（执行层）                      │
+  │  → 工具安全、Schema 完整性、供应链审计         │
+  ├─────────────────────────────────────────────┤
+  │  API 层（行动层）                             │
+  │  → 认证授权、速率限制、数据访问控制            │
+  └─────────────────────────────────────────────┘
+
+关键数据（327 名安全负责人调查）：
+  → 92% 的组织缺乏保护 Agent 环境所需的高级安全成熟度
+  → 48.9% 对机器间通信完全不可见
+  → 47% 因 API 安全顾虑推迟了 AI 生产部署
+  → 99% 的攻击来自已认证来源（合法凭证的流氓 Agent）
+  → 65% 的攻击利用安全配置错误（OWASP API8）
+```
+
+来源：[Salt Security / PRNewswire](https://www.prnewswire.com/news-releases/salt-security-research-as-ai-agents-outpace-security-most-organizations-face-an-unsecured-api-surge-302736506.html) (Content was rephrased for compliance with licensing restrictions)
+
+### 7.3 Gartner GenAI 安全预测（2026.04）
+
+Gartner 于 2026 年 4 月 9 日发布预测，首次将 MCP 协议安全风险写入正式报告：
+
+```
+预测数据：
+  → 2028 年：25% 的企业 GenAI 应用每年遭遇 ≥5 次轻微安全事件（2025 年 9%）
+  → 2029 年：15% 的企业 GenAI 应用每年遭遇 ≥1 次重大安全事件（2025 年 3%）
+
+影响：MCP 安全风险从社区讨论升级为行业权威机构认可的系统性风险
+```
+
+来源：[Gartner Newsroom](https://www.gartner.com/en/newsroom/press-releases/2026-04-09-gartner-predicts-25-percent-of-all-enterprise-gen-ai-applications-will-experience-at-least-five-minor-security-incidents-per-year-by-2028) (Content was rephrased for compliance with licensing restrictions)
+
+### 7.4 事件响应流程
 
 ```
 Agent 事件响应流程（增强版）：

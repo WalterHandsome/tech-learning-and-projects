@@ -25,7 +25,7 @@
 │   ├─ xhigh 推理层级（Extended Thinking 增强）
 │   ├─ 文件系统级记忆
 │   └─ 新 Tokenizer 2.0（同文本可能多 ~35% Token）
-├─ Claude Sonnet 4（claude-sonnet-4-20250514）— 通用性价比最优
+├─ Claude Sonnet 4.6（claude-sonnet-4-6-20260217）— 通用性价比最优
 ├─ Claude Haiku 3.5 — 高吞吐简单任务
 └─ Claude Mythos Preview — 最强但受限访问
 
@@ -48,7 +48,7 @@ from anthropic import Anthropic
 client = Anthropic()
 
 response = client.messages.create(
-    model="claude-sonnet-4-20250514",
+    model="claude-sonnet-4-6-20260217",
     max_tokens=16000,
     thinking={
         "type": "enabled",
@@ -112,7 +112,7 @@ def claude_agent(task: str, max_turns: int = 10) -> str:
 
     for _ in range(max_turns):
         response = client.messages.create(
-            model="claude-sonnet-4-20250514",
+            model="claude-sonnet-4-6-20260217",
             max_tokens=4096,
             tools=tools,
             messages=messages,
@@ -148,7 +148,7 @@ client = Anthropic()
 
 # Computer Use：Claude 操作桌面环境
 response = client.messages.create(
-    model="claude-sonnet-4-20250514",
+    model="claude-sonnet-4-6-20260217",
     max_tokens=4096,
     tools=[
         {
@@ -189,7 +189,7 @@ with open("architecture.png", "rb") as f:
     image_data = base64.standard_b64encode(f.read()).decode()
 
 response = client.messages.create(
-    model="claude-sonnet-4-20250514",
+    model="claude-sonnet-4-6-20260217",
     max_tokens=2048,
     messages=[{
         "role": "user",
@@ -208,7 +208,7 @@ response = client.messages.create(
 
 # PDF 文档分析
 response = client.messages.create(
-    model="claude-sonnet-4-20250514",
+    model="claude-sonnet-4-6-20260217",
     max_tokens=4096,
     messages=[{
         "role": "user",
@@ -236,7 +236,7 @@ batch = client.messages.batches.create(
         {
             "custom_id": f"task-{i}",
             "params": {
-                "model": "claude-sonnet-4-20250514",
+                "model": "claude-sonnet-4-6-20260217",
                 "max_tokens": 1024,
                 "messages": [{"role": "user", "content": f"分析数据点 {i}: {data}"}],
             },
@@ -289,7 +289,7 @@ def optimized_agent_call(task: str) -> str:
 
     # 1. 使用 system prompt 缓存（减少重复 Token）
     response = client.messages.create(
-        model="claude-sonnet-4-20250514",
+        model="claude-sonnet-4-6-20260217",
         max_tokens=4096,
         system=[{
             "type": "text",
@@ -301,7 +301,7 @@ def optimized_agent_call(task: str) -> str:
 
     # 2. 流式输出（减少等待时间）
     with client.messages.stream(
-        model="claude-sonnet-4-20250514",
+        model="claude-sonnet-4-6-20260217",
         max_tokens=4096,
         messages=[{"role": "user", "content": task}],
     ) as stream:
@@ -315,10 +315,10 @@ def select_model(task_complexity: str) -> str:
     """根据任务复杂度选择模型"""
     models = {
         "simple": "claude-haiku-3-5",       # 简单分类/提取
-        "medium": "claude-sonnet-4-20250514",  # 通用任务
+        "medium": "claude-sonnet-4-6-20260217",  # 通用任务
         "complex": "claude-opus-4-7",          # 复杂推理（2026-04-16 发布）
     }
-    return models.get(task_complexity, "claude-sonnet-4-20250514")
+    return models.get(task_complexity, "claude-sonnet-4-6-20260217")
 ```
 
 ## 9. 与其他模型对比（Agent 场景）

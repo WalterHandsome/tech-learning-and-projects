@@ -151,3 +151,65 @@ supervisorScope {
 
 - [Philipp Lackner - Kotlin Coroutines](https://www.youtube.com/watch?v=ShNhJ3wMpvQ) — Kotlin协程完整教程
 - [JetBrains - Coroutines Guide](https://www.youtube.com/watch?v=_hfBv0a09Jc) — 官方协程指南
+
+
+## 5. Kotlin 2.x 协程更新
+
+<!-- version-check: kotlinx.coroutines with Kotlin 2.3.20, checked 2026-04-21 -->
+
+> 🔄 更新于 2026-04-21
+
+### 协程性能提升
+
+Kotlin 2.3 对协程运行时进行了优化，Native 平台构建速度提升最高 40%：
+
+```kotlin
+// Kotlin 2.x 中协程与 Flow 的最佳实践保持不变
+// 但 K2 编译器对 suspend 函数的类型推断更加智能
+
+// 推荐：使用 StateFlow + WhileSubscribed 管理 UI 状态
+class UserViewModel : ViewModel() {
+    private val _uiState = MutableStateFlow<UiState>(UiState.Loading)
+    val uiState: StateFlow<UiState> = _uiState
+        .stateIn(
+            scope = viewModelScope,
+            started = SharingStarted.WhileSubscribed(5_000),
+            initialValue = UiState.Loading
+        )
+}
+```
+
+### collectAsStateWithLifecycle（推荐）
+
+```kotlin
+// 替代 collectAsState()，生命周期感知，避免后台浪费资源
+// 依赖: androidx.lifecycle:lifecycle-runtime-compose
+@Composable
+fun UserScreen(viewModel: UserViewModel = hiltViewModel()) {
+    val uiState by viewModel.uiState.collectAsStateWithLifecycle()
+
+    when (uiState) {
+        is UiState.Loading -> CircularProgressIndicator()
+        is UiState.Success -> UserList((uiState as UiState.Success).users)
+        is UiState.Error -> ErrorMessage((uiState as UiState.Error).message)
+    }
+}
+```
+
+### 协程测试改进
+
+```kotlin
+// 使用 Turbine 测试 Flow（推荐）
+@Test
+fun `test user loading`() = runTest {
+    val viewModel = UserViewModel(fakeRepository)
+
+    viewModel.uiState.test {
+        assertEquals(UiState.Loading, awaitItem())
+        assertEquals(UiState.Success(testUsers), awaitItem())
+        cancelAndIgnoreRemainingEvents()
+    }
+}
+```
+
+> 来源：[Kotlin Coroutines](https://kotlinlang.org/docs/coroutines-overview.html)

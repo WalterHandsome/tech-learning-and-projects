@@ -138,6 +138,68 @@ await server.connect(transport);
 
 社区 Server：1000+ 开源实现
 ```
+
+## 7. MCP 安全风险评估
+
+> 🔄 更新于 2026-04-20
+
+### 7.1 Gartner 权威预测（2026.04.09）
+
+<!-- version-check: Gartner MCP security prediction, checked 2026-04-20 -->
+
+Gartner 于 2026 年 4 月 9 日发布了针对 MCP 安全风险的正式预测，这是首次有权威分析机构将 MCP 协议安全风险写入正式报告：
+
+```
+Gartner 预测数据：
+  → 2028 年：25% 的企业 GenAI 应用将每年遭遇至少 5 次轻微安全事件（2025 年为 9%）
+  → 2029 年：15% 的企业 GenAI 应用将每年遭遇至少 1 次重大安全事件（2025 年为 3%）
+
+Gartner 高级分析师 Aaron Lord 原话：
+  "MCP 优先考虑互操作性、易用性和灵活性，安全性被置于次要位置。
+   因此在 agentic AI 缺乏持续监督时，安全错误会不断涌现。"
+```
+
+来源：[Gartner Newsroom](https://www.gartner.com/en/newsroom/press-releases/2026-04-09-gartner-predicts-25-percent-of-all-enterprise-gen-ai-applications-will-experience-at-least-five-minor-security-incidents-per-year-by-2028) (Content was rephrased for compliance with licensing restrictions)
+
+### 7.2 MCP STDIO 命令注入漏洞（2026.04.16）
+
+OX Security 于 2026 年 4 月 16 日披露了 MCP 协议中一个系统性的命令注入漏洞，影响范围极广：
+
+```
+漏洞概况：
+  → 约 1.5 亿次下载、7,000 个公开可访问的服务器、20 万个易受攻击实例
+  → 10 个 CVE 被提交，其中 9 个标记为严重级别
+  → 根因：MCP 使用 STDIO 作为本地传输时允许执行任意 OS 命令
+
+四类攻击路径：
+  1. 未认证命令注入
+  2. 绕过加固的命令注入
+  3. 通过 prompt injection 修改 MCP 配置的命令注入
+  4. 通过网络请求的未认证命令注入
+
+受影响工具：
+  LangFlow、GPT Researcher、Windsurf、Claude Code、GitHub Copilot 等
+
+Anthropic 回应：认为这是"预期行为"，拒绝修补
+```
+
+来源：[Computing.co.uk](https://www.computing.co.uk/news/2026/security/flaw-in-anthropic-s-mcp-putting-200k-servers-at-risk) / [The Register](https://www.theregister.com/2026/04/16/anthropic_mcp_design_flaw/) (Content was rephrased for compliance with licensing restrictions)
+
+### 7.3 企业 MCP 安全建议
+
+```
+基于 Gartner 预测和 OX Security 漏洞披露的行动建议：
+
+  □ 将 MCP 安全审计纳入企业合规流程
+  □ 阻止公网 IP 访问 MCP 服务
+  □ 将外部 MCP 配置输入视为不可信数据
+  □ 在沙箱中运行 MCP 服务
+  □ 监控工具调用行为
+  □ 仅使用官方 MCP 目录中的服务器
+  □ 建立 MCP 安全监控机制
+
+详细防御方案 → [MCP安全漏洞与Agent供应链攻击](../15-Agent安全与治理/05-MCP安全漏洞与Agent供应链攻击.md)
+```
 ## 🎬 推荐视频资源
 
 - [Anthropic - Model Context Protocol Introduction](https://www.youtube.com/watch?v=kQmXtrmQ5Zg) — MCP官方介绍

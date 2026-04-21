@@ -168,22 +168,35 @@ SWE-bench：标准化软件工程 Agent 评测基准
 
 ## 8. 未来展望
 
+> 🔄 更新于 2026-04-21
+
 ```
 短期（2025-2026）：
 ├─ 自主 Agent 在简单 Issue 修复上达到人类水平
 ├─ IDE Agent 成为开发者标配
-└─ Code Review Agent 普及
+├─ Code Review Agent 普及
+└─ 厂商战略聚焦 Agent：OpenAI 关停 Sora（4/26），
+   清理"副业"集中资源到 Codex Agent 和企业产品
 
 中期（2026-2028）：
 ├─ 自主 Agent 能处理中等复杂度的功能开发
 ├─ 多 Agent 协作开发成为现实
-└─ AI 参与架构设计和技术选型
+├─ AI 参与架构设计和技术选型
+└─ 本地 Coding Agent 崛起（OpenCode、Junco 等隐私优先方案）
 
 长期趋势：
 ├─ 人类角色转向需求定义、架构决策、质量把关
 ├─ AI 负责大部分编码实现工作
 └─ 软件开发效率提升 5-10 倍
 ```
+
+### OpenAI 战略转型信号（2026-04）
+
+OpenAI 于 4 月 17 日经历三位高管同日离职（前 CPO Kevin Weil、Sora 负责人 Bill Peebles、企业 CTO Srinivas Narayanan），同时 Sora 视频平台将于 4/26 关闭 App、9/24 关闭 API。官方定性为"清理副业"（shedding side quests），将资源集中到 Agent 平台和企业产品。Sora 日均计算成本数百万美元但总收入仅约 210 万美元，经济模型不可持续。
+
+这意味着 OpenAI 的 Agents SDK、Codex Desktop、ChatGPT Agent 将获得更多资源投入，自主开发 Agent 赛道的竞争将进一步加剧。
+
+来源：[TechCrunch](https://techcrunch.com/2026/04/17/kevin-weil-and-bill-peebles-exit-openai-as-company-continues-to-shed-side-quests/) / [The Next Web](https://thenextweb.com/news/openai-departures-kevin-weil-sora-peebles-enterprise-pivot)
 ## 🎬 推荐视频资源
 
 ### 🌐 YouTube

@@ -5,7 +5,7 @@
 ## 1. Navigation Compose 基础
 
 ```kotlin
-// 依赖: androidx.navigation:navigation-compose:2.7+
+// 依赖: androidx.navigation:navigation-compose:2.9+
 
 // 定义路由
 object Routes {
@@ -158,3 +158,64 @@ fun MainScreen() {
     }
 }
 ```
+
+
+## 6. Navigation 2026 更新与 Navigation 3
+
+<!-- version-check: Navigation Compose 2.9.7, Navigation 3 alpha, checked 2026-04-21 -->
+
+> 🔄 更新于 2026-04-21
+
+### Navigation Compose 2.8+ 类型安全路由
+
+```kotlin
+// Navigation 2.8+ 引入类型安全路由（替代字符串路由）
+// 使用 @Serializable 数据类定义路由
+@Serializable
+data object Home
+
+@Serializable
+data class Detail(val itemId: String)
+
+@Serializable
+data class Profile(val name: String = "")
+
+// NavHost 使用类型安全路由
+@Composable
+fun AppNavigation() {
+    val navController = rememberNavController()
+
+    NavHost(navController = navController, startDestination = Home) {
+        composable<Home> {
+            HomeScreen(
+                onItemClick = { id -> navController.navigate(Detail(id)) }
+            )
+        }
+        composable<Detail> { backStackEntry ->
+            val detail: Detail = backStackEntry.toRoute()
+            DetailScreen(itemId = detail.itemId)
+        }
+    }
+}
+```
+
+### Navigation 3（预览版）
+
+Navigation 3 是全新的 Compose-first 导航库，提供完全的 back stack 控制：
+
+```kotlin
+// Navigation 3 核心概念：开发者拥有 back stack
+// 依赖: androidx.navigation3:navigation3-compose (alpha)
+val backStack = rememberMutableStateListOf<Any>(Home)
+
+NavDisplay(
+    backStack = backStack,
+    onBack = { backStack.removeLastOrNull() },
+    entryProvider = entryProvider {
+        entry<Home> { HomeScreen(onNavigate = { backStack.add(it) }) }
+        entry<Detail> { detail -> DetailScreen(detail.itemId) }
+    }
+)
+```
+
+> 来源：[Navigation Compose](https://developer.android.com/jetpack/androidx/releases/navigation)、[Navigation 3](https://developer.android.com/jetpack/androidx/releases/navigation3)
