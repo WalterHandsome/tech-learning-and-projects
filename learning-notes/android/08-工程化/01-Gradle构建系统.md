@@ -15,12 +15,12 @@ plugins {
 
 android {
     namespace = "com.example.app"
-    compileSdk = 34
+    compileSdk = 36  // Android 16
 
     defaultConfig {
         applicationId = "com.example.app"
         minSdk = 26
-        targetSdk = 34
+        targetSdk = 36  // Android 16
         versionCode = 1
         versionName = "1.0.0"
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
@@ -31,11 +31,9 @@ android {
         buildConfig = true
     }
 
-    composeOptions {
-        kotlinCompilerExtensionVersion = libs.versions.composeCompiler.get()
-    }
+    // Kotlin 2.0+ 不再需要 composeOptions，Compose Compiler 已集成到 Kotlin 插件中
 
-    kotlin { jvmToolchain(17) }
+    kotlin { jvmToolchain(21) }  // 推荐 JDK 21
 }
 ```
 
@@ -44,19 +42,19 @@ android {
 ```toml
 # gradle/libs.versions.toml
 [versions]
-agp = "8.2.2"
-kotlin = "1.9.22"
-compose-bom = "2024.02.00"
-hilt = "2.50"
-room = "2.6.1"
-ktor = "2.3.7"
+agp = "9.0.1"
+kotlin = "2.3.20"
+compose-bom = "2026.03.00"
+hilt = "2.57"
+room = "2.8.4"
+ktor = "3.1.1"
 
 [libraries]
 # Compose
 compose-bom = { group = "androidx.compose", name = "compose-bom", version.ref = "compose-bom" }
 compose-ui = { group = "androidx.compose.ui", name = "ui" }
 compose-material3 = { group = "androidx.compose.material3", name = "material3" }
-compose-navigation = { group = "androidx.navigation", name = "navigation-compose", version = "2.7.6" }
+compose-navigation = { group = "androidx.navigation", name = "navigation-compose", version = "2.9.7" }
 
 # Hilt
 hilt-android = { group = "com.google.dagger", name = "hilt-android", version.ref = "hilt" }
@@ -75,7 +73,8 @@ room = ["room-runtime", "room-ktx"]
 android-application = { id = "com.android.application", version.ref = "agp" }
 kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 hilt = { id = "com.google.dagger.hilt.android", version.ref = "hilt" }
-ksp = { id = "com.google.devtools.ksp", version = "1.9.22-1.0.17" }
+ksp = { id = "com.google.devtools.ksp", version = "2.3.20-1.0.31" }
+compose-compiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
 ```
 
 ## 3. Build Variants
@@ -144,3 +143,54 @@ org.gradle.caching=true
 org.gradle.configuration-cache=true
 kotlin.incremental=true
 ```
+
+
+## 6. AGP 9.0 与 Gradle 9 版本演进
+
+<!-- version-check: AGP 9.0.1, Gradle 9.1, checked 2026-04-21 -->
+
+> 🔄 更新于 2026-04-21
+
+### 版本对比
+
+| 组件 | 旧版本 | 新版本 | 关键变化 |
+|------|--------|--------|----------|
+| AGP | 8.2.2 | **9.0.1** | 要求 Gradle 9+、JDK 17+、Kotlin 2.0+ |
+| Gradle | 8.x | **9.1** | Configuration Cache 默认启用、Kotlin DSL 推荐 |
+| Kotlin | 1.9.22 | **2.3.20** | K2 编译器、Compose Compiler 内置 |
+| compileSdk | 34 | **36** | Android 16 API |
+| KSP | 1.9.22-1.0.17 | **2.3.20-1.0.31** | 对齐 Kotlin 版本 |
+
+### AGP 9.0 核心变化
+
+```kotlin
+// 1. Compose Compiler 不再需要单独配置
+// Kotlin 2.0+ 将 Compose Compiler 集成到 Kotlin 插件中
+plugins {
+    alias(libs.plugins.kotlin.android)
+    alias(libs.plugins.compose.compiler)  // 新增：Compose Compiler 插件
+}
+
+// 2. 不再需要 composeOptions 块
+// ❌ 旧写法（AGP 8.x + Kotlin 1.9）
+// composeOptions {
+//     kotlinCompilerExtensionVersion = "1.5.8"
+// }
+
+// ✅ 新写法（AGP 9.0 + Kotlin 2.3）
+// 无需任何配置，Compose Compiler 版本自动与 Kotlin 版本对齐
+```
+
+### Gradle 9 构建加速
+
+```properties
+# gradle.properties（2026 推荐配置）
+org.gradle.jvmargs=-Xmx4g -XX:+UseParallelGC
+org.gradle.parallel=true
+org.gradle.caching=true
+org.gradle.configuration-cache=true
+# Gradle 9 默认启用 Configuration Cache
+# Kotlin 增量编译默认启用
+```
+
+> 来源：[AGP 9.0 Release Notes](https://developer.android.com/build/releases/agp-9-0-0-release-notes)

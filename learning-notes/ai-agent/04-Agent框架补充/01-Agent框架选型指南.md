@@ -139,7 +139,7 @@ from strands import Agent
 from strands.models import BedrockModel
 from strands_tools import http_request, shell
 
-model = BedrockModel(model_id="us.anthropic.claude-sonnet-4-20250514-v1:0")
+model = BedrockModel(model_id="us.anthropic.claude-sonnet-4-6-20260217-v1:0")
 agent = Agent(model=model, tools=[http_request, shell])
 response = agent("检查 API 健康状态")
 ```

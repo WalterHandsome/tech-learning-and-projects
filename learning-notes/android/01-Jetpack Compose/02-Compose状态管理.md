@@ -178,3 +178,39 @@ fun ScrollTracker(listState: LazyListState) {
 
 - [Philipp Lackner - State in Compose](https://www.youtube.com/watch?v=mymWGMy9pYI) — Compose状态管理
 - [Android Developers - State and Jetpack Compose](https://www.youtube.com/watch?v=rmv2ug-wW4U) — 官方状态管理讲解
+
+
+## 6. 2026 状态管理更新
+
+<!-- version-check: Compose 1.10.x, Lifecycle 2.9.x, checked 2026-04-21 -->
+
+> 🔄 更新于 2026-04-21
+
+### collectAsStateWithLifecycle（推荐替代 collectAsState）
+
+```kotlin
+// ❌ 旧写法：不感知生命周期，后台仍在收集
+val uiState by viewModel.uiState.collectAsState()
+
+// ✅ 新写法：生命周期感知，后台自动停止收集
+// 依赖: androidx.lifecycle:lifecycle-runtime-compose
+val uiState by viewModel.uiState.collectAsStateWithLifecycle()
+```
+
+### Compose 强稳定性（Strong Skipping Mode）
+
+```kotlin
+// Compose Compiler 2.0+ 默认启用 Strong Skipping Mode
+// 所有 Composable 函数参数都会被自动比较，减少不必要的重组
+
+// 不再需要手动标注 @Stable 或 @Immutable（大多数情况下）
+// 但对于复杂对象，仍建议使用 @Immutable 提示编译器
+@Immutable
+data class UserState(
+    val users: List<User> = emptyList(),
+    val isLoading: Boolean = false,
+    val error: String? = null
+)
+```
+
+> 来源：[Lifecycle Runtime Compose](https://developer.android.com/jetpack/androidx/releases/lifecycle)

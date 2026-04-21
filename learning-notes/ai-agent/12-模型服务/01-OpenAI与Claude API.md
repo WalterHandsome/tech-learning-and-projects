@@ -79,6 +79,15 @@ with client.messages.stream(
 <!-- version-check: Claude Opus 4.7 claude-opus-4-7, checked 2026-04-20 -->
 <!-- version-check: GPT-5.4-Cyber, checked 2026-04-20 -->
 
+> 🔄 更新于 2026-04-21
+>
+> **Anthropic 多云算力战略**：Anthropic 在两周内完成了两笔历史性算力协议，锁定约 8.5GW 总算力：
+> - 4/6：与 Google/Broadcom 签署 3.5GW 下一代 TPU 协议（2027 年上线）
+> - 4/20：与 Amazon 签署最高 5GW Trainium 协议（含 Trainium2 + Trainium3），Amazon 追加投资最高 250 亿美元（首批 50 亿立即到位），Anthropic 估值达 3800 亿美元
+>
+> Anthropic 承诺未来十年在 AWS 投入超 1000 亿美元。当前年化收入已超 300 亿美元，超 10 万客户在 Bedrock 上运行 Claude。这种同时锁定 AWS 和 GCP 两大云平台定制芯片产能的多云算力战略在 AI 公司中尚属首次。对开发者的影响：Claude API 推理成本有望进一步下降，Bedrock 上的 Agent 部署体验将持续改善。
+> 来源：[Anthropic](https://www.anthropic.com/news/anthropic-amazon-compute) / [Anthropic](https://www.anthropic.com/news/google-broadcom-partnership-compute) / [CNBC](https://www.cnbc.com/2026/04/20/amazon-invest-up-to-25-billion-in-anthropic-part-of-ai-infrastructure.html)
+
 ## 3. 多模态输入
 
 ```python

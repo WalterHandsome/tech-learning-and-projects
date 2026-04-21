@@ -62,6 +62,8 @@
 
 | 项目 | Stars | 描述 | 链接 |
 | ---- | ----- | ---- | ---- |
+| f/prompts.chat | 143k+ | 全球最大的开源 AI Prompt 库（原 Awesome ChatGPT Prompts）。社区驱动的 Prompt 收集与分享平台，兼容 ChatGPT / Claude / Gemini / Llama 等主流模型。提供 MCP Server、CLI 插件、自托管部署，附带免费交互式 Prompt 工程教程（25+ 章节）。被 Forbes 报道，Harvard / Columbia 引用，Hugging Face 最受欢迎数据集 | [GitHub](https://github.com/f/awesome-chatgpt-prompts) · [网站](https://prompts.chat) |
+| forrestchang/andrej-karpathy-skills | — | 基于 Andrej Karpathy 对 LLM 编码缺陷观察的 Claude Code 行为优化指南。四大原则：先想再写、简洁优先、精准修改、目标驱动。支持 Claude Code Plugin / CLAUDE.md / Cursor 规则三种安装方式 | [GitHub](https://github.com/forrestchang/andrej-karpathy-skills) |
 | VoltAgent/awesome-ai-agent-papers | — | 2026 年 AI Agent 研究论文精选集，涵盖工程、记忆、评估、工作流 | [GitHub](https://github.com/VoltAgent/awesome-ai-agent-papers) |
 
 ---

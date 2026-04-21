@@ -176,3 +176,56 @@ fun MainScreen(navController: NavController) {
 ### 🌐 其他平台
 - [Android官方Compose教程](https://developer.android.com/courses/android-basics-compose/course) — Google官方Compose课程（免费）
 - [Jetpack Compose官方文档](https://developer.android.com/develop/ui/compose/documentation) — 官方文档
+
+
+## 7. Compose 2026 版本演进
+
+<!-- version-check: Compose BOM 2026.03.00, Compose 1.10.x, checked 2026-04-21 -->
+
+> 🔄 更新于 2026-04-21
+
+### 当前版本
+
+| 组件 | 版本 | 说明 |
+|------|------|------|
+| Compose BOM | **2026.03.00** | 统一管理所有 Compose 库版本 |
+| Compose UI | **1.10.x** | 核心 UI 库 |
+| Material3 | **1.4.x** | Material Design 3 组件 |
+| Compose Compiler | 与 Kotlin 对齐 | Kotlin 2.0+ 内置，无需单独指定版本 |
+
+### Compose Compiler 变化（Kotlin 2.0+）
+
+```kotlin
+// Kotlin 2.0 之前：Compose Compiler 是独立的 Kotlin 编译器插件
+// Kotlin 2.0 之后：Compose Compiler 集成到 Kotlin Gradle 插件中
+
+// build.gradle.kts
+plugins {
+    alias(libs.plugins.kotlin.android)
+    alias(libs.plugins.compose.compiler)  // 新增
+}
+
+// 不再需要 composeOptions 块
+// Compose Compiler 版本自动与 Kotlin 版本对齐
+```
+
+### 强类型资源（Compose 1.7+）
+
+```kotlin
+// 类型安全的资源访问（替代 R.string / R.drawable）
+// 需要在 build.gradle.kts 中启用
+android {
+    buildFeatures {
+        compose = true
+    }
+}
+
+// 使用
+@Composable
+fun Greeting() {
+    Text(text = stringResource(Res.string.greeting))
+    Image(painter = painterResource(Res.drawable.logo), contentDescription = null)
+}
+```
+
+> 来源：[Compose BOM](https://developer.android.com/develop/ui/compose/bom)、[Compose Releases](https://developer.android.com/jetpack/androidx/releases/compose)

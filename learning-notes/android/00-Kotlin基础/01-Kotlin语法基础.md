@@ -227,3 +227,71 @@ val user = createUser().also {
 ### 🌐 其他平台
 - [Kotlin官方中文文档](https://book.kotlincn.net/) — 官方中文文档
 - [Kotlin Koans](https://play.kotlinlang.org/koans/) — 官方交互式练习
+
+
+## 8. Kotlin 2.x 新特性
+
+<!-- version-check: Kotlin 2.3.20, checked 2026-04-21 -->
+
+> 🔄 更新于 2026-04-21
+
+Kotlin 2.0 于 2024 年发布，引入了全新的 **K2 编译器**，当前最新稳定版为 **Kotlin 2.3.20**（2026-03-16）。
+
+### K2 编译器
+
+K2 编译器是 Kotlin 前端的完全重写，带来显著的编译速度提升和更好的类型推断：
+
+```kotlin
+// K2 编译器改进了智能类型转换
+fun process(value: Any) {
+    if (value is String && value.length > 0) {
+        // K2 在更多场景下自动推断类型，无需显式转换
+        println(value.uppercase())
+    }
+}
+```
+
+### Kotlin 2.1+ 新语法
+
+```kotlin
+// Guard conditions in when（when 中的守卫条件）
+fun classify(value: Any) = when (value) {
+    is String if value.isNotEmpty() -> "非空字符串"
+    is Int if value > 0 -> "正整数"
+    else -> "其他"
+}
+
+// 多美元符号字符串插值（减少转义）
+val regex = $"\\d{3}-\\d{4}"  // 不需要额外转义 $
+```
+
+### Kotlin 2.3 新特性（2025-12-16 发布）
+
+```kotlin
+// 未使用返回值检查器（实验性）
+// 编译器会警告未使用的函数返回值
+val list = mutableListOf(1, 2, 3)
+list.sorted()  // ⚠️ 警告：sorted() 返回新列表，原列表未改变
+
+// 显式 backing fields（实验性）
+class User {
+    val name: String
+        field = "默认名称"  // 显式声明 backing field
+        get() = field.uppercase()
+}
+
+// name-based 解构声明（Kotlin 2.3.20）
+data class Point(val x: Int, val y: Int)
+val point = Point(1, 2)
+val (y, x) = point  // 按名称匹配，而非位置
+```
+
+### 版本选择建议（2026）
+
+| 场景 | 推荐版本 | 说明 |
+|------|----------|------|
+| 新项目 | Kotlin 2.3.20 | 最新稳定版，K2 编译器默认启用 |
+| 现有项目升级 | Kotlin 2.1.x+ | 先迁移到 2.1，再逐步升级 |
+| KMP 跨平台 | Kotlin 2.3.20 | KMP 在 2.x 中显著改进 |
+
+> 来源：[Kotlin 2.3.0 Released](https://blog.jetbrains.com/kotlin/2025/12/kotlin-2-3-0-released/)、[What's new in Kotlin 2.3.20](https://kotlinlang.org/docs/whatsnew2320.html)
