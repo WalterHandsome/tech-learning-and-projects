@@ -31,6 +31,7 @@
 | crewAIInc/crewAI | 44.6k | 基于角色的多 Agent 协作框架，v1.12 新增 Agent Skills 和 Cognitive Memory | [GitHub](https://github.com/crewAIInc/crewAI) |
 | openai/openai-agents-python | — | OpenAI 官方轻量级多 Agent 框架，原生沙箱执行 + model-native harness | [GitHub](https://github.com/openai/openai-agents-python) |
 | NousResearch/hermes-agent | ~95k | Nous Research 的自进化 Agent 框架，闭环学习：执行→生成技能文档→持久化记忆→复用 | [GitHub](https://github.com/NousResearch/hermes-agent) |
+| multica-ai/multica | 10k+ | 开源托管 Agent 平台，把编码 Agent 变成真正的"队友"——分配任务、追踪进度、积累可复用 Skill。支持 Claude Code / Codex / Hermes / Gemini / Cursor Agent，Go + Next.js 架构，可自托管 | [GitHub](https://github.com/multica-ai/multica) |
 
 ---
 
@@ -39,6 +40,8 @@
 | 项目 | Stars | 描述 | 链接 |
 | ---- | ----- | ---- | ---- |
 | oraios/serena | 19.8k | 基于语言服务器的 MCP 编码 Agent 工具包，提供语义级代码检索与编辑能力 | [GitHub](https://github.com/oraios/serena) |
+| microsoft/markitdown | 14.5k+ | 微软出品的 Python 工具，将 PDF / Word / PPT / Excel / 图片 / 音频 / HTML 等转为 Markdown。专为 LLM 文本分析管线设计，支持 OCR 和语音转录，可用于 RAG 预处理 | [GitHub](https://github.com/microsoft/markitdown) |
+| thedotmack/claude-mem | 12.4k+ | Claude Code 持久记忆压缩插件，自动捕获编码会话中的工具操作，AI 压缩摘要后注入未来会话。支持 Claude Code / Gemini CLI / OpenCode，提供 Web 查看器和语义搜索 | [GitHub](https://github.com/thedotmack/claude-mem) |
 
 ---
 
@@ -64,6 +67,8 @@
 | ---- | ----- | ---- | ---- |
 | f/prompts.chat | 143k+ | 全球最大的开源 AI Prompt 库（原 Awesome ChatGPT Prompts）。社区驱动的 Prompt 收集与分享平台，兼容 ChatGPT / Claude / Gemini / Llama 等主流模型。提供 MCP Server、CLI 插件、自托管部署，附带免费交互式 Prompt 工程教程（25+ 章节）。被 Forbes 报道，Harvard / Columbia 引用，Hugging Face 最受欢迎数据集 | [GitHub](https://github.com/f/awesome-chatgpt-prompts) · [网站](https://prompts.chat) |
 | forrestchang/andrej-karpathy-skills | — | 基于 Andrej Karpathy 对 LLM 编码缺陷观察的 Claude Code 行为优化指南。四大原则：先想再写、简洁优先、精准修改、目标驱动。支持 Claude Code Plugin / CLAUDE.md / Cursor 规则三种安装方式 | [GitHub](https://github.com/forrestchang/andrej-karpathy-skills) |
+| addyosmani/agent-skills | 6.4k+ | 🌟 Google Chrome 团队 Addy Osmani 出品的生产级 AI 编码 Skill 包。20 个 Skill 覆盖完整开发生命周期（/spec → /plan → /build → /test → /review → /ship），支持 Claude Code / Cursor / Gemini CLI / **Kiro** / Codex 等 | [GitHub](https://github.com/addyosmani/agent-skills) |
+| HKUDS/DeepTutor | 4.5k+ | 港大的 Agent 原生个性化学习助手，v1.0 架构重写约 20 万行。六种模式共享上下文（聊天/深度求解/测验/研究/数学动画/可视化），支持 AI Co-Writer 和 Book Engine，Apache-2.0 协议 | [GitHub](https://github.com/HKUDS/DeepTutor) |
 | VoltAgent/awesome-ai-agent-papers | — | 2026 年 AI Agent 研究论文精选集，涵盖工程、记忆、评估、工作流 | [GitHub](https://github.com/VoltAgent/awesome-ai-agent-papers) |
 
 ---
