@@ -164,3 +164,28 @@ fun UserMviScreen(viewModel: UserMviViewModel = hiltViewModel()) {
 
 - [Philipp Lackner - MVVM Tutorial](https://www.youtube.com/watch?v=ijXjCtCXcN4) — Android MVVM教程
 - [Philipp Lackner - MVI Architecture](https://www.youtube.com/watch?v=hlBsrsVFgIk) — MVI架构讲解
+
+## 3. 2026 架构选型建议
+
+> 🔄 更新于 2026-04-21
+
+<!-- version-check: Android Architecture 2026, Compose 1.10.x, checked 2026-04-21 -->
+
+### MVVM vs MVI 选型指南（2026）
+
+| 维度 | MVVM | MVI |
+|------|------|-----|
+| 状态管理 | 多个 StateFlow | 单一 State 对象 |
+| 复杂度 | 低（适合简单页面） | 中（适合复杂交互） |
+| 可测试性 | 好 | 更好（纯函数 reducer） |
+| 调试 | 需要追踪多个流 | 单一状态快照，易于调试 |
+| Compose 适配 | ✅ 原生适配 | ✅ 原生适配 |
+| 推荐场景 | CRUD 页面、简单列表 | 表单、多步骤流程、复杂交互 |
+
+### 2026 年推荐实践
+
+- **状态收集**：统一使用 `collectAsStateWithLifecycle()`（Lifecycle 2.10+）
+- **Side Effect**：MVI 中使用 `SharedFlow` 处理一次性事件（Toast、导航）
+- **ViewModel 作用域**：Compose Navigation 中使用 `hiltViewModel()` 或 `koinViewModel()` 自动绑定生命周期
+- **Strong Skipping Mode**：Compose 1.10+ 默认启用，减少不必要的重组
+- **KMP 共享**：ViewModel 可通过 Lifecycle 2.10 KMP 支持跨平台共享

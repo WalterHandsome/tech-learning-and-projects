@@ -160,6 +160,41 @@ Harness Engineering 解决：Agent 如何被约束和验证
 4. 测量上下文质量
    追踪 Agent 首次通过率，低于 70% 说明上下文需要优化
 ```
+
+## 5. 2026 年 Context Engineering 趋势
+
+> 🔄 更新于 2026-04-21
+
+<!-- version-check: Context Engineering 2026 landscape, checked 2026-04-21 -->
+
+Context Engineering 在不到一年内从小众概念成为 AI 工程的核心学科。Gartner 预测 2026 年底 40% 的企业应用将嵌入 AI Agent（2025 年不到 5%）。
+
+```
+2026 年关键趋势：
+
+1. 从 Prompt 到 Context 到 Harness 的演进已成共识
+   ├─ Prompt Engineering：写好一句指令（2023-2024）
+   ├─ Context Engineering：给对的信息（2025）
+   └─ Harness Engineering：建好整个系统（2026）
+
+2. Context 不再是静态的，而是动态信息架构
+   ├─ 工程师设计上下文管道（Context Pipeline）
+   ├─ Agent 在运行时遍历这个信息架构
+   └─ 包括：记忆、RAG、历史压缩、工具解析
+
+3. 有状态续传成为标准
+   ├─ Cursor 3：服务端缓存上下文，客户端数据减少 80%+
+   ├─ Claude Code：Ultraplan 云端规划 + 本地执行
+   └─ 缓存上下文可将执行时间提升 15-29%
+
+4. 上下文质量 > 上下文数量
+   ├─ 最小高信号 Token 集 = 最高成功概率
+   └─ 追踪 Agent 首次通过率作为上下文质量指标
+```
+
+来源：[Towards Data Science: Context Engineering for AI Agents](https://towardsdatascience.com/deep-dive-into-context-engineering-for-ai-agents/)（Content was rephrased for compliance with licensing restrictions）
+来源：[Stepto.net: Context Engineering 2026](https://stepto.net/blog/context-engineering-ai-agents-production-2026)（Content was rephrased for compliance with licensing restrictions）
+
 ## 🎬 推荐视频资源
 
 - [LangChain - Context Engineering for AI Agents](https://www.youtube.com/watch?v=9BPCV5TYPmg) — Context Engineering实战

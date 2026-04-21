@@ -203,6 +203,52 @@ AgentToken 的定位是一个"协议无关的令牌中间层"：
 4. 中间层服务有价值：正因为协议碎片化，AgentToken 这类"协议翻译器 + 策略引擎"才有存在空间
 5. 合规是硬门槛：无论哪种模型，KYC/KYB/AML 都是绕不过去的，这也是 AgentToken 强调"Token 持有者必须是人"的原因
 
+## 八、2026 年重大进展
+
+> 🔄 更新于 2026-04-21
+
+<!-- version-check: Agent Payment Landscape 2026-04, checked 2026-04-21 -->
+
+### 协议层面
+
+**x402 Foundation 成立**（2026-04-02）：Coinbase 与 Linux Foundation 联合成立 X402 Foundation，将 x402 协议提升为开放治理标准。协议现已支持区块链无关的稳定币和 ERC-20 Token 结算，初始支持 Base 链。截至 2026 年初，x402 已处理超过 1.15 亿笔交易，年化支付量达 $6 亿。来源：[KuCoin News](https://www.kucoin.com/news/flash/coinbase-and-linux-foundation-launch-x402-a-native-http-crypto-payment-standard)
+
+**Agentic.Market 上线**（2026-04-20）：Coinbase x402 团队推出 Agent 服务市场，AI Agent 可以自主发现、比较和购买服务，无需 API Key。来源：[Blockchain News](https://blockchain.news/news/coinbase-x402-agentic-market-ai-agent-marketplace)
+
+**ACP v2026-01-30 重大更新**：引入 Capability Negotiation（Agent 与商户协商支持的功能）、Payment Handlers Framework（Breaking Change，结构化支付处理器替代简单支付方式标识符）、Extensions Framework（可组合扩展机制）。来源：[ACP Changelog](https://agenticcommerce.dev/docs/changelog)
+
+**Stripe MPP + Tempo 主网上线**（2026-03-18）：Stripe 与 Paradigm 孵化的支付专用 L1 区块链 Tempo 正式上线主网，同步发布 Machine Payments Protocol（MPP）开放标准。设计合作伙伴包括 OpenAI、Anthropic、Visa、Mastercard、Deutsche Bank。MPP 让 AI Agent 使用 USDC 在 Tempo 链上完成自主支付，无需人工审批。来源：[Forbes](https://www.forbes.com/sites/ninabambysheva/2026/03/18/paradigm-and-stripe-roll-out-new-payment-standard-for-ai-agents-with-visas-support/)
+
+### 卡组织进展
+
+**Visa Intelligent Commerce Connect**（2026-04-08）：Visa 发布开发者平台，AI Agent 可通过单一集成完成商品发现、目录浏览和支付。支持 Visa 和非 Visa 卡，兼容四大 Agent 协议。试点合作伙伴包括 AWS 和 Highnote，预计 2026 年 6 月 GA。来源：[Visa Newsroom](https://investor.visa.com/news/news-details/2026/Visa-Opens-the-Door-to-AI-Driven-Shopping-for-Businesses-Worldwide/default.aspx)
+
+**Mastercard Agent Suite 全球扩展**（2026-03）：Mastercard 发布 Agent Suite，包含 Agent Pay、Agentic Pay for Developers 等产品。已在拉美（17 家处理商/发卡行参与实际交易）、澳大利亚（首笔认证 Agent 交易）、新加坡/马来西亚完成实际部署。与 Google 合作新协议，与 Microsoft Copilot Checkout 集成。来源：[Mastercard Newsroom](https://www.mastercard.com/us/en/news-and-trends/stories/2026/agentic-commerce-rules-of-the-road.html)
+
+### 更新后的协议对比表
+
+| 协议 | 主导方 | 层级 | 是否需要加密货币 | 开源 | 适用场景 | 成熟度（2026-04） |
+|------|--------|------|-----------------|------|---------|------------------|
+| x402 | Coinbase + Linux Foundation | HTTP 支付层 | 是（USDC） | 是 | API 微支付、Agent-to-Agent | 高（Foundation 成立） |
+| ACP | Stripe + OpenAI | 商户结账层 | 否 | 是（开放规范） | Agent 代用户在商户购物 | 高（v2026-01-30） |
+| MPP | Stripe + Tempo | 自主支付层 | 是（USDC） | 是 | 高频微支付、Agent 自主交易 | 中（主网刚上线） |
+| UCP | Google + Shopify | 全链路商务 | 否 | 部分 | 从搜索到购买到履约 | 中 |
+| AP2 | Google | 授权信任层 | 否 | 部分 | Agent 身份验证、授权链 | 中 |
+
+### Agentic Commerce 成熟度等级
+
+根据 ATXP 的分析，2026 年大多数生产部署处于 Level 2-3：
+
+```
+Level 1: 人工审批每笔交易
+Level 2: 预设参数内自主执行，异常人工介入  ← 当前主流
+Level 3: 策略驱动的自主执行，人工设定策略  ← 当前主流
+Level 4: Agent 间协商和交易
+Level 5: 完全自主的 Agent 经济
+```
+
+来源：[ATXP - Stripe ACP Explained](https://atxp.ai/blog/stripe-acp-explained)
+
 ---
 
 > 参考来源：

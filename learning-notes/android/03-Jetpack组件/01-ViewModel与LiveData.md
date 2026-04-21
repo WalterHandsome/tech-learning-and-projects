@@ -148,6 +148,48 @@ fun UserScreen(viewModel: ModernViewModel = hiltViewModel()) {
     }
 }
 ```
+
+## 6. Lifecycle 2.10 版本演进
+
+> 🔄 更新于 2026-04-21
+
+Jetpack Lifecycle 2.10.0 是当前稳定版（2026-01），核心更新为 Compose 集成增强和 Kotlin Multiplatform（KMP）支持。来源：[Android Developers](https://developer.android.com/jetpack/androidx/releases/lifecycle)
+
+<!-- version-check: Lifecycle 2.10.0, checked 2026-04-21 -->
+
+### 关键更新
+
+- **KMP 支持**：ViewModel 可跨 Android、iOS、JVM、Web 平台共享
+- **Compose 集成**：`viewModel()` 和 `SavedStateHandle` 在 Compose 中更自然
+- **LiveData 逐步淘汰**：官方推荐 `StateFlow` + `collectAsStateWithLifecycle` 替代 LiveData
+
+```kotlin
+// 2026 推荐：StateFlow + collectAsStateWithLifecycle
+@Composable
+fun UserScreen(viewModel: UserViewModel = viewModel()) {
+    val uiState by viewModel.uiState.collectAsStateWithLifecycle()
+
+    when {
+        uiState.isLoading -> CircularProgressIndicator()
+        uiState.error != null -> ErrorMessage(uiState.error!!)
+        else -> UserList(uiState.users)
+    }
+}
+
+// ⚠️ LiveData 仍可用但不推荐新项目使用
+// val users by viewModel.users.observeAsState()
+```
+
+### 迁移建议
+
+```
+你的项目情况？
+├─ 新项目 → 直接用 StateFlow + collectAsStateWithLifecycle
+├─ 现有 LiveData 项目 → 逐步迁移，新代码用 StateFlow
+├─ KMP 项目 → 必须用 StateFlow（LiveData 不支持 KMP）
+└─ Java 项目 → LiveData 仍然是最佳选择
+```
+
 ## 🎬 推荐视频资源
 
 - [Philipp Lackner - ViewModel Tutorial](https://www.youtube.com/watch?v=9sqvBydNJSg) — ViewModel教程

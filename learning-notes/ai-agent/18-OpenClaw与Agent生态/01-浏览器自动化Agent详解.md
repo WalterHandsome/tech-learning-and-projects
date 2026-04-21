@@ -12,7 +12,30 @@
 
 ## 2. Browser-Use — 最推荐，基准最高
 
-开源浏览器自动化框架，WebVoyager 基准测试领先，支持多 LLM 后端。
+> 🔄 更新于 2026-04-21
+
+开源浏览器自动化框架，83K+ Stars，SDK 3.0 + CLI 2.0 重大更新。API V3 在 Online-Mind2Web 基准测试达到 SOTA。来源：[Browser-Use Changelog](https://browser-use.com/changelog)
+
+<!-- version-check: Browser-Use SDK 3.0, CLI 2.0, checked 2026-04-21 -->
+
+**SDK 3.0 重大变化**（2026-02-25）：
+- 全新 `client.run()` API（Breaking Change）
+- BU Agent API：类似 Claude Code 的浏览器 Agent，支持多步骤工作流
+- Code Mode：Agent 生成可复用 Python 脚本，可用于 cron 任务
+- BYOK：使用自己的 LLM API Key
+- Sensitive Data：安全传递密钥，不进入日志和录制
+
+**CLI 2.0**（2026-03-22）：
+- 终端直接运行：`pip install browser-use-cli`
+- 与 Claude Code、Cursor 等 AI 编码工具集成
+- 同步真实浏览器配置（cookies、sessions）
+- Stealth 升级：Chromium 146、hCaptcha 求解器、reCAPTCHA 准确率提升
+- 开源 stealth 基准测试（80 个反机器人网站）
+
+**Cloud 免费层**（2026-04-03）：
+- 免费浏览器会话，无需信用卡
+- Agent 可通过 CLI 自助注册 Cloud 账户
+- 代理数据成本 $10/GB → $5/GB
 
 ```python
 from browser_use import Agent, Controller
@@ -85,7 +108,7 @@ const title = await page.extract("提取文章标题");
 
 | 工具 | 方式 | 语言 | 最佳场景 | Stars | 自托管 | 云端 |
 |------|------|------|----------|-------|--------|------|
-| Browser-Use | DOM+视觉混合 | Python | 通用浏览器自动化 | 60k+ | ✅ | ✅ |
+| Browser-Use | DOM+视觉混合 | Python | 通用浏览器自动化 | 83k+ | ✅ | ✅ |
 | Skyvern | 纯视觉驱动 | Python | 复杂动态网站 | 20k+ | ✅ | ✅ |
 | Agent-Browser | DOM 操作 | TypeScript | 轻量级 Agent | 3k+ | ✅ | ❌ |
 | Agent-S | GUI/截图 | Python | 通用计算机操作 | 5k+ | ✅ | ❌ |

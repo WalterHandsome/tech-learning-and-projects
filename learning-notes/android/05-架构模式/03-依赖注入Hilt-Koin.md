@@ -159,3 +159,87 @@ val sessionModule = module {
 // Koin：运行时解析，DSL 简洁，轻量，适合中小项目
 // 推荐：大型项目用 Hilt，快速原型用 Koin
 ```
+
+## 7. 2026 版本演进
+
+> 🔄 更新于 2026-04-21
+
+<!-- version-check: Hilt/Dagger 2.57.1, Koin 4.1, checked 2026-04-21 -->
+
+### Hilt/Dagger 2.57.1（当前稳定版）
+
+- 新增 `jakarta.inject.Provider` 注入支持（与 `javax.inject.Provider` 同等使用）
+- 要求 Kotlin 2.0+（与 Kotlin 1.9 不兼容，需注意升级）
+- Android 官方文档已更新为 2.57.1 作为推荐版本
+- 来源：[Dagger Releases](https://github.com/google/dagger/releases)
+
+```kotlin
+// Hilt 2.57.1 版本配置
+// build.gradle.kts (Project)
+plugins {
+    id("com.google.dagger.hilt.android") version "2.57.1" apply false
+}
+
+// build.gradle.kts (App)
+plugins {
+    id("com.google.dagger.hilt.android")
+    id("com.google.devtools.ksp") // KSP 替代 kapt
+}
+
+dependencies {
+    implementation("com.google.dagger:hilt-android:2.57.1")
+    ksp("com.google.dagger:hilt-android-compiler:2.57.1")
+    // jakarta.inject.Provider 现在可以直接使用
+    // 无需额外依赖
+}
+```
+
+### Koin 4.1（2025-06 发布）
+
+Koin 4.1 是一个重要版本，引入了 Kotlin Compiler Plugin 和大量 KMP 改进：
+
+- **Kotlin Compiler Plugin**：原生编译时安全 + 自动装配，推荐所有 Kotlin 2.x 新项目使用
+- **模块化解析引擎**：可复用配置块、运行时特性标志
+- **Archetype-based Scopes**：包括 ViewModel 构造函数注入的人体工学改进
+- **Compose 1.8/MPP 支持**：自动上下文处理、更快注入、预览支持
+- **Ktor 3.2 集成**：内联模块、请求作用域、多平台 artifact
+- **WASM-safe UUID**：支持 Kotlin/WASM 目标
+- 来源：[Koin 4.1 Blog](https://blog.kotzilla.io/koin-4.1-is-here)
+
+```kotlin
+// Koin 4.1 + Kotlin Compiler Plugin 配置
+// build.gradle.kts
+plugins {
+    id("io.insert-koin.koin") version "4.1.0" // Koin Compiler Plugin
+}
+
+dependencies {
+    implementation("io.insert-koin:koin-android:4.1.0")
+    implementation("io.insert-koin:koin-androidx-compose:4.1.0")
+}
+
+// 使用 Compiler Plugin 的自动装配（无需手动 get()）
+@Single
+class UserRepository(
+    private val api: ApiService,  // 自动装配
+    private val dao: UserDao      // 自动装配
+)
+
+@Factory
+class GetUsersUseCase(
+    private val repository: UserRepository  // 编译时检查
+)
+```
+
+### 更新后的 Hilt vs Koin 对比
+
+| 维度 | Hilt 2.57.1 | Koin 4.1 |
+|------|-------------|----------|
+| 检查时机 | 编译时 | 编译时（Compiler Plugin）或运行时 |
+| 官方支持 | Google 官方 | 社区驱动 |
+| KMP 支持 | ❌ 仅 Android | ✅ 全平台（iOS/JS/WASM） |
+| Compose 集成 | `hiltViewModel()` | `koinViewModel()`，自动上下文 |
+| 注解/DSL | 注解驱动 | DSL + 注解（可选） |
+| Jakarta 支持 | ✅ 2.57+ | N/A |
+| 学习曲线 | 较高 | 较低 |
+| 推荐场景 | 大型 Android 项目 | KMP 项目、中小项目 |

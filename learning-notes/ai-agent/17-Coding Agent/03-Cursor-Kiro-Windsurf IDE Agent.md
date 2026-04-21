@@ -130,21 +130,60 @@ GitHub 原生 AI 编程助手，集成于 VS Code / JetBrains / Neovim。
 └─ CLI：终端命令建议
 ```
 
-## 6. 综合对比
+## 6. 2026 版本演进
+
+> 🔄 更新于 2026-04-21
+
+<!-- version-check: Cursor 3.0, Kiro GA, checked 2026-04-21 -->
+
+### Cursor 3（2026-04-02）
+
+Cursor 3 是自编辑器发布以来最大的架构变更，从文件中心模型转向 Agent 中心工作区。年化收入突破 $20 亿，Agent 用户数量已是 Tab 自动补全用户的两倍。
+
+```
+Cursor 3 核心变化：
+├─ Agents Window：独立的 Agent 工作区
+│  ├─ 多 Agent 并行运行（本地/Worktree/云端/SSH）
+│  ├─ 不中断主编码会话
+│  └─ 云端-本地 Agent 无缝切换
+├─ Design Mode：可视化设计模式
+│  ├─ 交互式 Canvas（仪表盘、自定义界面）
+│  ├─ 内置组件：表格、框图、图表
+│  └─ 与 Diff 和 Todo 列表集成
+├─ Best-of-N 模型对比：原生多模型对比
+├─ 有状态续传：服务端缓存上下文
+│  ├─ 客户端发送数据减少 80%+
+│  └─ 执行时间提升 15-29%
+└─ 界面完全重构（非增量更新）
+```
+
+### Kiro GA（2025-08 正式发布）
+
+Kiro 已从 Preview 阶段进入正式发布，定价模型调整，Spec 请求额度有所变化。
+
+### Windsurf 被 Cognition 收购（2025-12）
+
+Cognition（Devin 母公司）以 $2.5 亿收购 Windsurf。截至 2026-03，两个产品仍独立运营，但合并后有望提供从 IDE 辅助到自主执行的完整 AI 开发工作流。
+
+来源：[Cursor 3.0 Changelog](https://cursor.com/changelog/3-0)（Content was rephrased for compliance with licensing restrictions）
+来源：[InfoQ: Cursor 3 Agent-First Interface](https://www.infoq.com/news/2026/04/cursor-3-agent-first-interface/)（Content was rephrased for compliance with licensing restrictions）
+
+## 7. 综合对比
 
 | 特性 | Cursor | Kiro | Windsurf | GitHub Copilot |
 |------|--------|------|----------|----------------|
-| 基础 | VS Code fork | VS Code fork | VS Code fork | VS Code 插件 |
-| 核心模式 | Composer Agent | Specs 驱动 | Cascade 流 | Copilot Edits |
+| 基础 | 自研界面（v3） | VS Code fork | VS Code fork（Cognition 旗下） | VS Code 插件 |
+| 核心模式 | Agents Window | Specs 驱动 | Cascade 流 | Copilot Edits |
 | 多文件编辑 | ✅ 强 | ✅ | ✅ | ✅ |
 | 项目配置 | .cursorrules | Steering/Hooks | Cascade Rules | .github/copilot |
 | 模型支持 | Claude/GPT/自选 | Claude/多模型 | GPT/Claude/Gemini | GPT/Claude |
 | MCP 支持 | ✅ | ✅ 原生 | ✅ | ✅ |
 | 结构化开发 | ❌ | ✅ Specs | ❌ | ❌ |
-| 自动化 | 有限 | ✅ Hooks | 有限 | 有限 |
-| 免费版 | 有限额度 | 免费 | 有限额度 | 免费额度 |
-| Pro 价格 | $20/月 | 免费(Preview) | $15/月 | $10/月 |
-| 特色优势 | 补全体验最佳 | 规范化开发流程 | 流式编辑体验 | 生态集成最广 |
+| 自动化 | Design Mode | ✅ Hooks | 有限 | 有限 |
+| 多 Agent 并行 | ✅ Agents Window | ❌ | ❌ | ❌ |
+| 免费版 | 有限额度 | 免费额度 | 有限额度 | 免费额度 |
+| Pro 价格 | $20/月 | $19/月 | $15/月 | $10/月 |
+| 特色优势 | Agent 编排中心 | 规范化开发流程 | 自主执行+IDE | 生态集成最广 |
 
 ## 7. IDE Agent vs 终端 Agent
 

@@ -146,7 +146,54 @@ echo "检查代码中的安全漏洞" | claude --pipe
 > 审查 PR #15 的代码变更，给出改进建议
 ```
 
-## 8. 终端 Agent 对比
+## 8. 2026 版本演进
+
+> 🔄 更新于 2026-04-21
+
+<!-- version-check: Claude Code 2.1.101, checked 2026-04-21 -->
+
+Claude Code 在 2026 年 3-4 月进入了史上最密集的迭代周期，从 v2.1.69 到 v2.1.101，5 周内发布了 30+ 个版本。
+
+```
+版本演进（2026 年 3-4 月关键里程碑）：
+
+v2.1.83-85（Week 13，3/23-27）：
+├─ Auto Mode（研究预览）：分类器自动处理权限提示
+│  → 安全操作自动放行，高风险操作自动拦截
+│  → 介于全部批准和 --dangerously-skip-permissions 之间
+├─ Computer Use（桌面应用）：Claude 可操作 GUI 应用
+├─ PR Auto-fix（Web 端）：自动修复 PR 问题
+├─ 对话搜索：/ 键搜索历史对话
+└─ 条件 Hook：if 条件触发的 Hook
+
+v2.1.86-91（Week 14，3/30-4/3）：
+├─ Computer Use（CLI 研究预览）：终端中操作原生应用
+│  → 打开 GUI 应用、点击 UI、验证变更
+│  → 适合只有 GUI 才能验证的场景
+├─ /powerup 交互式教程
+├─ MCP 结果大小上限提升至 500K（per-tool 可配置）
+└─ 插件可执行文件加入 Bash 工具 PATH
+
+v2.1.92-101（Week 15，4/6-10）：
+├─ Ultraplan（早期预览）：云端规划 + 本地执行
+│  → CLI 起草计划 → Web 编辑器审查/评论 → 远程或本地执行
+│  → 首次运行自动创建云环境
+├─ Monitor 工具：后台事件流注入对话
+│  → Claude 可以 tail 日志并实时响应
+├─ /loop 自动节奏（省略间隔时自动调节）
+├─ /team-onboarding 团队入职指南打包
+├─ /autofix-pr 终端启动 PR 自动修复
+├─ Vertex AI 设置向导
+├─ Bash 和沙箱安全增强
+└─ 企业级改进：OS CA 证书信任、TLS 代理支持
+```
+
+**Claude Managed Agents**（公开 Beta）：Anthropic 推出完全托管的 Agent 运行时，提供安全沙箱、内置工具和 SSE 流式输出。通过 API 创建 Agent、配置容器、运行会话。
+
+来源：[Claude Code Docs - What's New](https://code.claude.com/docs/en/whats-new)（Content was rephrased for compliance with licensing restrictions）
+来源：[Claude Platform Release Notes](https://docs.claude.com/en/release-notes/overview)（Content was rephrased for compliance with licensing restrictions）
+
+## 9. 终端 Agent 对比
 
 | 特性 | Claude Code | Aider | Codex CLI | Gemini CLI |
 |------|------------|-------|-----------|------------|

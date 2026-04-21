@@ -24,9 +24,9 @@
 | 日期 | 要闻 | 收录条目 |
 |------|------|---------|
 | [2026-04-21](./2026/04/2026-04-21.md) | Amazon 追加投资 Anthropic 250 亿美元 / OpenAI 三高管离职 + Sora 关停 / Cartesian Cut Agent 设计理论 / NVIDIA 披露 Codex AGENTS.md 注入漏洞 | 9 条 |
-| [2026-04-20](./2026-04-20.md) | MCP STDIO 漏洞影响 20 万服务器 / OpenAI Codex Computer Use / Claude Opus 4.7 / GPT-5.4-Cyber / Gartner MCP 安全预测 | 15 条 |
-| [2026-04-19](./2026-04-19.md) | OpenAI Agents SDK 原生沙箱 / Claude Code Desktop 并行 Agent 重设计 | 11 条 |
-| [2026-04-18](./2026-04-18.md) | Deep Agents v0.5 异步子 Agent / Microsoft Agent Governance Toolkit | 12 条 |
+| [2026-04-20](./2026/04/2026-04-20.md) | MCP STDIO 漏洞影响 20 万服务器 / OpenAI Codex Computer Use / Claude Opus 4.7 / GPT-5.4-Cyber / Gartner MCP 安全预测 | 15 条 |
+| [2026-04-19](./2026/04/2026-04-19.md) | OpenAI Agents SDK 原生沙箱 / Claude Code Desktop 并行 Agent 重设计 | 11 条 |
+| [2026-04-18](./2026/04/2026-04-18.md) | Deep Agents v0.5 异步子 Agent / Microsoft Agent Governance Toolkit | 12 条 |
 
 ## 🔧 使用方式
 

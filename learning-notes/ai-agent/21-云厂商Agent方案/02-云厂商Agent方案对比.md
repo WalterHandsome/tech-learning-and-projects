@@ -115,6 +115,54 @@ Google:
 
 推荐策略：开源框架开发 → 托管服务部署生产
 ```
+
+## 8. 2026 年重大进展
+
+> 🔄 更新于 2026-04-21
+
+<!-- version-check: Cloud Agent Solutions 2026-04, checked 2026-04-21 -->
+
+### 各厂商最新动态
+
+**AWS**：
+- AgentCore GA 后持续迭代，新增 InvokeBrowser API（OS 级浏览器控制：鼠标、键盘、截图）
+- Spring AI AgentCore SDK 开源，Java 企业级 Agent 开发原生支持
+- VPC、PrivateLink、CloudFormation、资源标签全面支持
+- 来源：[AWS API Changes](https://awsapichanges.com/archive/service/bedrock-agentcore)
+
+**Microsoft**：
+- Azure AI Foundry Agent Service GA（2026-03）：OpenAI 兼容 Responses API、VNet 隔离、Voice Live 预览、内置评估、MCP 认证
+- Microsoft Agent Framework 1.0 GA（2026-04）：统一 AutoGen + Semantic Kernel，多 Agent 应用部署到 Azure App Service
+- Microsoft Agent 365（2026-05-01 GA）：$15/用户/月，企业级 Agent 治理平台
+- 来源：[Microsoft Tech Community](https://techcommunity.microsoft.com/blog/appsonazureblog/build-multi-agent-ai-apps-on-azure-app-service-with-microsoft-agent-framework-1-/4510017)
+
+**Google**：
+- Vertex AI Agent Engine Sessions + Memory Bank GA，Code Execution GA
+- ADK for Java 1.0 发布：新 App 和 Plugin 架构、外部工具支持
+- Agent Builder 持续迭代，定位为最完整的 Agent 开发栈
+- 来源：[Google Cloud Release Notes](https://docs.cloud.google.com/vertex-ai/docs/release-notes)
+
+**阿里云**：
+- Qwen3 系列发布（2026-04）：混合推理 + MoE 架构，36T Token 训练，1M 上下文窗口
+- Qwen3.5-397B-A17B（2026-02-16）：397B 参数 MoE，仅激活 17B，GPQA Diamond 88.4，$0.60/M 输入 Token
+- Qwen3.6-Plus / Qwen3.6-Max-Preview（2026-04-20）：增强 Agentic Coding 和多模态推理
+- Qwen3.6-35B-A3B 开源（Apache 2.0）：35B 总参数 / 3B 激活，SWE-Bench 73.4%
+- 战略转向：从纯开源转向开源 + 闭源商业化并行
+- 来源：[Alibaba Cloud Model Studio](https://www.alibabacloud.com/help/en/model-studio/newly-released-models)
+
+### 更新后的综合对比表
+
+| 维度 | AWS | Microsoft | Google | 阿里云 |
+|------|-----|-----------|--------|--------|
+| 开发框架 | Strands SDK | Agent Framework 1.0（SK+AutoGen 统一） | ADK（Python/TS/Java） | 百炼 SDK |
+| 框架类型 | 开源 | 开源 | 开源 | 部分开源 |
+| 核心模型 | Claude Opus 4.7/Nova/Llama | GPT-5.4/o3 | Gemini 2.5 Pro | Qwen3.6-Max/Plus |
+| 多模型支持 | Bedrock 全模型 | Azure OpenAI + 开源 | Gemini 为主 + 开源 | 通义 + 第三方 |
+| MCP 支持 | ✅ Stateful MCP | ✅ 原生认证 | ✅ 原生 | ✅ |
+| A2A 支持 | 有限 | 有限 | ✅ 原生 | 有限 |
+| 托管运行时 | AgentCore（GA） | Foundry Agent Service（GA） | Vertex AI Agent Engine（GA） | 百炼应用中心 |
+| 浏览器自动化 | Nova Act + InvokeBrowser | - | - | - |
+| 企业级 Agent 管理 | CloudWatch | Agent 365（$15/用户/月） | Agent Builder | 百炼控制台 |
 ## 🎬 推荐视频资源
 
 ### 🌐 YouTube

@@ -180,6 +180,55 @@ services:
 | Agent 模式 | ✅ | ✅ | ✅ |
 | 私有部署 | ❌ | ✅ | ✅ |
 | 适用场景 | 快速构建Bot | 知识库问答 | 复杂工作流 |
+## 8. 2026 版本演进
+
+> 🔄 更新于 2026-04-21
+
+<!-- version-check: Coze 2.5, Coze Studio v0.3.0, checked 2026-04-21 -->
+
+### Coze 2.5："Agent World" 生态
+
+字节跳动于 2026-04-07 发布 Coze 2.5，引入"Agent World"生态系统，让 AI Agent 突破聊天界面限制：
+
+**三大核心能力**：
+
+1. **全装备（Full-Equipped Devices）**：
+   - 云端 PC：基于 Ubuntu，2 核 4G 内存，含浏览器、文件系统、终端
+   - 云端手机：支持 App 操作和移动端任务
+   - 独立邮箱：Agent 拥有专属邮件地址
+   - 支持运行代码脚本、浏览网页、处理文件，保持登录状态
+
+2. **全技能（Full-Equipped Skills）**：
+   - 视频创作、编程、行业专业技能
+   - Agent 可独立学习和协作
+
+3. **全人格（Full-Equipped Personalities）**：
+   - 可管理的记忆系统
+   - 数字社交 ID
+   - 独立身份和长期记忆
+
+### Coze Studio 开源
+
+Coze Studio（扣子开源版）于 2025-07 正式开源，基于 Apache 2.0 许可：
+
+- GitHub 仓库：[coze-dev/coze-studio](https://github.com/coze-dev/coze-studio)
+- 当前版本：v0.3.0（支持 chatflow、工作流、Agent、应用场景）
+- 提供可视化工具，支持无代码/低代码方式构建 AI Agent
+- 配套 [Coze Loop](https://github.com/coze-dev/coze-loop)：Agent 全生命周期管理平台（开发、调试、评估、监控）
+
+### 平台对比更新
+
+| 特性 | Coze（SaaS） | Coze Studio（开源） | FastGPT |
+|------|-------------|-------------------|---------|
+| 类型 | SaaS 平台 | 开源自托管 | 开源自托管 |
+| Agent World | ✅（v2.5） | ❌ | ❌ |
+| 云端设备 | ✅（PC + 手机） | ❌ | ❌ |
+| 知识库 | ✅ | ✅ | ✅（强） |
+| 工作流 | ✅ | ✅（chatflow） | ✅ |
+| 许可证 | 商业 | Apache 2.0 | Apache 2.0 |
+
+> 来源：[KuCoin News](https://www.kucoin.com/news/flash/bytedance-s-coze-launches-version-2-5-introduces-agent-world-ecosystem)、[AIBase](https://news.aibase.com/news/27013)、[Coze Studio GitHub](https://github.com/coze-dev/coze-studio)
+
 ## 🎬 推荐视频资源
 
 ### 🌐 YouTube

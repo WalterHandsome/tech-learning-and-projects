@@ -119,7 +119,72 @@ swe-agent run \
 # 6. 生成 patch
 ```
 
-## 5. 自主 Agent 基准测试（SWE-bench）
+## 5. 2026 版本演进
+
+> 🔄 更新于 2026-04-21
+
+<!-- version-check: Devin 2.2, SWE-1.6, OpenHands 1.6.0, checked 2026-04-21 -->
+
+### Devin 2.2（2026-02-24）
+
+```
+Devin 2.2 核心更新：
+├─ Desktop Computer Use：操作 GUI 桌面应用
+│  ├─ 浏览器、Figma、Photoshop 等原生应用
+│  ├─ 从终端工作流扩展到视觉设计和测试
+│  └─ 跨应用自动化
+├─ Devin Review：自审查 PR
+│  ├─ 每个 PR 自动运行质量检查
+│  ├─ 识别逻辑错误、遗漏边界、风格违规
+│  └─ 比人工审查多发现 30% 问题
+├─ 3x 启动加速：~45s → ~15s
+├─ Linear 集成：项目管理工作流
+├─ 定时任务：Devin 可自行调度循环会话
+│  └─ 跨会话保持状态，每次从上次中断处继续
+└─ $10 免费月度额度
+```
+
+### SWE-1.6 模型（2026-03-20）
+
+Cognition 发布 SWE-1.6，专为智能和模型 UX 优化。
+
+### Cognition 收购 Windsurf（2025-12，$2.5 亿）
+
+Cognition 收购 Windsurf 后，拥有了从 IDE 辅助到自主执行的完整产品线。截至 2026-03 两个产品仍独立运营。
+
+### OpenHands v1.6.0（2026-03）
+
+开源自主编码 Agent 持续增长：70K+ GitHub Stars、490+ 贡献者、MIT 许可。
+
+```
+OpenHands 生态数据：
+├─ 70K+ GitHub Stars（从 OpenDevin 更名后持续增长）
+├─ 490+ 贡献者，3500+ commits
+├─ 100+ 版本发布
+├─ 支持任意 LLM 后端（Claude/GPT/Gemini/本地模型）
+├─ OpenHands LM 32B：基于 Qwen Coder 2.5 的开源编码模型
+└─ OpenHands Index：跨模型编码能力基准评测
+```
+
+### Codex CLI v0.116.0（2026-03-19）
+
+OpenAI 终端编码 Agent：67K Stars、9K Forks、400 贡献者。新增 ChatGPT 设备码登录、用户 Prompt Hook、插件简化配置。
+
+### 自主 Agent 市场格局（2026-04）
+
+```
+PR 合并率数据（截至 2026-03）：
+├─ Devin：PR 合并率从 34% 提升至 67%（同比翻倍）
+├─ 已合并数十万 PR，覆盖数千家公司
+├─ Cognition Japan：首个亚洲扩展，服务日本企业
+└─ COBOL 现代化：Fortune 500 企业的遗留系统迁移
+```
+
+来源：[Cognition Blog: Devin 2.2](https://cognition.ai/blog/introducing-devin-2-2)（Content was rephrased for compliance with licensing restrictions）
+来源：[Cognition Blog: SWE-1.6](https://cognition.ai/blog/1)（Content was rephrased for compliance with licensing restrictions）
+来源：[OpenHands Review](https://vibecoding.app/blog/openhands-review)（Content was rephrased for compliance with licensing restrictions）
+
+## 6. 自主 Agent 基准测试（SWE-bench）
 
 ```
 SWE-bench：标准化软件工程 Agent 评测基准

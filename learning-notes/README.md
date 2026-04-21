@@ -124,7 +124,11 @@ learning-notes/
 │   └── 15-消息队列/               # RabbitMQ、Kafka、Celery
 │
 └── architecture/                  # 架构设计
-    └── event-driven-architecture.md
+    ├── 01-事件驱动架构.md
+    ├── 02-微服务架构模式.md
+    ├── 03-DDD领域驱动设计.md
+    ├── 04-CQRS与事件溯源.md
+    └── 05-系统设计核心概念.md
 ```
 
 ## 🎯 内容分类
@@ -355,7 +359,11 @@ learning-notes/
 
 ### 架构设计
 
-- **事件驱动架构**：EDA 模式和实践
+- **事件驱动架构**：EDA 模式、Kafka/RabbitMQ/Redis Streams/Pulsar 对比
+- **微服务架构模式**：服务拆分、通信、服务发现、断路器、Saga
+- **DDD领域驱动设计**：聚合根、领域事件、限界上下文、战略/战术设计
+- **CQRS与事件溯源**：命令查询分离、事件存储、最终一致性
+- **系统设计核心概念**：CAP 定理、缓存策略、限流、分库分表
 
 ## 📖 如何使用
 

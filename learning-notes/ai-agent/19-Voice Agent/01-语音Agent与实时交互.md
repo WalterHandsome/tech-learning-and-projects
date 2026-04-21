@@ -33,21 +33,34 @@
 └─────────────────────────────────────────────────────┘
 ```
 
-## 2. OpenAI Realtime API（gpt-4o-realtime）
+## 2. OpenAI Realtime API（gpt-realtime）
 
-2025 年 8 月 GA，生产级语音 Agent 首选。原生音频处理，无需 STT/TTS 管道。
+> 🔄 更新于 2026-04-21
+
+2026 年 Realtime API 正式 GA（脱离 Beta），模型从 `gpt-4o-realtime-preview` 升级为独立的 `gpt-realtime` 系列。2026-02-24 发布 `gpt-realtime-1.5`，指令遵循、工具调用和多语言准确性显著提升。来源：[OpenAI Community](https://community.openai.com/t/gpt-realtime-1-5-is-live-in-realtime-api/1374919)
+
+<!-- version-check: gpt-realtime-1.5, checked 2026-04-21 -->
 
 ```
-核心特性：
+核心特性（2026 GA）：
 ├─ 原生音频：音频直入直出，保留语气和情感
-├─ WebSocket 双向流：实时双工通信
+├─ WebSocket / WebRTC：双向流实时通信
 ├─ Function Calling：语音模式下调用工具
-├─ MCP 支持：2026 年宣布支持 MCP Server
-├─ SIP 电话：连接 PSTN 电话网络
+├─ 远程 MCP Server：直接连接 MCP 工具（GA 新增）
+├─ SIP 电话：连接 PSTN 电话网络（GA 新增）
 ├─ 图像输入：多模态（看图+听声+回答）
 ├─ 中断处理：用户随时打断，Agent 立即停止
-└─ 多种语音：ash, ballad, coral, sage, verse 等
+├─ 多种语音：ash, ballad, coral, sage, verse, cedar, marin
+├─ 转录模型：约 90% 更少幻觉（对比 Whisper v2）
+└─ gpt-realtime-1.5：连接率翻倍（66%↑），电话错误减半
 ```
+
+**gpt-realtime-1.5 关键改进**（2026-02-24）：
+- 更可靠的指令遵循（instruction adherence）
+- 工具调用准确性提升
+- 多语言任务表现改善
+- Genspark 报告连接率提升至 66%，电话错误减半
+- Sendbird 报告中断处理显著改善
 
 ### WebSocket 连接与 Function Calling 示例
 
@@ -173,17 +186,25 @@ OpenAI Realtime API 定价（2025）：
 
 ## 3. ElevenLabs Conversational AI 2.0
 
-业界最佳语音质量和轮次管理，专注于自然对话体验。
+> 🔄 更新于 2026-04-21
+
+业界最佳语音质量和轮次管理，2026 年已从 TTS 工具升级为完整的对话式音频基础设施平台。Eleven v3 Conversational 模型 + Expressive Mode 让 AI 语音具备情感智能。来源：[ElevenLabs Changelog](https://elevenlabs.io/docs/changelog)
+
+<!-- version-check: ElevenLabs Eleven v3 Conversational, checked 2026-04-21 -->
 
 ```
-核心特性：
-├─ 语音质量：业界领先的 TTS，接近真人
-├─ 高级轮次管理：理解 "嗯"、"啊" 等语气词，知道何时打断
-├─ 30+ 语言：多语言支持，语音克隆
+核心特性（2026）：
+├─ Eleven v3 Conversational：情感智能语音模型
+├─ Expressive Mode：笑声、叹息等情感标签
+├─ 高级轮次管理：理解 "嗯"、"啊" 等语气词
+├─ 版本控制：Agent 分支、部署、合并（2026-01）
+├─ 全球路由：自动选择最近服务器（2026-02 默认）
+├─ 对话脱敏：自动脱敏姓名、邮箱等敏感信息
+├─ 多 Agent 评估：按 Agent 独立评估对话质量
 ├─ Widget SDK：React / React Native / Web 组件
 ├─ 工具调用：自定义工具 + 知识库集成
-├─ 低延迟：端到端 ~1s 响应
-└─ 情感控制：可调节语音的情感和风格
+├─ 30+ 语言：多语言支持，语音克隆
+└─ WhatsApp 集成：连接 WhatsApp Business 账户
 ```
 
 ### Python SDK 示例
@@ -260,7 +281,27 @@ function VoiceAgent() {
 
 ## 4. LiveKit Agents（开源）
 
-开源实时通信框架，Agent 作为"参与者"加入音视频房间。插件化架构，灵活组合 STT/LLM/TTS。
+> 🔄 更新于 2026-04-21
+
+开源实时通信框架，Agent 作为"参与者"加入音视频房间。v1.5.0（2026-03）引入自适应中断处理和动态端点检测，是语音 Agent 开源方案的标杆。来源：[LiveKit Community](https://community.livekit.io/t/python-agents-1-5-0-released/619)
+
+<!-- version-check: LiveKit Agents 1.5.2, checked 2026-04-21 -->
+
+```
+核心特性（v1.5.x）：
+├─ 自适应中断处理：ML 模型区分真实打断和背景噪音
+│   ├─ 86% 精度，100% 召回（500ms 重叠语音）
+│   ├─ 拒绝 51% 的 VAD 误报
+│   ├─ 比纯 VAD 快 64% 检测真实中断
+│   └─ 推理 ≤30ms，误判时自动恢复播放
+├─ 动态端点检测：根据对话节奏自适应静默阈值
+├─ 会话用量追踪：按模型/提供商分类的 Token/字符/音频统计
+├─ 每轮延迟指标：转录延迟、轮次结束延迟
+├─ 上下文摘要感知工具调用：摘要保留 Function Call 上下文
+├─ 插件化架构：灵活组合 STT/LLM/TTS
+├─ Python 3.10+：支持 Python 3.14
+└─ Apache 2.0 开源
+```
 
 ```
 ┌─────────────── LiveKit Agent 架构 ───────────────┐
@@ -504,15 +545,17 @@ asyncio.run(gemini_live_session())
 | 特性 | OpenAI Realtime | ElevenLabs | LiveKit | Vapi | Retell AI | Gemini Live |
 |------|----------------|------------|---------|------|-----------|-------------|
 | 方式 | 原生音频模型 | STT+LLM+TTS | 插件管道 | 托管平台 | 托管平台 | 原生多模态 |
-| 延迟 | ~300ms-1s | ~1s | ~1-2s（取决插件） | ~1s | ~800ms | ~500ms-1s |
+| 最新模型 | gpt-realtime-1.5 | Eleven v3 Conv. | v1.5.2 | — | — | Gemini 2.0 Flash |
+| 延迟 | ~300ms-1s | ~1s | ~1-2s（取决插件） | ~600ms | ~800ms | ~500ms-1s |
 | 语言 | 50+ | 30+ | 取决 STT/TTS 插件 | 20+ | 10+ | 40+ |
 | 电话支持 | ✅ SIP | ❌（需集成） | ✅ SIP/PSTN | ✅ 核心功能 | ✅ 核心功能 | ❌ |
 | 开源 | ❌ | ❌ | ✅ Apache 2.0 | ❌ | ❌ | ❌ |
-| MCP 支持 | ✅（2026） | ❌ | 可自行集成 | ❌ | ❌ | 通过 ADK |
+| MCP 支持 | ✅ 远程 MCP | ❌ | 可自行集成 | ❌ | ❌ | 通过 ADK |
 | 视频/图像 | ✅ 图像输入 | ❌ | ✅ 音视频 | ❌ | ❌ | ✅ 音视频 |
 | Function Call | ✅ 原生 | ✅ Webhook | ✅ 自定义 | ✅ Webhook | ✅ WebSocket | ✅ 原生 |
 | 语音克隆 | ❌ | ✅ 业界最佳 | 取决 TTS 插件 | ✅（通过 TTS） | ✅ | ❌ |
 | 自托管 | ❌ | ❌ | ✅ | ❌ | ❌ | ❌ |
+| 版本控制 | ❌ | ✅ 分支/部署 | ❌ | ❌ | ❌ | ❌ |
 | 定价 | $0.06-0.24/分 | $0.01-0.08/分 | 开源免费+云托管 | $0.05/分起 | $0.07-0.14/分 | 免费额度+按量 |
 | 最佳场景 | 低延迟语音助手 | 高质量语音体验 | 自定义管道 | 电话自动化 | 电话客服 | 多模态交互 |
 

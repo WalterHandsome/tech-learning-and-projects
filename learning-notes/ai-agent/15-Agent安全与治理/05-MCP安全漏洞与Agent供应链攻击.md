@@ -27,7 +27,9 @@
 │  ├─ 53% 依赖长期静态密钥认证                               │
 │  ├─ 8000+ MCP Server 暴露在公网无认证                      │
 │  ├─ Tool Poisoning 对主流模型成功率 72.8%                  │
-│  └─ 仅 6% 的组织有足够的 AI Agent 安全防护                 │
+│  ├─ 仅 6% 的组织有足够的 AI Agent 安全防护                 │
+│  ├─ 88% 企业经历过 AI Agent 安全事件（2026 数据）           │
+│  └─ CVE-2025-49596（CVSS 9.4）影响 200K+ 实例             │
 └───────────────────────────────────────────────────────────┘
 ```
 
@@ -456,9 +458,13 @@ CVE-2025-6514：
 2026.03  CVE-2026-26118  Azure MCP Server Tools SSRF（Token 窃取）
 2026.03  CVE-2026-27825  mcp-atlassian 任意文件写入（CVSS 9.1）
 2026.Q1  LiteLLM 供应链攻击（数千万月下载量）
+2026.04  OX Security 披露 MCP STDIO 设计漏洞（CVE-2025-49596，CVSS 9.4）
+         → 影响 200,000+ 运行实例，上游包 1.5 亿+ 下载
+2026.04  Trend Micro 发现 492 个 MCP Server 暴露公网零认证
 ```
 
 来源：[AuthZed: Timeline of MCP Breaches](https://authzed.com/blog/timeline-mcp-breaches) (Content was rephrased for compliance with licensing restrictions)
+来源：[The Hacker News: Anthropic MCP Design Vulnerability](https://thehackernews.com/2026/04/anthropic-mcp-design-vulnerability.html) (Content was rephrased for compliance with licensing restrictions)
 
 ---
 

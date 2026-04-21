@@ -158,6 +158,63 @@ val MIGRATION_1_2 = object : Migration(1, 2) {
 )
 abstract class AppDatabase : RoomDatabase()
 ```
+
+## 7. Room 3.0 版本演进
+
+> 🔄 更新于 2026-04-21
+
+Room 3.0 alpha 已发布，是一个重大 Breaking 版本，核心目标是 Kotlin Multiplatform（KMP）全面支持。来源：[Android Developers Blog](https://developer.android.com/blog/posts/modernizing-the-room)
+
+<!-- version-check: Room 2.8.4 stable, Room 3.0 alpha, checked 2026-04-21 -->
+
+### Room 3.0 Breaking Changes
+
+| 变化 | Room 2.x | Room 3.0 |
+|------|----------|----------|
+| 包名 | `androidx.room` | `androidx.room3` |
+| Maven 坐标 | `androidx.room:room-runtime` | `androidx.room3:room3-runtime` |
+| 数据库 API | SupportSQLite + SQLiteDriver | 仅 SQLiteDriver |
+| 代码生成 | Java + Kotlin | 仅 Kotlin |
+| 注解处理 | AP / KAPT / KSP | 仅 KSP |
+| DAO 函数 | 支持阻塞函数 | 必须 suspend 或返回 Flow |
+| KMP 支持 | Android + iOS + JVM | + JavaScript + WASM |
+
+### 迁移路径
+
+```kotlin
+// Room 2.x → 3.0 迁移步骤：
+// 1. 先迁移到 Room 2.8.x + SQLiteDriver API（兼容层）
+// 2. 使用 room-sqlite-wrapper 过渡（Room 2.8.0 新增）
+// 3. 更新包名 androidx.room → androidx.room3
+// 4. 确保所有 DAO 函数为 suspend 或返回 Flow
+
+// Room 3.0 DAO 示例（协程优先）
+@Dao
+interface UserDao {
+    // ✅ Room 3.0：必须是 suspend
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun insert(user: UserEntity)
+
+    // ✅ Room 3.0：返回 Flow 的不需要 suspend
+    @Query("SELECT * FROM users ORDER BY created_at DESC")
+    fun getAllUsers(): Flow<List<UserEntity>>
+
+    // ❌ Room 3.0 不再允许阻塞函数
+    // @Query("SELECT * FROM users WHERE id = :userId")
+    // fun getUserByIdBlocking(userId: Long): UserEntity?
+}
+```
+
+### 版本选择建议
+
+```
+你的项目情况？
+├─ 新项目 + 仅 Android → Room 2.8.4（稳定，等 3.0 稳定后迁移）
+├─ 新项目 + KMP（Android + iOS） → Room 2.8.4 + SQLiteDriver
+├─ 新项目 + KMP（含 JS/WASM） → Room 3.0 alpha（实验性）
+├─ 现有项目 → 先迁移到 Room 2.8.x + SQLiteDriver
+└─ 生产环境 → Room 2.8.4（不建议用 3.0 alpha）
+```
 ## 🎬 推荐视频资源
 
 - [Philipp Lackner - Room Database](https://www.youtube.com/watch?v=bOd3wO0uFr8) — Room数据库完整教程

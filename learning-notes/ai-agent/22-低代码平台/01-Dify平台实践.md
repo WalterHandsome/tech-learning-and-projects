@@ -166,6 +166,50 @@ docker compose up -d
 # 访问 http://localhost:3000 进入管理界面
 # 首次访问需要设置管理员账号
 ```
+## 6. 2026 版本演进
+
+> 🔄 更新于 2026-04-21
+
+<!-- version-check: Dify v1.13.2, checked 2026-04-21 -->
+
+### Dify v1.13.x：Human Input 节点与工作流增强
+
+Dify 于 2026-03 发布 v1.13.0，当前稳定版为 v1.13.2。核心新特性：
+
+**Human Input 节点**（v1.13.0）：
+- 在工作流关键决策点插入人工审核节点，暂停执行等待人类输入
+- 审核者可查看 AI 输出、编辑变量、选择预定义决策路径
+- 支持通过特定渠道（邮件、Slack 等）发送审核请求表单
+- 适用场景：内容审核、合规检查、高风险操作确认
+
+**工作流画布改进**（v1.13.1）：
+- 边缘右键菜单支持直接删除连接
+- 切换节点类型时保留现有连接
+- 嵌入式聊天输入支持可配置发送键（Enter vs Shift+Enter）
+
+### Dify 融资与生态
+
+- **$3000 万 Pre-A 轮融资**（2026-03-10）：估值 $1.8 亿，由 HSG 领投
+- 2,000+ 团队、280+ 企业使用
+- GitHub Stars 持续增长（113K+）
+- **Beehive 架构重构**：模块化设计，各模块独立运行，开发者可按需调整
+
+### Dify 2.0 预览
+
+Dify v2.0.0-beta.1 已在 GitHub Discussions 中发布，主题为"Orchestrating Knowledge, Powering Workflows"，预计将带来知识库编排和工作流能力的重大升级。
+
+### 平台对比更新（2026）
+
+| 特性 | Dify | n8n | Coze | FastGPT |
+|------|------|-----|------|---------|
+| 最新版本 | v1.13.2 | v2.x | v2.5 | 持续更新 |
+| 定位 | LLM 应用开发平台 | 工作流自动化 + AI | AI Bot 构建平台 | 知识库问答系统 |
+| Human-in-the-Loop | ✅（v1.13 原生） | ✅（Wait 节点） | 有限 | 有限 |
+| 开源 | ✅ Apache 2.0 | ✅ 可持续许可 | ✅ Coze Studio | ✅ Apache 2.0 |
+| 融资 | $3000 万 | $1.2 亿+ | 字节跳动 | 社区驱动 |
+
+> 来源：[Dify Blog](https://dify.ai/blog)、[Dify GitHub Releases](https://github.com/langgenius/dify/releases)、[BusinessWire](https://www.businesswire.com/news/home/20260309511426/en/)
+
 ## 🎬 推荐视频资源
 
 - [Dify Official - Getting Started](https://www.youtube.com/watch?v=1gNMnQH0vRc) — Dify官方入门教程
