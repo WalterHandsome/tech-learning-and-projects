@@ -4,9 +4,8 @@
 
 ## 1. 概述
 
-<!-- version-check: LangGraph 1.0 GA (2025-10), 现已到 1.1.3+, 90M+ 月下载量, checked 2026-04-16 -->
-<!-- 修复于 2026-04-16: LangGraph 版本从 1.1.x 更新到 1.1.3+ -->
-LangGraph 是 LangChain 团队推出的 Agent 工作流编排框架，基于图结构定义 Agent 的执行流程。2025 年 10 月发布 1.0 GA，目前最新版本为 1.1.3+（含深度 Agent 模板和分布式运行时支持），90M+ 月下载量，是目前生产级 Agent 开发的行业标准。Uber、JP Morgan、BlackRock、Cisco、LinkedIn、Klarna 等企业已在生产环境部署。来源：[LangChain Blog](https://blog.langchain.com/langchain-langgraph-1dot0/)、[Definitive Guide 2026](https://blog.softmaxdata.com/definitive-guide-to-agentic-frameworks-in-2026-langgraph-crewai-ag2-openai-and-more/)
+<!-- version-check: LangGraph 1.1.6 stable (1.1.7a1 alpha), 126K+ Stars, checked 2026-04-23 -->
+LangGraph 是 LangChain 团队推出的 Agent 工作流编排框架，基于图结构定义 Agent 的执行流程。2025 年 10 月发布 1.0 GA，目前最新版本为 1.1.6 稳定版（1.1.7a1 alpha 新增 graph lifecycle callback handlers），126K+ GitHub Stars，90M+ 月下载量，是目前生产级 Agent 开发的行业标准。Uber、JP Morgan、BlackRock、Cisco、LinkedIn、Klarna、Replit、Elastic 等企业已在生产环境部署。来源：[LangChain Blog](https://blog.langchain.com/langchain-langgraph-1dot0/)、[Releasebot](https://releasebot.io/updates/langchain-ai)
 
 核心优势：图结构控制流、模型无关、内置检查点、人机交互支持。
 

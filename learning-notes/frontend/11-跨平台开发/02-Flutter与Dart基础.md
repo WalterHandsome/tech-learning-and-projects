@@ -117,3 +117,44 @@ ChangeNotifierProvider(
 // Riverpod（更现代的方案）
 final counterProvider = StateNotifierProvider<CounterNotifier, int>((ref) => CounterNotifier());
 ```
+
+## 5. Flutter 3.41 与 Dart 3.11 版本演进
+
+<!-- version-check: Flutter 3.41.4, Dart 3.11, checked 2026-04-23 -->
+
+> 🔄 更新于 2026-04-23
+
+Flutter 3.41.4 是当前稳定版（2026-03），搭配 Dart 3.11。从 Flutter 3.32（2025-05）到 3.41，经历了多次重大升级。来源：[Flutter 3.41 What Changed](https://alexanderobregon.substack.com/p/what-changed-in-flutter-341-and-why)
+
+### 5.1 关键版本里程碑
+
+| 版本 | 时间 | 核心特性 |
+|------|------|---------|
+| 3.32 | 2025-05 | Web Hot Reload（实验性）、Cupertino squircle、Firebase AI 集成 |
+| 3.38+ | 2025 | iOS 26 SDK 支持 |
+| 3.41 | 2026-01 | Impeller 2.0、AI DevTools Profiler |
+| 3.41.4 | 2026-03 | 当前稳定版，Dart 3.11.1 |
+
+### 5.2 Impeller 2.0 渲染引擎
+
+Impeller 2.0 是 Flutter 自研的 GPU 加速渲染引擎，在 Android API 29+ 设备上默认启用：
+- 消除着色器编译卡顿（jank-free）
+- 更一致的帧率表现
+- 更低的 GPU 内存占用
+
+### 5.3 Dart 3.11 新特性
+
+Dart 3.11（2026-03）聚焦开发体验改进，无新语言特性。来源：[Announcing Dart 3.11](https://dart.dev/blog/announcing-dart-3-11)
+
+- **更智能的分析服务器**：更快的代码补全和诊断
+- **pub 客户端增强**：依赖解析和发布流程改进
+- **AI 支持增强**：更好的 AI 辅助编码集成
+- **Dart 3.10 引入的 dot shorthands**：`.foo` 简写语法在 3.11 中持续优化
+
+### 5.4 版本选择建议
+
+| 场景 | 推荐版本 |
+|------|---------|
+| 新项目 | Flutter 3.41.x + Dart 3.11 |
+| iOS 26 适配 | Flutter 3.38+ |
+| 稳定生产环境 | Flutter 3.41.4（最新 stable） |

@@ -6,9 +6,8 @@
 
 > 🔄 更新于 2026-04-16
 
-<!-- version-check: CrewAI 47.8K+ Stars, v1.14.x, A2A+MCP 集成, checked 2026-04-16 -->
-<!-- 修复于 2026-04-16: CrewAI 版本从 v1.10.1 更新到 v1.14.x -->
-CrewAI 是一个角色化多 Agent 协作框架，核心理念是将 AI Agent 组织为一个"团队"（Crew），每个 Agent 扮演特定角色，协作完成复杂任务。GitHub 47.8K+ Stars，2700 万+ PyPI 下载量，20 亿+ Agent 执行次数。最新版本 v1.14.x（2026 年 4 月），已完全独立于 LangChain，从零构建。支持 A2A 协议和 MCP 工具集成、Flows 事件驱动编排。来源：[CrewAI 统计](https://www.getpanto.ai/blog/crewai-platform-statistics)、[CrewAI Changelog](https://docs.crewai.com/en/changelog)
+<!-- version-check: CrewAI v1.14.2 stable (v1.14.3a3 alpha), 47.8K+ Stars, checked 2026-04-23 -->
+CrewAI 是一个角色化多 Agent 协作框架，核心理念是将 AI Agent 组织为一个"团队"（Crew），每个 Agent 扮演特定角色，协作完成复杂任务。GitHub 47.8K+ Stars，2700 万+ PyPI 下载量，20 亿+ Agent 执行次数。最新稳定版 v1.14.2（checkpoint resume/fork/prune、token tracking 增强），alpha v1.14.3a3（E2B 沙箱支持、冷启动 29% 提速）。已完全独立于 LangChain，从零构建。支持 A2A 协议（含企业版）和 MCP 工具集成、Flows 事件驱动编排。来源：[CrewAI 统计](https://www.getpanto.ai/blog/crewai-platform-statistics)、[CrewAI Changelog](https://docs.crewai.com/en/changelog)
 
 ## 2. 核心概念
 
@@ -145,6 +144,54 @@ crew = Crew(
 | 模型锁定 | 无 | 无 | OpenAI 为主 |
 | MCP 支持 | 原生 | 通过工具 | 通过工具 |
 | 适用场景 | 团队协作 | 复杂工作流 | GPT 快速原型 |
+> 🔄 更新于 2026-04-23
+
+## 7. CrewAI v1.14.2 版本演进
+
+<!-- version-check: CrewAI v1.14.2 stable, v1.14.3a3 alpha, checked 2026-04-23 -->
+
+CrewAI 从 v1.10.1（2026-03）快速迭代到 v1.14.2（2026-04），引入了 checkpoint 系统和企业级 A2A 支持。来源：[CrewAI Changelog](https://docs.crewai.com/en/changelog)
+
+### v1.14.2 核心新特性
+
+```
+Checkpoint 系统（v1.14.2）：
+├─ checkpoint resume — 从断点恢复执行
+├─ checkpoint fork — 分叉执行路径（带 lineage 追踪）
+├─ checkpoint prune — 清理旧检查点
+├─ checkpoint diff — 对比检查点差异
+├─ TUI 树形视图 — 可视化检查点树
+└─ from_checkpoint 参数 — Agent.kickoff() 支持从检查点启动
+
+Token 追踪增强（v1.14.2）：
+├─ reasoning tokens — 推理 Token 计数
+├─ cache creation tokens — 缓存创建 Token 计数
+└─ 更精细的成本分析
+
+企业级 A2A（v1.14.2）：
+├─ 企业 A2A 功能文档
+└─ OSS A2A 文档更新
+```
+
+### v1.14.3a3 预览特性
+
+```
+新增能力：
+├─ E2B 沙箱集成 — Agent 在安全沙箱中执行代码
+├─ Bedrock V4 支持 — AWS Bedrock 最新版本
+├─ Daytona 沙箱工具 — 增强的沙箱功能
+├─ 冷启动优化 — MCP SDK 和事件类型懒加载，~29% 提速
+└─ "Build with AI" 文档页 — AI 原生文档，面向 Coding Agent
+```
+
+### 版本选择建议
+
+| 场景 | 推荐版本 |
+|------|---------|
+| 生产环境 | v1.14.2（稳定版，checkpoint 支持） |
+| 需要沙箱执行 | v1.14.3a3（alpha，E2B 集成） |
+| 简单多 Agent 协作 | v1.14.2（无需 alpha 特性） |
+
 ## 🎬 推荐视频资源
 
 - [DeepLearning.AI - Multi AI Agent Systems with crewAI](https://www.deeplearning.ai/short-courses/multi-ai-agent-systems-with-crewai/) — 吴恩达出品多Agent系统（免费）

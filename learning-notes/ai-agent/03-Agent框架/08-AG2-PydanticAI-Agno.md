@@ -164,6 +164,65 @@ result = agent.run("北京今天天气怎么样？")
 | 学习曲线 | 中 | 低 | 低 | 极低 |
 | 模型支持 | 多模型 | 多模型 | 多模型 | HuggingFace |
 | 适用场景 | 复杂多Agent | 生产级API | 快速开发 | 原型验证 |
+> 🔄 更新于 2026-04-23
+
+## 6. 2026 版本演进
+
+### PydanticAI v1.0 稳定版
+
+<!-- version-check: PydanticAI v1.0.1 (2025-09), 15.5K+ Stars, checked 2026-04-23 -->
+
+PydanticAI 于 2025 年 9 月发布 v1.0 稳定版，承诺 API 稳定性直到 v2。15.5K+ GitHub Stars，Pydantic 验证库已达 100 亿+ 下载量。来源：[PydanticAI Changelog](https://pydantic.dev/docs/ai/project/changelog/)、[Pydantic 10B Downloads](https://pydantic.dev/articles/pydantic-validation-10-billion-downloads)
+
+```
+v1.0 核心特性：
+├─ API 稳定性承诺 — 不会引入破坏性变更直到 v2
+├─ MCP 客户端支持 — Agent 可连接 MCP Server 使用工具
+├─ A2A 协议支持 — 声明式 Agent 定义（YAML/JSON）
+├─ InstrumentationSettings v2 — 默认使用新版追踪
+├─ Python 3.10+ — 不再支持 Python 3.9
+└─ pydantic_evals — 安全评估框架（移除 Python evaluator）
+```
+
+### Agno v2.5.10（2026-03）
+
+<!-- version-check: Agno v2.5.10, 400+ contributors, Apache 2.0, checked 2026-04-23 -->
+
+Agno（原 Phidata）在 2026 年 Q1 经历了爆发式增长，从 v2.0 迭代到 v2.5.10，400+ GitHub 贡献者，许可证从 MIT 切换到 Apache 2.0。来源：[Agno Community Roundup](https://www.agno.com/blog/community-roundup-march-2026)
+
+```
+v2.5.0 里程碑（2026-02）：
+├─ Team Modes — coordinate / route / collaborate 三种团队模式
+├─ HITL for Teams — 团队级人机交互
+└─ Apache 2.0 许可 — 从 MIT 切换
+
+v2.5.6 ~ v2.5.10 快速迭代（2026-03）：
+├─ Telegram Interface + Tools — 原生 Telegram 集成
+├─ WhatsApp Interface V2 — 多媒体、交互消息、团队支持
+├─ MLflow Observability — OpenInference 追踪集成
+├─ Docling Reader — 多格式文档解析（PDF/DOCX/PPTX/HTML）
+├─ Parallel Search for Vertex AI — 并行搜索降低延迟
+├─ Built-in Followup Suggestions — followups=True 一行启用
+├─ Tool Hook Message History — pre/post hook 访问消息历史
+├─ GitlabTools — GitLab 集成（社区贡献）
+└─ Extended Gmail/Calendar Tools — Google Workspace 完整集成
+```
+
+### 更新后的框架对比
+
+| 特性 | AG2 | PydanticAI | Agno | smolagents |
+|------|-----|-----------|------|-----------|
+| 最新版本 | 0.6+ | v1.0.1 | v2.5.10 | 1.x |
+| 核心理念 | 多 Agent 对话 | 类型安全 | 高性能运行时 | 极简轻量 |
+| 类型验证 | 弱 | 强（Pydantic） | 中 | 弱 |
+| 多 Agent | 原生群聊 | 手动编排 | Team Modes | 有限 |
+| MCP 支持 | 有限 | 原生客户端 | 通过工具 | 有限 |
+| A2A 支持 | 无 | 声明式 | 无 | 无 |
+| 消息接口 | 无 | 无 | Telegram/WhatsApp | 无 |
+| 代码执行 | Docker 沙箱 | 无 | 无 | 原生 |
+| 许可证 | Apache 2.0 | MIT | Apache 2.0 | Apache 2.0 |
+| 适用场景 | 复杂多Agent | 生产级API | 快速开发+部署 | 原型验证 |
+
 ## 🎬 推荐视频资源
 
 ### 🌐 YouTube

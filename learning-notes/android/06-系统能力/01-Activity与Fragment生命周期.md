@@ -140,3 +140,77 @@ parentFragmentManager.setFragmentResultListener("requestKey", viewLifecycleOwner
     val result = bundle.getString("data")
 }
 ```
+
+> 🔄 更新于 2026-04-23
+
+## 6. Android 16 (API 36) 行为变化
+
+<!-- version-check: Android 16 API 36, Activity behavior changes, checked 2026-04-23 -->
+
+Android 16 对 Activity 和窗口行为引入了多项强制性变化，面向 targetSdk 36 的应用必须适配。来源：[Android 16 Behavior Changes](https://developer.android.com/about/versions/16/behavior-changes-16)
+
+### 6.1 Edge-to-Edge 强制启用
+
+```kotlin
+// Android 15 中可以通过以下方式 opt-out：
+// R.attr.windowOptOutEdgeToEdgeEnforcement = true
+// ⚠️ Android 16 中此属性已废弃且无效！
+
+// 正确做法：适配 edge-to-edge
+class MainActivity : ComponentActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        // enableEdgeToEdge() 在 API 36 中已默认启用
+        enableEdgeToEdge()
+
+        setContent {
+            // 使用 WindowInsets 处理系统栏
+            Scaffold(
+                modifier = Modifier.fillMaxSize(),
+                contentWindowInsets = WindowInsets(0) // 自行处理 insets
+            ) { innerPadding ->
+                Content(modifier = Modifier.padding(innerPadding))
+            }
+        }
+    }
+}
+```
+
+### 6.2 Predictive Back 默认启用
+
+```kotlin
+// Android 16 中 predictive back 系统动画默认启用：
+// - back-to-home 动画
+// - cross-task 动画
+// - cross-activity 动画
+
+// 如果使用自定义返回逻辑，必须迁移到 OnBackPressedCallback
+class MyFragment : Fragment() {
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        // ✅ 正确：使用 OnBackPressedCallback
+        requireActivity().onBackPressedDispatcher.addCallback(
+            viewLifecycleOwner
+        ) {
+            // 自定义返回逻辑
+            if (hasUnsavedChanges) {
+                showSaveDialog()
+            } else {
+                isEnabled = false
+                requireActivity().onBackPressedDispatcher.onBackPressed()
+            }
+        }
+    }
+}
+```
+
+### 6.3 大屏幕适配
+
+```
+Android 16 大屏幕变化：
+├─ 限制屏幕方向和可调整大小的能力被逐步移除
+├─ 应用必须支持任意窗口大小和宽高比
+├─ 多窗口模式成为标准行为
+└─ 建议使用 WindowSizeClass 适配不同屏幕
+```

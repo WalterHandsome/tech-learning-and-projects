@@ -202,3 +202,42 @@ Flask高级特性要点：
 
 这些特性使Flask应用更加模块化和可维护。
 
+## 9. Flask 3.1.x 版本演进
+
+<!-- version-check: Flask 3.1.2, checked 2026-04-23 -->
+
+> 🔄 更新于 2026-04-23
+
+Flask 3.1.2 是当前稳定版（2025-08），Flask 在 2025 年仅发布了两个补丁版本（3.1.1 和 3.1.2）。来源：[A Year In Review: Flask in 2025](https://blog.miguelgrinberg.com/post/a-year-in-review-flask-in-2025)
+
+### 9.1 Flask 3.1.x 新特性
+
+- **密钥轮换**：`SECRET_KEY_FALLBACKS` 支持平滑轮换密钥，旧 session 仍可验证
+- **Partitioned Cookie（CHIPS）**：支持 Chrome 的第三方 Cookie 分区策略
+- **资源限制**：`MAX_FORM_MEMORY_SIZE` 控制表单内存上限
+- **Python 版本**：要求 Python ≥ 3.9，不再支持 3.8
+- **依赖要求**：Werkzeug ≥ 3.x
+
+### 9.2 异步视图支持
+
+Flask 3.x 支持 `async` 视图函数（需安装 `asgiref`）：
+
+```python
+@app.route('/async-data')
+async def async_data():
+    # 异步操作
+    data = await fetch_from_api()
+    return {'data': data}
+```
+
+### 9.3 2026 年 Flask 生态建议
+
+| 场景 | 推荐方案 |
+|------|---------|
+| 新 API 项目 | FastAPI（原生异步、自动文档） |
+| 轻量级 Web 应用 | Flask 3.1.x |
+| 全栈 Web 应用 | Django 6.0 |
+| 已有 Flask 项目 | 继续使用 Flask 3.1.x，无需迁移 |
+
+Flask 在 2026 年保持稳定但迭代缓慢，新项目如需高性能异步 API 建议优先考虑 FastAPI。
+

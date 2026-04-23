@@ -90,3 +90,94 @@ npx expo start
 # - OTA 更新
 # - Expo Go 即时预览
 ```
+
+## 5. React Native 0.85 与 2026 版本演进
+
+<!-- version-check: React Native 0.85.1, checked 2026-04-23 -->
+
+> 🔄 更新于 2026-04-23
+
+### 版本演进
+
+| 版本 | 发布时间 | 关键变化 |
+|------|---------|---------|
+| 0.76 | 2024-10 | New Architecture 成为默认 |
+| 0.82 | 2025-10 | 完全移除 Legacy Architecture，首个纯新架构版本 |
+| 0.83 | 2025-12 | React 19.2 集成，Android 包体积减少 ~3.8MB |
+| 0.85 | 2026-04 | Shared Animation Backend、Metro TLS、多 CDP 连接 |
+
+### 0.85 核心新特性
+
+**Shared Animation Backend（实验性）**
+
+与 Software Mansion 合作开发的新动画引擎，统一了 Animated 和 Reanimated 的底层更新逻辑。现在可以用 `useNativeDriver: true` 驱动 Flexbox 和 position 属性动画：
+
+```jsx
+import { Animated, Button, View, useAnimatedValue } from 'react-native';
+
+// 0.85 新特性：原生驱动的布局属性动画
+function ExpandableBox() {
+  const width = useAnimatedValue(100);
+
+  const expand = () => {
+    Animated.timing(width, {
+      toValue: 300,
+      duration: 500,
+      useNativeDriver: true, // 之前布局属性不支持 native driver
+    }).start();
+  };
+
+  return (
+    <View style={{ flex: 1 }}>
+      <Animated.View style={{ width, height: 100, backgroundColor: 'blue' }} />
+      <Button title="展开" onPress={expand} />
+    </View>
+  );
+}
+```
+
+**多 CDP 连接**
+
+支持多个 Chrome DevTools Protocol 同时连接（React Native DevTools、VS Code、AI Agent），不再互相踢掉会话。
+
+**Metro TLS 支持**
+
+开发服务器支持 HTTPS，用于测试需要安全连接的 API：
+
+```javascript
+// metro.config.js
+const fs = require('fs');
+config.server.tls = {
+  ca: fs.readFileSync('path/to/ca'),
+  cert: fs.readFileSync('path/to/cert'),
+  key: fs.readFileSync('path/to/key'),
+};
+```
+
+### Breaking Changes
+
+```
+Jest Preset 迁移：
+- preset: 'react-native'
++ preset: '@react-native/jest-preset'
+
+Node.js 版本要求：
+- 支持：v20 (>=20.19.4)、v22、v24+
+- 不支持：v21、v23（已 EOL）
+
+已移除 API：
+- StyleSheet.absoluteFillObject → 使用 StyleSheet.absoluteFill
+- AccessibilityInfo.setAccessibilityFocus → 使用 sendAccessibilityEvent
+```
+
+### 2026 年新项目建议
+
+```bash
+# 使用最新 CLI 创建项目（默认 New Architecture）
+npx @react-native-community/cli@latest init MyProject --version latest
+
+# 或使用 Expo SDK 56（包含 RN 0.85）
+npx create-expo-app my-app
+```
+
+来源：[React Native 0.85 Blog](https://reactnative.dev/blog/2026/04/07/react-native-0.85) | [The State of React Native in 2026](https://www.ditto.com/blog/the-state-of-react-native-in-2026)

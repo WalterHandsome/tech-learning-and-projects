@@ -493,6 +493,77 @@ df.groupby('列名').apply(lambda x: x.sort_values('另一列'))
 ## 15. 总结
 
 Pandas 是 Python 数据分析的核心库，提供了强大的数据处理和分析功能。掌握 Pandas 的 Series 和 DataFrame 操作、数据清洗、数据透视、分组聚合等功能，是进行数据分析的基础。Pandas 与 NumPy、Matplotlib 等库的配合使用，可以完成从数据获取到数据可视化的完整数据分析流程。
+
+## 16. Pandas 3.0 版本演进
+
+<!-- version-check: Pandas 3.0.2, checked 2026-04-23 -->
+
+> 🔄 更新于 2026-04-23
+
+Pandas 3.0.0 于 2026-01-21 发布，是期待已久的重大版本，包含多项 Breaking Changes。当前稳定版为 3.0.2（2026-03-30）。来源：[pandas 3.0 released](https://pandas.pydata.org/community/blog/pandas-3.0.html)
+
+### 16.1 三大核心变化
+
+**1. 默认 str 数据类型**
+
+```python
+# Pandas 2.x（旧行为）
+ser = pd.Series(["a", "b"])
+print(ser.dtype)  # object  ← numpy object
+
+# Pandas 3.0（新行为）
+ser = pd.Series(["a", "b"])
+print(ser.dtype)  # str  ← 专用字符串类型
+```
+
+字符串列自动推断为 `str` 而非 `object`，性能更好、类型更安全。强烈建议安装 `pyarrow` 以获得最佳性能。
+
+**2. Copy-on-Write（CoW）默认启用**
+
+```python
+# Pandas 2.x（旧行为）— 链式赋值可能生效也可能不生效
+df["foo"][df["bar"] > 5] = 100  # 不可预测
+
+# Pandas 3.0（新行为）— 必须使用 .loc 一步完成
+df.loc[df["bar"] > 5, "foo"] = 100  # 明确、可预测
+```
+
+所有索引操作的结果都表现为副本，`SettingWithCopyWarning` 已移除。
+
+**3. 日期时间默认精度变更**
+
+```python
+# Pandas 2.x：默认纳秒精度（年份范围 1678-2262）
+# Pandas 3.0：默认微秒精度（避免超出范围错误）
+ts = pd.Timestamp("2026-04-23")
+print(ts.unit)  # 'us'（微秒）
+```
+
+### 16.2 新增 pd.col() 语法
+
+```python
+# 简化 DataFrame.assign 中的列引用
+df = df.assign(
+    total=pd.col("语文") + pd.col("数学") + pd.col("英语")
+)
+```
+
+### 16.3 迁移建议
+
+建议先升级到 Pandas 2.3 并确保代码无警告，再升级到 3.0：
+
+```bash
+# 推荐安装方式
+pip install --upgrade pandas==3.0.* pyarrow
+# 或
+uv pip install pandas==3.0.* pyarrow
+```
+
+| 变化 | 影响 | 应对 |
+|------|------|------|
+| str 替代 object | 检查 `dtype == 'object'` 的代码 | 改为检查 `pd.api.types.is_string_dtype()` |
+| CoW 默认启用 | 链式赋值失效 | 使用 `.loc` 一步完成修改 |
+| 微秒精度 | 纳秒精度代码可能受影响 | 显式指定 `unit='ns'` 如需纳秒 |
 ## 🎬 推荐视频资源
 
 - [freeCodeCamp - Pandas Full Course](https://www.youtube.com/watch?v=gtjxAH8uaP0) — Pandas完整教程

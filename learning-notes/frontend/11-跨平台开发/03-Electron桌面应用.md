@@ -76,3 +76,54 @@ const content = await window.electronAPI.readFile('/path/to/file');
 ```bash
 npx electron-builder --mac --win --linux
 ```
+
+## 5. Electron 41.x 与 2026 版本演进
+
+<!-- version-check: Electron 41.2.0, checked 2026-04-23 -->
+
+> 🔄 更新于 2026-04-23
+
+### 版本演进
+
+| 版本 | Chromium | Node.js | 关键变化 |
+|------|----------|---------|---------|
+| 36 | 136 | 22 | macOS Writing Tools/Autofill/Services 菜单集成 |
+| 40 | 144 | 24.11 | `app.isHardwareAccelerationEnabled()`、RGBAF16 HDR 输出 |
+| 41 | 146 | 24.13 | `allowExtensions` 自定义协议扩展、窗口 min/max 约束强制 |
+| 42 beta | 148 | 24.14 | 开发中 |
+
+### Electron 41 新特性
+
+```javascript
+// 自定义协议支持 Chrome 扩展（41 新增）
+protocol.registerSchemesAsPrivileged([
+  {
+    scheme: 'myapp',
+    privileges: {
+      standard: true,
+      secure: true,
+      allowExtensions: true, // 新增：启用 Chrome 扩展
+    },
+  },
+]);
+```
+
+### Tauri 2.0 替代方案
+
+2026 年 Tauri 2.0 已成为 Electron 的主要竞争者，适合对包体积和内存敏感的场景：
+
+| 对比项 | Electron 41 | Tauri 2.0 |
+|--------|------------|-----------|
+| 安装包大小 | ~244 MB | ~8.6 MB |
+| 内存占用 | 较高（Chromium） | 较低（系统 WebView） |
+| 后端语言 | Node.js | Rust |
+| 移动端支持 | ❌ | ✅（iOS/Android） |
+| 生态成熟度 | 极高（VS Code、Slack） | 快速增长 |
+| 学习曲线 | 低（纯 Web 技术） | 中（需了解 Rust） |
+
+**选型建议**：
+- 需要最大生态兼容性和 Node.js 原生模块 → Electron
+- 追求小包体积、低内存、跨移动端 → Tauri 2.0
+- 已有 Electron 项目 → 继续 Electron，无需迁移
+
+来源：[Electron 41 Release](https://electronjs.org/blog/electron-41-0) | [Tauri vs Electron 2026](https://tech-insider.org/tauri-vs-electron-2026/)

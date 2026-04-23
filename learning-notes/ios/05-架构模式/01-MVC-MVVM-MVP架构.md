@@ -170,3 +170,82 @@ protocol UserInteractorProtocol {
 
 - [Sean Allen - MVVM in SwiftUI](https://www.youtube.com/watch?v=wEf1YS4vyW8) — SwiftUI MVVM架构
 - [Essential Developer - iOS Architecture](https://www.youtube.com/c/EssentialDeveloper) — iOS架构设计频道
+
+## 6. 2026 年 iOS 架构选型建议
+
+<!-- version-check: iOS Architecture 2026, @Observable (iOS 17+), Swift 6.2, checked 2026-04-23 -->
+
+> 🔄 更新于 2026-04-23
+
+### @Observable 替代 ObservableObject
+
+iOS 17+ 引入的 `@Observable` 宏已成为 2026 年 SwiftUI MVVM 的推荐方案，替代 `ObservableObject` + `@Published`：
+
+```swift
+import Observation
+
+// 2026 推荐：@Observable（iOS 17+）
+@Observable
+class UserListViewModel {
+    var users: [User] = []
+    var isLoading = false
+    var errorMessage: String?
+
+    private let repository: UserRepository
+
+    init(repository: UserRepository = UserRepository()) {
+        self.repository = repository
+    }
+
+    func fetchUsers() async {
+        isLoading = true
+        defer { isLoading = false }
+        do {
+            users = try await repository.getUsers()
+        } catch {
+            errorMessage = error.localizedDescription
+        }
+    }
+}
+
+// View 不再需要 @StateObject，直接用 @State
+struct UserListView: View {
+    @State private var viewModel = UserListViewModel()
+
+    var body: some View {
+        List(viewModel.users) { user in
+            Text(user.name)
+        }
+        .overlay { if viewModel.isLoading { ProgressView() } }
+        .task { await viewModel.fetchUsers() }
+    }
+}
+```
+
+### @Observable vs ObservableObject 对比
+
+| 特性 | @Observable (iOS 17+) | ObservableObject |
+|------|----------------------|-----------------|
+| 属性标注 | 无需（自动追踪） | 需要 `@Published` |
+| View 注入 | `@State` | `@StateObject` / `@ObservedObject` |
+| 性能 | 属性级精确追踪 | 对象级通知（任一属性变化触发全部） |
+| Environment | `@Environment(ViewModel.self)` | `@EnvironmentObject` |
+| 最低版本 | iOS 17 | iOS 13 |
+
+### 架构选型决策树（2026）
+
+```
+新项目（iOS 17+）
+├── SwiftUI 为主 → MVVM + @Observable
+│   ├── 小型项目 → 直接 @Observable ViewModel
+│   └── 大型项目 → Clean Architecture + @Observable
+├── UIKit 为主 → MVVM + Combine 绑定
+└── 混合项目 → MVVM + @Observable（SwiftUI）+ Combine（UIKit）
+
+维护项目
+├── 已用 ObservableObject → 逐步迁移到 @Observable
+├── 已用 MVC → 新模块用 MVVM，旧模块保持
+└── 已用 VIPER → 继续维护，新模块可简化为 MVVM
+```
+
+来源：[Apple Observation Framework](https://developer.apple.com/documentation/observation) | [SwiftUI MVVM 2026 Best Practices](https://copyprogramming.com/howto/ios-app-architecture)
