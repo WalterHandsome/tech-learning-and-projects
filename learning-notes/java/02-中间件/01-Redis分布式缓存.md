@@ -883,3 +883,73 @@ spring:
 ### 📺 B站（Bilibili）
 - [黑马程序员 - Redis实战](https://www.bilibili.com/video/BV1cr4y1671t) — Redis完整中文教程
 - [尚硅谷 - Redis7教程](https://www.bilibili.com/video/BV1Fd4y1S7dz) — Redis7最新教程
+
+<!-- version-check: Redis 8.6.0, checked 2026-04-22 -->
+
+> 🔄 更新于 2026-04-22
+
+## Redis 8.x 版本演进
+
+### 版本发布时间线
+
+| 版本 | 发布日期 | 重点 |
+|------|---------|------|
+| Redis 8.0 | 2025-05 | 首个 8.x 版本，统一 Redis Stack 模块 |
+| Redis 8.2 | 2025-08 | CLUSTER SLOT-STATS、Streams ACK 简化 |
+| Redis 8.4 | 2025-11 | Atomic Slot Migration、Streams 消费者改进 |
+| Redis 8.6 | 2026-02 | **5x+ 吞吐量提升**、幂等 Streams、热键检测 |
+
+### Redis 8.6 核心新特性
+
+**1. 性能飞跃**
+
+Redis 8.6 相比 Redis 7.2 实现了超过 **5 倍的吞吐量提升**（典型缓存场景）：
+
+- Pipeline size=1 时已有 5x+ 提升
+- Pipeline size=16 时达到 **3.5M ops/sec**
+- Sorted Set 命令延迟降低 **35%**
+- GET 短字符串延迟降低 **15%**
+- Hash 内存占用减少 **16.7%**，Sorted Set 减少 **30.5%**
+- Vector Set 插入性能提升 **43%**，查询提升 **58%**
+
+**2. Streams 幂等生产（At-Most-Once）**
+
+```
+# 新增幂等生产保证：即使生产者崩溃后重发，消息也只会被添加一次
+XADD mystream <message-id> field value
+```
+
+解决了分布式系统中 Streams 消息重复的痛点。
+
+**3. 热键检测**
+
+```
+# 新增 HOTKEYS 命令，检测消耗过多 CPU/网络资源的键
+HOTKEYS
+```
+
+配合 Redis 8.2 的 `CLUSTER SLOT-STATS`（热槽检测）和 8.4 的 Atomic Slot Migration（热槽迁移），形成完整的热点治理链路。
+
+**4. 新增驱逐策略**
+
+- `allkeys-lrm`：驱逐最近最少**修改**的键（所有键）
+- `volatile-lrm`：驱逐最近最少**修改**的键（仅有 TTL 的键）
+
+适用于 AI 推理缓存等"写入后长期读取"的场景。
+
+**5. TLS 证书自动认证**
+
+mTLS 客户端可基于证书 Common Name (CN) 自动映射到 ACL 用户，无需再发送 `AUTH` 命令。
+
+### Redis Feature Form（2026-04-20）
+
+Redis 最新发布了 **Redis Feature Form**，一个企业级特征存储（Feature Store）：
+
+- 统一批处理和流式数据管道
+- 多租户工作空间
+- 细粒度作业控制和原子 DAG 更新
+- RBAC 安全和重新设计的仪表板
+
+标志着 Redis 从缓存/数据库向 **AI/ML 基础设施平台**演进。
+
+来源：[Redis 8.6 发布公告](https://redis.io/blog/announcing-redis-86-performance-improvements-streams/) | [Redis Feature Form](https://www.globenewswire.com/news-release/2026/04/20/3277055/0/en/redis-introduces-redis-feature-form-an-enterprise-feature-store-for-production-machine-learning.html)

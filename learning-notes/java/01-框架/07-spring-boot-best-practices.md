@@ -343,3 +343,46 @@ ENTRYPOINT ["java", "-XX:+UseZGC", "-jar", "app.jar"]
 - [Spring Cloud 文档](https://spring.io/projects/spring-cloud)
 - [微服务最佳实践](https://microservices.io/)
 
+
+<!-- version-check: Spring Boot 4.0.4, checked 2026-04-22 -->
+
+> 🔄 更新于 2026-04-22
+
+## 8. Spring Boot 4.0.x 补丁版本追踪
+
+### 8.1 版本发布时间线
+
+| 版本 | 发布日期 | 重点 |
+|------|---------|------|
+| 4.0.0 GA | 2025-11-20 | 首个正式版 |
+| 4.0.1 | 2026-01 | Bug 修复 |
+| 4.0.2 | 2026-02 | Bug 修复 |
+| 4.0.4 | 2026-03-19 | **安全修复**（CVE-2026-22731、CVE-2026-22733） |
+
+### 8.2 CVE-2026-22731 与 CVE-2026-22733
+
+Spring Boot 4.0.4 修复了两个 Actuator 相关的认证绕过漏洞：
+
+- **CVE-2026-22731**：Actuator Health groups 路径下的认证绕过
+- **CVE-2026-22733**：Actuator CloudFoundry 端点的认证绕过
+
+**影响范围**：使用 Spring Boot Actuator 且暴露了 Health groups 或 CloudFoundry 端点的应用
+
+**建议**：所有生产环境应立即升级到 4.0.4+
+
+来源：[Spring Boot 4.0.4 发布公告](https://spring.io/blog/2026/03/19/spring-boot-4-0-4-available-now) | [CVE-2026-22733](https://nvd.nist.gov/vuln/detail/CVE-2026-22733)
+
+### 8.3 Spring Boot 3.x EOL 提醒
+
+| 版本 | OSS 支持截止 | 状态 |
+|------|-------------|------|
+| Spring Boot 3.5.x | 2026-06 | ⚠️ 即将 EOL |
+| Spring Boot 4.0.x | 2026-12 | ✅ 当前推荐 |
+
+迁移路径：3.x → 3.5.x → 4.0.x（参考 [Spring Boot 3 EOL 升级指南](https://loiane.com/2026/04/spring-boot-3-eol-to-4-upgrade-playbook-jackson-3/)）
+
+关键迁移注意事项：
+- Jackson 2 → Jackson 3（Spring Boot 4.0 默认）
+- `javax.*` → `jakarta.*`（如果从 2.x 直接升级）
+- RestTemplate → RestClient（推荐）
+- OpenFeign → HTTP Interface Client（Spring Cloud 2025.1）

@@ -112,6 +112,111 @@ carthage update --platform iOS --use-xcframeworks
 推荐场景        老项目兼容       新项目首选        需要预编译
 ```
 
+## 6. Swift 6.3 与 SPM 新特性
+
+<!-- version-check: Swift 6.3, SPM with Swift Build preview, checked 2026-04-22 -->
+
+> 🔄 更新于 2026-04-22
+
+Swift 6.3（2026-03-24）为 SPM 带来了重要改进，包括 Swift Build 集成预览和预编译 Swift Syntax 支持。同时 Swift 6.3 新增 `@c` 属性实现 Swift→C 互操作，以及官方 Android SDK。来源：[Swift 6.3 Released](https://www.swift.org/blog/swift-6.3-released/)
+
+### 6.1 SPM 新功能
+
+```swift
+// swift-tools-version: 6.3
+import PackageDescription
+
+let package = Package(
+    name: "MyLibrary",
+    platforms: [.iOS(.v18)],
+    products: [
+        .library(name: "MyLibrary", targets: ["MyLibrary"]),
+    ],
+    dependencies: [
+        .package(url: "https://github.com/Alamofire/Alamofire.git", from: "5.10.0"),
+        // Swift 6.3：预编译 Swift Syntax 支持（宏库编译更快）
+        .package(url: "https://github.com/swiftlang/swift-syntax.git", from: "602.0.0"),
+    ],
+    targets: [
+        .target(
+            name: "MyLibrary",
+            dependencies: ["Alamofire"]
+        ),
+        // 宏目标可以使用预编译的 swift-syntax
+        .macro(
+            name: "MyMacros",
+            dependencies: [
+                .product(name: "SwiftSyntaxMacros", package: "swift-syntax"),
+            ]
+        ),
+        .testTarget(
+            name: "MyLibraryTests",
+            dependencies: ["MyLibrary"]
+        ),
+    ]
+)
+```
+
+### 6.2 Swift Build 集成预览
+
+```bash
+# Swift 6.3 将 Swift Build 集成到 SPM（预览阶段）
+# 统一构建引擎，跨平台一致的构建体验
+swift build --build-system swift-build
+
+# 传统构建系统仍然是默认选项
+swift build
+```
+
+### 6.3 @c 属性（Swift→C 互操作）
+
+```swift
+// Swift 6.3 新增：将 Swift 函数暴露给 C 代码
+@c
+func callFromC() { ... }
+
+// 生成的 C 头文件：
+// void callFromC(void);
+
+// 自定义 C 名称
+@c(MyLibrary_callFromC)
+func callFromC() { ... }
+
+// 配合 @implementation 实现 C 头文件中声明的函数
+@c @implementation
+func callFromC() { ... }
+```
+
+### 6.4 模块选择器
+
+```swift
+import ModuleA
+import ModuleB
+
+// Swift 6.3：使用 :: 语法消除同名 API 歧义
+let x = ModuleA::getValue()
+let y = ModuleB::getValue()
+
+// 访问 Swift 标准库的并发 API
+let task = Swift::Task {
+    // 异步工作
+}
+```
+
+### 6.5 版本对比
+
+```
+特性                SPM (Swift 5.9)    SPM (Swift 6.3)
+──────────────────────────────────────────────────────
+构建引擎            llbuild            Swift Build（预览）
+宏编译              源码编译            预编译 swift-syntax
+C 互操作            桥接头文件          @c 属性
+模块歧义            类型别名            :: 模块选择器
+Android 支持        ❌                 ✅ 官方 SDK
+```
+
+> **建议**：新项目使用 `swift-tools-version: 6.3`，利用预编译 swift-syntax 加速宏编译。Swift Build 集成仍在预览阶段，生产项目暂时使用默认构建系统。
+
 ## 5. SPM 本地包开发
 
 ```swift

@@ -288,6 +288,53 @@ def autonomous_agent(task: str, max_turns: int = 10) -> str:
 | 调试难度   | 简单               | 复杂               |
 | 成本控制   | 容易               | 需要限制轮次        |
 | 适用场景   | 明确流程、高可靠性   | 开放式、探索性任务   |
+
+## 9. 2026 新模式：Managed Agents 与 Agent Teams
+
+> 🔄 更新于 2026-04-22
+
+<!-- version-check: Claude Managed Agents public beta, Agent Teams (Opus 4.6), checked 2026-04-22 -->
+
+### 9.1 Claude Managed Agents（托管 Agent 运行时）
+
+Anthropic 推出 Managed Agents，将 Agent 从"开发者自建 harness"升级为"平台托管运行时"。核心理念：将"大脑"（模型）与"双手"（harness）解耦，harness 编码的假设会随模型进步而过时，因此需要稳定的接口层。来源：[Anthropic Engineering - Decoupling the brain from the hands](https://www.anthropic.com/engineering/managed-agents)
+
+```
+传统模式（自建 Harness）:
+  开发者 → 构建 Agent 运行时 → 管理工具/环境/会话/错误恢复
+  问题：harness 假设随模型升级而过时，维护成本高
+
+Managed Agents 模式（托管运行时）:
+  开发者 → 定义 Agent（指令 + 工具 + 约束）→ Anthropic 托管运行时
+  提供：Agent 定义、云环境、会话管理、事件流、内置工具
+  优势：harness 由 Anthropic 维护，随模型升级自动优化
+```
+
+### 9.2 Claude Code Agent Teams
+
+随 Opus 4.6 发布（2026-02），Claude Code 支持在一个会话中生成独立的 Agent 队友。来源：[Claude Code Agent Teams Guide](https://lushbinary.com/blog/claude-code-agent-teams-multi-agent-development-guide/)
+
+```
+Agent Teams 架构：
+  ┌─────────────────────────────────────┐
+  │          Lead Agent（主 Agent）       │
+  │  负责规划、分解任务、协调队友          │
+  └──────────┬──────────┬───────────────┘
+             │          │
+    ┌────────┴──┐  ┌────┴────────┐
+    │ Teammate A│  │ Teammate B  │
+    │ 研究/调研  │  │ 编码/实现    │
+    └─────┬─────┘  └──────┬──────┘
+          │               │
+          └───── 邮箱通信 ──┘
+          （peer-to-peer mailbox）
+```
+
+关键特性：
+- 每个 Teammate 是独立的 Agent 实例，有自己的上下文和工具
+- 通过 peer-to-peer 邮箱机制通信，非中央控制
+- Lead Agent 可以动态创建和分配 Teammate
+- 适用于大型代码库的并行开发任务
 ## 🎬 推荐视频资源
 
 - [DeepLearning.AI - Agentic AI with Andrew Ng](https://www.deeplearning.ai/courses/agentic-ai/) — Agentic设计模式全面讲解（免费）

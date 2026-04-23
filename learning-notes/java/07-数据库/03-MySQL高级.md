@@ -332,3 +332,62 @@ mysql -u root -p database_name < backup.sql
 3. **连接数过多**：检查连接池配置，优化连接使用
 4. **内存使用过高**：调整innodb_buffer_pool_size等参数
 
+
+<!-- version-check: MySQL 8.4.5 LTS, MySQL 9.3 Innovation, checked 2026-04-22 -->
+
+> 🔄 更新于 2026-04-22
+
+## 9. MySQL 版本演进（2026）
+
+### 9.1 当前版本格局
+
+| 版本 | 类型 | 状态 | 适用场景 |
+|------|------|------|---------|
+| MySQL 8.4.5 | LTS（长期支持） | ✅ 生产推荐 | 企业级应用、稳定性优先 |
+| MySQL 9.3.0 | Innovation（创新版） | 🧪 公开预览 | 新特性尝鲜、AI/ML 场景 |
+
+### 9.2 MySQL 9.x Innovation Release 新特性
+
+**1. VECTOR 数据类型**（MySQL 9.0+）
+
+```sql
+-- 创建包含向量字段的表
+CREATE TABLE documents (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    content TEXT,
+    embedding VECTOR(768)  -- 768 维向量
+);
+
+-- 插入向量数据
+INSERT INTO documents (content, embedding)
+VALUES ('AI Agent 技术', TO_VECTOR('[0.1, 0.2, ...]'));
+```
+
+MySQL 原生支持向量存储和相似度搜索，适用于 RAG、语义搜索等 AI 场景。
+
+**2. JavaScript 存储程序**（MySQL 9.3）
+
+```sql
+-- 使用 JavaScript 编写存储函数
+CREATE FUNCTION format_currency(amount DECIMAL(10,2), locale VARCHAR(10))
+RETURNS VARCHAR(50)
+LANGUAGE JAVASCRIPT AS $$
+    return new Intl.NumberFormat(locale, {
+        style: 'currency',
+        currency: 'USD'
+    }).format(amount);
+$$;
+
+SELECT format_currency(1234.56, 'en-US');
+-- $1,234.56
+```
+
+支持 Intl 对象进行本地化格式化，完整的 DECIMAL 处理。
+
+### 9.3 版本选择建议
+
+- **新项目**：MySQL 8.4.x LTS（稳定、长期支持）
+- **AI/ML 场景**：评估 MySQL 9.x（VECTOR 类型）或考虑 PostgreSQL + pgvector
+- **升级路径**：5.7 → 8.0 → 8.4 LTS（跳过 9.x Innovation 版本）
+
+来源：[MySQL 9.3 新特性](https://dev.mysql.com/doc/mysqld-version-reference/en/) | [MySQL Community Early Access](https://blogs.oracle.com/mysql/mysql-community-early-access-builds)

@@ -128,3 +128,79 @@ Retrofit.Builder()
 
 // 推荐：新项目用 kotlinx.serialization，已有项目按现有选择
 ```
+
+## 6. 2026 版本演进与 Ktor 集成
+
+<!-- version-check: kotlinx-serialization 1.8.x (Kotlin 2.3.20), Ktor 3.4.0, checked 2026-04-22 -->
+
+> 🔄 更新于 2026-04-22
+
+kotlinx.serialization 随 Kotlin 2.3.20 持续更新，Ktor 3.4.0 带来了 OpenAPI 生成和 Zstd 支持。来源：[Ktor 3.4.0](https://blog.jetbrains.com/kotlin/2026/01/ktor-3-4-0-is-now-available/)
+
+### 6.1 kotlinx.serialization 最新实践
+
+```kotlin
+// build.gradle.kts（Kotlin 2.3.20 + kotlinx-serialization）
+plugins {
+    id("org.jetbrains.kotlin.plugin.serialization") version "2.3.20"
+}
+
+dependencies {
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.8.1")
+}
+
+// 2026 推荐 Json 配置
+val json = Json {
+    ignoreUnknownKeys = true       // 忽略未知字段
+    encodeDefaults = false          // 不序列化默认值
+    coerceInputValues = true        // null → 默认值
+    explicitNulls = false           // 不输出 null 字段
+    isLenient = true                // 宽松解析
+    prettyPrint = false             // 生产环境关闭美化
+}
+```
+
+### 6.2 Ktor 3.4.0 网络客户端
+
+```kotlin
+// Ktor 3.4.0 作为 OkHttp 的 Kotlin 原生替代
+// build.gradle.kts
+dependencies {
+    implementation("io.ktor:ktor-client-core:3.4.0")
+    implementation("io.ktor:ktor-client-okhttp:3.4.0")  // 或 CIO 引擎
+    implementation("io.ktor:ktor-client-content-negotiation:3.4.0")
+    implementation("io.ktor:ktor-serialization-kotlinx-json:3.4.0")
+}
+
+// 配置 Ktor 客户端
+val client = HttpClient(OkHttp) {
+    install(ContentNegotiation) {
+        json(Json {
+            ignoreUnknownKeys = true
+            encodeDefaults = false
+        })
+    }
+    install(HttpTimeout) {
+        requestTimeoutMillis = 15_000
+        connectTimeoutMillis = 10_000
+    }
+}
+
+// 使用
+suspend fun getUsers(): List<User> {
+    return client.get("https://api.example.com/users").body()
+}
+```
+
+### 6.3 序列化方案选型（2026）
+
+```
+方案                    推荐场景                    KMP 支持
+──────────────────────────────────────────────────────────
+kotlinx.serialization   新项目、KMP 项目             ✅ 全平台
+Moshi                   已有 Square 技术栈           ❌ JVM only
+Gson                    已有 Java 项目               ❌ JVM only
+Ktor serialization      Ktor 客户端/服务端           ✅ 全平台
+```
+
+> **2026 推荐**：新项目统一使用 `kotlinx.serialization`，配合 Ktor 3.4.0 或 Retrofit 3.0 使用。KMP 项目必须使用 `kotlinx.serialization`。

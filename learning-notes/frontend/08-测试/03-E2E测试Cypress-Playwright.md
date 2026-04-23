@@ -92,7 +92,69 @@ describe('Login', () => {
 });
 ```
 
-## 3. 对比
+## 3. Playwright 1.59 新特性（2026-03）
+
+> 🔄 更新于 2026-04-22
+
+<!-- version-check: Playwright 1.59.x, checked 2026-04-22 -->
+
+### 3.1 Screencast API — Agentic 视频回执
+
+Playwright 1.59 新增 `page.screencast` API，为 AI Agent 工作流提供视频录制和注解能力。Agent 完成任务后可以录制验证视频作为"回执"，比文本日志更直观。来源：[Playwright Release Notes](https://playwright.dev/python/docs/release-notes)
+
+```javascript
+// 基础录制
+await page.screencast.start({ path: 'video.webm' });
+// ... 执行操作 ...
+await page.screencast.stop();
+
+// 动作注解 — 高亮交互元素并显示操作标题
+await page.screencast.showActions({ position: 'top-right' });
+
+// 章节标题 — 为视频添加上下文说明
+await page.screencast.showChapter('验证结账流程', {
+  description: '根据工单 #1234 添加优惠券支持',
+  duration: 1000,
+});
+
+// Agentic 视频回执 — Agent 录制验证视频供人工审查
+await page.screencast.start({ path: 'receipt.webm' });
+await page.screencast.showActions({ position: 'top-right' });
+await page.screencast.showChapter('验证优惠券功能');
+await page.locator('#coupon').fill('SAVE20');
+await page.locator('#apply-coupon').click();
+await expect(page.locator('.discount')).toContainText('20%');
+await page.screencast.showChapter('完成', {
+  description: '优惠券已应用，折扣已反映在总价中',
+});
+await page.screencast.stop();
+
+// 实时帧捕获 — 流式 JPEG 帧用于 AI 视觉分析
+await page.screencast.start({
+  onFrame: (frame) => sendToVisionModel(frame.data),
+});
+```
+
+### 3.2 交互式定位器选择
+
+```javascript
+// page.pickLocator() — 悬停高亮元素，点击获取 Locator
+const locator = await page.pickLocator();
+// 取消选择
+await page.cancelPickLocator();
+
+// locator.normalize() — 将定位器转换为最佳实践格式（test id、aria role）
+const normalized = locator.normalize();
+```
+
+### 3.3 其他改进
+
+- `browserContext.setStorageState()` — 清除并设置新的存储状态，无需创建新上下文
+- `browserContext.debugger` — 编程式控制 Playwright 调试器
+- `tracing.start({ live: true })` — 实时 trace 更新
+- `response.httpVersion()` — 获取响应使用的 HTTP 版本
+
+## 4. 对比
 
 | 特性 | Playwright | Cypress |
 |------|-----------|---------|
@@ -102,3 +164,5 @@ describe('Login', () => {
 | 并行执行 | 原生支持 | 需要付费 |
 | API 测试 | 支持 | 支持 |
 | 语言 | JS/TS/Python/Java/C# | JS/TS |
+| Screencast API | ✅（1.59+） | ❌ |
+| Agent 集成 | ✅（视频回执） | ❌ |

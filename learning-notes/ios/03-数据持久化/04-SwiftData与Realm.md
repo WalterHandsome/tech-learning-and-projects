@@ -111,7 +111,120 @@ struct FilteredView: View {
 }
 ```
 
-## 5. Realm 数据模型
+## 5. SwiftData iOS 26 新特性：继承与 Schema 迁移
+
+<!-- version-check: SwiftData iOS 26 (Xcode 26.4), checked 2026-04-22 -->
+
+> 🔄 更新于 2026-04-22
+
+iOS 26 为 SwiftData 带来了**类继承**支持和 **Schema 迁移**改进，这是自 iOS 17 引入 SwiftData 以来最重要的数据建模能力升级。来源：[WWDC25 Session 291](https://developer.apple.com/videos/play/wwdc2025/291/)
+
+### 5.1 类继承建模
+
+```swift
+import SwiftData
+
+// 父类模型
+@Model
+class Vehicle {
+    var make: String
+    var model: String
+    var year: Int
+
+    init(make: String, model: String, year: Int) {
+        self.make = make
+        self.model = model
+        self.year = year
+    }
+}
+
+// 子类继承父类属性，并添加自己的属性
+@Model
+class Car: Vehicle {
+    var numberOfDoors: Int
+
+    init(make: String, model: String, year: Int, numberOfDoors: Int) {
+        self.numberOfDoors = numberOfDoors
+        super.init(make: make, model: model, year: year)
+    }
+}
+
+@Model
+class Truck: Vehicle {
+    var payloadCapacity: Double
+
+    init(make: String, model: String, year: Int, payloadCapacity: Double) {
+        self.payloadCapacity = payloadCapacity
+        super.init(make: make, model: model, year: year)
+    }
+}
+```
+
+### 5.2 继承模型的查询优化
+
+```swift
+// 查询所有 Vehicle（包括 Car 和 Truck）
+@Query var allVehicles: [Vehicle]
+
+// 只查询 Car 子类
+@Query var cars: [Car]
+
+// 使用 #Predicate 过滤继承层级
+@Query(filter: #Predicate<Vehicle> { $0.year >= 2024 })
+var recentVehicles: [Vehicle]
+```
+
+### 5.3 容器配置（需注册所有子类）
+
+```swift
+@main
+struct MyApp: App {
+    var body: some Scene {
+        WindowGroup {
+            ContentView()
+        }
+        // 注册父类和所有子类
+        .modelContainer(for: [Vehicle.self, Car.self, Truck.self])
+    }
+}
+```
+
+### 5.4 Schema 迁移到继承
+
+```swift
+// 从扁平模型迁移到继承模型时，使用 SchemaMigrationPlan
+enum VehicleMigrationPlan: SchemaMigrationPlan {
+    static var schemas: [any VersionedSchema.Type] {
+        [SchemaV1.self, SchemaV2.self]
+    }
+
+    static var stages: [MigrationStage] {
+        [migrateV1toV2]
+    }
+
+    // 自定义迁移逻辑
+    static let migrateV1toV2 = MigrationStage.custom(
+        fromVersion: SchemaV1.self,
+        toVersion: SchemaV2.self
+    ) { context in
+        // 将旧数据迁移到新的继承结构
+        try context.save()
+    }
+}
+```
+
+### 5.5 继承 vs 组合选择
+
+```
+场景                    推荐方式        原因
+──────────────────────────────────────────────────
+共享属性 + 多态查询      继承           父类查询自动包含子类
+独立数据 + 关联关系      组合           @Relationship 更灵活
+跨模块复用              组合           继承耦合度高
+简单标记区分            枚举属性        不需要继承的复杂性
+```
+
+## 6. Realm 数据模型
 
 ```swift
 import RealmSwift

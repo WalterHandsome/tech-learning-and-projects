@@ -10,9 +10,25 @@
 
 ### 演示文稿 / 幻灯片
 
+> 🔄 更新于 2026-04-22
+
+**Agent Skill 类**（给 Claude Code / Kiro / Cursor 等 Agent 用）
+
 | 项目 | Stars | 描述 | 链接 |
 | ---- | ----- | ---- | ---- |
 | zarazhangrui/frontend-slides | — | Claude Code Skill，用自然语言生成动画丰富的 HTML 演示文稿。零依赖单文件输出，12 种视觉风格，支持 PPT 转 Web，可部署到 Vercel 或导出 PDF | [GitHub](https://github.com/zarazhangrui/frontend-slides) |
+| MiniMax-AI/skills (pptx-generator) | — | MiniMax 官方 Skill，用 PptxGenJS 从零创建真正的 .pptx 文件（封面、目录、内容、分隔页、总结页），支持通过 XML 编辑已有 PPTX，内置完整设计系统（配色、字体、样式） | [GitHub](https://github.com/MiniMax-AI/skills) |
+| mpuig/agent-slides | — | 生产级 Agent Skill，专注企业品牌合规。提取企业模板的布局/配色/字体规则，自动 QA 校验（字号、对比度、溢出），确定性输出，支持 Claude Code / Cursor / Gemini CLI | [GitHub](https://github.com/mpuig/agent-slides) · [官网](https://agent-slides.com/) |
+| SlideSpeak/skills | — | SlideSpeak 官方 Skill + MCP Server，调用 SlideSpeak API 生成可编辑 .pptx。支持品牌模板、语气/长度控制、异步任务轮询，500+ 企业在用 | [GitHub](https://github.com/SlideSpeak/skills) |
+| tfriedel/claude-office-skills | — | 完整 Office 文档 Skill 套件（PPTX + DOCX + XLSX + PDF）。PPT 部分支持 HTML 转 PPTX、模板替换、缩略图校验、OOXML 直接编辑 | [GitHub](https://github.com/tfriedel/claude-office-skills) |
+| Felo Skills (felo-slides) | — | Felo AI 出品，通过 Felo PPT Task API 生成专业幻灯片，npm 一键安装，支持 Claude Code / OpenClaw | [Felo 官网](https://felo.ai/skills/claudecode/felo-slides) |
+
+**独立 AI PPT 生成平台**（可自托管）
+
+| 项目 | Stars | 描述 | 链接 |
+| ---- | ----- | ---- | ---- |
+| icip-cas/PPTAgent (DeepPresenter) | 2k+ | 中科院出品，EMNLP 2025 / ACL 2026 论文项目。自带微调模型 DeepPresenter-9B，支持深度研究集成、自由排版、自动配图、沙箱环境 + 20 多个工具，有 MCP Server 和 CLI | [GitHub](https://github.com/icip-cas/PPTAgent) |
+| presenton/presenton | — | Gamma / Beautiful.ai 的开源替代品（Apache 2.0）。桌面端 + Docker 自托管，支持 OpenAI / Gemini / Anthropic / Ollama，可用已有 PPTX 做模板，内置 MCP Server | [GitHub](https://github.com/presenton/presenton) |
 
 ### 技术图表 / 架构图
 

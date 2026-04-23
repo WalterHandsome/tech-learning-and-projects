@@ -512,3 +512,160 @@ Python数据库操作工具：
 
 选择合适的工具可以高效地进行数据库操作。
 
+
+<!-- version-check: SQLAlchemy 2.0.49, Pydantic 2.13, checked 2026-04-22 -->
+
+> 🔄 更新于 2026-04-22
+
+## 10. SQLAlchemy 2.0.x 版本演进
+
+### 10.1 当前版本
+
+SQLAlchemy **2.0.49** 是当前最新稳定版（2026-04），2.1.x 正在开发中。
+
+### 10.2 SQLAlchemy 2.0 vs 1.x 关键变化
+
+SQLAlchemy 2.0 是一次重大重写，如果文档中仍使用 1.x 风格代码，建议迁移：
+
+```python
+# ❌ 旧版 1.x 风格（已废弃）
+from sqlalchemy.ext.declarative import declarative_base
+Base = declarative_base()
+
+# ✅ 新版 2.0 风格（推荐）
+from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column
+
+class Base(DeclarativeBase):
+    pass
+
+class User(Base):
+    __tablename__ = 'users'
+
+    # 使用 Mapped 类型注解替代 Column()
+    id: Mapped[int] = mapped_column(primary_key=True)
+    username: Mapped[str] = mapped_column(unique=True)
+    email: Mapped[str] = mapped_column(unique=True)
+    # Optional 字段
+    bio: Mapped[str | None] = mapped_column(default=None)
+```
+
+### 10.3 2.0 风格查询
+
+```python
+from sqlalchemy import select
+from sqlalchemy.orm import Session
+
+# ❌ 旧版查询风格
+# session.query(User).filter(User.username == 'john').first()
+
+# ✅ 新版 select() 风格
+with Session(engine) as session:
+    # 查询单条
+    stmt = select(User).where(User.username == 'john')
+    user = session.scalars(stmt).first()
+
+    # 查询多条
+    stmt = select(User).where(User.email.like('%@example.com'))
+    users = session.scalars(stmt).all()
+
+    # 聚合查询
+    from sqlalchemy import func
+    stmt = select(func.count()).select_from(User)
+    count = session.scalar(stmt)
+```
+
+### 10.4 异步支持
+
+```python
+from sqlalchemy.ext.asyncio import create_async_engine, async_sessionmaker, AsyncSession
+
+# 异步引擎（需要 asyncpg 或 aiomysql 驱动）
+async_engine = create_async_engine('postgresql+asyncpg://user:pass@localhost/db')
+AsyncSessionLocal = async_sessionmaker(async_engine, class_=AsyncSession)
+
+async def get_user(user_id: int):
+    async with AsyncSessionLocal() as session:
+        stmt = select(User).where(User.id == user_id)
+        result = await session.scalars(stmt)
+        return result.first()
+```
+
+### 10.5 安装推荐
+
+```bash
+# 使用 uv（2026 年推荐）
+uv add sqlalchemy[asyncio]
+uv add asyncpg  # PostgreSQL 异步驱动
+uv add aiomysql  # MySQL 异步驱动
+
+# 使用 pip
+pip install sqlalchemy[asyncio] asyncpg
+```
+
+来源：[SQLAlchemy 官方博客](https://www.sqlalchemy.org/blog/)
+
+## 11. Pydantic v2.13 新特性（2026-04-13）
+
+Pydantic v2.13 是数据验证库的最新版本，与 SQLAlchemy 配合使用时非常强大。
+
+### 11.1 多态序列化
+
+```python
+from pydantic import BaseModel
+
+class User(BaseModel):
+    name: str
+
+class UserLogin(User):
+    password: str
+
+class OuterModel(BaseModel):
+    user: User
+
+outer = OuterModel(user=UserLogin(name='test', password='secret'))
+
+# 默认行为：只序列化声明类型的字段
+print(outer.model_dump())
+# {'user': {'name': 'test'}}
+
+# 新增：多态序列化，包含子类的所有字段
+print(outer.model_dump(polymorphic_serialization=True))
+# {'user': {'name': 'test', 'password': 'secret'}}
+```
+
+### 11.2 计算字段的 exclude_if
+
+```python
+from pydantic import BaseModel, computed_field
+
+class Order(BaseModel):
+    cash: int
+    card: int
+
+    @computed_field(exclude_if=lambda v: v == 0)
+    def total(self) -> int:
+        return self.cash + self.card
+
+order = Order(cash=0, card=0)
+order.model_dump()
+# {'cash': 0, 'card': 0}  ← total 为 0 时自动排除
+```
+
+### 11.3 私有属性的 validated data
+
+```python
+from pydantic import BaseModel, PrivateAttr
+
+class Model(BaseModel):
+    foo: int
+    _priv1: int = PrivateAttr(default=2)
+    # default_factory 可以访问已验证的数据
+    _priv2: int = PrivateAttr(
+        default_factory=lambda data: data['foo'] + data['_priv1']
+    )
+
+m = Model(foo=1)
+m._priv2  # 3
+```
+
+来源：[Pydantic v2.13 发布公告](https://pydantic.dev/articles/pydantic-v2-13-release)

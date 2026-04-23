@@ -110,6 +110,8 @@ class BaselineProfileGenerator {
 
 ## 5. ANR 分析
 
+<!-- version-check: Android Performance Tools 2026, Baseline Profiles, checked 2026-04-22 -->
+
 ```kotlin
 // ANR 触发条件：
 // - 主线程 5 秒内未响应输入事件

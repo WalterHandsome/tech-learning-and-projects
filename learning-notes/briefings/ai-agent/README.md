@@ -23,6 +23,8 @@
 
 | 日期 | 要闻 | 收录条目 |
 |------|------|---------|
+| [2026-04-23](./2026/04/2026-04-23.md) | Anthropic Claude Code 定价风波 / Anthropic 经济指数调查 / ChatGPT for Clinicians / Hermes Agent 95.6k Stars | 7 条 |
+| [2026-04-22](./2026/04/2026-04-22.md) | CSA 报告 65% 企业因 Agent 遭安全事件 / OpenAI ChatGPT Images 2.0 + Codex 企业扩张 / GitHub Agent 提交量 14 倍增长 | 6 条 |
 | [2026-04-21](./2026/04/2026-04-21.md) | Amazon 追加投资 Anthropic 250 亿美元 / OpenAI 三高管离职 + Sora 关停 / Cartesian Cut Agent 设计理论 / NVIDIA 披露 Codex AGENTS.md 注入漏洞 | 9 条 |
 | [2026-04-20](./2026/04/2026-04-20.md) | MCP STDIO 漏洞影响 20 万服务器 / OpenAI Codex Computer Use / Claude Opus 4.7 / GPT-5.4-Cyber / Gartner MCP 安全预测 | 15 条 |
 | [2026-04-19](./2026/04/2026-04-19.md) | OpenAI Agents SDK 原生沙箱 / Claude Code Desktop 并行 Agent 重设计 | 11 条 |

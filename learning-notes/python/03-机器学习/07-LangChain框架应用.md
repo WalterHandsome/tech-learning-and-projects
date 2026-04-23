@@ -470,3 +470,65 @@ LangChain 提供了构建强大 LLM 应用所需的所有工具：
 
 - [DeepLearning.AI - LangChain for LLM Application Development](https://www.deeplearning.ai/short-courses/langchain-for-llm-application-development/) — LangChain入门（免费）
 - [freeCodeCamp - LangChain Tutorial](https://www.youtube.com/watch?v=lG7Uxts9SXs) — LangChain完整教程
+
+<!-- version-check: LangChain 1.2.x, LangGraph 1.x, checked 2026-04-22 -->
+
+> 🔄 更新于 2026-04-22
+
+## 13. LangChain 1.0 / 1.2.x 版本演进
+
+### 13.1 LangChain 1.0 正式发布
+
+LangChain 和 LangGraph 在 2025 年底同时发布了 **1.0 正式版**，标志着从实验性框架到生产级工具的转变。当前稳定版为 **1.2.x**，1.3.0 alpha 已在测试中。
+
+核心变化：
+- **聚焦 Agent 循环**：langchain 核心包专注于 Agent 构建
+- **Middleware 概念**：新增中间件机制，提供灵活的请求/响应拦截
+- **模型集成升级**：支持最新的内容类型（图片、音频、视频）
+- **语义版本控制**：遵循 semver，minor 版本不会引入 Breaking Change
+
+### 13.2 包结构变化
+
+```bash
+# 2026 年推荐安装方式
+uv add langchain              # 核心包（1.2.x）
+uv add langchain-openai       # OpenAI 集成
+uv add langchain-anthropic    # Anthropic 集成
+uv add langchain-community    # 社区集成
+uv add langgraph              # Agent 工作流编排（1.x）
+```
+
+### 13.3 新版 Agent 创建方式
+
+```python
+from langchain.agents import create_agent
+from langchain_openai import ChatOpenAI
+from langchain.tools import tool
+
+@tool
+def search(query: str) -> str:
+    """搜索互联网获取信息"""
+    return f"搜索结果: {query}"
+
+# 1.x 新版 create_agent API
+llm = ChatOpenAI(model="gpt-4o")
+agent = create_agent(
+    llm=llm,
+    tools=[search],
+    system_prompt="你是一个有帮助的助手。"
+)
+
+# 运行 Agent
+result = agent.invoke({"input": "今天天气怎么样？"})
+```
+
+### 13.4 LangSmith Fleet（原 Agent Builder）
+
+LangSmith 从可观测性平台升级为 **Agent 管理平台**（2026-03 更名为 Fleet）：
+
+- **中央 Chat Agent**：统一的 Agent 交互界面
+- **Agent 身份管理**：共享权限和人工审批
+- **定时报告**：Insights Agent 支持 cron 调度
+- **自托管 v0.13**：企业级部署支持
+
+来源：[LangChain 1.0 发布公告](https://blog.langchain.com/langchain-langgraph-1dot0/) | [LangChain Changelog](https://changelog.langchain.com/)

@@ -128,6 +128,89 @@ class UserRepository @Inject constructor(private val api: ApiService) {
 }
 ```
 
+## 6. OkHttp 5.x 与 Retrofit 3.0 版本演进
+
+<!-- version-check: OkHttp 5.3.2, Retrofit 3.0.0, checked 2026-04-22 -->
+
+> 🔄 更新于 2026-04-22
+
+OkHttp 5.0 于 2025-07-02 发布首个稳定版，当前最新为 5.3.2（2025-11-18）。Retrofit 3.0 同步升级，采用 Kotlin 原生设计。来源：[OkHttp Changelog](https://square.github.io/okhttp/changelogs/changelog/)
+
+### 6.1 OkHttp 5.x 核心变化
+
+```kotlin
+// OkHttp 5.x 主要变化：
+// - Kotlin 优先（协程原生支持）
+// - Zstd 压缩支持
+// - JPMS 模块化
+// - Call tags（应用级元数据）
+// - QUERY HTTP 方法
+
+// Zstd 压缩（OkHttp 5.2+）
+val client = OkHttpClient.Builder()
+    .addInterceptor(CompressionInterceptor(Zstd, Gzip))
+    .build()
+
+// Call Tags（OkHttp 5.3+）：在拦截器间传递元数据
+class AnalyticsInterceptor : Interceptor {
+    override fun intercept(chain: Interceptor.Chain): Response {
+        chain.call().tag(AnalyticsTag::class) {
+            AnalyticsTag(startTime = System.currentTimeMillis())
+        }
+        return chain.proceed(chain.request())
+    }
+}
+
+// QUERY HTTP 方法（OkHttp 5.2+）
+val request = Request.Builder()
+    .url("https://api.example.com/search")
+    .method("QUERY", queryBody)
+    .cacheUrlOverride(
+        "https://api.example.com/search?hash=${queryBody.sha256()}"
+            .toHttpUrl()
+    )
+    .build()
+
+// toCurl() 调试辅助（OkHttp 5.2+）
+val curlCommand = request.toCurl()
+// 输出类似 Chrome 的 "copy as cURL" 格式
+```
+
+### 6.2 Retrofit 3.0 核心变化
+
+```kotlin
+// Retrofit 3.0 主要变化：
+// - 要求 OkHttp 5.x
+// - Kotlin 协程原生支持增强
+// - kotlinx.serialization 推荐为默认序列化方案
+
+// build.gradle.kts 依赖更新
+dependencies {
+    implementation("com.squareup.retrofit2:retrofit:3.0.0")
+    implementation("com.squareup.retrofit2:converter-kotlinx-serialization:3.0.0")
+    implementation("com.squareup.okhttp3:okhttp:5.3.2")
+    implementation("com.squareup.okhttp3:logging-interceptor:5.3.2")
+}
+
+// 配置（与 2.x 基本兼容）
+val retrofit = Retrofit.Builder()
+    .baseUrl("https://api.example.com/v1/")
+    .client(okHttpClient)
+    .addConverterFactory(json.asConverterFactory("application/json".toMediaType()))
+    .build()
+```
+
+### 6.3 版本选择建议
+
+```
+场景                    推荐版本
+──────────────────────────────────────────
+新项目                  OkHttp 5.3.x + Retrofit 3.0
+已有项目（OkHttp 4.x）  按需升级，API 基本兼容
+需要 Zstd 压缩          OkHttp 5.2+
+需要 JPMS              OkHttp 5.2+
+```
+
 ## 5. 连接池与性能
 
 ```kotlin

@@ -85,6 +85,33 @@ Answer: 您最近的订单是...
 - Agent 自主判断何时检索、检索什么、如何验证
 - GraphRAG 知识图谱增强
 
+### 4.5 Context Engineering 成为核心学科（2026）
+
+> 🔄 更新于 2026-04-22
+
+Context Engineering 从 Prompt Engineering 的延伸演变为独立的 AI 工程学科。核心区别：Prompt Engineering 关注"对模型说什么"，Context Engineering 关注"给模型提供什么信息、何时提供、如何组织"。来源：[State of Context Engineering in 2026](https://pub.towardsai.net/state-of-context-engineering-in-2026-cf92d010eab1)
+
+```
+Prompt Engineering（2023-2024）:
+  关注点：如何写好提示词
+  范围：单次请求的输入优化
+
+Context Engineering（2025-2026）:
+  关注点：设计模型的整个信息生态系统
+  范围：代码库、Git 历史、依赖信息、团队规范、工具定义、对话历史
+  关键技术：Prompt Caching、有状态续传、动态上下文组装
+```
+
+Gartner 预测 2026 年底 40% 企业应用将嵌入 AI Agent（2025 年不到 5%）。
+
+### 4.6 Agent 托管运行时（2026）
+
+> 🔄 更新于 2026-04-22
+
+2026 年 Agent 从"开发者自建"向"平台托管"演进。Anthropic 推出 Claude Managed Agents（托管运行时），提供 Agent 定义、云环境、会话管理、事件流、内置工具的完整托管方案。来源：[Anthropic Engineering Blog](https://www.anthropic.com/engineering/managed-agents)
+
+Claude Code Agent Teams 支持一个会话中生成独立的 Agent 队友，通过 peer-to-peer 邮箱通信协作。来源：[Claude Opus 4.6 Agent Teams Guide](https://amitray.com/claude-opus-4-6-agent-teams-complete-guide/)
+
 ## 5. Agent 分类
 
 | 类型 | 特点 | 典型场景 |

@@ -164,3 +164,31 @@ function FilteredList({ query }) {
 // ✅ 大列表使用虚拟滚动
 // ✅ 路由级别代码分割
 ```
+
+## 7. Next.js 16.2 性能改进（2026-03）
+
+> 🔄 更新于 2026-04-22
+
+<!-- version-check: Next.js 16.2, checked 2026-04-22 -->
+
+Next.js 16.2 带来了显著的性能提升，对 React 应用的渲染和开发体验有直接影响。来源：[Next.js 16.2 Blog](https://nextjs.org/blog/next-16-2)
+
+### 关键性能数据
+
+| 指标 | 改进幅度 | 说明 |
+|------|---------|------|
+| `next dev` 启动 | ~400% 更快 | 相比 16.1，默认应用启动快 87% |
+| Server Components 渲染 | ~50% 更快 | RSC payload 反序列化优化 350% |
+| ImageResponse | 2-20x 更快 | 基础图片 2x，复杂图片 20x |
+
+### RSC 反序列化优化原理
+
+React 团队贡献了一个关键优化：将 `JSON.parse` 的 reviver 回调（每个键值对都跨 C++/JS 边界）替换为两步法——先纯 `JSON.parse()`，再用纯 JS 递归遍历。消除了 V8 边界跨越开销。
+
+### 其他改进
+
+- **Server Function 日志**：开发终端显示函数名、参数、执行时间、文件位置
+- **Hydration Diff 指示器**：错误叠加层清晰标注 `+ Client` / `- Server` 差异
+- **`--inspect` for `next start`**：生产服务器支持 Node.js 调试器
+- **AI 改进**：`create-next-app` 内置 `AGENTS.md`、浏览器日志转发、`next-browser`（实验性）
+- **View Transitions**：`<Link>` 组件支持 `transitionTypes` prop

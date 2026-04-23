@@ -436,6 +436,23 @@ Agent 设计的三条路径（自主性递增）：
 | Human-in-the-Loop | ★★     | 高风险操作               |
 | Guardrails        | ★      | 安全合规要求              |
 | Fallback          | ★      | 高可用性要求              |
+| Cartesian Agents  | ★★★    | 通用 Agent（符号接口耦合） |
+
+## 18. 2026 年设计模式趋势
+
+> 🔄 更新于 2026-04-22
+
+### 从 Prompt Engineering 到 Context Engineering
+
+2026 年 Agent 设计的核心转变：不再只关注"如何写好提示词"，而是关注"如何设计模型的整个信息生态系统"。Context Engineering 涵盖代码库索引、Git 历史、依赖图、团队规范、工具定义、对话历史的动态组装。来源：[State of Context Engineering in 2026](https://pub.towardsai.net/state-of-context-engineering-in-2026-cf92d010eab1)
+
+### 10 个 Agentic Harness 模式
+
+Claude Code 源码泄露（2026-03-31，512K 行 TypeScript）揭示了 10 个生产级 Agent harness 模式，这些模式具有普适性。来源：[10 Agentic AI Harness Patterns](https://kenhuangus.substack.com/p/the-claude-code-leak-10-agentic-ai)
+
+### Agent 运行时从自建到托管
+
+Anthropic Managed Agents、LangSmith Fleet、Vercel AI SDK 6 的 Agent 抽象，标志着 Agent 运行时从"每个团队自建"向"平台托管"演进。开发者只需定义 Agent 的指令、工具和约束，运行时由平台维护。
 ## 🎬 推荐视频资源
 
 - [Andrew Ng - What's Next for AI Agentic Workflows](https://www.youtube.com/watch?v=sal78ACtGTc) — 吴恩达讲Agentic工作流
