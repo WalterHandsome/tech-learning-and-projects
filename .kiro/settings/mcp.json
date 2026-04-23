@@ -1,0 +1,17 @@
+{
+  "mcpServers": {
+    "briefing-tools": {
+      "command": "uv",
+      "args": [
+        "run",
+        "--with", "mcp",
+        "/Users/administrator/PycharmProjects/tech-learning-and-projects/scripts/briefing-mcp.py"
+      ],
+      "disabled": false,
+      "autoApprove": [
+        "briefing_status",
+        "briefing_index"
+      ]
+    }
+  }
+}
