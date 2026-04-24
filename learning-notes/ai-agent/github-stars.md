@@ -69,6 +69,18 @@
 
 ---
 
+## 🛠 开发工具 & 最佳实践
+
+> 🔄 更新于 2026-04-24
+
+| 项目 | Stars | 描述 | 链接 |
+| ---- | ----- | ---- | ---- |
+| awsdataarchitect/kiro-best-practices | — | Kiro 最佳实践模板，包含完整的 steering（Git、Python、安全等）和 hooks 示例，开箱即用的 AI 驱动开发环境 | [GitHub](https://github.com/awsdataarchitect/kiro-best-practices) |
+| awslabs/aidlc-workflows | — | AWS 官方 AI 驱动开发生命周期（AI-DLC）steering 规则，适用于 Kiro 和其他 coding agent，覆盖需求→设计→实现→测试→部署全流程 | [GitHub](https://github.com/awslabs/aidlc-workflows) |
+| jasonkneen/kiro | — | 社区维护的 Kiro skills 集合，包含多种实用 skill 和配置示例 | [GitHub](https://github.com/jasonkneen/kiro) |
+
+---
+
 ## ☁️ 云 & 基础设施
 
 | 项目 | Stars | 描述 | 链接 |
