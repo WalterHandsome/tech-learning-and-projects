@@ -1,0 +1,197 @@
+{
+  "items": {
+    "3aa1538062af": {
+      "title": "Introducing GPT-5.5",
+      "source": "OpenAI Blog",
+      "topic": "ai-agent",
+      "date": "2026-04-24"
+    },
+    "915b6ff115f0": {
+      "title": "GPT-5.5 System Card",
+      "source": "OpenAI Blog",
+      "topic": "ai-agent",
+      "date": "2026-04-24"
+    },
+    "6e517fdbc329": {
+      "title": "Automations",
+      "source": "OpenAI Blog",
+      "topic": "ai-agent",
+      "date": "2026-04-24"
+    },
+    "fce405449565": {
+      "title": "Top 10 uses for Codex at work",
+      "source": "OpenAI Blog",
+      "topic": "ai-agent",
+      "date": "2026-04-24"
+    },
+    "79ea493d001a": {
+      "title": "Plugins and skills",
+      "source": "OpenAI Blog",
+      "topic": "ai-agent",
+      "date": "2026-04-24"
+    },
+    "df10955916ed": {
+      "title": "Working with Codex",
+      "source": "OpenAI Blog",
+      "topic": "ai-agent",
+      "date": "2026-04-24"
+    },
+    "d363d492e8c4": {
+      "title": "Codex settings",
+      "source": "OpenAI Blog",
+      "topic": "ai-agent",
+      "date": "2026-04-24"
+    },
+    "c476e67cc64b": {
+      "title": "What is Codex?",
+      "source": "OpenAI Blog",
+      "topic": "ai-agent",
+      "date": "2026-04-24"
+    },
+    "afb218f7b48c": {
+      "title": "How to get started with Codex",
+      "source": "OpenAI Blog",
+      "topic": "ai-agent",
+      "date": "2026-04-24"
+    },
+    "1e29a367c6ea": {
+      "title": "GPT-5.5 Bio Bug Bounty",
+      "source": "OpenAI Blog",
+      "topic": "ai-agent",
+      "date": "2026-04-24"
+    },
+    "5086395d0605": {
+      "title": "MeshCore development team splits over trademark dispute and AI-generated code",
+      "source": "Hacker News AI",
+      "topic": "ai-agent",
+      "date": "2026-04-24"
+    },
+    "9b82ea3a6989": {
+      "title": "Do you want the US to \"win\" AI?",
+      "source": "Hacker News AI",
+      "topic": "ai-agent",
+      "date": "2026-04-24"
+    },
+    "488a1c0ec2e3": {
+      "title": "Our newsroom AI policy",
+      "source": "Hacker News AI",
+      "topic": "ai-agent",
+      "date": "2026-04-24"
+    },
+    "25dc21855166": {
+      "title": "An MCP Server for Fastmail – National Email Day",
+      "source": "Hacker News AI",
+      "topic": "ai-agent",
+      "date": "2026-04-24"
+    },
+    "fc98bc31031d": {
+      "title": "Bring Your Agent to Teams",
+      "source": "Hacker News AI",
+      "topic": "ai-agent",
+      "date": "2026-04-24"
+    },
+    "417b9621c9a1": {
+      "title": "Anker made its own chip to bring AI to all its products",
+      "source": "Hacker News AI",
+      "topic": "ai-agent",
+      "date": "2026-04-24"
+    },
+    "a5dfa1b0f9c3": {
+      "title": "Startups brag they spend more money on AI than human employees",
+      "source": "Hacker News AI",
+      "topic": "ai-agent",
+      "date": "2026-04-24"
+    },
+    "09b1882141b9": {
+      "title": "Show HN: Agent Vault – Open-source credential proxy and vault for agents",
+      "source": "Hacker News AI",
+      "topic": "ai-agent",
+      "date": "2026-04-24"
+    },
+    "1dcbee845bff": {
+      "title": "Show HN: Broccoli, one shot coding agent on the cloud",
+      "source": "Hacker News AI",
+      "topic": "ai-agent",
+      "date": "2026-04-24"
+    },
+    "1a2ec7e51525": {
+      "title": "The Tool-Overuse Illusion: Why Does LLM Prefer External Tools over Internal Knowledge?",
+      "source": "arXiv AI",
+      "topic": "ai-agent",
+      "date": "2026-04-24"
+    },
+    "e108354e8cb8": {
+      "title": "From Actions to Understanding: Conformal Interpretability of Temporal Concepts in LLM Agents",
+      "source": "arXiv AI",
+      "topic": "ai-agent",
+      "date": "2026-04-24"
+    },
+    "2ab8741a9842": {
+      "title": "An update on recent Claude Code quality reports",
+      "source": "Hacker News",
+      "topic": "ai-agent",
+      "date": "2026-04-24"
+    },
+    "4b39ffae2c53": {
+      "title": "Kernel code removals driven by LLM-created security reports",
+      "source": "Hacker News",
+      "topic": "ai-agent",
+      "date": "2026-04-24"
+    },
+    "8574a4ffb5d2": {
+      "title": "Qwen3.6-27B: Flagship-Level Coding in a 27B Dense Model",
+      "source": "Hacker News",
+      "topic": "china-tech",
+      "date": "2026-04-24"
+    },
+    "e0ff87766081": {
+      "title": "姚顺雨腾讯模型首秀！不卷参数只做 \"听话打工人\"，Hy3 preview登场",
+      "source": "InfoQ CN",
+      "topic": "china-tech",
+      "date": "2026-04-24"
+    },
+    "cc46e3bf9957": {
+      "title": "xAI落后太多，马斯克\"开大\"重金求购Cursor，100亿美金\"分手费\"都敢签！",
+      "source": "InfoQ CN",
+      "topic": "china-tech",
+      "date": "2026-04-24"
+    },
+    "f4aec19a1dc2": {
+      "title": "1850亿美元天价支出、75%代码由AI生成！谷歌正式宣告：全面转向智能体工作流",
+      "source": "InfoQ CN",
+      "topic": "china-tech",
+      "date": "2026-04-24"
+    },
+    "634831d3dda1": {
+      "title": "打造生物智能基础设施，AI4S企业「奥明星程」获超亿元A轮融资",
+      "source": "36氪",
+      "topic": "china-tech",
+      "date": "2026-04-24"
+    },
+    "dba35587a36b": {
+      "title": "清华系团队星工聚将完成数千万天使轮融资，轮式机器人拿下头部制造企业亿级大单",
+      "source": "InfoQ CN",
+      "topic": "china-tech",
+      "date": "2026-04-24"
+    },
+    "fd26c5d4cfaf": {
+      "title": "固态激光雷达\"像素竞赛\"加速，速腾聚创VGA大面阵SPAD-SoC产品发布",
+      "source": "36氪",
+      "topic": "china-tech",
+      "date": "2026-04-24"
+    },
+    "cab4acc72338": {
+      "title": "破局\"智驾双雄\"，千里科技如何以AI之力重塑行业格局",
+      "source": "36氪",
+      "topic": "china-tech",
+      "date": "2026-04-24"
+    },
+    "bbb685eb66d6": {
+      "title": "博裕、经纬、顺为等投资前新石器COO超亿元，押注AI超便携电子纸",
+      "source": "36氪",
+      "topic": "china-tech",
+      "date": "2026-04-24"
+    }
+  },
+  "updated": "2026-04-24 10:16"
+}

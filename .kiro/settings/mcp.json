@@ -4,10 +4,11 @@
       "command": "uv",
       "args": [
         "run",
-        "--with", "mcp",
+        "--with",
+        "mcp",
         "/Users/administrator/PycharmProjects/tech-learning-and-projects/scripts/briefing-mcp.py"
       ],
-      "disabled": false,
+      "disabled": true,
       "autoApprove": [
         "briefing_status",
         "briefing_index"

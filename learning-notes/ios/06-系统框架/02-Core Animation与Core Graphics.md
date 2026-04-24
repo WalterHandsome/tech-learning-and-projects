@@ -166,3 +166,102 @@ class CircularProgressView: UIView {
     }
 }
 ```
+
+## 7. iOS 26 Liquid Glass 与 Core Animation
+
+<!-- version-check: iOS 26 Liquid Glass, Core Animation, checked 2026-04-24 -->
+
+> 🔄 更新于 2026-04-24
+
+iOS 26 引入了 Liquid Glass 设计语言，这是自 iOS 7 以来最大的视觉重设计。Liquid Glass 是一种动态半透明材质，能够实时模糊背后内容、反射环境光线，并响应触摸和指针交互。
+
+来源：[Apple WWDC25 Session 284](https://developer.apple.com/videos/play/wwdc2025/284/)、[Donny Wals: Designing custom UI with Liquid Glass](https://www.donnywals.com/designing-custom-ui-with-liquid-glass-on-ios-26/)
+
+### 7.1 SwiftUI 中使用 Liquid Glass
+
+```swift
+import SwiftUI
+
+// 基础 Glass Effect
+struct GlassButton: View {
+    var body: some View {
+        Button("操作") {
+            // 按钮动作
+        }
+        .buttonStyle(.glass)  // 内置 Glass 按钮样式
+    }
+}
+
+// 自定义 Glass Effect
+struct FloatingActionButton: View {
+    var body: some View {
+        Button(action: { /* 动作 */ }) {
+            Image(systemName: "plus")
+                .font(.title2)
+                .padding()
+        }
+        .glassEffect(.regular)  // 应用 Liquid Glass 材质
+    }
+}
+
+// GlassEffectContainer：多个 Glass 元素分组混合
+struct ToolbarView: View {
+    var body: some View {
+        GlassEffectContainer {
+            HStack(spacing: 16) {
+                ForEach(0..<4) { index in
+                    Button(action: {}) {
+                        Image(systemName: "star.fill")
+                    }
+                    .glassEffect()
+                    .glassEffectID(index)  // 用于 morphing 动画
+                }
+            }
+        }
+    }
+}
+```
+
+### 7.2 UIKit 中使用 Liquid Glass
+
+```swift
+import UIKit
+
+// UIKit 中应用 Liquid Glass
+class GlassViewController: UIViewController {
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        // 工具栏自动获得 Liquid Glass 外观
+        // 使用 Xcode 26 重新编译即可，无需额外代码
+
+        // 自定义 Glass 视图
+        let glassView = UIView()
+        glassView.frame = CGRect(x: 50, y: 100, width: 200, height: 60)
+
+        // 使用 UIGlassEffect 配置
+        let config = UIGlassEffect()
+        config.isInteractive = true  // 响应触摸交互
+        glassView.configuration = config
+
+        view.addSubview(glassView)
+    }
+}
+```
+
+### 7.3 Liquid Glass 设计原则
+
+Liquid Glass 应该用于**浮在内容之上**的 UI 元素，而不是内容本身：
+
+| 适合使用 Glass | 不适合使用 Glass |
+|---------------|----------------|
+| 工具栏、标签栏 | 列表单元格 |
+| 浮动操作按钮 | 文本内容区域 |
+| 导航栏 | 图片/视频内容 |
+| 弹出菜单 | 表单输入框 |
+
+### 7.4 Core Animation 与 Liquid Glass 的关系
+
+Liquid Glass 底层依赖 Core Animation 的图层合成能力。系统控件（UINavigationBar、UITabBar 等）在 Xcode 26 编译后自动获得 Liquid Glass 外观。自定义 Core Animation 动画仍然完全兼容，开发者可以在 Glass 元素上叠加 `CABasicAnimation`、`CAKeyframeAnimation` 等传统动画。
+
+`glassEffectID` 和 `glassEffectUnion` 修饰符支持 Glass 元素之间的 morphing 动画——当视图层级变化时，Glass 效果会平滑过渡而非突然切换。

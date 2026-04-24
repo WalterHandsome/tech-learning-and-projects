@@ -1473,6 +1473,86 @@ node2成为主节点后，会检测集群监控状态，发现：shard-1、shard
 
 ![image-20210723230216642](Elasticsearch-assets/image-20210723230216642.png)
 
+## 7. Elasticsearch 9.x 版本演进
+
+<!-- version-check: Elasticsearch 9.3.3, checked 2026-04-24 -->
+
+> 🔄 更新于 2026-04-24
+
+### 7.1 版本概览
+
+Elasticsearch 已从 7.x/8.x 时代进入 9.x 时代，当前最新稳定版为 **9.3.3**（2026-04-07）。
+
+| 版本 | 发布日期 | 关键特性 |
+|------|---------|---------|
+| 9.0.0 | 2025-07 | BBQ 向量量化、EDOT 可观测、ES\|QL Lookup Join |
+| 9.1.0 | 2025-10 | 安全增强、聚合优化 |
+| 9.2.0 | 2025-12 | Agent Builder 预览、DiskBBQ |
+| 9.3.0 | 2026-02-03 | GPU 向量索引、Agent Builder GA、Elastic Workflows |
+| 9.3.3 | 2026-04-07 | 安全修复、稳定性改进 |
+
+来源：[Elastic 9.3 发布公告](https://www.elastic.co/blog/whats-new-elastic-9-3-0)、[InfoQ 报道](https://www.infoq.com/news/2026/03/elastic-9-3-gpu-vector-indexing/)
+
+### 7.2 ES 9.x 核心新特性
+
+**GPU 加速向量索引**（9.3 技术预览）：集成 NVIDIA cuVS 开源库，自管理部署可实现 12x 索引吞吐量提升和 7x force merge 加速。GPU 处理向量索引释放 CPU 用于搜索。
+
+**Elastic Agent Builder**（9.3 GA）：AI 驱动的能力，让开发者可以直接与 Elasticsearch 数据对话，简化自定义 AI Agent 开发。配合 Elastic Workflows 可让 Agent 执行可靠操作。
+
+**ES|QL 增强**：
+- Lookup Join（类似 SQL LEFT OUTER JOIN）
+- KQL 过滤集成到 ES|QL 查询中
+- 标准差函数原生支持
+- 日志消息自动分类函数
+- 字符串操作和日期处理新函数
+
+**Elastic Workflows**（9.3 技术预览）：将工作流自动化集成到 Elasticsearch 平台，可查询数据、转换、条件分支、调用外部 API。
+
+**Jina AI 模型集成**（9.3 GA）：通过 Elastic Inference Service 提供 jina-embeddings-v3、jina-reranker-v2/v3，GPU 加速的多语言嵌入和高精度重排序。
+
+**OpenTelemetry 深度集成**：原生支持 OTel traces/metrics/logs 摄入，减少对专有 Agent 的依赖。
+
+### 7.3 Java 客户端变化
+
+ES 9.0 Java 客户端引入 `Rest5Client` 作为 `RestClient` 的替代方案，旧的 `elasticsearch-rest-client` 依赖变为可选。
+
+来源：[ES Java Client 9.0.0 Release Notes](https://www.elastic.co/docs/release-notes/elasticsearch/clients/java/9-0-0)
+
+```java
+// ES 9.x Java 客户端（使用 Rest5Client）
+// 依赖：co.elastic.clients:elasticsearch-java:9.3.3
+import co.elastic.clients.elasticsearch.ElasticsearchClient;
+import co.elastic.clients.transport.rest5_client.Rest5ClientTransport;
+import co.elastic.clients.json.jackson.JacksonJsonpMapper;
+import org.apache.hc.client5.http.impl.classic.HttpClients;
+
+// 创建客户端（新的 Rest5Client 方式）
+var httpClient = HttpClients.createDefault();
+var transport = new Rest5ClientTransport(httpClient, new JacksonJsonpMapper());
+var client = new ElasticsearchClient(transport);
+
+// ES|QL 查询示例
+var response = client.esql().query(q -> q
+    .query("FROM logs-* | WHERE @timestamp > NOW() - 1 HOUR | STATS count = COUNT(*) BY host.name")
+);
+```
+
+### 7.4 Spring Data Elasticsearch 兼容性
+
+| Spring Data ES | Elasticsearch | Spring Boot |
+|---------------|---------------|-------------|
+| 5.4.x | 8.15+ | 3.4.x |
+| 5.5.x | 8.17+ | 3.5.x |
+| 6.0.x | 9.0+ | 4.0.x |
+
+> ⚠️ 待确认：Spring Data Elasticsearch 6.0.x 对 ES 9.3 的完整兼容性，建议关注 [Spring Data ES 官方文档](https://docs.spring.io/spring-data/elasticsearch/reference/)
+
+### 7.5 版本选择建议
+
+- **新项目**：直接使用 ES 9.3.x，享受 ES|QL、向量搜索、Agent Builder 等新特性
+- **生产环境 8.x**：建议升级到 8.18（与 9.0 同期发布的 LTS），再规划 9.x 迁移
+- **AI/RAG 场景**：ES 9.3 的 GPU 向量索引和 Jina AI 集成是显著优势
+
 
 
 
