@@ -640,20 +640,16 @@ TOPIC_ICONS = {
     "global-tech": "🌍",
 }
 
-# GitHub 仓库地址，用于生成简报文件的在线阅读链接
+# 博客站点地址，用于生成简报的在线阅读链接
+BLOG_SITE_URL = "https://walterhandsome.github.io/portfolio"
 GITHUB_REPO = "https://github.com/WalterHandsome/tech-learning-and-projects"
 GITHUB_BRANCH = "main"
 
 
 def briefing_github_url(topic: str, date_str: str | None = None) -> str:
-    """生成简报文件对应的 GitHub 在线阅读链接"""
+    """生成简报文件对应的博客站点在线阅读链接"""
     ds = date_str or today_str()
-    try:
-        dt = datetime.strptime(ds, "%Y-%m-%d")
-    except ValueError:
-        dt = datetime.now()
-    rel_path = f"learning-notes/briefings/{topic}/{dt.year}/{dt.month:02d}/{ds}.md"
-    return f"{GITHUB_REPO}/blob/{GITHUB_BRANCH}/{rel_path}"
+    return f"{BLOG_SITE_URL}/briefing.html#{topic}/{ds}"
 
 
 def get_bark_url() -> str | None:
