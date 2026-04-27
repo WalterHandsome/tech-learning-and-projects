@@ -67,6 +67,7 @@ application-dev.yml
 *.tmp
 *.log
 ~$*
+.kiro_tmp/
 
 # 系统文件
 Thumbs.db

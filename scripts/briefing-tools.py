@@ -1,16 +1,17 @@
 #!/usr/bin/env python3
 """
-简报工具集 — 为 Kiro hooks 提供确定性的采集、去重、状态查询能力。
+简报工具集 — 为 Kiro hooks 提供确定性的采集、去重、状态查询、推送能力。
 
 子命令:
   collect   多源采集原始素材，输出 JSON
   dedup     对采集结果去重（URL hash + 标题相似度 + 跨简报）
   status    输出简报采集状态面板
   index     同步 README 索引
+  notify    推送简报摘要到 Bark（iOS 推送通知）
 
 设计原则:
   - 纯标准库，零外部依赖
-  - 确定性操作（采集、去重、文件管理）由脚本完成
+  - 确定性操作（采集、去重、文件管理、推送）由脚本完成
   - 智能判断（评分、摘要、趋势）留给 Kiro agent
 
 使用方式:
@@ -18,11 +19,13 @@
   python3 scripts/briefing-tools.py dedup --input raw.json --topic ai-agent
   python3 scripts/briefing-tools.py status
   python3 scripts/briefing-tools.py index --topic ai-agent
+  python3 scripts/briefing-tools.py notify --topic all
 """
 
 import argparse
 import hashlib
 import json
+import os
 import re
 import sys
 import urllib.error
@@ -41,33 +44,39 @@ INDEX_FILE = BASE_DIR / ".dedup-index.json"
 # RSS 源配置（按主题分组）
 RSS_SOURCES = {
     "ai-agent": [
-        {"name": "LangChain Blog", "url": "https://blog.langchain.dev/feed/"},
-        {"name": "Anthropic Research", "url": "https://www.anthropic.com/feed.xml"},
+        {"name": "LangChain Blog", "url": "https://blog.langchain.com/rss.xml"},
+        {"name": "Anthropic Research", "url": "https://raw.githubusercontent.com/Olshansk/rss-feeds/main/feeds/feed_anthropic_research.xml"},
+        {"name": "Anthropic News", "url": "https://raw.githubusercontent.com/Olshansk/rss-feeds/main/feeds/feed_anthropic_news.xml"},
         {"name": "OpenAI Blog", "url": "https://openai.com/blog/rss.xml"},
+        {"name": "Google AI Blog", "url": "https://blog.google/technology/ai/rss/"},
+        {"name": "Hugging Face Blog", "url": "https://huggingface.co/blog/feed.xml"},
         {"name": "Hacker News AI", "url": "https://hnrss.org/newest?q=AI+agent+OR+MCP+OR+LLM&points=30"},
+        {"name": "Hacker News AI 关键词", "url": "https://hnrss.org/newest?q=LangGraph+OR+CrewAI+OR+Claude+OR+RAG+OR+function+calling+OR+context+engineering&points=20"},
         {"name": "arXiv AI", "url": "https://rss.arxiv.org/rss/cs.AI"},
     ],
     "china-tech": [
         {"name": "36氪", "url": "https://36kr.com/feed"},
         {"name": "InfoQ CN", "url": "https://www.infoq.cn/feed"},
+        {"name": "V2EX 技术", "url": "https://www.v2ex.com/feed/tab/tech.xml"},
+        {"name": "少数派", "url": "https://sspai.com/feed"},
+        {"name": "Hacker News 中国科技", "url": "https://hnrss.org/newest?q=DeepSeek+OR+Qwen+OR+Baidu+AI+OR+China+AI&points=10"},
     ],
     "global-tech": [
         {"name": "Hacker News Top", "url": "https://hnrss.org/frontpage?count=30"},
         {"name": "TechCrunch", "url": "https://techcrunch.com/feed/"},
         {"name": "The Verge", "url": "https://www.theverge.com/rss/index.xml"},
+        {"name": "Ars Technica", "url": "https://feeds.arstechnica.com/arstechnica/index"},
+        {"name": "GitHub Blog", "url": "https://github.blog/feed/"},
+        {"name": "Product Hunt", "url": "https://www.producthunt.com/feed"},
+        {"name": "Hacker News 开发者", "url": "https://hnrss.org/newest?q=Rust+OR+TypeScript+OR+Kubernetes+OR+AWS+OR+security+vulnerability&points=20"},
     ],
 }
 
-# Hacker News API 关键词
+# Hacker News API 关键词（已迁移到 hnrss.org 搜索 feed，保留配置供 fetch_hn_top 备用）
 HN_KEYWORDS = {
-    "ai-agent": [
-        "AI agent", "MCP", "LangGraph", "CrewAI", "Claude",
-        "LLM", "RAG", "function calling", "context engineering",
-    ],
-    "china-tech": ["DeepSeek", "Qwen", "Baidu AI", "China AI"],
-    "global-tech": [
-        "Rust", "TypeScript", "Kubernetes", "AWS", "security vulnerability",
-    ],
+    "ai-agent": [],
+    "china-tech": [],
+    "global-tech": [],
 }
 
 
@@ -224,7 +233,7 @@ def _clean_html(text: str) -> str:
 
 def fetch_hn_top(keywords: list[str], limit: int = 15) -> list[dict]:
     items = []
-    data = http_get("https://hacker-news.firebaseio.com/v0/topstories.json")
+    data = http_get("https://hacker-news.firebaseio.com/v0/topstories.json", timeout=15)
     if not data:
         return []
     try:
@@ -236,9 +245,15 @@ def fetch_hn_top(keywords: list[str], limit: int = 15) -> list[dict]:
     for sid in story_ids:
         if len(items) >= limit:
             break
-        story_data = http_get(
-            f"https://hacker-news.firebaseio.com/v0/item/{sid}.json"
-        )
+        # 单条请求带重试（最多 2 次）
+        story_data = None
+        for _attempt in range(2):
+            story_data = http_get(
+                f"https://hacker-news.firebaseio.com/v0/item/{sid}.json",
+                timeout=15,
+            )
+            if story_data:
+                break
         if not story_data:
             continue
         try:
@@ -271,26 +286,31 @@ def fetch_hn_top(keywords: list[str], limit: int = 15) -> list[dict]:
 # ============================================
 
 def collect_topic(topic: str) -> list[dict]:
+    import time as _time
     all_items = []
 
     # RSS 源
     for src in RSS_SOURCES.get(topic, []):
         print(f"  📡 采集 {src['name']}...")
+        t0 = _time.time()
         xml_text = http_get(src["url"], timeout=15)
+        elapsed = _time.time() - t0
         if xml_text:
             items = parse_rss(xml_text, src["name"])
             all_items.extend(items[:10])
-            print(f"     → {len(items)} 条")
+            print(f"     → {len(items)} 条 ({elapsed:.1f}s)")
         else:
-            print(f"     → 失败")
+            print(f"     → 失败 ({elapsed:.1f}s)")
 
     # Hacker News API
     hn_kw = HN_KEYWORDS.get(topic, [])
     if hn_kw:
         print(f"  📡 采集 Hacker News (关键词: {len(hn_kw)} 个)...")
+        t0 = _time.time()
         hn_items = fetch_hn_top(hn_kw)
+        elapsed = _time.time() - t0
         all_items.extend(hn_items)
-        print(f"     → {len(hn_items)} 条")
+        print(f"     → {len(hn_items)} 条 ({elapsed:.1f}s)")
 
     return all_items
 
@@ -564,6 +584,22 @@ def cmd_status(args):
     else:
         print(format_status(report))
 
+    if args.check_sources:
+        print("\n## 🔗 采集源健康检查\n")
+        print("| 主题 | 源名称 | 状态 | 耗时 |")
+        print("|------|--------|------|------|")
+        for topic, sources in RSS_SOURCES.items():
+            for src in sources:
+                import time as _time
+                t0 = _time.time()
+                result = http_get(src["url"], timeout=10)
+                elapsed = _time.time() - t0
+                if result:
+                    status = "✅ 可用"
+                else:
+                    status = "❌ 不可达"
+                print(f"| {topic} | {src['name']} | {status} | {elapsed:.1f}s |")
+
 
 def cmd_index(args):
     topics = (
@@ -588,6 +624,206 @@ def cmd_index(args):
     print(f"  ✅ 已更新顶层 README")
 
 
+# ============================================
+# Bark 推送
+# ============================================
+
+TOPIC_NAMES = {
+    "ai-agent": "AI Agent",
+    "china-tech": "国内科技",
+    "global-tech": "国际科技",
+}
+
+TOPIC_ICONS = {
+    "ai-agent": "🤖",
+    "china-tech": "🇨🇳",
+    "global-tech": "🌍",
+}
+
+# GitHub 仓库地址，用于生成简报文件的在线阅读链接
+GITHUB_REPO = "https://github.com/WalterHandsome/tech-learning-and-projects"
+GITHUB_BRANCH = "main"
+
+
+def briefing_github_url(topic: str, date_str: str | None = None) -> str:
+    """生成简报文件对应的 GitHub 在线阅读链接"""
+    ds = date_str or today_str()
+    try:
+        dt = datetime.strptime(ds, "%Y-%m-%d")
+    except ValueError:
+        dt = datetime.now()
+    rel_path = f"learning-notes/briefings/{topic}/{dt.year}/{dt.month:02d}/{ds}.md"
+    return f"{GITHUB_REPO}/blob/{GITHUB_BRANCH}/{rel_path}"
+
+
+def get_bark_url() -> str | None:
+    """从环境变量获取 Bark 推送地址"""
+    url = os.environ.get("BARK_URL", "").strip()
+    if not url:
+        # 尝试从 Brand Agent 的 .env 读取
+        candidates = [
+            Path(__file__).resolve().parent.parent.parent / "personal-brand-agent" / ".env",
+            Path(__file__).resolve().parent.parent.parent / "Brand Agent" / ".env",
+            Path(__file__).resolve().parent.parent / "🤖 Brand Agent" / ".env",
+        ]
+        for env_path in candidates:
+            if env_path.exists():
+                for line in env_path.read_text(encoding="utf-8").splitlines():
+                    line = line.strip()
+                    if line.startswith("BARK_URL=") and "你的key" not in line:
+                        url = line.split("=", 1)[1].strip()
+                        break
+            if url:
+                break
+    return url or None
+
+
+def push_bark(bark_url: str, title: str, body: str, group: str = "AI简报", open_url: str = "") -> bool:
+    """通过 Bark 推送通知到 iOS 设备（纯标准库实现）
+
+    Args:
+        open_url: 点击通知后跳转的链接（可选）
+    """
+    url = bark_url.rstrip("/") + "/"
+    data = {
+        "title": title,
+        "body": body,
+        "group": group,
+        "icon": "https://github.githubassets.com/favicons/favicon.svg",
+        "level": "timeSensitive",
+    }
+    if open_url:
+        data["url"] = open_url
+    payload = json.dumps(data).encode("utf-8")
+    try:
+        req = urllib.request.Request(
+            url, data=payload,
+            headers={"Content-Type": "application/json; charset=utf-8"},
+            method="POST",
+        )
+        with urllib.request.urlopen(req, timeout=10) as resp:
+            result = json.loads(resp.read().decode("utf-8"))
+            if result.get("code") == 200:
+                print(f"  ✅ Bark 推送成功：{title}")
+                return True
+            print(f"  ❌ Bark 推送失败：{result}")
+            return False
+    except Exception as e:
+        print(f"  ❌ Bark 推送异常：{e}")
+        return False
+
+
+def extract_briefing_summary(topic: str) -> tuple[str, str, str] | None:
+    """从当天简报文件提取推送摘要，返回 (title, body, github_url) 或 None
+
+    设计原则（参考 iOS 推送最佳实践）：
+    - 标题 ≤ 40 字符，确保锁屏不截断
+    - 正文前 2 行（约 80 字符）在锁屏预览可见，用于抓眼球
+    - 展开后显示完整 5 条要闻 + 统计摘要
+    - 每条标题 ≤ 80 字符，保留足够语义
+    - 点击通知跳转 GitHub 查看完整简报
+    """
+    filepath = topic_dir(topic) / f"{today_str()}.md"
+    if not filepath.exists():
+        return None
+
+    content = filepath.read_text(encoding="utf-8")
+    icon = TOPIC_ICONS.get(topic, "📰")
+    name = TOPIC_NAMES.get(topic, topic)
+    today = datetime.now().strftime("%m-%d")
+
+    # 提取要闻标题（### 开头的行）
+    headlines = re.findall(r"^### \d+\. (.+)$", content, re.MULTILINE)
+    if not headlines:
+        headlines = re.findall(r"^### (.+)$", content, re.MULTILINE)
+
+    # 提取收录数
+    count_match = re.search(r"最终收录：(\d+) 条", content)
+    count = count_match.group(1) if count_match else "?"
+
+    # 提取来源数
+    source_match = re.search(r"采集源：(\d+) 个", content)
+    source_count = source_match.group(1) if source_match else ""
+
+    title = f"{icon} {name} {today}｜{count} 条收录"
+
+    lines = []
+    # 展示前 5 条要闻，每条最多 80 字符
+    for i, h in enumerate(headlines[:5], 1):
+        short = h[:80] + ("…" if len(h) > 80 else "")
+        lines.append(f"{i}. {short}")
+
+    if not lines:
+        lines.append("详见完整简报")
+
+    # 底部统计行
+    total = len(headlines)
+    if total > 5:
+        lines.append(f"\n…共 {total} 条要闻")
+    if source_count:
+        lines.append(f"📡 {source_count} 个源采集")
+    lines.append("👆 点击查看完整简报")
+
+    body = "\n".join(lines)
+    gh_url = briefing_github_url(topic)
+    return title, body, gh_url
+
+
+def cmd_notify(args):
+    """推送简报摘要到 Bark"""
+    bark_url = get_bark_url()
+    if not bark_url:
+        print("❌ 未配置 BARK_URL，跳过推送")
+        print("   设置方式：export BARK_URL=https://api.day.app/你的key")
+        return
+
+    topics = (
+        [args.topic]
+        if args.topic != "all"
+        else ["ai-agent", "china-tech", "global-tech"]
+    )
+
+    if args.topic == "all":
+        # 合并推送：三个简报合成一条通知
+        all_lines = []
+        total_count = 0
+        first_url = ""
+        for t in topics:
+            summary = extract_briefing_summary(t)
+            if summary:
+                _, body, gh_url = summary
+                if not first_url:
+                    first_url = gh_url
+                icon = TOPIC_ICONS.get(t, "📰")
+                name = TOPIC_NAMES.get(t, t)
+                # 提取收录数
+                filepath = topic_dir(t) / f"{today_str()}.md"
+                if filepath.exists():
+                    content = filepath.read_text(encoding="utf-8")
+                    m = re.search(r"最终收录：(\d+) 条", content)
+                    c = int(m.group(1)) if m else 0
+                    total_count += c
+                all_lines.append(f"{icon} {name}")
+                all_lines.append(body)
+                all_lines.append("")
+
+        if all_lines:
+            today = datetime.now().strftime("%m-%d")
+            title = f"📰 今日简报 {today}｜共 {total_count} 条"
+            body = "\n".join(all_lines).strip()
+            push_bark(bark_url, title, body, open_url=first_url)
+        else:
+            print("⚠️ 今天没有简报文件，跳过推送")
+    else:
+        # 单主题推送
+        summary = extract_briefing_summary(args.topic)
+        if summary:
+            title, body, gh_url = summary
+            push_bark(bark_url, title, body, open_url=gh_url)
+        else:
+            print(f"⚠️ 今天没有 {args.topic} 简报文件，跳过推送")
+
+
 def main():
     parser = argparse.ArgumentParser(description="简报工具集")
     sub = parser.add_subparsers(dest="command", required=True)
@@ -605,11 +841,16 @@ def main():
 
     p = sub.add_parser("status", help="简报采集状态面板")
     p.add_argument("--json", action="store_true")
+    p.add_argument("--check-sources", action="store_true", help="检查所有 RSS 源是否可达")
     p.set_defaults(func=cmd_status)
 
     p = sub.add_parser("index", help="同步 README 索引")
     p.add_argument("--topic", default="all", choices=["ai-agent", "china-tech", "global-tech", "all"])
     p.set_defaults(func=cmd_index)
+
+    p = sub.add_parser("notify", help="推送简报摘要到 Bark")
+    p.add_argument("--topic", default="all", choices=["ai-agent", "china-tech", "global-tech", "all"])
+    p.set_defaults(func=cmd_notify)
 
     args = parser.parse_args()
     args.func(args)
