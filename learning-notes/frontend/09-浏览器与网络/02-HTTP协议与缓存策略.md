@@ -112,6 +112,90 @@ self.addEventListener('fetch', (event) => {
 502 Bad Gateway           # 网关错误
 503 Service Unavailable   # 服务不可用
 ```
+
+<!-- version-check: HTTP/3 38.8% adoption (April 2026), checked 2026-04-27 -->
+
+> 🔄 更新于 2026-04-27
+
+## 6. HTTP/3 与 QUIC 2026 年现状
+
+### 6.1 采用率
+
+截至 2026 年 4 月，HTTP/3 已被约 **38.8%** 的网站采用，所有主流浏览器（Chrome、Firefox、Safari、Edge）均已支持。主要 CDN（Cloudflare、Fastly、AWS CloudFront）默认启用 HTTP/3。
+
+来源：[HTTP/3 SEO Performance](https://blckalpaca.at/en/knowledge-base/seo-geo/technisches-seo/http3-performance)
+
+### 6.2 QUIC 核心优势
+
+```
+TCP + TLS 1.3（HTTP/2）          QUIC（HTTP/3）
+┌─────────────────────┐          ┌─────────────────────┐
+│ TCP 握手 (1 RTT)     │          │ QUIC 握手 (0-1 RTT)  │
+│ TLS 握手 (1-2 RTT)   │          │ 加密内置于传输层      │
+│ 总计: 2-3 RTT        │          │ 总计: 0-1 RTT        │
+│                     │          │                     │
+│ 队头阻塞（TCP 层）   │          │ 无队头阻塞           │
+│ 连接迁移需重建       │          │ 连接 ID 支持迁移     │
+└─────────────────────┘          └─────────────────────┘
+```
+
+**性能改进**：
+- 连接建立：0-RTT 恢复连接（已知服务器），1-RTT 新连接
+- 多路复用：单个流丢包不影响其他流（消除 TCP 层队头阻塞）
+- 连接迁移：Wi-Fi ↔ 4G/5G 切换时连接不中断
+- Core Web Vitals：LCP 和 INP 均有可测量的改善
+
+### 6.3 服务端配置
+
+```nginx
+# Nginx 1.25+ 启用 HTTP/3
+server {
+    listen 443 quic reuseport;  # QUIC/HTTP3
+    listen 443 ssl;              # HTTP/2 回退
+
+    ssl_certificate     /path/to/cert.pem;
+    ssl_certificate_key /path/to/key.pem;
+
+    # 告知浏览器支持 HTTP/3
+    add_header Alt-Svc 'h3=":443"; ma=86400';
+}
+```
+
+## 7. Speculation Rules API（预测性加载）
+
+Speculation Rules API 让浏览器在用户点击前预渲染或预取即将导航的页面，实现近乎即时的页面切换。
+
+来源：[Speculation Rules at Shopify](https://performance.shopify.com/blogs/blog/speculation-rules-at-shopify)
+
+```html
+<!-- 在 HTML 中声明预测规则 -->
+<script type="speculationrules">
+{
+  "prerender": [
+    {
+      "where": { "href_matches": "/products/*" },
+      "eagerness": "moderate"
+    }
+  ],
+  "prefetch": [
+    {
+      "where": { "href_matches": "/blog/*" },
+      "eagerness": "conservative"
+    }
+  ]
+}
+</script>
+
+<!--
+eagerness 级别：
+- immediate：立即预渲染（适合确定性高的导航）
+- eager：尽快预渲染
+- moderate：悬停 200ms 后预渲染（推荐默认值）
+- conservative：点击/触摸开始时预渲染
+-->
+```
+
+**浏览器支持**：Chrome 121+、Edge 121+（基于 Chromium），Safari 和 Firefox 暂不支持。
 ## 🎬 推荐视频资源
 
 - [Fireship - HTTP in 100 Seconds](https://www.youtube.com/watch?v=iYM2zFP3Zn0) — HTTP快速了解

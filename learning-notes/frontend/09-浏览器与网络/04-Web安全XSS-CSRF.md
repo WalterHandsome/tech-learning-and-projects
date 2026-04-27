@@ -94,6 +94,62 @@ X-Content-Type-Options: nosniff
 X-XSS-Protection: 0  // 现代浏览器建议关闭，使用 CSP 替代
 Referrer-Policy: strict-origin-when-cross-origin
 ```
+
+<!-- version-check: Trusted Types Baseline 2026-02, CSP Level 3, checked 2026-04-27 -->
+
+> 🔄 更新于 2026-04-27
+
+## 4. Trusted Types API（2026 年全浏览器支持）
+
+Trusted Types 自 2026 年 2 月起成为 **Baseline Newly Available**，所有主流浏览器均已支持。它从根本上防止 DOM XSS：不再依赖开发者"记得转义"，而是让浏览器强制要求只有经过策略处理的类型化值才能传入危险 DOM API。
+
+来源：[MDN Trusted Types API](https://developer.mozilla.org/docs/Web/API/Trusted_Types_API)
+
+```javascript
+// 1. 启用 Trusted Types（CSP 头）
+// Content-Security-Policy: trusted-types myPolicy; require-trusted-types-for 'script'
+
+// 2. 定义策略
+const policy = trustedTypes.createPolicy('myPolicy', {
+  createHTML: (input) => {
+    // 在这里做安全处理（转义、白名单过滤等）
+    return DOMPurify.sanitize(input);
+  },
+  createScriptURL: (input) => {
+    // 只允许可信域名的脚本
+    const url = new URL(input);
+    if (url.origin === 'https://cdn.mysite.com') return input;
+    throw new TypeError('不允许的脚本来源');
+  }
+});
+
+// 3. 使用策略创建可信值
+element.innerHTML = policy.createHTML(userInput);  // ✅ 通过策略
+element.innerHTML = userInput;                      // ❌ 浏览器拒绝
+
+// Trusted Types 类型：
+// TrustedHTML    → innerHTML, outerHTML, insertAdjacentHTML
+// TrustedScript  → eval(), setTimeout(string)
+// TrustedScriptURL → script.src, Worker()
+```
+
+来源：[Stop Sanitizing HTML: Use Trusted Types](https://loke.dev/blog/stop-sanitizing-html-use-trusted-types)
+
+### CSP Level 3 更新
+
+W3C CSP Level 3 规范在 2026 年持续更新，关键变化：
+
+```
+# 2026 年推荐的安全响应头组合
+Content-Security-Policy: default-src 'self'; script-src 'self' 'nonce-{random}'; style-src 'self' 'unsafe-inline'; trusted-types myPolicy; require-trusted-types-for 'script'
+Strict-Transport-Security: max-age=63072000; includeSubDomains; preload
+X-Content-Type-Options: nosniff
+X-Frame-Options: DENY
+Referrer-Policy: strict-origin-when-cross-origin
+Permissions-Policy: camera=(), microphone=(), geolocation=()
+```
+
+来源：[W3C CSP Level 3](https://www.w3.org/TR/CSP/)
 ## 🎬 推荐视频资源
 
 - [Fireship - Web Security in 100 Seconds](https://www.youtube.com/watch?v=4YOpILi9Oxs) — Web安全快速了解

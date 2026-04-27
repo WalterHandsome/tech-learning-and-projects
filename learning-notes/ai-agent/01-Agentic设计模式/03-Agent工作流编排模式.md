@@ -326,6 +326,58 @@ resumed = app.invoke(None, config)  # 传入 None 表示恢复
 | 持久化       | Postgres/Redis   | 无内置           | Vertex AI Store  |
 | 部署         | LangGraph Cloud  | CrewAI Enterprise| Vertex AI Agent  |
 | 适用场景     | 复杂自定义流程    | 角色协作任务      | Google 云原生    |
+
+<!-- version-check: LangGraph 1.1.9, langgraph-prebuilt 1.0.11, checked 2026-04-27 -->
+
+> 🔄 更新于 2026-04-27
+
+## 10. 2026 年工作流编排趋势
+
+### 10.1 LangGraph 1.1.9 版本演进
+
+LangGraph 从 1.1.6 更新至 **1.1.9**（2026-04-21），配套生态同步迭代：
+
+| 组件 | 版本 | 关键变化 |
+|------|------|---------|
+| langgraph | 1.1.9 | 修复子图 ReplayState 传播、stream handler 清理 |
+| langgraph-prebuilt | 1.0.11 | ToolNode 支持返回 `list[Command \| ToolMessage]`、ToolRuntime 暴露可用工具 |
+| langchain-core | 1.3.2 | content-block-centric streaming v2、tracer metadata 增强 |
+
+来源：[Releasebot LangChain Updates](https://releasebot.io/updates/langchain-ai)
+
+**ToolNode 增强示例**：
+
+```python
+from langgraph.prebuilt import ToolNode
+
+# ToolNode 现在支持工具返回 Command 列表
+# 允许工具直接控制图的执行流程
+async def smart_tool(query: str) -> list:
+    """工具可以返回 Command 来控制图的下一步"""
+    result = await search(query)
+    if result.needs_human_review:
+        # 返回 Command 让图跳转到人工审核节点
+        return [Command(goto="human_review", update={"data": result})]
+    return [ToolMessage(content=result.text)]
+```
+
+### 10.2 Deep Agents 与非阻塞后台任务
+
+LangGraph JS 引入 **Deep Agents** 概念（需要 LangSmith Deployment）：
+
+- Agent 可以启动非阻塞后台子任务
+- 用户在子 Agent 工作时可继续与主 Agent 交互
+- 适用于长时间运行的研究、数据处理等场景
+
+来源：[LangChain JS Changelog](https://docs.langchain.com/oss/javascript/releases/changelog)
+
+### 10.3 工作流编排模式演进方向
+
+2026 年工作流编排的三个关键趋势：
+
+1. **工具即控制流**：ToolNode 返回 Command 让工具直接参与图的路由决策，模糊了"工具调用"和"流程控制"的边界
+2. **有状态续传标准化**：Cursor 3 减少 80% 数据传输、LangGraph 检查点恢复、CrewAI Checkpoint 系统，断点恢复成为生产级 Agent 的标配
+3. **Agent 运行时托管化**：Claude Managed Agents、LangSmith Deployment、CrewAI Enterprise 将编排基础设施从开发者手中转移到平台
 ## 🎬 推荐视频资源
 
 ### 🌐 YouTube

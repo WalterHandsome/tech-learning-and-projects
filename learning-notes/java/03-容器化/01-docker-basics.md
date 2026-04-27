@@ -79,3 +79,63 @@ ENTRYPOINT ["java", "-jar", "app.jar"]
 - [Docker 官方文档](https://docs.docker.com/)
 - [Docker 最佳实践](https://docs.docker.com/develop/dev-best-practices/)
 
+
+
+## Docker 版本演进（2025-2026）
+
+<!-- version-check: Docker Engine 29.x (March 2026), checked 2026-04-27 -->
+
+> 🔄 更新于 2026-04-27
+
+### Docker Engine 28（2025-02）
+
+**核心变化**：容器网络安全加固
+- 默认隔离未发布端口，防止外部直接访问容器内部端口
+- Docker Desktop 用户不受影响（内部网络已有保护）
+
+> 来源：[Docker Engine v28](https://www.docker.com/blog/docker-engine-28-hardening-container-networking-by-default/)
+
+### Docker Engine 29（2026-03）
+
+**三个向后不兼容的变化**：
+
+| 变化 | 影响 | 受影响用户 |
+|------|------|-----------|
+| 最低 API 版本提升至 1.44 | Docker v24 及更早版本的客户端被拒绝 | 使用旧版 Docker CLI/SDK 的用户 |
+| containerd 镜像存储成为默认 | 镜像由 containerd 管理，替代 Docker 传统存储 | 从 v27 及更早版本升级的用户 |
+| nftables 支持（可选） | Docker 可使用 nftables 替代 iptables | 有自定义 iptables 规则的用户 |
+
+**升级前检查**：
+
+```bash
+# 检查当前 Docker 版本
+docker version --format '{{.Server.Version}}'
+# 如果是 24.x 或更低，API 版本变化会导致问题
+
+# 检查镜像存储驱动
+docker info --format '{{.Driver}}'
+# 如果是 overlay2，升级后新拉取的镜像使用 containerd 存储
+
+# 检查防火墙规则
+sudo iptables -L DOCKER-USER -n 2>/dev/null | head -20
+# 如果有自定义规则，需要验证 nftables 兼容性
+```
+
+> 来源：[Docker v29 Migration Guide](https://blog.canadianwebhosting.com/docker-v29-migration-guide-self-hosters/)
+
+### Docker 2026 年新方向
+
+- **Docker Sandboxes**（2026-04）：基于 MicroVM 的 Agent 隔离环境，让 AI Agent 安全地自主执行代码
+- **Docker AI Agent**：集成 MCP（Model Context Protocol），AI Agent 可直接操作 Docker 环境
+- **Docker Hardened Images**：安全加固的官方镜像，减少 CVE 攻击面
+
+> 来源：[Docker Sandboxes](https://www.docker.com/blog/docker-engine-version-29/)、[Top 5 Docker Desktop Features 2026](https://dasroot.net/posts/2026/01/top-5-docker-desktop-features-2026/)
+
+### 版本选择建议（2026）
+
+| 场景 | 推荐版本 | 说明 |
+|------|---------|------|
+| 生产环境 | Docker Engine 29.x | 当前稳定版，containerd 存储更高效 |
+| CI/CD | Docker Engine 29.x | GitHub Actions 已默认使用 |
+| 开发环境 | Docker Desktop 最新版 | 包含 AI Agent、Model Runner 等新功能 |
+| 旧项目维护 | Docker Engine 28.x | 如果无法立即迁移 API 版本 |

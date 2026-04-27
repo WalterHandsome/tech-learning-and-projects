@@ -73,3 +73,83 @@ kubectl exec -it <pod-name> -- /bin/bash
 - [Kubernetes 官方文档](https://kubernetes.io/docs/)
 - [Kubernetes 中文文档](https://kubernetes.io/zh-cn/docs/)
 
+
+
+## Kubernetes 版本演进（2025-2026）
+
+<!-- version-check: Kubernetes 1.34 (August 2025), 1.33.6 patch (March 2026), checked 2026-04-27 -->
+
+> 🔄 更新于 2026-04-27
+
+### K8s 1.33 "Octarine"（2025-04-23）
+
+**毕业为稳定（Stable）的关键特性**：
+- **Sidecar Containers**：原生支持 `initContainers` 设置 `restartPolicy: Always`，随 Pod 全生命周期运行
+- **`--subresource` flag**：kubectl get/patch/edit/replace 支持操作 status、scale 等子资源
+
+**Beta 特性**：
+- **In-place Pod Vertical Scaling**：运行中调整 Pod 的 CPU/内存，无需重启
+- **nftables**：kube-proxy 支持 nftables 后端（替代 iptables）
+
+**Alpha 特性**：
+- **Pod Generation Tracking**：Pod 新增 `metadata.generation` 字段，追踪 spec 变更
+- **OCI Image Volumes**：将容器镜像直接挂载为 Volume
+- **Service Account Token 增强**：自定义 kubelet token audience 和 account name
+
+> 来源：[Kubernetes 1.33 – What's new?](https://sysdig.com/blog/kubernetes-1-33-whats-new/)
+
+### K8s 1.34 "Of Wind & Will"（2025-08-27）
+
+58 个 KEP，是近期最大的版本之一。
+
+**核心新特性**：
+- **DRA（Dynamic Resource Allocation）增强**：结构化参数让硬件驱动以标准化格式描述设备能力
+- **Pod-level Resources**：Pod 级别资源配额（而非仅容器级别）
+- **Per-container Restart Policy**：同一 Pod 内不同容器可设置不同重启策略
+- **EnvFiles**（Alpha）：从运行时生成的文件加载环境变量
+
+```yaml
+# K8s 1.34：Per-container Restart Policy 示例
+apiVersion: v1
+kind: Pod
+spec:
+  restartPolicy: OnFailure
+  restartPolicyRules:
+    - exitCode: 1
+      action: FailContainer
+```
+
+```yaml
+# K8s 1.34：EnvFiles 示例 — init 容器生成配置，主容器自动加载
+apiVersion: v1
+kind: Pod
+spec:
+  initContainers:
+    - name: generate-config
+      image: busybox:1.36
+      command: ["sh", "-c", "echo 'EPOCHS=25' > /config/runtime.env"]
+      volumeMounts:
+        - name: config
+          mountPath: /config
+  containers:
+    - name: trainer
+      image: python:3.12-slim
+      envFromFile:
+        - path: runtime.env
+          volumeName: config
+  volumes:
+    - name: config
+      emptyDir: {}
+```
+
+> 来源：[Kubernetes v1.34 Release](https://www.perfectscale.io/blog/kubernetes-v1-34-release)
+
+### 版本选择建议（2026）
+
+| 环境 | 推荐版本 | 说明 |
+|------|---------|------|
+| 生产环境 | 1.33.x | 稳定，云厂商已全面支持 |
+| 测试/预发布 | 1.34.x | 评估新特性（DRA、Pod-level Resources） |
+| 新集群 | 1.33+ | 享受 Sidecar Containers 和 In-place Scaling |
+
+> 注意：K8s 1.35 已在开发中，预计 2025-12 发布。

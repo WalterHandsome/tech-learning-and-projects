@@ -133,3 +133,72 @@ func loadImages() {
     os_signpost(.end, log: log, name: "ImageLoading", signpostID: signpostID)
 }
 ```
+
+
+## 7. Xcode 26 Instruments 新工具
+
+<!-- version-check: Xcode 26.4, Instruments 2026, checked 2026-04-27 -->
+
+> 🔄 更新于 2026-04-27
+
+### 7.1 Foundation Models Instrument
+
+Xcode 26 新增了专用的 **Foundation Models** 性能分析工具，用于测量和优化设备端 AI 模型会话的性能。
+
+**分析维度**：
+- **Asset 加载时间**：模型资源加载耗时
+- **Session 信息**：总响应时间、Prompt 处理时间
+- **Token 计数**：输入/输出 Token 数量（系统模型上限 4,096 tokens）
+- **Tool Calling 耗时**：工具调用的处理时间，识别耗时较长的工具
+
+```swift
+import FoundationModels
+
+// 创建会话并添加工具
+let session = LanguageModelSession(tools: [MoodTool()]) {
+    "You're a haiku generator."
+}
+
+// 预热会话以减少响应延迟
+session.prewarm()
+
+// 如果已知 Prompt，可以传入预热以进一步降低延迟
+let prompt = Prompt { "Generate a haiku about Swift" }
+session.prewarm(promptPrefix: prompt)
+
+// 生成响应
+let response = try await session.respond(to: prompt)
+```
+
+**优化技巧**：
+- 使用 `session.prewarm()` 预热会话，减少首次响应延迟
+- 传入 `promptPrefix` 预热可进一步降低延迟（系统提前处理 Prompt）
+- 通过 Instruments 识别耗时较长的 Tool Calling，考虑缓存结果
+- 调整 Prompt 减少不必要的工具调用次数
+
+> ⚠️ 注意：iOS 模拟器上 Token 计数始终为 0（Xcode 26.1 已修复部分问题，但仍需真机测试）
+
+> 来源：[Foundation Models profiling with Xcode Instruments](https://artemnovichkov.com/blog/foundation-models-profiling-with-xcode-instruments)
+
+### 7.2 Processor Trace 和 CPU Counter
+
+Xcode 26 新增两个硬件辅助性能分析工具：
+
+- **Processor Trace**：基于 Apple Silicon 硬件追踪能力，提供指令级别的 CPU 执行追踪
+- **CPU Counter**：硬件性能计数器，测量缓存命中率、分支预测等底层指标
+
+这两个工具需要 Apple Silicon Mac，提供比 Time Profiler 更精细的性能数据。
+
+> 来源：[What's new in Xcode 26](https://developer.apple.com/xcode/whats-new/)
+
+### 7.3 2026 年 iOS 性能分析工具选型
+
+| 场景 | 推荐工具 | 说明 |
+|------|---------|------|
+| CPU 热点分析 | Time Profiler | 通用 CPU 分析，首选工具 |
+| 指令级追踪 | Processor Trace（Xcode 26） | Apple Silicon 硬件辅助，更精细 |
+| 内存分配追踪 | Allocations | 追踪对象创建和持久化 |
+| 内存泄漏检测 | Leaks | 自动检测循环引用 |
+| AI 模型性能 | Foundation Models（Xcode 26） | 设备端模型响应时间和 Token 分析 |
+| 能耗分析 | Energy Log | GPS、网络、CPU 能耗 |
+| 自定义埋点 | os_signpost | 精确测量特定代码段 |
