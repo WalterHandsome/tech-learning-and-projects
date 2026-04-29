@@ -2225,7 +2225,565 @@
       "source": "Hacker News 开发者",
       "topic": "global-tech",
       "date": "2026-04-28"
+    },
+    "1cb6cd1eb9ad": {
+      "title": "Interrupt Preview: Meet the MC",
+      "source": "LangChain Blog",
+      "topic": "ai-agent",
+      "date": "2026-04-29"
+    },
+    "cd4877b850e9": {
+      "title": "How we built LangChain’s GTM Agent",
+      "source": "LangChain Blog",
+      "topic": "ai-agent",
+      "date": "2026-04-29"
+    },
+    "71c5c0c80fdc": {
+      "title": "Evaluating Skills",
+      "source": "LangChain Blog",
+      "topic": "ai-agent",
+      "date": "2026-04-29"
+    },
+    "15849abf4dcf": {
+      "title": "Claude for Creative Work",
+      "source": "Anthropic News",
+      "topic": "ai-agent",
+      "date": "2026-04-29"
+    },
+    "1dc472c1198d": {
+      "title": "Our commitment to community safety",
+      "source": "OpenAI Blog",
+      "topic": "ai-agent",
+      "date": "2026-04-29"
+    },
+    "d0682fe009b6": {
+      "title": "OpenAI models, Codex, and Managed Agents come to AWS",
+      "source": "OpenAI Blog",
+      "topic": "ai-agent",
+      "date": "2026-04-29"
+    },
+    "6d3470cf9379": {
+      "title": "Celebrating 20 years of Google Translate: Fun facts, tips and new features to try",
+      "source": "Google AI Blog",
+      "topic": "ai-agent",
+      "date": "2026-04-29"
+    },
+    "3fabcf9934d1": {
+      "title": "Introducing NVIDIA Nemotron 3 Nano Omni: Long-Context Multimodal Intelligence for Documents, Audio and Video Agents",
+      "source": "Hugging Face Blog",
+      "topic": "ai-agent",
+      "date": "2026-04-29"
+    },
+    "d1940ce04d1a": {
+      "title": "A playable DOOM MCP app",
+      "source": "Hacker News AI",
+      "topic": "ai-agent",
+      "date": "2026-04-29"
+    },
+    "26cf36bbfab8": {
+      "title": "Claude.ai unavailable and elevated errors on the API",
+      "source": "Hacker News AI",
+      "topic": "ai-agent",
+      "date": "2026-04-29"
+    },
+    "cab39fd8e9ba": {
+      "title": "AI's economics don't make sense",
+      "source": "Hacker News AI",
+      "topic": "ai-agent",
+      "date": "2026-04-29"
+    },
+    "25ade5c82c92": {
+      "title": "Google and Pentagon reportedly agree on deal for 'any lawful' use of AI",
+      "source": "Hacker News AI",
+      "topic": "ai-agent",
+      "date": "2026-04-29"
+    },
+    "43894aecbad7": {
+      "title": "AI's biggest critic has lost the plot",
+      "source": "Hacker News AI",
+      "topic": "ai-agent",
+      "date": "2026-04-29"
+    },
+    "8b0e36f9316e": {
+      "title": "OpenAI misses revenue, is the AI bubble bursting?",
+      "source": "Hacker News AI",
+      "topic": "ai-agent",
+      "date": "2026-04-29"
+    },
+    "104b57e9a431": {
+      "title": "VibeVoice: Open-source frontier voice AI",
+      "source": "Hacker News AI",
+      "topic": "ai-agent",
+      "date": "2026-04-29"
+    },
+    "85ceb0b3fb68": {
+      "title": "Utah greenlights 9GW AI campus using over twice state electricity",
+      "source": "Hacker News AI",
+      "topic": "ai-agent",
+      "date": "2026-04-29"
+    },
+    "770b07accb02": {
+      "title": "San Francisco, AI capital of the world, is an economic laggard",
+      "source": "Hacker News AI",
+      "topic": "ai-agent",
+      "date": "2026-04-29"
+    },
+    "93928d816392": {
+      "title": "An Intelligent Fault Diagnosis Method for General Aviation Aircraft Based on Multi-Fidelity Digital Twin and FMEA Knowledge Enhancement",
+      "source": "arXiv AI",
+      "topic": "ai-agent",
+      "date": "2026-04-29"
+    },
+    "c2c01ec9deee": {
+      "title": "PExA: Parallel Exploration Agent for Complex Text-to-SQL",
+      "source": "arXiv AI",
+      "topic": "ai-agent",
+      "date": "2026-04-29"
+    },
+    "f3e8b694ae8c": {
+      "title": "The Power of Power Law: Asymmetry Enables Compositional Reasoning",
+      "source": "arXiv AI",
+      "topic": "ai-agent",
+      "date": "2026-04-29"
+    },
+    "35beed3b4bfd": {
+      "title": "On the Existence of an Inverse Solution for Preference-Based Reductions in Argumentation",
+      "source": "arXiv AI",
+      "topic": "ai-agent",
+      "date": "2026-04-29"
+    },
+    "ed0162a60800": {
+      "title": "Towards Causally Interpretable Wi-Fi CSI-Based Human Activity Recognition with Discrete Latent Compression and LTL Rule Extraction",
+      "source": "arXiv AI",
+      "topic": "ai-agent",
+      "date": "2026-04-29"
+    },
+    "59a681a220b6": {
+      "title": "FormalScience: Scalable Human-in-the-Loop Autoformalisation of Science with Agentic Code Generation in Lean",
+      "source": "arXiv AI",
+      "topic": "ai-agent",
+      "date": "2026-04-29"
+    },
+    "d695c1ed4af7": {
+      "title": "A Systematic Approach for Large Language Models Debugging",
+      "source": "arXiv AI",
+      "topic": "ai-agent",
+      "date": "2026-04-29"
+    },
+    "02e66100e59b": {
+      "title": "A Decoupled Human-in-the-Loop System for Controlled Autonomy in Agentic Workflows",
+      "source": "arXiv AI",
+      "topic": "ai-agent",
+      "date": "2026-04-29"
+    },
+    "d807b102f496": {
+      "title": "Don't Make the LLM Read the Graph: Make the Graph Think",
+      "source": "arXiv AI",
+      "topic": "ai-agent",
+      "date": "2026-04-29"
+    },
+    "2356a1407803": {
+      "title": "Analytica: Soft Propositional Reasoning for Robust and Scalable LLM-Driven Analysis",
+      "source": "arXiv AI",
+      "topic": "ai-agent",
+      "date": "2026-04-29"
+    },
+    "a9df1966aa13": {
+      "title": "比博斯特完成超10亿元B轮融资，智能底盘三轴产品全覆盖｜36氪独家",
+      "source": "36氪",
+      "topic": "china-tech",
+      "date": "2026-04-29"
+    },
+    "0f6602172130": {
+      "title": "前米哈游高管创业，AI 原生增长 Agent LeapMind Growth 获 CMC 资本领投",
+      "source": "36氪",
+      "topic": "china-tech",
+      "date": "2026-04-29"
+    },
+    "4345370fb873": {
+      "title": "独家对谈｜兴辉时代创始人高兴辉，90后小镇女孩离开教培大厂，三年创造2亿GMV的倔强人生",
+      "source": "36氪",
+      "topic": "china-tech",
+      "date": "2026-04-29"
+    },
+    "9cbfdb3c54d9": {
+      "title": "8点1氪丨百度废除字母职级标签；Meta被曝准备撤销对Manus收购；张雪称曾拒绝了半个亿的商务合作",
+      "source": "36氪",
+      "topic": "china-tech",
+      "date": "2026-04-29"
+    },
+    "73027d47477c": {
+      "title": "氪星晚报｜我国最大规模AI4S集群接入全国一体化算力网；亚马逊低地轨道卫星计划又一批卫星发射升空；我国首款正向设计自转旋翼机完成首飞",
+      "source": "36氪",
+      "topic": "china-tech",
+      "date": "2026-04-29"
+    },
+    "8d0e02807725": {
+      "title": "独家对谈｜缘启智慧CEO邓江，一个80后银行码农出身的AI医疗创业者",
+      "source": "36氪",
+      "topic": "china-tech",
+      "date": "2026-04-29"
+    },
+    "5613a9ad6071": {
+      "title": "36氪首发 | 韩国现代、微光创投押注焊接机器人，营收预计破数亿，拿下船厂数千万订单",
+      "source": "36氪",
+      "topic": "china-tech",
+      "date": "2026-04-29"
+    },
+    "c2f8e58d4ea4": {
+      "title": "面向智能体与人类用户的AI记忆系统：架构设计与核心场景实践｜AICon上海",
+      "source": "InfoQ CN",
+      "topic": "china-tech",
+      "date": "2026-04-29"
+    },
+    "7d4c4c3aa751": {
+      "title": "Anthropic 推出 Managed Agents，简化 AI 代理部署流程",
+      "source": "InfoQ CN",
+      "topic": "china-tech",
+      "date": "2026-04-29"
+    },
+    "b1c96bd1cd83": {
+      "title": "阿里HappyHorse开启灰测，720P视频生成低至0.44元/秒",
+      "source": "InfoQ CN",
+      "topic": "china-tech",
+      "date": "2026-04-29"
+    },
+    "eb9a1fff7501": {
+      "title": "讯飞联合清华团队押注量子AI：不看营收、不设KPI，一群“无人区”科学家，抢夺下代AI算力入口",
+      "source": "InfoQ CN",
+      "topic": "china-tech",
+      "date": "2026-04-29"
+    },
+    "322d871773fd": {
+      "title": "小米万亿模型全面开源：MIT 协议、1M 上下文，但还是打不过 DeepSeek",
+      "source": "InfoQ CN",
+      "topic": "china-tech",
+      "date": "2026-04-29"
+    },
+    "e4fb962d5a64": {
+      "title": "Cortex Code 入门指南：面向数据工程师的实践路径 ｜ 技术实践",
+      "source": "InfoQ CN",
+      "topic": "china-tech",
+      "date": "2026-04-29"
+    },
+    "45686922cd44": {
+      "title": "openJiuwen社区首发Team Skills，定义Coordination Engineering新范式",
+      "source": "InfoQ CN",
+      "topic": "china-tech",
+      "date": "2026-04-29"
+    },
+    "395ec23c5e04": {
+      "title": "用 Snowflake Cortex Agents 释放结构化数据的最大价值 ｜ 技术实践",
+      "source": "InfoQ CN",
+      "topic": "china-tech",
+      "date": "2026-04-29"
+    },
+    "1af91dab591f": {
+      "title": "Grafana 利用 Kafka 对 Loki 进行了架构重构，并发布了一款命令行工具，旨在将可观测性引入编码代理",
+      "source": "InfoQ CN",
+      "topic": "china-tech",
+      "date": "2026-04-29"
+    },
+    "95ee88385ef9": {
+      "title": "ClickHouse重构全文索引：对象存储上跑出高性能 Full-Text Search",
+      "source": "InfoQ CN",
+      "topic": "china-tech",
+      "date": "2026-04-29"
+    },
+    "d4015ed80d6d": {
+      "title": "派早报：乐道 L80 发布、一加 Ace 6 至尊版发布等",
+      "source": "少数派",
+      "topic": "china-tech",
+      "date": "2026-04-29"
+    },
+    "af4b24d26d9f": {
+      "title": "住久了没意思（二）：从有光的地方开始动手",
+      "source": "少数派",
+      "topic": "china-tech",
+      "date": "2026-04-29"
+    },
+    "22a84503d44c": {
+      "title": "社区速递 139 | 派友热议三月买了啥、复古单反尼康 Df 体验",
+      "source": "少数派",
+      "topic": "china-tech",
+      "date": "2026-04-29"
+    },
+    "3c1f37d3b351": {
+      "title": "TDS REVIEW｜索尼 WF-1000XM6 降噪真无线耳机体验",
+      "source": "少数派",
+      "topic": "china-tech",
+      "date": "2026-04-29"
+    },
+    "d24e7dd02285": {
+      "title": "关于胃肠镜，你需要知道的一切",
+      "source": "少数派",
+      "topic": "china-tech",
+      "date": "2026-04-29"
+    },
+    "1343a4b0392a": {
+      "title": "We decreased our LLM costs with Opus",
+      "source": "Hacker News Top",
+      "topic": "global-tech",
+      "date": "2026-04-29"
+    },
+    "a1fc7f189e8e": {
+      "title": "Claude system prompt bug wastes user money and bricks managed agents",
+      "source": "Hacker News Top",
+      "topic": "global-tech",
+      "date": "2026-04-29"
+    },
+    "db9dd2a665b0": {
+      "title": "How ChatGPT serves ads",
+      "source": "Hacker News Top",
+      "topic": "global-tech",
+      "date": "2026-04-29"
+    },
+    "46a3685d2ec0": {
+      "title": "Apple CMF (Color-Matching Functions) 2026",
+      "source": "Hacker News Top",
+      "topic": "global-tech",
+      "date": "2026-04-29"
+    },
+    "a3aa9d1a4911": {
+      "title": "Carrot Disclosure: Forgejo",
+      "source": "Hacker News Top",
+      "topic": "global-tech",
+      "date": "2026-04-29"
+    },
+    "bdde8eb0d4c4": {
+      "title": "Before GitHub",
+      "source": "Hacker News Top",
+      "topic": "global-tech",
+      "date": "2026-04-29"
+    },
+    "ef03c896e6c4": {
+      "title": "I won a championship that doesn't exist",
+      "source": "Hacker News Top",
+      "topic": "global-tech",
+      "date": "2026-04-29"
+    },
+    "89eae6eebb45": {
+      "title": "Ghostty is leaving GitHub",
+      "source": "Hacker News Top",
+      "topic": "global-tech",
+      "date": "2026-04-29"
+    },
+    "37e09e628581": {
+      "title": "OpenAI models coming to Amazon Bedrock: Interview with OpenAI and AWS CEOs",
+      "source": "Hacker News Top",
+      "topic": "global-tech",
+      "date": "2026-04-29"
+    },
+    "1f2810cb9682": {
+      "title": "At his OpenAI trial, Musk relitigates an old friendship",
+      "source": "TechCrunch",
+      "topic": "global-tech",
+      "date": "2026-04-29"
+    },
+    "9ac17987a01d": {
+      "title": "Amazon is already offering new OpenAI products on AWS",
+      "source": "TechCrunch",
+      "topic": "global-tech",
+      "date": "2026-04-29"
+    },
+    "a1231f5b46cc": {
+      "title": "Amazon launches an AI-powered audio Q&A experience on product pages",
+      "source": "TechCrunch",
+      "topic": "global-tech",
+      "date": "2026-04-29"
+    },
+    "41a9cb40a82f": {
+      "title": "Match Group invests $100M in Sniffies, a cruising app for gay men",
+      "source": "TechCrunch",
+      "topic": "global-tech",
+      "date": "2026-04-29"
+    },
+    "8dcbd07fb3ff": {
+      "title": "Google expands Pentagon’s access to its AI after Anthropic’s refusal",
+      "source": "TechCrunch",
+      "topic": "global-tech",
+      "date": "2026-04-29"
+    },
+    "30a5ce3a20ea": {
+      "title": "Paragon is not collaborating with Italian authorities probing spyware attacks, report says",
+      "source": "TechCrunch",
+      "topic": "global-tech",
+      "date": "2026-04-29"
+    },
+    "e28653a85f38": {
+      "title": "US Supreme Court appears split over controversial use of ‘geofence’ search warrants",
+      "source": "TechCrunch",
+      "topic": "global-tech",
+      "date": "2026-04-29"
+    },
+    "44240a57fd40": {
+      "title": "Australia forces Big Tech firms to pay for news or face a 2.25% tax",
+      "source": "TechCrunch",
+      "topic": "global-tech",
+      "date": "2026-04-29"
+    },
+    "8a69f67e1d62": {
+      "title": "Lovable launches its vibe-coding app on iOS and Android",
+      "source": "TechCrunch",
+      "topic": "global-tech",
+      "date": "2026-04-29"
+    },
+    "e4531e65fe6b": {
+      "title": "Founder of Shark Tank-backed startup Scholly sues his acquirer Sallie Mae",
+      "source": "TechCrunch",
+      "topic": "global-tech",
+      "date": "2026-04-29"
+    },
+    "76771b0d2f28": {
+      "title": "It’s primetime for conspiracy theorist video creators",
+      "source": "The Verge",
+      "topic": "global-tech",
+      "date": "2026-04-29"
+    },
+    "6c0125a77650": {
+      "title": "Elon Musk appeared more petty than prepared",
+      "source": "The Verge",
+      "topic": "global-tech",
+      "date": "2026-04-29"
+    },
+    "6c562f85124d": {
+      "title": "James Comey indicted over Instagram seashell photo that allegedly threatened Trump",
+      "source": "The Verge",
+      "topic": "global-tech",
+      "date": "2026-04-29"
+    },
+    "c4b3a04bee65": {
+      "title": "Elon Musk tells the jury that all he wants to do is save humanity",
+      "source": "The Verge",
+      "topic": "global-tech",
+      "date": "2026-04-29"
+    },
+    "f46abba89ed3": {
+      "title": "Taylor Swift is stepping up the legal war on AI copycats",
+      "source": "The Verge",
+      "topic": "global-tech",
+      "date": "2026-04-29"
+    },
+    "7f39fbd5b001": {
+      "title": "Now YouTube TV lets you multiview any channel you want",
+      "source": "The Verge",
+      "topic": "global-tech",
+      "date": "2026-04-29"
+    },
+    "66ad457be21b": {
+      "title": "The FCC is going after the broadcast licenses of Disney-owned ABC stations",
+      "source": "The Verge",
+      "topic": "global-tech",
+      "date": "2026-04-29"
+    },
+    "74cdffe7e5df": {
+      "title": "Live updates from Elon Musk and Sam Altman’s court battle over the future of OpenAI",
+      "source": "The Verge",
+      "topic": "global-tech",
+      "date": "2026-04-29"
+    },
+    "21149ecd89ea": {
+      "title": "Elon Musk takes the stand in high-profile trial against OpenAI",
+      "source": "The Verge",
+      "topic": "global-tech",
+      "date": "2026-04-29"
+    },
+    "53779b78b167": {
+      "title": "You can get dragged into a police investigation by proximity alone — for now",
+      "source": "The Verge",
+      "topic": "global-tech",
+      "date": "2026-04-29"
+    },
+    "831bff8c20f3": {
+      "title": "Anti-Trump Instagram pic of seashells now enough to indict ex-FBI directors",
+      "source": "Ars Technica",
+      "topic": "global-tech",
+      "date": "2026-04-29"
+    },
+    "4d085541d570": {
+      "title": "Flesh-eating bacteria devour man's arm and leg in just three days",
+      "source": "Ars Technica",
+      "topic": "global-tech",
+      "date": "2026-04-29"
+    },
+    "ba15e3a603ff": {
+      "title": "FCC orders review of ABC licenses after Kimmel joke offends Trump and first lady",
+      "source": "Ars Technica",
+      "topic": "global-tech",
+      "date": "2026-04-29"
+    },
+    "323dda9ff9eb": {
+      "title": "Drone pilot makes US rescind no-fly zones around unmarked, moving ICE vehicles",
+      "source": "Ars Technica",
+      "topic": "global-tech",
+      "date": "2026-04-29"
+    },
+    "c106885044f5": {
+      "title": "Humanoid robots start sorting luggage in Tokyo airport test amid labor shortage",
+      "source": "Ars Technica",
+      "topic": "global-tech",
+      "date": "2026-04-29"
+    },
+    "f4d187eb8ff0": {
+      "title": "GitHub will start charging Copilot users based on their actual AI usage",
+      "source": "Ars Technica",
+      "topic": "global-tech",
+      "date": "2026-04-29"
+    },
+    "a25f9c39d804": {
+      "title": "Electrical current might be the key to a better cup of coffee",
+      "source": "Ars Technica",
+      "topic": "global-tech",
+      "date": "2026-04-29"
+    },
+    "71990cf85acf": {
+      "title": "The great American data center divide",
+      "source": "Ars Technica",
+      "topic": "global-tech",
+      "date": "2026-04-29"
+    },
+    "326006368b5c": {
+      "title": "A billion miles in less than a decade: GM's Super Cruise reaches a milestone",
+      "source": "Ars Technica",
+      "topic": "global-tech",
+      "date": "2026-04-29"
+    },
+    "edb0ef1a54ab": {
+      "title": "Start with the sensors, then design the rest: How Zoox built its robotaxi",
+      "source": "Ars Technica",
+      "topic": "global-tech",
+      "date": "2026-04-29"
+    },
+    "653029204c5b": {
+      "title": "Securing the git push pipeline: Responding to a critical remote code execution vulnerability",
+      "source": "GitHub Blog",
+      "topic": "global-tech",
+      "date": "2026-04-29"
+    },
+    "9c2138995570": {
+      "title": "An update on GitHub availability",
+      "source": "GitHub Blog",
+      "topic": "global-tech",
+      "date": "2026-04-29"
+    },
+    "e43508424141": {
+      "title": "GitHub RCE Vulnerability: CVE-2026-3854 Breakdown",
+      "source": "Hacker News 开发者",
+      "topic": "global-tech",
+      "date": "2026-04-29"
+    },
+    "eea9b697804c": {
+      "title": "Using Rust to Build a $1 Handheld Gaming Console",
+      "source": "Hacker News 开发者",
+      "topic": "global-tech",
+      "date": "2026-04-29"
+    },
+    "c0d956a22ec5": {
+      "title": "Pgrx: Build Postgres Extensions with Rust",
+      "source": "Hacker News 开发者",
+      "topic": "global-tech",
+      "date": "2026-04-29"
     }
   },
-  "updated": "2026-04-28 09:59"
+  "updated": "2026-04-29 10:50"
 }
