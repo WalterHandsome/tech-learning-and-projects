@@ -1,0 +1,40 @@
+# ========== 订阅源 ==========
+subscriptions:
+  # 本地文件模式：把订阅内容粘贴到 raw_sub.txt 里
+  - url: "file://raw_sub.txt"
+  # 在线模式（如果直连能访问就用这个）：
+  # - url: "https://v2ray.zmkk.fun/raw/ff3eee19-9a5d-4c33-b23c-6fd927b7e348?password=0000"
+  #   user_agent: "v2ray"
+
+# ========== 处理管道（按顺序执行）==========
+pipeline:
+  # 1. 去重（按 地址+端口）
+  - type: deduplicate
+    key: "addr:port"
+
+  # 2. 排除垃圾节点
+  - type: regex_filter
+    action: exclude
+    pattern: "过期|到期|官网|流量|剩余|维护|测试|群|频道|订阅|公告"
+
+  # 3. TCP 测速
+  - type: health_check
+    method: tcp
+    tcp:
+      concurrency: 200
+      timeout: 3
+
+  # 4. 地区分组 + 每组取延迟最低的 Top N
+  - type: region_sample
+    per_region: 20
+    sort_by: latency
+
+# ========== 输出 ==========
+output:
+  file: "filtered_sub.txt"
+  format: base64
+
+# ========== 缓存 ==========
+cache:
+  enabled: true
+  ttl: 86400

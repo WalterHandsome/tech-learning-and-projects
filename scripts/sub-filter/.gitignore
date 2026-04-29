@@ -1,0 +1,11 @@
+# 输出文件
+filtered_sub.txt
+
+# 原始订阅内容（含敏感信息）
+raw_sub.txt
+
+# 缓存
+.cache/
+
+# Go 二进制
+sub-filter
