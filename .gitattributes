@@ -9,6 +9,8 @@ learning-notes/ai-agent/20-Agent支付/07-*.md filter=git-crypt diff=git-crypt
 learning-notes/ai-agent/20-Agent支付/09-*.md filter=git-crypt diff=git-crypt
 # AgentToken 后端工程落地指南（公司工程方案）
 learning-notes/ai-agent/20-Agent支付/10-*.md filter=git-crypt diff=git-crypt
+# 架构图和流程图（公司内部设计资产）
+learning-notes/ai-agent/20-Agent支付/assets/** filter=git-crypt diff=git-crypt
 # 蓝图原始文档（如果存在）
 learning-notes/ai-agent/20-Agent支付/ExportBlock-*/** filter=git-crypt diff=git-crypt
 # CLI 草案原始文档（如果存在）
