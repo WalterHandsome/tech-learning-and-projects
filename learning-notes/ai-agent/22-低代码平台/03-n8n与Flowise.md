@@ -182,11 +182,49 @@ docker run -d --name flowise -p 3000:3000 \
 | 适用场景 | 业务自动化 + AI | 纯 LLM 应用 |
 | 学习曲线 | 中 | 低 |
 
+### Flowise 3.0 与 Workday 收购
+
+> 🔄 更新于 2026-04-29
+
+**Workday 收购 Flowise**（2025-08-14）：企业软件巨头 Workday 收购了 Flowise，将其 AI Agent 构建能力整合到 Workday 平台中。收购后 Flowise 继续保持开源（49K+ Stars），但战略方向转向 HR 和财务领域的 AI Agent。来源：[Workday Newsroom](https://en-hk.newsroom.workday.com/2025-08-14-Workday-Acquires-Flowise,-Bringing-Powerful-AI-Agent-Builder-Capabilities-to-the-Workday-Platform)
+
+**Flowise 3.0**（2026-01）：完全重写的版本，核心变化：
+- **自然语言创建 Agent**：描述想法即可生成 Agent 草稿
+- **模块化构建块**：支持 Chaining、Routing、Parallelization、Hierarchy、Looping、Iteration 六种编排模式
+- **每个 LLM/Agent 增强**：Memory、RAG、Tool、Centralized State、Structured Output
+- **Human in the Loop**：核心功能，支持审核 Agent 操作、批准/拒绝工具调用
+- **Form Input**：除聊天界面外，支持表单触发工作流
+- **Evals & Observability**：执行追踪、公开分享、反馈收集
+- **Flow Validation**：自动检查工作流配置错误
+
+来源：[Flowise Blog](https://blog.flowiseai.com/coming-soon/)
+
+**⚠️ Flowise 安全警告**（2026-04）：CVE-2025-59528（CVSS 10.0）在 Flowise 3.0.5 的 CustomMCP 节点中发现 RCE 漏洞，12,000+ 实例暴露。**必须升级到 3.0.6+**。来源：[The Hacker News](https://thehackernews.com/2026/04/flowise-ai-agent-builder-under-active.html)
+
+### n8n 安全事件（2026 Q1-Q2）
+
+> 🔄 更新于 2026-04-29
+
+n8n 在 2026 年初遭遇多个严重安全漏洞：
+
+| CVE | 严重性 | 描述 | 修复版本 |
+|-----|--------|------|----------|
+| CVE-2026-21858 | Critical（10.0） | 未认证 RCE，Webhook 请求解析漏洞 | v2.6+ |
+| CVE-2026-27577 | Critical | Expression 沙箱逃逸导致 RCE | v2.9+ |
+| CVE-2026-27495 | High | Task Runner 沙箱逃逸 | v2.10+ |
+| CVE-2026-27578 | High | 存储型 XSS 导致会话劫持 | v2.10+ |
+
+**影响**：任何认证用户可完全控制服务器，窃取所有存储的凭证、API Key 和密钥。自托管和云实例均受影响。
+
+**建议**：立即升级到 n8n v2.10+，启用 Task Runner 隔离，限制 Code 节点权限。
+
+来源：[Pillar Security](https://www.pillar.security/blog/n8n-sandbox-escape-critical-vulnerabilities-in-n8n-exposes-hundreds-of-thousands-of-enterprise-ai-systems-to-complete-takeover)、[The Hacker News](https://thehackernews.com/2026/03/critical-n8n-flaws-allow-remote-code.html)
+
 ## 7. 2026 版本演进
 
 > 🔄 更新于 2026-04-21
 
-<!-- version-check: n8n 2.0, checked 2026-04-21 -->
+<!-- version-check: n8n 2.10+, Flowise 3.0.6, checked 2026-04-29 -->
 
 ### n8n 2.0：安全加固与企业级升级
 

@@ -184,7 +184,7 @@ services:
 
 > 🔄 更新于 2026-04-21
 
-<!-- version-check: Coze 2.5, Coze Studio v0.3.0, checked 2026-04-21 -->
+<!-- version-check: Coze 2.5, Coze Studio v0.3.0, Flowise 3.0, checked 2026-04-29 -->
 
 ### Coze 2.5："Agent World" 生态
 
