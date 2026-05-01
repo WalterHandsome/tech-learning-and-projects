@@ -189,7 +189,116 @@ def send_email_task(user_id, message):
     )
 ```
 
-## 7. 总结
+### 6.2 Django 6.0 内置后台任务框架
+
+> 🔄 更新于 2026-04-30
+
+<!-- version-check: Django 6.0.x, django.tasks framework, checked 2026-04-30 -->
+
+Django 6.0 引入了内置的 Tasks 框架（`django.tasks`），无需 Celery 即可处理简单的后台任务。这是 Django 历史上最受期待的功能之一。
+
+```python
+# tasks.py — Django 6.0 内置后台任务
+from django.tasks import task
+
+@task()
+def send_welcome_email(user_id: int):
+    """后台发送欢迎邮件"""
+    user = User.objects.get(id=user_id)
+    send_mail(
+        '欢迎加入',
+        f'你好 {user.username}，欢迎使用我们的服务！',
+        'noreply@example.com',
+        [user.email],
+    )
+
+@task()
+def process_uploaded_file(file_id: int):
+    """后台处理上传的文件"""
+    file = UploadedFile.objects.get(id=file_id)
+    # 耗时的文件处理逻辑
+    file.status = 'processed'
+    file.save()
+```
+
+```python
+# views.py — 在视图中调用后台任务
+from .tasks import send_welcome_email, process_uploaded_file
+
+def register(request):
+    user = User.objects.create_user(...)
+    # 将任务加入队列，不阻塞请求
+    send_welcome_email.enqueue(user.id)
+    return JsonResponse({'status': 'ok'})
+
+def upload(request):
+    file = handle_upload(request.FILES['file'])
+    # 后台处理文件
+    result = process_uploaded_file.enqueue(file.id)
+    # 可以通过 result.id 追踪任务状态
+    return JsonResponse({'task_id': str(result.id)})
+```
+
+```python
+# settings.py — 任务后端配置
+TASKS = {
+    'default': {
+        'BACKEND': 'django.tasks.backends.immediate.ImmediateBackend',
+        # 开发环境：立即执行（同步）
+    }
+}
+
+# 生产环境需要配置实际的任务后端（如 django-tasks-database）
+# TASKS = {
+#     'default': {
+#         'BACKEND': 'django_tasks_database.DatabaseBackend',
+#     }
+# }
+# 然后运行 worker：python manage.py db_worker
+```
+
+**Django Tasks vs Celery 选型**：
+
+| 特性 | Django Tasks | Celery |
+|------|-------------|--------|
+| 安装复杂度 | 零依赖（内置） | 需要 Broker（Redis/RabbitMQ） |
+| 适用场景 | 简单后台任务 | 复杂工作流、定时任务、分布式 |
+| 定时任务 | ❌ 不支持（需第三方扩展） | ✅ Celery Beat |
+| 任务重试 | 基础支持 | 完整重试策略 |
+| 监控 | ❌ 无内置 UI | ✅ Flower 监控面板 |
+| 推荐场景 | 邮件发送、文件处理、简单通知 | 大规模任务、ETL、定时调度 |
+
+> ⚠️ Django Tasks 框架只负责任务定义和入队，不提供 Worker 机制。生产环境需要配置第三方后端（如 `django-tasks-database`）并运行 Worker 进程。
+
+> 来源：[Django Tasks Framework](https://docs.djangoproject.com/en/dev/topics/tasks/)、[Django 6.0 Release Notes](https://docs.djangoproject.com/en/dev/releases/6.0/)
+
+## 7. Django 6.0 CSP 支持
+
+> 🔄 更新于 2026-04-30
+
+Django 6.0 内置了 Content Security Policy（CSP）支持，无需 `django-csp` 第三方库。
+
+```python
+# settings.py — Django 6.0 CSP 配置
+CONTENT_SECURITY_POLICY = {
+    "default-src": ["'self'"],
+    "script-src": ["'self'", "https://cdn.example.com"],
+    "style-src": ["'self'", "'unsafe-inline'"],
+    "img-src": ["'self'", "data:", "https:"],
+    "connect-src": ["'self'", "https://api.example.com"],
+}
+
+# 启用 CSP 中间件
+MIDDLEWARE = [
+    'django.middleware.security.SecurityMiddleware',
+    'django.middleware.csp.ContentSecurityPolicyMiddleware',  # Django 6.0 新增
+    # ...
+]
+```
+
+> 来源：[Django 6.0 CSP Support](https://docs.djangoproject.com/en/dev/releases/6.0/)
+
+## 8. 总结
 
 Django高级特性要点：
 - **中间件**：请求/响应处理、自定义中间件

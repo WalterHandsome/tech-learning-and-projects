@@ -81,3 +81,54 @@ pm2 monit     # 监控
 pm2 logs      # 查看日志
 pm2 reload all # 零停机重启
 ```
+
+## 5. Node.js 24 LTS 性能改进
+
+> 🔄 更新于 2026-04-30
+
+<!-- version-check: Node.js 24 LTS (Krypton), checked 2026-04-30 -->
+
+Node.js 24 LTS（代号 Krypton）带来了显著的性能改进：
+
+### 5.1 V8 13.6 引擎优化
+
+```javascript
+// Node.js 24 内置 V8 13.6，JS 执行速度提升
+// 主要改进：
+// - Maglev JIT 编译器优化，中间层编译更快
+// - 正则表达式性能提升
+// - JSON.parse 大对象性能改善
+
+// npm 11 安装速度提升 65%
+// 推荐使用 corepack 管理包管理器
+```
+
+### 5.2 诊断工具增强
+
+```javascript
+// Node.js 24 内置诊断报告（无需第三方工具）
+// 生成诊断报告
+// node --report-on-fatalerror server.js
+
+// 使用 node:diagnostics_channel 追踪性能
+import diagnostics_channel from 'node:diagnostics_channel';
+
+const channel = diagnostics_channel.channel('http.server.request');
+channel.subscribe((message) => {
+  console.log(`请求: ${message.request.method} ${message.request.url}`);
+  console.log(`耗时: ${message.duration}ms`);
+});
+```
+
+### 5.3 2026 年 Node.js 性能优化清单
+
+| 优化项 | 工具/方法 | 影响 |
+|--------|----------|------|
+| 升级到 Node.js 24 LTS | V8 13.6 + npm 11 | JS 执行更快，安装提速 65% |
+| Worker Threads | piscina / workerpool | CPU 密集任务不阻塞事件循环 |
+| Stream 处理 | node:stream/promises | 大文件处理内存恒定 |
+| LRU 缓存 | lru-cache | 避免无限增长的内存缓存 |
+| 集群模式 | PM2 cluster / node:cluster | 利用多核 CPU |
+| 诊断通道 | node:diagnostics_channel | 零开销性能追踪 |
+
+> 来源：[Node.js v22 to v24 Migration](https://nodejs.org/es/blog/migrations/v22-to-v24)

@@ -2783,7 +2783,1363 @@
       "source": "Hacker News 开发者",
       "topic": "global-tech",
       "date": "2026-04-29"
+    },
+    "0a6f85140680": {
+      "title": "Tuning Deep Agents to Work Well with Different Models",
+      "source": "LangChain Blog",
+      "topic": "ai-agent",
+      "date": "2026-04-30"
+    },
+    "960370f7ee84": {
+      "title": "How Madrigal Built a Flexible and Scalable Multi-Agent Research and Intelligence Platform for Pharma with LangChain and LangSmith",
+      "source": "LangChain Blog",
+      "topic": "ai-agent",
+      "date": "2026-04-30"
+    },
+    "41a755a084eb": {
+      "title": "Apr 29, 2026ScienceEvaluating Claude’s bioinformatics research capabilities with BioMysteryBench",
+      "source": "Anthropic Research",
+      "topic": "ai-agent",
+      "date": "2026-04-30"
+    },
+    "8740c4948a13": {
+      "title": "Building the compute infrastructure for the Intelligence Age",
+      "source": "OpenAI Blog",
+      "topic": "ai-agent",
+      "date": "2026-04-30"
+    },
+    "ad57812b466e": {
+      "title": "Cybersecurity in the Intelligence Age",
+      "source": "OpenAI Blog",
+      "topic": "ai-agent",
+      "date": "2026-04-30"
+    },
+    "33ea9610c4d5": {
+      "title": "AI evals are becoming the new compute bottleneck",
+      "source": "Hugging Face Blog",
+      "topic": "ai-agent",
+      "date": "2026-04-30"
+    },
+    "59ef3aa9e68b": {
+      "title": "Granite 4.1 LLMs: How They’re Built",
+      "source": "Hugging Face Blog",
+      "topic": "ai-agent",
+      "date": "2026-04-30"
+    },
+    "f6674537e2b8": {
+      "title": "DeepInfra on Hugging Face Inference Providers 🔥",
+      "source": "Hugging Face Blog",
+      "topic": "ai-agent",
+      "date": "2026-04-30"
+    },
+    "16b61f000e09": {
+      "title": "Claude.ai and API unavailable [fixed]",
+      "source": "Hacker News AI",
+      "topic": "ai-agent",
+      "date": "2026-04-30"
+    },
+    "f17cae1c0d04": {
+      "title": "Your CEO is suffering from AI psychosis",
+      "source": "Hacker News AI",
+      "topic": "ai-agent",
+      "date": "2026-04-30"
+    },
+    "4ba393486326": {
+      "title": "\"People who don't use AI will be left behind\"",
+      "source": "Hacker News AI",
+      "topic": "ai-agent",
+      "date": "2026-04-30"
+    },
+    "30acb5aa9b53": {
+      "title": "Ramp's Sheets AI Exfiltrates Financials",
+      "source": "Hacker News AI",
+      "topic": "ai-agent",
+      "date": "2026-04-30"
+    },
+    "56f0b513481f": {
+      "title": "The Abstraction Fallacy: Why AI can simulate but not instantiate consciousness",
+      "source": "Hacker News AI",
+      "topic": "ai-agent",
+      "date": "2026-04-30"
+    },
+    "1c2cdeebf51b": {
+      "title": "Why AI companies want you to be afraid of them",
+      "source": "Hacker News AI",
+      "topic": "ai-agent",
+      "date": "2026-04-30"
+    },
+    "33a6d357ed1a": {
+      "title": "Making AI chatbots friendly leads to mistakes and support of conspiracy theories",
+      "source": "Hacker News AI",
+      "topic": "ai-agent",
+      "date": "2026-04-30"
+    },
+    "1ff59989fc38": {
+      "title": "Letting AI play my game – building an agentic test harness to help play-testing",
+      "source": "Hacker News AI",
+      "topic": "ai-agent",
+      "date": "2026-04-30"
+    },
+    "116329f7e2e2": {
+      "title": "He asked AI to count carbs 27000 times. It couldn't give the same answer twice",
+      "source": "Hacker News AI",
+      "topic": "ai-agent",
+      "date": "2026-04-30"
+    },
+    "3212800c6232": {
+      "title": "Claude.ai down again?",
+      "source": "Hacker News AI 关键词",
+      "topic": "ai-agent",
+      "date": "2026-04-30"
+    },
+    "d1cce6e0432a": {
+      "title": "I benchmarked Claude Code's caveman plugin against \"be brief.\"",
+      "source": "Hacker News AI 关键词",
+      "topic": "ai-agent",
+      "date": "2026-04-30"
+    },
+    "e95d5b9c9f55": {
+      "title": "Anthropic's Champion Kit for engineers pushing Claude Code at their company",
+      "source": "Hacker News AI 关键词",
+      "topic": "ai-agent",
+      "date": "2026-04-30"
+    },
+    "fb6463e9cd5c": {
+      "title": "Ask HN: Is it just me or is Claude Code getting worse?",
+      "source": "Hacker News AI 关键词",
+      "topic": "ai-agent",
+      "date": "2026-04-30"
+    },
+    "1ac5591d9ec4": {
+      "title": "Who owns the code Claude Code wrote?",
+      "source": "Hacker News AI 关键词",
+      "topic": "ai-agent",
+      "date": "2026-04-30"
+    },
+    "fa5748ecb230": {
+      "title": "LingBot-Map: Streaming 3D reconstruction with geometric context transformer",
+      "source": "Hacker News AI 关键词",
+      "topic": "ai-agent",
+      "date": "2026-04-30"
+    },
+    "f99d4946c2ce": {
+      "title": "Consequences of passing too few register parameters to a C function",
+      "source": "Hacker News AI 关键词",
+      "topic": "ai-agent",
+      "date": "2026-04-30"
+    },
+    "57ee069a4af0": {
+      "title": "Co-Director: Agentic Generative Video Storytelling",
+      "source": "arXiv AI",
+      "topic": "ai-agent",
+      "date": "2026-04-30"
+    },
+    "c6604d2a893c": {
+      "title": "Latent Agents: A Post-Training Procedure for Internalized Multi-Agent Debate",
+      "source": "arXiv AI",
+      "topic": "ai-agent",
+      "date": "2026-04-30"
+    },
+    "8fa5e8be3250": {
+      "title": "S-SONDO: Self-Supervised Knowledge Distillation for General Audio Foundation Models",
+      "source": "arXiv AI",
+      "topic": "ai-agent",
+      "date": "2026-04-30"
+    },
+    "7d0b15742354": {
+      "title": "Adaptive Prompt Embedding Optimization for LLM Jailbreaking",
+      "source": "arXiv AI",
+      "topic": "ai-agent",
+      "date": "2026-04-30"
+    },
+    "6d6d6516afd6": {
+      "title": "Assessing Y-Axis Influence: Bias in Multimodal Language Models on Chart-to-Table Translation",
+      "source": "arXiv AI",
+      "topic": "ai-agent",
+      "date": "2026-04-30"
+    },
+    "c087bc44924e": {
+      "title": "Sparse Personalized Text Generation with Multi-Trajectory Reasoning",
+      "source": "arXiv AI",
+      "topic": "ai-agent",
+      "date": "2026-04-30"
+    },
+    "dd97776ef7e4": {
+      "title": "Toward a Science of Intent: Closure Gaps and Delegation Envelopes for Open-World AI Agents",
+      "source": "arXiv AI",
+      "topic": "ai-agent",
+      "date": "2026-04-30"
+    },
+    "af3ffdfc8633": {
+      "title": "Leverage Laws: A Per-Task Framework for Human-Agent Collaboration",
+      "source": "arXiv AI",
+      "topic": "ai-agent",
+      "date": "2026-04-30"
+    },
+    "0f692a09b358": {
+      "title": "Evaluating Risks in Weak-to-Strong Alignment: A Bias-Variance Perspective",
+      "source": "arXiv AI",
+      "topic": "ai-agent",
+      "date": "2026-04-30"
+    },
+    "55878fe5ad00": {
+      "title": "Agentic Architect: An Agentic AI Framework for Architecture Design Exploration and Optimization",
+      "source": "arXiv AI",
+      "topic": "ai-agent",
+      "date": "2026-04-30"
+    },
+    "0247aa114fab": {
+      "title": "欧莱雅一季度增长6.7%，中国区再现重大人事变动｜独家",
+      "source": "36氪",
+      "topic": "china-tech",
+      "date": "2026-04-30"
+    },
+    "8e2ddeccf180": {
+      "title": "「优时科技」完成数亿元B2轮融资，从L4视觉自动驾驶延展至人形机器人，打造数据飞轮｜36氪首发",
+      "source": "36氪",
+      "topic": "china-tech",
+      "date": "2026-04-30"
+    },
+    "ef39e9fe716b": {
+      "title": "Bug频出，官方致歉：《异环》能跳出《幻塔》的剧本吗？",
+      "source": "36氪",
+      "topic": "china-tech",
+      "date": "2026-04-30"
+    },
+    "84221b5daaa1": {
+      "title": "8点1氪丨官方通报“霸王茶姬中喝出水银”；马斯克称创办OpenAI只为拯救人类；三星家族财富一年翻倍至3000亿跃居亚洲第三",
+      "source": "36氪",
+      "topic": "china-tech",
+      "date": "2026-04-30"
+    },
+    "d1152f85bbf0": {
+      "title": "「微滔生物」A轮次融资超5000万美元，LNP路线体内CAR-T已发表初步人体数据",
+      "source": "36氪",
+      "topic": "china-tech",
+      "date": "2026-04-30"
+    },
+    "3abbad99f5b2": {
+      "title": "别急着All-in DeepSeek V4，先看看这10位从业者的真心话",
+      "source": "36氪",
+      "topic": "china-tech",
+      "date": "2026-04-30"
+    },
+    "fe034fb06fc8": {
+      "title": "氪星晚报 ｜腾讯ima推出全新知识Agent——copilot；魔法原子：目标到2036年营收达140亿美元",
+      "source": "36氪",
+      "topic": "china-tech",
+      "date": "2026-04-30"
+    },
+    "ac184e21e7e2": {
+      "title": "第20届中国投资年会圆满闭幕！ “K型曲线”下，寻找穿越分化的确定性",
+      "source": "36氪",
+      "topic": "china-tech",
+      "date": "2026-04-30"
+    },
+    "409bdeb882e0": {
+      "title": "“36氪企业全情报”官方股票舆情交流社群，正式开放招募！",
+      "source": "36氪",
+      "topic": "china-tech",
+      "date": "2026-04-30"
+    },
+    "6abd76c3d5a4": {
+      "title": "泡泡玛特胡健：盈利不是乐园现阶段最重要的事",
+      "source": "36氪",
+      "topic": "china-tech",
+      "date": "2026-04-30"
+    },
+    "4b612b4d164e": {
+      "title": "从 T+1 到分钟级：金城银行基于 Apache Doris 构建高可靠、强一致的实时数据平台",
+      "source": "InfoQ CN",
+      "topic": "china-tech",
+      "date": "2026-04-30"
+    },
+    "c4904f8ae6f4": {
+      "title": "谷歌云推出 Agents CLI，简化 AI 智能体开发全流程",
+      "source": "InfoQ CN",
+      "topic": "china-tech",
+      "date": "2026-04-30"
+    },
+    "7075af806087": {
+      "title": "Claude官方击穿高薪、高学历的安全防线！Anthropic点名10大高危职业，但有群人暂时稳了",
+      "source": "InfoQ CN",
+      "topic": "china-tech",
+      "date": "2026-04-30"
+    },
+    "c128e7f4e217": {
+      "title": "亚马逊云科技终止 WorkMail 服务，并将 App Runner 转入维护模式",
+      "source": "InfoQ CN",
+      "topic": "china-tech",
+      "date": "2026-04-30"
+    },
+    "051c2ebdbacd": {
+      "title": "OPPO小布记忆：全模态碎片化内容的理解与智能整理实践｜AICon上海",
+      "source": "InfoQ CN",
+      "topic": "china-tech",
+      "date": "2026-04-30"
+    },
+    "3ae963a6e580": {
+      "title": "模力工场038周AI应用周榜：工具在消失，工作流在出现",
+      "source": "InfoQ CN",
+      "topic": "china-tech",
+      "date": "2026-04-30"
+    },
+    "f73251f6e97f": {
+      "title": "Akamai CEO Tom Leighton：Agent 时代来临，云基础设施正从“中心化”转向“分布式边缘”",
+      "source": "InfoQ CN",
+      "topic": "china-tech",
+      "date": "2026-04-30"
+    },
+    "55d3efdd5490": {
+      "title": "日均数百亿入库背后：从“人肉调度”到K8s弹性架构，度小满金融基于OceanBase重构入库架构实践",
+      "source": "InfoQ CN",
+      "topic": "china-tech",
+      "date": "2026-04-30"
+    },
+    "c13a536af5f2": {
+      "title": "百度文库网盘发布GenFlow 4.0：月活用户超1亿，要把网盘变成全端AI工作台",
+      "source": "InfoQ CN",
+      "topic": "china-tech",
+      "date": "2026-04-30"
+    },
+    "91ff657006c5": {
+      "title": "Altman 投的 Agent 终端 Warp 开源了！斩获3.5万star",
+      "source": "InfoQ CN",
+      "topic": "china-tech",
+      "date": "2026-04-30"
+    },
+    "934804eec583": {
+      "title": "做了一个内容极丰富的文字 roguelike 游戏，但是没人付费，问题出在哪？",
+      "source": "V2EX 技术",
+      "topic": "china-tech",
+      "date": "2026-04-30"
+    },
+    "a286d4067ae2": {
+      "title": "最牛的终端开源了 warp，用过的来说说",
+      "source": "V2EX 技术",
+      "topic": "china-tech",
+      "date": "2026-04-30"
+    },
+    "6efce33fdcc3": {
+      "title": "这两天在看 Agents 开发相关的教程，越看越感觉没意义。感觉只要了解个概念就够了，之后让 AI 去开发就行了。看到后面也看不太下去，只能一目十行的看。感觉怪怪的。",
+      "source": "V2EX 技术",
+      "topic": "china-tech",
+      "date": "2026-04-30"
+    },
+    "1d581b8b51ff": {
+      "title": "Google 可以修改 gmail 账号了，激动！",
+      "source": "V2EX 技术",
+      "topic": "china-tech",
+      "date": "2026-04-30"
+    },
+    "8be083b4dadf": {
+      "title": "我的第一个 Linux 内核补丁：从一个 TCP Listener 的 Bug 说起（大家五一节前快乐）",
+      "source": "V2EX 技术",
+      "topic": "china-tech",
+      "date": "2026-04-30"
+    },
+    "6ccf729acad7": {
+      "title": "证据表明 Chatgpt 其实是诡秘之主",
+      "source": "V2EX 技术",
+      "topic": "china-tech",
+      "date": "2026-04-30"
+    },
+    "10aaef150f5d": {
+      "title": "刚刚爆了一个影响 17 年后所有 Linux 内核的本地提权漏洞 CVE-2026-31431 / Copy Fail，尽快排查",
+      "source": "V2EX 技术",
+      "topic": "china-tech",
+      "date": "2026-04-30"
+    },
+    "5c9222a3a36d": {
+      "title": "现在 claude 免费额度用的很快，想付费了，应该怎么弄",
+      "source": "V2EX 技术",
+      "topic": "china-tech",
+      "date": "2026-04-30"
+    },
+    "2d76cbb5fded": {
+      "title": "claude 崩了，吓我一跳还以为被封了",
+      "source": "V2EX 技术",
+      "topic": "china-tech",
+      "date": "2026-04-30"
+    },
+    "544c3e571aa3": {
+      "title": "私有化部署大模型的“终点”是 Mac 还是 Nvidia？",
+      "source": "V2EX 技术",
+      "topic": "china-tech",
+      "date": "2026-04-30"
+    },
+    "161d79bf419f": {
+      "title": "关于中年和中年危机的一些思考",
+      "source": "少数派",
+      "topic": "china-tech",
+      "date": "2026-04-30"
+    },
+    "8ec1005c91ff": {
+      "title": "派早报：Claude AI 接入多个创意软件生态、FILCO 生产方接手品牌等",
+      "source": "少数派",
+      "topic": "china-tech",
+      "date": "2026-04-30"
+    },
+    "230be135c0b3": {
+      "title": "移动端 Agent 的井喷或许近在眼前：以 ColorOS 抛砖引玉",
+      "source": "少数派",
+      "topic": "china-tech",
+      "date": "2026-04-30"
+    },
+    "498cdb514630": {
+      "title": "先别一股脑扔进洗衣机：换季衣物洗护指南",
+      "source": "少数派",
+      "topic": "china-tech",
+      "date": "2026-04-30"
+    },
+    "bd5ca2210cd1": {
+      "title": "众测｜邀你一同探索随身 AI 硬件入口 YoooClaw C·ONE",
+      "source": "少数派",
+      "topic": "china-tech",
+      "date": "2026-04-30"
+    },
+    "2b30f2ca21d6": {
+      "title": "iPad 赋能电影创作：国内首部宣纸手绘长片《燃比娃》的幕后故事",
+      "source": "少数派",
+      "topic": "china-tech",
+      "date": "2026-04-30"
+    },
+    "554e54d9457a": {
+      "title": "The Zig project's rationale for their firm anti-AI contribution policy",
+      "source": "Hacker News 中国科技",
+      "topic": "china-tech",
+      "date": "2026-04-30"
+    },
+    "7a51950f7124": {
+      "title": "Mike: open-source legal AI",
+      "source": "Hacker News 中国科技",
+      "topic": "china-tech",
+      "date": "2026-04-30"
+    },
+    "26c5627ec851": {
+      "title": "China pushes EU capitals to scrap 'Made in Europe' law or face retaliation",
+      "source": "Hacker News 中国科技",
+      "topic": "china-tech",
+      "date": "2026-04-30"
+    },
+    "9e04754f0806": {
+      "title": "Google told staff it is 'proud' of Pentagon AI contract after internal backlash",
+      "source": "Hacker News 中国科技",
+      "topic": "china-tech",
+      "date": "2026-04-30"
+    },
+    "e080e24b0361": {
+      "title": "US accuses China of industrial-scale AI model distillation, will share Intel",
+      "source": "Hacker News 中国科技",
+      "topic": "china-tech",
+      "date": "2026-04-30"
+    },
+    "a49d2610fa30": {
+      "title": "Biology is a Burrito: A text- and visual-based journey through a living cell",
+      "source": "Hacker News Top",
+      "topic": "global-tech",
+      "date": "2026-04-30"
+    },
+    "d47dd911dffe": {
+      "title": "Where the goblins came from",
+      "source": "Hacker News Top",
+      "topic": "global-tech",
+      "date": "2026-04-30"
+    },
+    "b14d34269a0a": {
+      "title": "Finetuning Activates Verbatim Recall of Copyrighted Books in LLMs",
+      "source": "Hacker News Top",
+      "topic": "global-tech",
+      "date": "2026-04-30"
+    },
+    "d8d2b7eaa54f": {
+      "title": "Functional Programmers need to take a look at Zig",
+      "source": "Hacker News Top",
+      "topic": "global-tech",
+      "date": "2026-04-30"
+    },
+    "aa2318d4515d": {
+      "title": "A Grounded Conceptual Model for Ownership Types in Rust",
+      "source": "Hacker News Top",
+      "topic": "global-tech",
+      "date": "2026-04-30"
+    },
+    "897862e0e88d": {
+      "title": "Craig Venter has died",
+      "source": "Hacker News Top",
+      "topic": "global-tech",
+      "date": "2026-04-30"
+    },
+    "970532a8a56c": {
+      "title": "Joby kicks off NYC electric air taxi demos with historic JFK flight",
+      "source": "Hacker News Top",
+      "topic": "global-tech",
+      "date": "2026-04-30"
+    },
+    "19231aeade95": {
+      "title": "SoftBank is creating a robotics company that builds data centers — and already eyeing a $100B IPO",
+      "source": "TechCrunch",
+      "topic": "global-tech",
+      "date": "2026-04-30"
+    },
+    "3e550758ab69": {
+      "title": "Amazon, Meta join fight to end Google Pay, PhonePe dominance in India",
+      "source": "TechCrunch",
+      "topic": "global-tech",
+      "date": "2026-04-30"
+    },
+    "ef01e2e76bd8": {
+      "title": "Amazon’s cloud business is surging — and so is its capital spending",
+      "source": "TechCrunch",
+      "topic": "global-tech",
+      "date": "2026-04-30"
+    },
+    "72ba5d8b11be": {
+      "title": "Sources: Anthropic could raise a new $50B round at a valuation of $900B",
+      "source": "TechCrunch",
+      "topic": "global-tech",
+      "date": "2026-04-30"
+    },
+    "2fd0f913074f": {
+      "title": "On the stand, Elon Musk can’t escape his own tweets",
+      "source": "TechCrunch",
+      "topic": "global-tech",
+      "date": "2026-04-30"
+    },
+    "88881a095ddd": {
+      "title": "Meta is still burning money on AR/VR",
+      "source": "TechCrunch",
+      "topic": "global-tech",
+      "date": "2026-04-30"
+    },
+    "a53ee15b652a": {
+      "title": "Satya Nadella says he’s ready to ‘exploit’ the new OpenAI deal",
+      "source": "TechCrunch",
+      "topic": "global-tech",
+      "date": "2026-04-30"
+    },
+    "0ab605f52bd6": {
+      "title": "Microsoft says it has over 20M paid Copilot users, and they really are using it",
+      "source": "TechCrunch",
+      "topic": "global-tech",
+      "date": "2026-04-30"
+    },
+    "14fce012f392": {
+      "title": "Google Cloud surpasses $20B, but says growth was capacity-constrained",
+      "source": "TechCrunch",
+      "topic": "global-tech",
+      "date": "2026-04-30"
+    },
+    "c56e0d0e76fe": {
+      "title": "Google gains 25M subscriptions in Q1, driven by YouTube and Google One",
+      "source": "TechCrunch",
+      "topic": "global-tech",
+      "date": "2026-04-30"
+    },
+    "64ba351946ed": {
+      "title": "Elon Musk’s worst enemy in court is Elon Musk",
+      "source": "The Verge",
+      "topic": "global-tech",
+      "date": "2026-04-30"
+    },
+    "eaf8cbbe5783": {
+      "title": "Grindr — yes, Grindr — won the WHCD party circuit",
+      "source": "The Verge",
+      "topic": "global-tech",
+      "date": "2026-04-30"
+    },
+    "2e16de50c235": {
+      "title": "Splatoon Raiders preorders for the Switch 2 are nearly 20 percent off",
+      "source": "The Verge",
+      "topic": "global-tech",
+      "date": "2026-04-30"
+    },
+    "2c56fbb3a94d": {
+      "title": "Microsoft reports sinking Xbox revenue as its cloud business climbs",
+      "source": "The Verge",
+      "topic": "global-tech",
+      "date": "2026-04-30"
+    },
+    "04d7f3e10def": {
+      "title": "Google Search queries hit an ‘all time high’ last quarter",
+      "source": "The Verge",
+      "topic": "global-tech",
+      "date": "2026-04-30"
+    },
+    "489362c10603": {
+      "title": "All the evidence unveiled so far in Musk v. Altman",
+      "source": "The Verge",
+      "topic": "global-tech",
+      "date": "2026-04-30"
+    },
+    "f68cdc4ceeae": {
+      "title": "Ubuntu’s AI plans have Linux users looking for a &#8216;kill switch&#8217;",
+      "source": "The Verge",
+      "topic": "global-tech",
+      "date": "2026-04-30"
+    },
+    "be742148b242": {
+      "title": "Motorola just revealed the Razr Fold’s price and hoo boy",
+      "source": "The Verge",
+      "topic": "global-tech",
+      "date": "2026-04-30"
+    },
+    "60efcc37be2e": {
+      "title": "The new Razr Ultra is still the best-looking phone out there",
+      "source": "The Verge",
+      "topic": "global-tech",
+      "date": "2026-04-30"
+    },
+    "e08e9b8d6d21": {
+      "title": "The Moto Razr and Razr Plus are victims of shrinkflation",
+      "source": "The Verge",
+      "topic": "global-tech",
+      "date": "2026-04-30"
+    },
+    "af3aa7b3bb01": {
+      "title": "ABC can beat Trump FCC's license threat if owner Disney is willing to fight",
+      "source": "Ars Technica",
+      "topic": "global-tech",
+      "date": "2026-04-30"
+    },
+    "52f213a9c551": {
+      "title": "OpenAI Codex system prompt includes explicit directive to \"never talk about goblins\"",
+      "source": "Ars Technica",
+      "topic": "global-tech",
+      "date": "2026-04-30"
+    },
+    "0999cb0e7b6f": {
+      "title": "Howdy's dated $3/month ad-free streaming service said to have 1M subscribers",
+      "source": "Ars Technica",
+      "topic": "global-tech",
+      "date": "2026-04-30"
+    },
+    "4504552f9c66": {
+      "title": "New Sam Bankman-Fried trial would be huge waste of court’s time, judge says",
+      "source": "Ars Technica",
+      "topic": "global-tech",
+      "date": "2026-04-30"
+    },
+    "12a2916c885e": {
+      "title": "Drone strikes on data centers spook Big Tech, halting Middle East projects",
+      "source": "Ars Technica",
+      "topic": "global-tech",
+      "date": "2026-04-30"
+    },
+    "64e11e0114a3": {
+      "title": "Motorola reveals 2026 Razr lineup with modest upgrades and higher prices",
+      "source": "Ars Technica",
+      "topic": "global-tech",
+      "date": "2026-04-30"
+    },
+    "c2bec4b53f03": {
+      "title": "Nvidia fixes the 8GB RAM problem with one of its GPUs—if you can pay for it",
+      "source": "Ars Technica",
+      "topic": "global-tech",
+      "date": "2026-04-30"
+    },
+    "8052ad0896ad": {
+      "title": "Professional school grads from diverse classes get higher salaries",
+      "source": "Ars Technica",
+      "topic": "global-tech",
+      "date": "2026-04-30"
+    },
+    "18d14cab0b9a": {
+      "title": "Attempt to repeal Colorado's right-to-repair law fails",
+      "source": "Ars Technica",
+      "topic": "global-tech",
+      "date": "2026-04-30"
+    },
+    "839abe5c8f6a": {
+      "title": "A Falcon 9 rocket will hit the Moon this summer at seven times the speed of sound",
+      "source": "Ars Technica",
+      "topic": "global-tech",
+      "date": "2026-04-30"
+    },
+    "7e903e2f7c67": {
+      "title": "Venture Factory AI",
+      "source": "Product Hunt",
+      "topic": "global-tech",
+      "date": "2026-04-30"
+    },
+    "2f4d0e6f4f51": {
+      "title": "ZenTrack",
+      "source": "Product Hunt",
+      "topic": "global-tech",
+      "date": "2026-04-30"
+    },
+    "537d43899d61": {
+      "title": "Netlify Database",
+      "source": "Product Hunt",
+      "topic": "global-tech",
+      "date": "2026-04-30"
+    },
+    "50475f7d800a": {
+      "title": "Dreambase Data Agent Skills",
+      "source": "Product Hunt",
+      "topic": "global-tech",
+      "date": "2026-04-30"
+    },
+    "a9cf9dcab071": {
+      "title": "CodeHealth MCP Server by CodeScene",
+      "source": "Product Hunt",
+      "topic": "global-tech",
+      "date": "2026-04-30"
+    },
+    "c0d497f53522": {
+      "title": "KarmaBox",
+      "source": "Product Hunt",
+      "topic": "global-tech",
+      "date": "2026-04-30"
+    },
+    "5a38765ae2a5": {
+      "title": "UXPin Forge",
+      "source": "Product Hunt",
+      "topic": "global-tech",
+      "date": "2026-04-30"
+    },
+    "02f5c0a364ab": {
+      "title": "Open Wearables",
+      "source": "Product Hunt",
+      "topic": "global-tech",
+      "date": "2026-04-30"
+    },
+    "c2d479944770": {
+      "title": "Redesign by Nodewave",
+      "source": "Product Hunt",
+      "topic": "global-tech",
+      "date": "2026-04-30"
+    },
+    "91cf89269db2": {
+      "title": "Plurai",
+      "source": "Product Hunt",
+      "topic": "global-tech",
+      "date": "2026-04-30"
+    },
+    "11b0426bc040": {
+      "title": "Previewing Interrupt 2026: Agents at Enterprise Scale",
+      "source": "LangChain Blog",
+      "topic": "ai-agent",
+      "date": "2026-05-01"
+    },
+    "a45d49a1fdbc": {
+      "title": "Agentic Engineering: How Swarms of AI Agents Are Redefining Software Engineering",
+      "source": "LangChain Blog",
+      "topic": "ai-agent",
+      "date": "2026-05-01"
+    },
+    "380f184f8bf4": {
+      "title": "Test Run Comparisons",
+      "source": "LangChain Blog",
+      "topic": "ai-agent",
+      "date": "2026-05-01"
+    },
+    "4d96adca2395": {
+      "title": "Iterating Towards LLM Reliability with Evaluation Driven Development",
+      "source": "LangChain Blog",
+      "topic": "ai-agent",
+      "date": "2026-05-01"
+    },
+    "fcda99d34703": {
+      "title": "Announcing LangSmith is now a transactable offering in the Azure Marketplace",
+      "source": "LangChain Blog",
+      "topic": "ai-agent",
+      "date": "2026-05-01"
+    },
+    "a9b92baa3994": {
+      "title": "Regression Testing with LangSmith",
+      "source": "LangChain Blog",
+      "topic": "ai-agent",
+      "date": "2026-05-01"
+    },
+    "1ec82e4be7c0": {
+      "title": "Aligning LLM-as-a-Judge with Human Preferences",
+      "source": "LangChain Blog",
+      "topic": "ai-agent",
+      "date": "2026-05-01"
+    },
+    "e1c07b0ce7d6": {
+      "title": "What is an AI agent?",
+      "source": "LangChain Blog",
+      "topic": "ai-agent",
+      "date": "2026-05-01"
+    },
+    "9983ad15c3e5": {
+      "title": "Improving Memory Retrieval: How New Computer achieved 50% higher recall with LangSmith",
+      "source": "LangChain Blog",
+      "topic": "ai-agent",
+      "date": "2026-05-01"
+    },
+    "dca347043ead": {
+      "title": "Apr 30, 2026Societal ImpactsHow people ask Claude for personal guidance",
+      "source": "Anthropic Research",
+      "topic": "ai-agent",
+      "date": "2026-05-01"
+    },
+    "7ec2acda9d69": {
+      "title": "Introducing Advanced Account Security",
+      "source": "OpenAI Blog",
+      "topic": "ai-agent",
+      "date": "2026-05-01"
+    },
+    "efcd4a4922a8": {
+      "title": "Show HN: Pu.sh – a full coding-agent harness in 400 lines of shell",
+      "source": "Hacker News AI",
+      "topic": "ai-agent",
+      "date": "2026-05-01"
+    },
+    "e4cdcf5db76e": {
+      "title": "Shai-Hulud Themed Malware Found in the PyTorch Lightning AI Training Library",
+      "source": "Hacker News AI",
+      "topic": "ai-agent",
+      "date": "2026-05-01"
+    },
+    "327b31771034": {
+      "title": "The More Young People Use AI, the More They Hate It",
+      "source": "Hacker News AI",
+      "topic": "ai-agent",
+      "date": "2026-05-01"
+    },
+    "8f0306646f80": {
+      "title": "DataCenter.FM – background noise app featuring the sound of the AI bubble",
+      "source": "Hacker News AI",
+      "topic": "ai-agent",
+      "date": "2026-05-01"
+    },
+    "d816c844c3a3": {
+      "title": "Claude Code refuses requests or charges extra if your commits mention \"OpenClaw\"",
+      "source": "Hacker News AI 关键词",
+      "topic": "ai-agent",
+      "date": "2026-05-01"
+    },
+    "f93094ff2e11": {
+      "title": "Show HN: Kanwas, open-source shared context board for teams and agents",
+      "source": "Hacker News AI 关键词",
+      "topic": "ai-agent",
+      "date": "2026-05-01"
+    },
+    "6d9e0793c072": {
+      "title": "Reverse Engineering SimTower",
+      "source": "Hacker News AI 关键词",
+      "topic": "ai-agent",
+      "date": "2026-05-01"
+    },
+    "5cecaebeb9c9": {
+      "title": "Compositional Meta-Learning for Mitigating Task Heterogeneity in Physics-Informed Neural Networks",
+      "source": "arXiv AI",
+      "topic": "ai-agent",
+      "date": "2026-05-01"
+    },
+    "cbea4d064a4b": {
+      "title": "Binary Spiking Neural Networks as Causal Models",
+      "source": "arXiv AI",
+      "topic": "ai-agent",
+      "date": "2026-05-01"
+    },
+    "8e9d9fae8d60": {
+      "title": "When Your LLM Reaches End-of-Life: A Framework for Confident Model Migration in Production Systems",
+      "source": "arXiv AI",
+      "topic": "ai-agent",
+      "date": "2026-05-01"
+    },
+    "b3fa15c4372a": {
+      "title": "End-to-end autonomous scientific discovery on a real optical platform",
+      "source": "arXiv AI",
+      "topic": "ai-agent",
+      "date": "2026-05-01"
+    },
+    "b044e20c771d": {
+      "title": "Think it, Run it: Autonomous ML pipeline generation via self-healing multi-agent AI",
+      "source": "arXiv AI",
+      "topic": "ai-agent",
+      "date": "2026-05-01"
+    },
+    "e504906f3429": {
+      "title": "Unsupervised Electrofacies Classification and Porosity Characterization in the Offshore Keta Basin Using Wireline Logs",
+      "source": "arXiv AI",
+      "topic": "ai-agent",
+      "date": "2026-05-01"
+    },
+    "311d3e8ca8c6": {
+      "title": "TRUST: A Framework for Decentralized AI Service v.0.1",
+      "source": "arXiv AI",
+      "topic": "ai-agent",
+      "date": "2026-05-01"
+    },
+    "7ea4db3b41d2": {
+      "title": "Unpacking Vibe Coding: Help-Seeking Processes in Student-AI Interactions While Programming",
+      "source": "arXiv AI",
+      "topic": "ai-agent",
+      "date": "2026-05-01"
+    },
+    "2909a15bb86b": {
+      "title": "Optimal Stop-Loss and Take-Profit Parameterization for Autonomous Trading Agent Swarm",
+      "source": "arXiv AI",
+      "topic": "ai-agent",
+      "date": "2026-05-01"
+    },
+    "9cccbac21593": {
+      "title": "Step-level Optimization for Efficient Computer-use Agents",
+      "source": "arXiv AI",
+      "topic": "ai-agent",
+      "date": "2026-05-01"
+    },
+    "3976fcb988bf": {
+      "title": "36氪首发｜国内首家落地“筷子夹”塔架回收技术的商业航天公司，完成5亿元融资",
+      "source": "36氪",
+      "topic": "china-tech",
+      "date": "2026-05-01"
+    },
+    "800d2fe3de8c": {
+      "title": "借航天展推“反向技术输出”，自然堂试炼叙事资源转化的产品力｜最前线",
+      "source": "36氪",
+      "topic": "china-tech",
+      "date": "2026-05-01"
+    },
+    "b0eddbe452ac": {
+      "title": "元禾原点领投，硫化物固态电解质材料商「天石科丰」完成数千万元pre-A轮融资 | 36氪首发",
+      "source": "36氪",
+      "topic": "china-tech",
+      "date": "2026-05-01"
+    },
+    "cd747d007a3b": {
+      "title": "错过第一波投影上市潮后，索诺克想靠「枭龙系列」实现超车｜项目报道",
+      "source": "36氪",
+      "topic": "china-tech",
+      "date": "2026-05-01"
+    },
+    "01d70ac82e28": {
+      "title": "巅峰集结，FBIF2026首日回顾！全球食品高层共探破局之路",
+      "source": "36氪",
+      "topic": "china-tech",
+      "date": "2026-05-01"
+    },
+    "91c5c4076b96": {
+      "title": "从扫地机到火箭车，追觅在硅谷造了一场“瞬息全宇宙”",
+      "source": "36氪",
+      "topic": "china-tech",
+      "date": "2026-05-01"
+    },
+    "c12ae0393d89": {
+      "title": "HappyHorse没有惊喜",
+      "source": "36氪",
+      "topic": "china-tech",
+      "date": "2026-05-01"
+    },
+    "d096bd835dd9": {
+      "title": "“小长假”前一天北京拍地91.597亿，最贵楼面价超6万",
+      "source": "36氪",
+      "topic": "china-tech",
+      "date": "2026-05-01"
+    },
+    "296b724d9ecd": {
+      "title": "氪星晚报｜澳门一季度GDP按年实质增长7.1%；小红书发内部信：加大AI投入，柯南出任总裁",
+      "source": "36氪",
+      "topic": "china-tech",
+      "date": "2026-05-01"
+    },
+    "e9998a6be99d": {
+      "title": "不谈空话，谈合作丨这场AI+产业对接会只聊落地",
+      "source": "36氪",
+      "topic": "china-tech",
+      "date": "2026-05-01"
+    },
+    "97fd42172385": {
+      "title": "当国产模型追上闭源旗舰，企业 AI 编程的真正障碍才浮出水面",
+      "source": "InfoQ CN",
+      "topic": "china-tech",
+      "date": "2026-05-01"
+    },
+    "587fa5130444": {
+      "title": "Mistral AI 推出 Workflows，用于编排企业 AI 工作流",
+      "source": "InfoQ CN",
+      "topic": "china-tech",
+      "date": "2026-05-01"
+    },
+    "4c4f1f23d6a3": {
+      "title": "布隆过滤器：理论、工程权衡与Go语言实现",
+      "source": "InfoQ CN",
+      "topic": "china-tech",
+      "date": "2026-05-01"
+    },
+    "589717e0f5cd": {
+      "title": "Spring 近期资讯： Boot 、 Security、 Integration、Modulith 和 AMQP 的第一个候选版本",
+      "source": "InfoQ CN",
+      "topic": "china-tech",
+      "date": "2026-05-01"
+    },
+    "1428f0d13cac": {
+      "title": "写代码的人都懂：GitHub 开始解决“大 PR 地狱”",
+      "source": "InfoQ CN",
+      "topic": "china-tech",
+      "date": "2026-05-01"
+    },
+    "91801af132f3": {
+      "title": "“AI预测未来”赛道登顶！北京中关村学院信息智能团队统斩获全球桂冠",
+      "source": "InfoQ CN",
+      "topic": "china-tech",
+      "date": "2026-05-01"
+    },
+    "54a3c14828be": {
+      "title": "王兴兴亲测后点赞！这家AI公司提前半年把“龙虾”能力带上车，还管住了Token黑洞",
+      "source": "InfoQ CN",
+      "topic": "china-tech",
+      "date": "2026-05-01"
+    },
+    "58f65790de94": {
+      "title": "从 AI Agent、RLHF 到 MoE 大规模训练：AMD 这场开发者日，把一线实战话题凑齐了",
+      "source": "InfoQ CN",
+      "topic": "china-tech",
+      "date": "2026-05-01"
+    },
+    "add4fa24a8b2": {
+      "title": "Meta 收购 Manus 这事儿泡汤了",
+      "source": "InfoQ CN",
+      "topic": "china-tech",
+      "date": "2026-05-01"
+    },
+    "f6e542cae274": {
+      "title": "5.5万 Star 开源项目 Ghostty 被迫出走，GitHub 正在终结一代技术人的乌托邦",
+      "source": "InfoQ CN",
+      "topic": "china-tech",
+      "date": "2026-05-01"
+    },
+    "c2da3723b448": {
+      "title": "本月玩什么｜朋友收藏、识质存在、沙罗周期",
+      "source": "少数派",
+      "topic": "china-tech",
+      "date": "2026-05-01"
+    },
+    "8402658a2a20": {
+      "title": "五一假期将至，用 iPhone 轻松搞定假日出行",
+      "source": "少数派",
+      "topic": "china-tech",
+      "date": "2026-05-01"
+    },
+    "0118cbea9096": {
+      "title": "Show HN: Winpodx – run Windows apps on Linux as native windows",
+      "source": "Hacker News Top",
+      "topic": "global-tech",
+      "date": "2026-05-01"
+    },
+    "c3bd916c7f35": {
+      "title": "OpenWarp",
+      "source": "Hacker News Top",
+      "topic": "global-tech",
+      "date": "2026-05-01"
+    },
+    "c1b05f406493": {
+      "title": "ClawIRC – IRC Chat for Agents",
+      "source": "Hacker News Top",
+      "topic": "global-tech",
+      "date": "2026-05-01"
+    },
+    "330ea127ccf9": {
+      "title": "CPanel and WHM Authentication Bypass – CVE-2026-41940",
+      "source": "Hacker News Top",
+      "topic": "global-tech",
+      "date": "2026-05-01"
+    },
+    "771e96510160": {
+      "title": "Snowball Earth may hide a far stranger climate cycle than anyone expected",
+      "source": "Hacker News Top",
+      "topic": "global-tech",
+      "date": "2026-05-01"
+    },
+    "2fc322e899d5": {
+      "title": "Can I disable all data collection from my vehicle?",
+      "source": "Hacker News Top",
+      "topic": "global-tech",
+      "date": "2026-05-01"
+    },
+    "8d91c26ebe4d": {
+      "title": "Follow-up to Carrot disclosure: Forgejo",
+      "source": "Hacker News Top",
+      "topic": "global-tech",
+      "date": "2026-05-01"
+    },
+    "3f071b47e93f": {
+      "title": "Does Postgres Scale?",
+      "source": "Hacker News Top",
+      "topic": "global-tech",
+      "date": "2026-05-01"
+    },
+    "ba425008bd7d": {
+      "title": "Full-Text Search with DuckDB",
+      "source": "Hacker News Top",
+      "topic": "global-tech",
+      "date": "2026-05-01"
+    },
+    "b3ebf3ba58d0": {
+      "title": "I built a Game Boy emulator in F#",
+      "source": "Hacker News Top",
+      "topic": "global-tech",
+      "date": "2026-05-01"
+    },
+    "d02cf6c66a23": {
+      "title": "ChatGPT Images 2.0 is a hit in India, but not a big winner elsewhere, yet",
+      "source": "TechCrunch",
+      "topic": "global-tech",
+      "date": "2026-05-01"
+    },
+    "64b06b119504": {
+      "title": "As Tim Cook steps down, Apple hit record sales — but a chip shortage looms",
+      "source": "TechCrunch",
+      "topic": "global-tech",
+      "date": "2026-05-01"
+    },
+    "69576cc63a73": {
+      "title": "Y Combinator alum Skio sells for $105M cash, only raised $8M, founder says",
+      "source": "TechCrunch",
+      "topic": "global-tech",
+      "date": "2026-05-01"
+    },
+    "e0cea1ae2c83": {
+      "title": "Sources: Anthropic potential $900B+ valuation round could happen within 2 weeks",
+      "source": "TechCrunch",
+      "topic": "global-tech",
+      "date": "2026-05-01"
+    },
+    "485653f30622": {
+      "title": "Apple was surprised by AI-driven demand for Macs",
+      "source": "TechCrunch",
+      "topic": "global-tech",
+      "date": "2026-05-01"
+    },
+    "4f23af2c0635": {
+      "title": "Legal AI startup Legora hits $5.6B valuation and its battle with Harvey just got hotter",
+      "source": "TechCrunch",
+      "topic": "global-tech",
+      "date": "2026-05-01"
+    },
+    "7dd20ace0392": {
+      "title": "Rivian downsizes DOE loan to $4.5B for Georgia factory",
+      "source": "TechCrunch",
+      "topic": "global-tech",
+      "date": "2026-05-01"
+    },
+    "600b806a590a": {
+      "title": "Hackers are actively exploiting a bug in cPanel, used by millions of websites",
+      "source": "TechCrunch",
+      "topic": "global-tech",
+      "date": "2026-05-01"
+    },
+    "fa5627bfa51b": {
+      "title": "After dissing Anthropic for limiting Mythos, OpenAI restricts access to Cyber, too",
+      "source": "TechCrunch",
+      "topic": "global-tech",
+      "date": "2026-05-01"
+    },
+    "1b422e2c1ba4": {
+      "title": "EV startup Faraday Future paid $7.5M to company tied to founder Jia Yueting",
+      "source": "TechCrunch",
+      "topic": "global-tech",
+      "date": "2026-05-01"
+    },
+    "072b4665a19a": {
+      "title": "The craziest part of Musk v. Altman happened while the jury was out of the room",
+      "source": "The Verge",
+      "topic": "global-tech",
+      "date": "2026-05-01"
+    },
+    "3f14ee66a7ac": {
+      "title": "Roblox’s daily users continue to drop as age checks slow growth",
+      "source": "The Verge",
+      "topic": "global-tech",
+      "date": "2026-05-01"
+    },
+    "a95725bdab8e": {
+      "title": "Congress keeps kicking surveillance reform down the road",
+      "source": "The Verge",
+      "topic": "global-tech",
+      "date": "2026-05-01"
+    },
+    "cca9f78dd959": {
+      "title": "Apple&#8217;s iPhone revenue jumps to $57 billion despite chip shortages",
+      "source": "The Verge",
+      "topic": "global-tech",
+      "date": "2026-05-01"
+    },
+    "00b85a2e3e69": {
+      "title": "Rivian’s revenue is up as R2 production kicks into gear",
+      "source": "The Verge",
+      "topic": "global-tech",
+      "date": "2026-05-01"
+    },
+    "65fcf2ad852d": {
+      "title": "Rivian downsizes new EV factory after Trump’s DOE slashes loan agreement",
+      "source": "The Verge",
+      "topic": "global-tech",
+      "date": "2026-05-01"
+    },
+    "9ebc2517b678": {
+      "title": "The logic of the racist Supreme Court isn’t adding up",
+      "source": "The Verge",
+      "topic": "global-tech",
+      "date": "2026-05-01"
+    },
+    "adc3612db50d": {
+      "title": "Microsoft’s Xbox mode is now available for all Windows 11 PCs",
+      "source": "The Verge",
+      "topic": "global-tech",
+      "date": "2026-05-01"
+    },
+    "1a9d753f32d2": {
+      "title": "Meta threatens to pull its apps from New Mexico if forced to make ‘technologically impractical’ changes",
+      "source": "The Verge",
+      "topic": "global-tech",
+      "date": "2026-05-01"
+    },
+    "66f1cbca4eec": {
+      "title": "With Saros, Housemarque makes a case for doing next-gen games differently",
+      "source": "The Verge",
+      "topic": "global-tech",
+      "date": "2026-05-01"
+    },
+    "fb4673e0822d": {
+      "title": "Trump nominates Fox News doctor to be the next surgeon general",
+      "source": "Ars Technica",
+      "topic": "global-tech",
+      "date": "2026-05-01"
+    },
+    "4e2fd4ef857c": {
+      "title": "US falls below Ukraine in press freedom as global autocracy takes hold",
+      "source": "Ars Technica",
+      "topic": "global-tech",
+      "date": "2026-05-01"
+    },
+    "3597eb9870be": {
+      "title": "Russia cloaks launch schedule after spaceport falls in Ukraine's sights",
+      "source": "Ars Technica",
+      "topic": "global-tech",
+      "date": "2026-05-01"
+    },
+    "952875e5d113": {
+      "title": "Elon Musk's 7 biggest stumbles on the stand at OpenAI trial",
+      "source": "Ars Technica",
+      "topic": "global-tech",
+      "date": "2026-05-01"
+    },
+    "f2bf8f931c48": {
+      "title": "The most severe Linux threat to surface in years catches the world flat-footed",
+      "source": "Ars Technica",
+      "topic": "global-tech",
+      "date": "2026-05-01"
+    },
+    "e2a2cabfbdc6": {
+      "title": "Meta cuts contractors who reported seeing Ray-Ban Meta users have sex",
+      "source": "Ars Technica",
+      "topic": "global-tech",
+      "date": "2026-05-01"
+    },
+    "adcf6dc16865": {
+      "title": "Researchers try to cut the genetic code from 20 to 19 amino acids",
+      "source": "Ars Technica",
+      "topic": "global-tech",
+      "date": "2026-05-01"
+    },
+    "d10909f445e1": {
+      "title": "Blue Origin certainly has ambitious launch targets for New Glenn",
+      "source": "Ars Technica",
+      "topic": "global-tech",
+      "date": "2026-05-01"
+    },
+    "11293a41e3e6": {
+      "title": "Stranded traveler gets more than he bargained for in Resident Evil teaser",
+      "source": "Ars Technica",
+      "topic": "global-tech",
+      "date": "2026-05-01"
+    },
+    "983cce03f5f0": {
+      "title": "Beijing bans drone sales even as rest of world buys Chinese drones",
+      "source": "Ars Technica",
+      "topic": "global-tech",
+      "date": "2026-05-01"
+    },
+    "68ab0aef53ab": {
+      "title": "GitHub Copilot CLI for Beginners: Interactive v. non-interactive mode",
+      "source": "GitHub Blog",
+      "topic": "global-tech",
+      "date": "2026-05-01"
+    },
+    "471b1d2a851d": {
+      "title": "Wonder",
+      "source": "Product Hunt",
+      "topic": "global-tech",
+      "date": "2026-05-01"
+    },
+    "cdea4e057569": {
+      "title": "Hera Launch",
+      "source": "Product Hunt",
+      "topic": "global-tech",
+      "date": "2026-05-01"
+    },
+    "44c4a6026967": {
+      "title": "VideoOS by Jupitrr AI",
+      "source": "Product Hunt",
+      "topic": "global-tech",
+      "date": "2026-05-01"
+    },
+    "a0544c80335e": {
+      "title": "Mintlify Editor",
+      "source": "Product Hunt",
+      "topic": "global-tech",
+      "date": "2026-05-01"
+    },
+    "ac1d64fad45c": {
+      "title": "Tabstack",
+      "source": "Product Hunt",
+      "topic": "global-tech",
+      "date": "2026-05-01"
+    },
+    "e470a75734b9": {
+      "title": "File Generation in Gemini",
+      "source": "Product Hunt",
+      "topic": "global-tech",
+      "date": "2026-05-01"
+    },
+    "9557e6df7e61": {
+      "title": "Quarkdown",
+      "source": "Product Hunt",
+      "topic": "global-tech",
+      "date": "2026-05-01"
+    },
+    "2b601fad2a36": {
+      "title": "Mistral Medium 3.5",
+      "source": "Product Hunt",
+      "topic": "global-tech",
+      "date": "2026-05-01"
+    },
+    "29358826d04e": {
+      "title": "Invite Only",
+      "source": "Product Hunt",
+      "topic": "global-tech",
+      "date": "2026-05-01"
+    },
+    "c2a0963f6368": {
+      "title": "Rova AI",
+      "source": "Product Hunt",
+      "topic": "global-tech",
+      "date": "2026-05-01"
+    },
+    "bda1f1a9afbd": {
+      "title": "Show HN: Adblock-rust Manager – Firefox extension to enable the Brave ad blocker",
+      "source": "Hacker News 开发者",
+      "topic": "global-tech",
+      "date": "2026-05-01"
+    },
+    "ca4040a3386a": {
+      "title": "Bugs Rust won't catch",
+      "source": "Hacker News 开发者",
+      "topic": "global-tech",
+      "date": "2026-05-01"
+    },
+    "fe047c984195": {
+      "title": "Show HN: Rocky – Rust SQL engine with branches, replay, column lineage",
+      "source": "Hacker News 开发者",
+      "topic": "global-tech",
+      "date": "2026-05-01"
     }
   },
-  "updated": "2026-04-29 10:50"
+  "updated": "2026-05-01 14:34"
 }

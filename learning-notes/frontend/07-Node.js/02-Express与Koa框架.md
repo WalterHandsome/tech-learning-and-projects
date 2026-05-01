@@ -121,6 +121,98 @@ export class UsersService {
   create(dto: CreateUserDto) { return this.repo.save(dto); }
 }
 ```
+## 4. Express 5.1 与 NestJS 11 版本演进
+
+> 🔄 更新于 2026-04-30
+
+<!-- version-check: Express 5.1.0, NestJS 11.1.19, checked 2026-04-30 -->
+
+### 4.1 Express 5.1（npm 默认版本）
+
+Express 5.1.0 于 2025-03-31 成为 npm `latest` 标签的默认版本，结束了 Express 4 长达 10 年的统治。这是 Express 历史上首次引入 LTS 支持计划。
+
+**核心变化**：
+
+| 特性 | Express 4.x | Express 5.x |
+|------|------------|------------|
+| async 错误处理 | 需要 try/catch | 自动转发 rejected Promise |
+| 路径匹配 | 宽松正则 | 严格 path-to-regexp v8 |
+| npm 默认 | ✅（已 EOL 计划中） | ✅（5.1.0 起） |
+| LTS 支持 | 社区维护 | 首次官方 LTS 计划 |
+| body-parser | 内置 v1 | 升级到 v2.2.0（移除 Brotli 遗留检查） |
+| router | 内置 v1 | 升级到 v2.2.0（移除 setImmediate 遗留检查） |
+
+```javascript
+// Express 5 自动 async 错误处理（无需 try/catch）
+import express from 'express';
+const app = express();
+
+// Express 5：rejected Promise 自动转发到错误中间件
+app.get('/api/users/:id', async (req, res) => {
+  const user = await User.findById(req.params.id); // 抛出异常会自动被捕获
+  if (!user) throw new NotFoundError('用户不存在');
+  res.json({ data: user });
+});
+
+// 错误中间件照常工作
+app.use((err, req, res, next) => {
+  res.status(err.status || 500).json({ error: err.message });
+});
+```
+
+**迁移工具**：官方提供 codemod 包自动化 v4→v5 迁移，但路径匹配语法变化需要手动修改。
+
+> 来源：[Express 5.1 Release](https://expressjs.com/2025/03/31/v5-1-latest-release.html)
+
+### 4.2 NestJS 11（当前 v11.1.19）
+
+NestJS 11 于 2025-01 发布，v12 计划 2026 Q3 发布（ESM 原生支持）。
+
+**核心新特性**：
+
+- **内置 JSON 日志**：`ConsoleLogger` 原生支持 JSON 格式输出，无需 Pino 等第三方库
+- **CacheModule 升级**：使用 cache-manager v6 + Keyv 统一接口，支持 Redis/MongoDB/内存等多后端
+- **日志增强**：深层嵌套对象格式化、Map/Set 支持、自定义日志前缀
+
+```typescript
+// NestJS 11 内置 JSON 日志
+import { NestFactory } from '@nestjs/core';
+import { AppModule } from './app.module';
+
+const app = await NestFactory.create(AppModule, {
+  logger: console, // 或使用内置 JSON 格式
+});
+
+// NestJS 11 CacheModule（cache-manager v6 + Keyv）
+import { CacheModule } from '@nestjs/cache-manager';
+import KeyvRedis from '@keyv/redis';
+
+@Module({
+  imports: [
+    CacheModule.registerAsync({
+      useFactory: () => ({
+        stores: [new KeyvRedis('redis://localhost:6379')],
+      }),
+    }),
+  ],
+})
+export class AppModule {}
+```
+
+**NestJS 12 预览**（2026 Q3）：ESM 原生支持、更快的测试启动、重新设计的官网。
+
+> 来源：[NestJS 11 Announcement](https://trilon.io/blog/announcing-nestjs-11-whats-new)、[NestJS v12 PR](https://github.com/nestjs/nest/pull/16391)
+
+### 4.3 2026 年 Node.js 后端框架选型
+
+| 框架 | 定位 | 适用场景 | 当前版本 |
+|------|------|---------|---------|
+| Express 5.1 | 极简、灵活 | 小型 API、微服务、快速原型 | 5.1.0 |
+| Koa | 现代中间件 | 需要精细控制的中间件场景 | 2.15.x |
+| NestJS 11 | 企业级、装饰器 | 大型项目、团队协作、微服务 | 11.1.19 |
+| Fastify | 高性能 | 高吞吐量 API、性能敏感场景 | 5.3.x |
+| Hono | 超轻量、多运行时 | Edge/Serverless、Cloudflare Workers | 4.7.x |
+
 ## 🎬 推荐视频资源
 
 - [Traversy Media - Express Crash Course](https://www.youtube.com/watch?v=SccSCuHhOw0) — Express速成
