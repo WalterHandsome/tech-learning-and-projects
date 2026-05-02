@@ -1,20 +1,10 @@
 # git-crypt 加密配置：以下文件在 GitHub 上显示为乱码，本地正常读写
-# X402 相关需求文档和 API 设计（公司内部方案）
-learning-notes/ai-agent/20-Agent支付/X402-*.md filter=git-crypt diff=git-crypt
-# 多签钱包与 KMS 签名（公司安全架构）
-learning-notes/ai-agent/20-Agent支付/11-*.md filter=git-crypt diff=git-crypt
-# AgentToken CLI 设计规范与数据模型（公司产品设计）
-learning-notes/ai-agent/20-Agent支付/07-*.md filter=git-crypt diff=git-crypt
-# X402 链上支付工程实战（公司工程方案）
-learning-notes/ai-agent/20-Agent支付/09-*.md filter=git-crypt diff=git-crypt
-# AgentToken 后端工程落地指南（公司工程方案）
-learning-notes/ai-agent/20-Agent支付/10-*.md filter=git-crypt diff=git-crypt
+# 工程实现（公司工程方案、产品设计、安全架构）
+learning-notes/ai-agent/20-Agent支付/03-工程实现/** filter=git-crypt diff=git-crypt
+# 项目需求（公司内部需求方案）
+learning-notes/ai-agent/20-Agent支付/04-项目需求/** filter=git-crypt diff=git-crypt
 # 架构图和流程图（公司内部设计资产）
 learning-notes/ai-agent/20-Agent支付/assets/** filter=git-crypt diff=git-crypt
-# 蓝图原始文档（如果存在）
-learning-notes/ai-agent/20-Agent支付/ExportBlock-*/** filter=git-crypt diff=git-crypt
-# CLI 草案原始文档（如果存在）
-learning-notes/ai-agent/20-Agent支付/Markdown*.md filter=git-crypt diff=git-crypt
 
 # ============================================
 # 隐形水印工具（核心算法，暴露后可被绕过）
