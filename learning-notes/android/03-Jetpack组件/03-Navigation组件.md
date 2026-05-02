@@ -139,3 +139,82 @@ class LoginFragment : Fragment() {
     private val sharedViewModel: AuthViewModel by navGraphViewModels(R.id.login_graph)
 }
 ```
+
+## 6. Navigation Compose 类型安全路由（2.8+）
+
+> 🔄 更新于 2026-05-01
+
+Navigation Compose 2.8+ 引入了基于 `@Serializable` 数据类的类型安全路由，替代字符串路由。Navigation 2.9.7 是当前稳定版。来源：[Android Developers - Navigation Compose](https://developer.android.com/guide/navigation/design/type-safety)
+
+<!-- version-check: Navigation Compose 2.9.7, Navigation 3 alpha, checked 2026-05-01 -->
+
+```kotlin
+// 定义路由（使用 @Serializable 数据类）
+@Serializable
+object Home  // 无参数路由
+
+@Serializable
+data class Detail(val itemId: String)  // 带参数路由
+
+@Serializable
+data class Search(val query: String = "")  // 带默认值
+
+// NavHost 使用类型安全路由
+@Composable
+fun AppNavigation() {
+    val navController = rememberNavController()
+
+    NavHost(navController = navController, startDestination = Home) {
+        composable<Home> {
+            HomeScreen(
+                onItemClick = { id -> navController.navigate(Detail(itemId = id)) }
+            )
+        }
+        composable<Detail> { backStackEntry ->
+            // 自动解析参数，编译时类型检查
+            val detail: Detail = backStackEntry.toRoute()
+            DetailScreen(itemId = detail.itemId)
+        }
+        composable<Search> { backStackEntry ->
+            val search: Search = backStackEntry.toRoute()
+            SearchScreen(initialQuery = search.query)
+        }
+    }
+}
+```
+
+### Navigation 3 预览版
+
+Navigation 3 是全新的 Compose-first 导航库，开发者完全控制 back stack。目前处于 alpha 阶段，API 可能变化。
+
+```kotlin
+// Navigation 3 核心概念：开发者管理 back stack
+// 依赖：androidx.navigation3:navigation3-compose:0.1.0-alpha04
+@Composable
+fun Nav3Example() {
+    // 开发者自己持有 back stack
+    val backStack = rememberMutableStateListOf<Any>(Home)
+
+    NavDisplay(
+        backStack = backStack,
+        onBack = { backStack.removeLastOrNull() }
+    ) { destination ->
+        when (destination) {
+            is Home -> HomeScreen(
+                onNavigate = { backStack.add(Detail(it)) }
+            )
+            is Detail -> DetailScreen(itemId = destination.itemId)
+        }
+    }
+}
+```
+
+### Navigation 版本选择
+
+```
+你的项目情况？
+├─ Fragment + XML → Navigation 2.9.7（Safe Args）
+├─ Compose 项目 → Navigation Compose 2.9.7（类型安全路由）
+├─ 新项目想尝鲜 → Navigation 3 alpha（API 不稳定）
+└─ KMP 项目 → Navigation Compose 2.9.7（支持 KMP）
+```

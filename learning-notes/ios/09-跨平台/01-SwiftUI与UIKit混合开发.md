@@ -146,3 +146,108 @@ struct CounterView: View {
     }
 }
 ```
+
+## 5. iOS 26 / Swift 6.2 互操作改进
+
+> 🔄 更新于 2026-05-01
+
+iOS 26 和 Swift 6.2 对 SwiftUI 与 UIKit 的互操作做了多项改进，降低了混合开发的摩擦。来源：[Apple Developer Documentation](https://developer.apple.com/documentation/swiftui/uikit-interoperability)、[Swift 6.2 Release Notes](https://www.swift.org/blog/swift-6.2-released)
+
+<!-- version-check: SwiftUI iOS 26, Swift 6.2, Xcode 26.4, checked 2026-05-01 -->
+
+### UIHostingController 改进
+
+iOS 26 中 `UIHostingController` 的尺寸协商和生命周期管理更加自然：
+
+```swift
+// iOS 26：UIHostingController 自动适配 Safe Area
+// 不再需要手动处理 additionalSafeAreaInsets
+let hostingVC = UIHostingController(rootView: MySwiftUIView())
+
+// 新增：sizingOptions 控制尺寸行为
+hostingVC.sizingOptions = [.preferredContentSize]  // 自动更新 preferredContentSize
+hostingVC.sizingOptions = [.intrinsicContentSize]   // 基于内容自适应
+
+// 在 UIKit 容器中嵌入时更自然
+addChild(hostingVC)
+view.addSubview(hostingVC.view)
+hostingVC.view.translatesAutoresizingMaskIntoConstraints = false
+NSLayoutConstraint.activate([
+    hostingVC.view.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+    hostingVC.view.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+    hostingVC.view.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+    hostingVC.view.trailingAnchor.constraint(equalTo: view.trailingAnchor)
+])
+hostingVC.didMove(toParent: self)
+```
+
+### @Observable 替代 ObservableObject
+
+iOS 17+ 推荐使用 `@Observable` 宏替代 `ObservableObject`，在混合开发中同样适用：
+
+```swift
+// 2026 推荐：使用 @Observable（iOS 17+）
+@Observable
+class SharedModel {
+    var count = 0
+    var name = ""
+}
+
+// SwiftUI 中直接使用（无需 @ObservedObject）
+struct CounterView: View {
+    var model: SharedModel
+    var body: some View {
+        Button("计数: \(model.count)") { model.count += 1 }
+    }
+}
+
+// UIKit 中使用 withObservationTracking
+class CounterVC: UIViewController {
+    let model = SharedModel()
+
+    func setupObservation() {
+        withObservationTracking {
+            label.text = "\(model.count)"
+        } onChange: {
+            DispatchQueue.main.async { [weak self] in
+                self?.setupObservation()  // 重新订阅
+            }
+        }
+    }
+}
+```
+
+### Liquid Glass 自动适配
+
+iOS 26 的 Liquid Glass 设计语言对混合开发的影响：
+
+```swift
+// 使用 Xcode 26 重新编译后，UIKit 和 SwiftUI 组件自动获得 Liquid Glass 外观
+// UINavigationBar、UITabBar、UIToolbar 自动应用新样式
+
+// SwiftUI 中手动应用 Glass 效果
+struct GlassCard: View {
+    var body: some View {
+        VStack {
+            Text("Glass 效果卡片")
+        }
+        .padding()
+        .glassEffect()  // iOS 26 新增
+    }
+}
+
+// UIKit 中使用 Glass 效果
+// UINavigationBar 和 UITabBar 自动应用
+// 自定义视图需要使用 UIVisualEffectView 配合新的 Glass 材质
+```
+
+### 2026 年混合开发策略
+
+```
+你的项目情况？
+├─ 全新项目 → 纯 SwiftUI（iOS 17+ 最低部署目标）
+├─ 现有 UIKit 项目 → 新页面用 SwiftUI，UIHostingController 嵌入
+├─ 复杂 UIKit 组件 → UIViewRepresentable 包装（地图、相机、WebView）
+├─ iOS 26 原生 WebView → 不再需要 UIViewRepresentable 包装 WKWebView
+└─ 数据共享 → @Observable（iOS 17+）或 ObservableObject（iOS 13+）
+```

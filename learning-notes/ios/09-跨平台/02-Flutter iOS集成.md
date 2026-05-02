@@ -133,3 +133,66 @@ class LocationStreamHandler: NSObject, FlutterStreamHandler {
 
 eventChannel.setStreamHandler(LocationStreamHandler())
 ```
+
+## 6. Flutter 3.32 / Dart 3.8 版本演进
+
+> 🔄 更新于 2026-05-01
+
+Flutter 3.32 是当前稳定版（2026-04-30），Dart 3.8 同步发布。iOS 集成方面有多项重要改进。来源：[Flutter Release Notes](https://docs.flutter.dev/release/release-notes)、[Dart 3.8 Release](https://medium.com/dartlang/dart-3-8)
+
+<!-- version-check: Flutter 3.32.0, Dart 3.8, checked 2026-05-01 -->
+
+### iOS 集成关键变化
+
+| 特性 | Flutter 3.24 | Flutter 3.32 |
+|------|-------------|-------------|
+| 最低 iOS 版本 | iOS 12 | iOS 13 |
+| Swift Package Manager | 实验性 | ✅ 默认启用 |
+| Impeller 渲染引擎 | iOS 默认 | iOS + Android 默认 |
+| Platform View 性能 | 一般 | 显著提升（Impeller 优化） |
+| Dart 版本 | 3.5 | 3.8 |
+
+### Swift Package Manager 集成（推荐）
+
+Flutter 3.32 默认使用 Swift Package Manager 替代 CocoaPods：
+
+```swift
+// 不再需要 Podfile！
+// Flutter 3.32 自动生成 Package.swift 集成
+
+// 如果仍需 CocoaPods（兼容旧插件）：
+// flutter config --no-enable-swift-package-manager
+```
+
+### Dart 3.8 新特性对 iOS 开发的影响
+
+```dart
+// Dart 3.8：Null-aware 元素（简化列表构建）
+Widget build(BuildContext context) {
+  return Column(
+    children: [
+      Text('标题'),
+      ?subtitle,  // 如果 subtitle 为 null，自动跳过
+      ?trailing,  // 不再需要 if (trailing != null) trailing!
+    ],
+  );
+}
+
+// Dart 3.8：交叉引用类型提升
+void processData(Object data) {
+  if (data is String && data.length > 5) {
+    // data 自动提升为 String 类型
+    print(data.substring(0, 5));
+  }
+}
+```
+
+### 版本选择建议
+
+```
+你的项目情况？
+├─ 新项目 → Flutter 3.32 + Swift Package Manager
+├─ 现有 CocoaPods 项目 → 逐步迁移到 SPM
+├─ 需要 iOS 12 支持 → 停留在 Flutter 3.27.x
+└─ 性能敏感 → Impeller 已默认启用，无需额外配置
+```

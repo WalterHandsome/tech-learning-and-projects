@@ -4139,7 +4139,433 @@
       "source": "Hacker News 开发者",
       "topic": "global-tech",
       "date": "2026-05-01"
+    },
+    "b82551817beb": {
+      "title": "Show HN: AI CAD Harness",
+      "source": "Hacker News AI",
+      "topic": "ai-agent",
+      "date": "2026-05-02"
+    },
+    "60c4a902746b": {
+      "title": "AI uses less water than the public thinks",
+      "source": "Hacker News AI",
+      "topic": "ai-agent",
+      "date": "2026-05-02"
+    },
+    "9aa5e638efd8": {
+      "title": "Spotify adds 'Verified' badges to distinguish human artists from AI",
+      "source": "Hacker News AI",
+      "topic": "ai-agent",
+      "date": "2026-05-02"
+    },
+    "de13a4b3d3d8": {
+      "title": "Uber torches 2026 AI budget on Claude Code in four months",
+      "source": "Hacker News AI",
+      "topic": "ai-agent",
+      "date": "2026-05-02"
+    },
+    "e63024c96dc9": {
+      "title": "Show HN: Loopsy, a way for terminals and AI agents on different machines to talk",
+      "source": "Hacker News AI",
+      "topic": "ai-agent",
+      "date": "2026-05-02"
+    },
+    "0ff068abec40": {
+      "title": "Our agent found a bug with WireGuard in Google Kubernetes Engine",
+      "source": "Hacker News AI",
+      "topic": "ai-agent",
+      "date": "2026-05-02"
+    },
+    "a2f224ac6526": {
+      "title": "Show HN: Destiny – Claude Code's fortune Teller skill",
+      "source": "Hacker News AI 关键词",
+      "topic": "ai-agent",
+      "date": "2026-05-02"
+    },
+    "0567d9ece56b": {
+      "title": "Apple accidentally left Claude.md files Apple Support app",
+      "source": "Hacker News AI 关键词",
+      "topic": "ai-agent",
+      "date": "2026-05-02"
+    },
+    "37e9552621d1": {
+      "title": "周杰伦伙伴，要被卖了",
+      "source": "36氪",
+      "topic": "china-tech",
+      "date": "2026-05-02"
+    },
+    "465e2dcdaabf": {
+      "title": "茶颜悦色 , 装不下去了",
+      "source": "36氪",
+      "topic": "china-tech",
+      "date": "2026-05-02"
+    },
+    "c00e131dfd29": {
+      "title": "又一算力独角兽，冲击IPO",
+      "source": "36氪",
+      "topic": "china-tech",
+      "date": "2026-05-02"
+    },
+    "cca20052a3e9": {
+      "title": "苹果官方App误打包了Claude.md，这么大的公司也Vibe Coding啊？",
+      "source": "36氪",
+      "topic": "china-tech",
+      "date": "2026-05-02"
+    },
+    "b00ac3a086f0": {
+      "title": "9.35万, 威马破产大甩卖",
+      "source": "36氪",
+      "topic": "china-tech",
+      "date": "2026-05-02"
+    },
+    "0aa6d1b793dc": {
+      "title": "续集没翻车 ，但这次“女魔头”也顶不住了",
+      "source": "36氪",
+      "topic": "china-tech",
+      "date": "2026-05-02"
+    },
+    "d780c4cb65d5": {
+      "title": "马斯克翻车了！一边告OpenAI，一边偷偷蒸馏ChatGPT",
+      "source": "36氪",
+      "topic": "china-tech",
+      "date": "2026-05-02"
+    },
+    "3099cfaa8616": {
+      "title": "追觅造车，从“火箭”开始",
+      "source": "36氪",
+      "topic": "china-tech",
+      "date": "2026-05-02"
+    },
+    "4f1e0a6e128f": {
+      "title": "本周看什么 | 最近值得一看的 10 部作品",
+      "source": "少数派",
+      "topic": "china-tech",
+      "date": "2026-05-02"
+    },
+    "0ef881fd118c": {
+      "title": "A Dark-Money Campaign Is Paying Influencers to Frame Chinese AI as a Threat",
+      "source": "Hacker News 中国科技",
+      "topic": "china-tech",
+      "date": "2026-05-02"
+    },
+    "f614790c2771": {
+      "title": "Senate Panel Backs Guard Act, AI Age Verification Bill",
+      "source": "Hacker News 中国科技",
+      "topic": "china-tech",
+      "date": "2026-05-02"
+    },
+    "cfa9371d1755": {
+      "title": "DeepSeek V4–almost on the frontier, a fraction of the price",
+      "source": "Hacker News 中国科技",
+      "topic": "china-tech",
+      "date": "2026-05-02"
+    },
+    "9eae25ec3fcf": {
+      "title": "'Rogue' Cursor AI agent loses control and wipes company's database",
+      "source": "Hacker News 中国科技",
+      "topic": "china-tech",
+      "date": "2026-05-02"
+    },
+    "d164395ada98": {
+      "title": "Ask HN: Is AI resulting in net revenue gain for non-tech companies?",
+      "source": "Hacker News 中国科技",
+      "topic": "china-tech",
+      "date": "2026-05-02"
+    },
+    "c1a4e93b5986": {
+      "title": "Show HN: Browser-based light pollution simulator using real photometric data",
+      "source": "Hacker News Top",
+      "topic": "global-tech",
+      "date": "2026-05-02"
+    },
+    "f3c1972f7161": {
+      "title": "SKILL.make: Makefile Styled Skill File",
+      "source": "Hacker News Top",
+      "topic": "global-tech",
+      "date": "2026-05-02"
+    },
+    "b8a91254b3ab": {
+      "title": "Open source ballistic simulator with NASA SRTM terrain masking (Python/C#)",
+      "source": "Hacker News Top",
+      "topic": "global-tech",
+      "date": "2026-05-02"
+    },
+    "8a30b8f8ec8f": {
+      "title": "Show HN: Stop playing my matchstick puzzles, start building your own in seconds",
+      "source": "Hacker News Top",
+      "topic": "global-tech",
+      "date": "2026-05-02"
+    },
+    "191a9e2a9d25": {
+      "title": "CollectWise (YC F24) Is Hiring",
+      "source": "Hacker News Top",
+      "topic": "global-tech",
+      "date": "2026-05-02"
+    },
+    "5c7fba29c284": {
+      "title": "Why does it take so long to release black fan versions?",
+      "source": "Hacker News Top",
+      "topic": "global-tech",
+      "date": "2026-05-02"
+    },
+    "d24be13b3488": {
+      "title": "Ask.com has closed",
+      "source": "Hacker News Top",
+      "topic": "global-tech",
+      "date": "2026-05-02"
+    },
+    "f3174dd4ad80": {
+      "title": "K3k: Kubernetes in Kubernetes",
+      "source": "Hacker News Top",
+      "topic": "global-tech",
+      "date": "2026-05-02"
+    },
+    "f82e4a10133d": {
+      "title": "Create an MP4 video of a web page scrolling at a steady speed",
+      "source": "Hacker News Top",
+      "topic": "global-tech",
+      "date": "2026-05-02"
+    },
+    "28655781ca3f": {
+      "title": "I built the Playwright for desktop apps. 80% token savings",
+      "source": "Hacker News Top",
+      "topic": "global-tech",
+      "date": "2026-05-02"
+    },
+    "4ed4ecdbf500": {
+      "title": "Uber wants to turn its millions of drivers into a sensor grid for self-driving companies",
+      "source": "TechCrunch",
+      "topic": "global-tech",
+      "date": "2026-05-02"
+    },
+    "09c409434735": {
+      "title": "Replit’s Amjad Masad on the Cursor deal, fighting Apple, and why he’d rather not sell",
+      "source": "TechCrunch",
+      "topic": "global-tech",
+      "date": "2026-05-02"
+    },
+    "89fdfe80ba59": {
+      "title": "Musely secures $360M from General Catalyst without giving up equity",
+      "source": "TechCrunch",
+      "topic": "global-tech",
+      "date": "2026-05-02"
+    },
+    "0809bbe44568": {
+      "title": "Meta buys robotics startup to bolster its humanoid AI ambitions",
+      "source": "TechCrunch",
+      "topic": "global-tech",
+      "date": "2026-05-02"
+    },
+    "c1d7280ff24b": {
+      "title": "Coatue has a plan to buy up land for data centers, possibly for Anthropic",
+      "source": "TechCrunch",
+      "topic": "global-tech",
+      "date": "2026-05-02"
+    },
+    "f9eee99f5f65": {
+      "title": "Pentagon inks deals with Nvidia, Microsoft, and AWS to deploy AI on classified networks",
+      "source": "TechCrunch",
+      "topic": "global-tech",
+      "date": "2026-05-02"
+    },
+    "af9545e09488": {
+      "title": "Ubuntu services hit by outages after DDoS attack",
+      "source": "TechCrunch",
+      "topic": "global-tech",
+      "date": "2026-05-02"
+    },
+    "c993597b3fe5": {
+      "title": "Musk v. Altman is just getting started",
+      "source": "TechCrunch",
+      "topic": "global-tech",
+      "date": "2026-05-02"
+    },
+    "e346be7a07c4": {
+      "title": "People are finally using Reddit’s search",
+      "source": "TechCrunch",
+      "topic": "global-tech",
+      "date": "2026-05-02"
+    },
+    "5702bce3edf0": {
+      "title": "Microsoft tests redesigned Windows 11 Run menu with dark mode and more",
+      "source": "The Verge",
+      "topic": "global-tech",
+      "date": "2026-05-02"
+    },
+    "86fb04380da1": {
+      "title": "Apple raises the Mac Mini&#8217;s starting price",
+      "source": "The Verge",
+      "topic": "global-tech",
+      "date": "2026-05-02"
+    },
+    "623f8314b1e7": {
+      "title": "Birdfy’s smart bird feeder is down to its best-ever price for Mother’s Day",
+      "source": "The Verge",
+      "topic": "global-tech",
+      "date": "2026-05-02"
+    },
+    "134a912d85ec": {
+      "title": "Amazon&#8217;s built-in AI price history expands to show the entire last year",
+      "source": "The Verge",
+      "topic": "global-tech",
+      "date": "2026-05-02"
+    },
+    "01bbeabc6e4a": {
+      "title": "Dreame — the vacuum company — just ‘launched’ its own phones",
+      "source": "The Verge",
+      "topic": "global-tech",
+      "date": "2026-05-02"
+    },
+    "c8f34512fcd4": {
+      "title": "This accessory can snap a Steam Controller to your phone — or almost anything else",
+      "source": "The Verge",
+      "topic": "global-tech",
+      "date": "2026-05-02"
+    },
+    "17a19a5c81e0": {
+      "title": "Players from the NBA, NFL, and MLB call for a ban on betting &#8216;unders&#8217;",
+      "source": "The Verge",
+      "topic": "global-tech",
+      "date": "2026-05-02"
+    },
+    "047cf013bbfa": {
+      "title": "Severe Linux Copy Fail security flaw uncovered using AI scanning help",
+      "source": "The Verge",
+      "topic": "global-tech",
+      "date": "2026-05-02"
+    },
+    "1bab8b37ae65": {
+      "title": "Study: AI models that consider user's feeling are more likely to make errors",
+      "source": "Ars Technica",
+      "topic": "global-tech",
+      "date": "2026-05-02"
+    },
+    "c8c19b4f188c": {
+      "title": "The RAMpocalypse has bought Microsoft valuable time in the fight against SteamOS",
+      "source": "Ars Technica",
+      "topic": "global-tech",
+      "date": "2026-05-02"
+    },
+    "87c3a9f888ff": {
+      "title": "Man dies covered in necrotic lesions after amoebas eat him alive",
+      "source": "Ars Technica",
+      "topic": "global-tech",
+      "date": "2026-05-02"
+    },
+    "e1391b33613e": {
+      "title": "Ubuntu infrastructure has been down for more than a day",
+      "source": "Ars Technica",
+      "topic": "global-tech",
+      "date": "2026-05-02"
+    },
+    "c4efa3cb1c57": {
+      "title": "Senators ban themselves from prediction markets after candidates bet on own races",
+      "source": "Ars Technica",
+      "topic": "global-tech",
+      "date": "2026-05-02"
+    },
+    "f6055146a74f": {
+      "title": "Minnesota passes ban on fake AI nudes; app makers risk $500K fines",
+      "source": "Ars Technica",
+      "topic": "global-tech",
+      "date": "2026-05-02"
+    },
+    "c4a47b159bb4": {
+      "title": "Amazon stuck with months of repairs after drone strikes on data centers",
+      "source": "Ars Technica",
+      "topic": "global-tech",
+      "date": "2026-05-02"
+    },
+    "2d1b9e0abf7e": {
+      "title": "Scorpions go terminator mode and reinforce their weapons with metal",
+      "source": "Ars Technica",
+      "topic": "global-tech",
+      "date": "2026-05-02"
+    },
+    "3df617bbee8a": {
+      "title": "GPT-5.5 matches heavily hyped Mythos Preview in new cybersecurity tests",
+      "source": "Ars Technica",
+      "topic": "global-tech",
+      "date": "2026-05-02"
+    },
+    "3f3076657ef8": {
+      "title": "Is your Purosangue SUV not sharp enough? Ferrari has you covered.",
+      "source": "Ars Technica",
+      "topic": "global-tech",
+      "date": "2026-05-02"
+    },
+    "4f08ead81950": {
+      "title": "DESIGN.md by Google Stitch",
+      "source": "Product Hunt",
+      "topic": "global-tech",
+      "date": "2026-05-02"
+    },
+    "0b44d31b5439": {
+      "title": "Scholé",
+      "source": "Product Hunt",
+      "topic": "global-tech",
+      "date": "2026-05-02"
+    },
+    "612feb6ed9eb": {
+      "title": "Microsoft Copilot Health",
+      "source": "Product Hunt",
+      "topic": "global-tech",
+      "date": "2026-05-02"
+    },
+    "e6a6d6406902": {
+      "title": "Cloud Computer by Manus",
+      "source": "Product Hunt",
+      "topic": "global-tech",
+      "date": "2026-05-02"
+    },
+    "243963ef1a99": {
+      "title": "Filect",
+      "source": "Product Hunt",
+      "topic": "global-tech",
+      "date": "2026-05-02"
+    },
+    "db0e76466dc2": {
+      "title": "YouTube TV Custom Multiview",
+      "source": "Product Hunt",
+      "topic": "global-tech",
+      "date": "2026-05-02"
+    },
+    "c3dba0394924": {
+      "title": "Ara",
+      "source": "Product Hunt",
+      "topic": "global-tech",
+      "date": "2026-05-02"
+    },
+    "2da3561a2b14": {
+      "title": "Feather",
+      "source": "Product Hunt",
+      "topic": "global-tech",
+      "date": "2026-05-02"
+    },
+    "fbc54e7dc5ad": {
+      "title": "Breaks",
+      "source": "Product Hunt",
+      "topic": "global-tech",
+      "date": "2026-05-02"
+    },
+    "3f744b1f8475": {
+      "title": "Beauty Diagram",
+      "source": "Product Hunt",
+      "topic": "global-tech",
+      "date": "2026-05-02"
+    },
+    "37d31ad34a45": {
+      "title": "Your biggest vulnerability is your shitty compensation",
+      "source": "Hacker News 开发者",
+      "topic": "global-tech",
+      "date": "2026-05-02"
+    },
+    "58b826342594": {
+      "title": "Show HN: Coding-Flashcards – Learn Rust, SQLite, or Godot from First Principles",
+      "source": "Hacker News 开发者",
+      "topic": "global-tech",
+      "date": "2026-05-02"
     }
   },
-  "updated": "2026-05-01 14:34"
+  "updated": "2026-05-02 17:48"
 }

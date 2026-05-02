@@ -41,15 +41,16 @@ from pathlib import Path
 BASE_DIR = Path(__file__).resolve().parent.parent / "learning-notes" / "briefings"
 INDEX_FILE = BASE_DIR / ".dedup-index.json"
 
-# RSS 源配置（按主题分组）
+# RSS 源配置（按主题分组，timeout 字段可选，覆盖默认 15 秒）
 RSS_SOURCES = {
     "ai-agent": [
         {"name": "LangChain Blog", "url": "https://blog.langchain.com/rss.xml"},
-        {"name": "Anthropic Research", "url": "https://raw.githubusercontent.com/Olshansk/rss-feeds/main/feeds/feed_anthropic_research.xml"},
-        {"name": "Anthropic News", "url": "https://raw.githubusercontent.com/Olshansk/rss-feeds/main/feeds/feed_anthropic_news.xml"},
+        {"name": "Anthropic Research", "url": "https://raw.githubusercontent.com/Olshansk/rss-feeds/main/feeds/feed_anthropic_research.xml", "timeout": 30},
+        {"name": "Anthropic News", "url": "https://raw.githubusercontent.com/Olshansk/rss-feeds/main/feeds/feed_anthropic_news.xml", "timeout": 30},
         {"name": "OpenAI Blog", "url": "https://openai.com/blog/rss.xml"},
         {"name": "Google AI Blog", "url": "https://blog.google/technology/ai/rss/"},
         {"name": "Hugging Face Blog", "url": "https://huggingface.co/blog/feed.xml"},
+        {"name": "Wired AI", "url": "https://www.wired.com/feed/tag/ai/latest/rss"},
         {"name": "Hacker News AI", "url": "https://hnrss.org/newest?q=AI+agent+OR+MCP+OR+LLM&points=30"},
         {"name": "Hacker News AI 关键词", "url": "https://hnrss.org/newest?q=LangGraph+OR+CrewAI+OR+Claude+OR+RAG+OR+function+calling+OR+context+engineering&points=20"},
         {"name": "arXiv AI", "url": "https://rss.arxiv.org/rss/cs.AI"},
@@ -57,7 +58,9 @@ RSS_SOURCES = {
     "china-tech": [
         {"name": "36氪", "url": "https://36kr.com/feed"},
         {"name": "InfoQ CN", "url": "https://www.infoq.cn/feed"},
-        {"name": "V2EX 技术", "url": "https://www.v2ex.com/feed/tab/tech.xml"},
+        {"name": "极客公园", "url": "https://www.geekpark.net/rss"},
+        {"name": "量子位", "url": "https://www.qbitai.com/feed"},
+        {"name": "开源中国", "url": "https://www.oschina.net/news/rss"},
         {"name": "少数派", "url": "https://sspai.com/feed"},
         {"name": "Hacker News 中国科技", "url": "https://hnrss.org/newest?q=DeepSeek+OR+Qwen+OR+Baidu+AI+OR+China+AI&points=10"},
     ],
@@ -68,16 +71,15 @@ RSS_SOURCES = {
         {"name": "Ars Technica", "url": "https://feeds.arstechnica.com/arstechnica/index"},
         {"name": "GitHub Blog", "url": "https://github.blog/feed/"},
         {"name": "Product Hunt", "url": "https://www.producthunt.com/feed"},
+        {"name": "AWS Blog", "url": "https://aws.amazon.com/blogs/aws/feed/"},
+        {"name": "Cloudflare Blog", "url": "https://blog.cloudflare.com/rss/"},
+        {"name": "Kubernetes Blog", "url": "https://kubernetes.io/feed.xml"},
         {"name": "Hacker News 开发者", "url": "https://hnrss.org/newest?q=Rust+OR+TypeScript+OR+Kubernetes+OR+AWS+OR+security+vulnerability&points=20"},
     ],
 }
 
-# Hacker News API 关键词（已迁移到 hnrss.org 搜索 feed，保留配置供 fetch_hn_top 备用）
-HN_KEYWORDS = {
-    "ai-agent": [],
-    "china-tech": [],
-    "global-tech": [],
-}
+# 条目时效过滤：只保留最近 N 小时内发布的条目（0 表示不过滤）
+FRESHNESS_HOURS = 48
 
 
 # ============================================
@@ -112,18 +114,23 @@ def topic_dir(topic: str) -> Path:
     return BASE_DIR / topic / str(now.year) / f"{now.month:02d}"
 
 
-def http_get(url: str, timeout: int = 10) -> str | None:
-    """标准库 HTTP GET，带错误处理"""
-    try:
-        req = urllib.request.Request(
-            url,
-            headers={"User-Agent": "BriefingTools/1.0 (Walter's Knowledge Base)"},
-        )
-        with urllib.request.urlopen(req, timeout=timeout) as resp:
-            return resp.read().decode("utf-8", errors="replace")
-    except (urllib.error.URLError, TimeoutError, OSError) as e:
-        log_error(f"HTTP GET 失败: {url} — {e}")
-        return None
+def http_get(url: str, timeout: int = 10, retries: int = 1) -> str | None:
+    """标准库 HTTP GET，带错误处理和自动重试"""
+    import time as _time
+    for attempt in range(1 + retries):
+        try:
+            req = urllib.request.Request(
+                url,
+                headers={"User-Agent": "BriefingTools/1.0 (Walter's Knowledge Base)"},
+            )
+            with urllib.request.urlopen(req, timeout=timeout) as resp:
+                return resp.read().decode("utf-8", errors="replace")
+        except (urllib.error.URLError, TimeoutError, OSError) as e:
+            if attempt < retries:
+                _time.sleep(3)
+                continue
+            log_error(f"HTTP GET 失败: {url} — {e}")
+            return None
 
 
 def log_error(msg: str):
@@ -227,91 +234,117 @@ def _clean_html(text: str) -> str:
     return re.sub(r"<[^>]+>", "", text).strip()
 
 
-# ============================================
-# Hacker News API 采集
-# ============================================
-
-def fetch_hn_top(keywords: list[str], limit: int = 15) -> list[dict]:
-    items = []
-    data = http_get("https://hacker-news.firebaseio.com/v0/topstories.json", timeout=15)
-    if not data:
-        return []
-    try:
-        story_ids = json.loads(data)[:80]
-    except json.JSONDecodeError:
-        return []
-
-    kw_lower = [k.lower() for k in keywords]
-    for sid in story_ids:
-        if len(items) >= limit:
-            break
-        # 单条请求带重试（最多 2 次）
-        story_data = None
-        for _attempt in range(2):
-            story_data = http_get(
-                f"https://hacker-news.firebaseio.com/v0/item/{sid}.json",
-                timeout=15,
-            )
-            if story_data:
-                break
-        if not story_data:
-            continue
+def _parse_pub_date(date_str: str) -> datetime | None:
+    """尝试解析 RSS/Atom 中常见的日期格式"""
+    if not date_str:
+        return None
+    # 常见格式列表
+    formats = [
+        "%a, %d %b %Y %H:%M:%S %z",      # RFC 822: Thu, 01 May 2026 16:08:53 +0000
+        "%a, %d %b %Y %H:%M:%S %Z",      # RFC 822 with timezone name
+        "%Y-%m-%dT%H:%M:%S%z",            # ISO 8601: 2026-05-01T18:01:53-04:00
+        "%Y-%m-%dT%H:%M:%SZ",             # ISO 8601 UTC
+        "%Y-%m-%d %H:%M:%S  %z",          # 36氪格式: 2026-05-02 17:37:20  +0800
+        "%Y-%m-%d %H:%M:%S %z",           # 标准: 2026-05-02 17:37:20 +0800
+        "%a, %d %b %Y %H:%M:%S GMT",      # OpenAI: Thu, 30 Apr 2026 20:25:12 GMT
+        "%Y-%m-%dT%H:%M:%S.%f%z",         # 带毫秒的 ISO 8601
+    ]
+    for fmt in formats:
         try:
-            story = json.loads(story_data)
-        except json.JSONDecodeError:
+            return datetime.strptime(date_str.strip(), fmt)
+        except ValueError:
             continue
-        title = story.get("title", "")
-        if not title:
-            continue
-        if any(kw in title.lower() for kw in kw_lower):
-            items.append({
-                "title": title,
-                "url": story.get(
-                    "url",
-                    f"https://news.ycombinator.com/item?id={sid}",
-                ),
-                "published": "",
-                "description": (
-                    f"Score: {story.get('score', 0)}, "
-                    f"Comments: {story.get('descendants', 0)}"
-                ),
-                "source": "Hacker News",
-                "hn_score": story.get("score", 0),
-            })
-    return items
+    return None
+
+
+def _filter_by_freshness(items: list[dict], hours: int) -> list[dict]:
+    """按发布时间过滤条目，只保留最近 N 小时内的。无法解析日期的条目保留（宁可多不可漏）。"""
+    if hours <= 0:
+        return items
+    now = datetime.now()
+    cutoff_naive = now - timedelta(hours=hours)
+    try:
+        cutoff_aware = now.astimezone() - timedelta(hours=hours)
+    except Exception:
+        cutoff_aware = None
+    result = []
+    for item in items:
+        pub_dt = _parse_pub_date(item.get("published", ""))
+        if pub_dt is None:
+            # 无法解析日期，保留
+            result.append(item)
+        else:
+            try:
+                # 统一比较：如果 pub_dt 有时区信息用 aware 比较，否则用 naive
+                if pub_dt.tzinfo is not None and cutoff_aware is not None:
+                    if pub_dt >= cutoff_aware:
+                        result.append(item)
+                else:
+                    # naive 比较
+                    pub_naive = pub_dt.replace(tzinfo=None)
+                    if pub_naive >= cutoff_naive:
+                        result.append(item)
+            except Exception:
+                # 比较失败，保留
+                result.append(item)
+    return result
 
 
 # ============================================
-# 采集主入口
+# 采集主入口（并发）
 # ============================================
+
+def _fetch_one_source(src: dict) -> tuple[str, list[dict], float, bool]:
+    """采集单个 RSS 源，返回 (源名称, 条目列表, 耗时, 是否成功)"""
+    import time as _time
+    name = src["name"]
+    timeout = src.get("timeout", 15)
+    t0 = _time.time()
+    xml_text = http_get(src["url"], timeout=timeout)
+    elapsed = _time.time() - t0
+    if xml_text:
+        items = parse_rss(xml_text, name)
+        return name, items, elapsed, True
+    return name, [], elapsed, False
+
 
 def collect_topic(topic: str) -> list[dict]:
+    from concurrent.futures import ThreadPoolExecutor, as_completed
     import time as _time
+
+    sources = RSS_SOURCES.get(topic, [])
     all_items = []
+    results = []
 
-    # RSS 源
-    for src in RSS_SOURCES.get(topic, []):
-        print(f"  📡 采集 {src['name']}...")
-        t0 = _time.time()
-        xml_text = http_get(src["url"], timeout=15)
-        elapsed = _time.time() - t0
-        if xml_text:
-            items = parse_rss(xml_text, src["name"])
-            all_items.extend(items[:10])
-            print(f"     → {len(items)} 条 ({elapsed:.1f}s)")
+    # 并发采集所有 RSS 源
+    t_start = _time.time()
+    with ThreadPoolExecutor(max_workers=min(len(sources), 8)) as pool:
+        futures = {pool.submit(_fetch_one_source, src): src for src in sources}
+        for future in as_completed(futures):
+            name, items, elapsed, ok = future.result()
+            results.append((name, items, elapsed, ok))
+
+    # 按配置顺序输出结果（方便阅读）
+    source_order = {src["name"]: i for i, src in enumerate(sources)}
+    results.sort(key=lambda r: source_order.get(r[0], 999))
+
+    for name, items, elapsed, ok in results:
+        if ok:
+            print(f"  📡 {name}: {len(items)} 条 ({elapsed:.1f}s)")
+            all_items.extend(items)
         else:
-            print(f"     → 失败 ({elapsed:.1f}s)")
+            print(f"  ⚠️  {name}: 失败 ({elapsed:.1f}s)")
 
-    # Hacker News API
-    hn_kw = HN_KEYWORDS.get(topic, [])
-    if hn_kw:
-        print(f"  📡 采集 Hacker News (关键词: {len(hn_kw)} 个)...")
-        t0 = _time.time()
-        hn_items = fetch_hn_top(hn_kw)
-        elapsed = _time.time() - t0
-        all_items.extend(hn_items)
-        print(f"     → {len(hn_items)} 条 ({elapsed:.1f}s)")
+    total_elapsed = _time.time() - t_start
 
+    # 按时效过滤
+    before = len(all_items)
+    all_items = _filter_by_freshness(all_items, FRESHNESS_HOURS)
+    filtered = before - len(all_items)
+    if filtered > 0:
+        print(f"  🕐 时效过滤: {filtered} 条超过 {FRESHNESS_HOURS}h 已排除")
+
+    print(f"  ⏱  总耗时: {total_elapsed:.1f}s（并发）")
     return all_items
 
 

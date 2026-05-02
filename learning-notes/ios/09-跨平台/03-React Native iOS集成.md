@@ -148,3 +148,77 @@ class NativeDeviceInfo: NSObject {
     }
 }
 ```
+
+## 6. React Native 0.79 新架构与 iOS 集成
+
+> 🔄 更新于 2026-05-01
+
+React Native 0.79 是当前稳定版（2026-04），新架构（Fabric + TurboModules）已成为默认。来源：[React Native Blog](https://reactnative.dev/blog)、[React Native Releases](https://github.com/facebook/react-native/releases)
+
+<!-- version-check: React Native 0.79.x, New Architecture default, checked 2026-05-01 -->
+
+### 新架构核心变化
+
+| 特性 | 旧架构（Bridge） | 新架构（Fabric + TurboModules） |
+|------|-----------------|-------------------------------|
+| JS ↔ Native 通信 | JSON 序列化 Bridge | JSI 直接调用 |
+| UI 渲染 | 异步 Bridge | Fabric 同步渲染 |
+| 原生模块 | Bridge Module | TurboModule（懒加载） |
+| 并发 | 单线程 Bridge | 多线程支持 |
+| 类型安全 | 运行时检查 | Codegen 编译时检查 |
+
+### TurboModule 完整示例（Swift）
+
+```swift
+// 1. 定义 Spec（TypeScript → Codegen 生成 ObjC++ 接口）
+// NativeDeviceInfo.ts
+import type { TurboModule } from 'react-native';
+import { TurboModuleRegistry } from 'react-native';
+
+export interface Spec extends TurboModule {
+  getModel(): string;
+  getSystemVersion(): string;
+  getBatteryLevel(): Promise<number>;
+}
+
+export default TurboModuleRegistry.getEnforcing<Spec>('DeviceInfo');
+```
+
+```swift
+// 2. Swift 实现（RCTDeviceInfoSpec 由 Codegen 生成）
+@objc(DeviceInfo)
+class DeviceInfo: NSObject, NativeDeviceInfoSpec {
+    @objc static func moduleName() -> String! { "DeviceInfo" }
+
+    func getModel() -> String {
+        UIDevice.current.model
+    }
+
+    func getSystemVersion() -> String {
+        UIDevice.current.systemVersion
+    }
+
+    func getBatteryLevel(_ resolve: @escaping RCTPromiseResolveBlock,
+                         reject: @escaping RCTPromiseRejectBlock) {
+        UIDevice.current.isBatteryMonitoringEnabled = true
+        resolve(UIDevice.current.batteryLevel * 100)
+    }
+}
+```
+
+### React Native 0.79 iOS 关键改进
+
+- **最低 iOS 版本提升至 16.0**：与 Apple 生态保持一致
+- **Hermes 引擎默认启用**：启动速度提升 30-50%
+- **Codegen 自动生成**：TypeScript 定义自动生成 ObjC++ 接口
+- **Swift 原生模块支持改善**：不再强制需要 ObjC 桥接文件
+
+### 版本选择建议
+
+```
+你的项目情况？
+├─ 新项目 → RN 0.79 + 新架构（默认）
+├─ 现有旧架构项目 → 逐步迁移，先升级到 0.76+
+├─ 大量 Bridge Module → 使用 interop layer 过渡
+└─ 需要 iOS 15 支持 → 停留在 RN 0.77.x
+```
