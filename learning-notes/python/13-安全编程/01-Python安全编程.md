@@ -2,6 +2,8 @@
 ‍‍​​​​​​​​​‌​‌​‌‌‌​​​​​​​​​‌‌​​​​‌​​​​​​​​​‌‌​‌‌​​​​​​​​​​​‌‌‌​‌​​​​​​​​​​​‌‌​​‌​‌​​​​​​​​​‌‌‌​​‌​​​​​​​​​​​‌​​​​​​​​​​​​​​‌​‌​‌‌‌​​​​​​​​​‌‌​​​​‌​​​​​​​​​‌‌​‌‌‌​​​​​​​​​​‌‌​​‌‌‌‍‍
 > Author: Walter Wang
 
+<!-- version-check: OWASP Top 10 2025, pip-audit 2.9.x, Python 3.14, checked 2026-05-02 -->
+
 ## 1. 安全编程概述
 
 Python应用安全涉及多个方面：
@@ -378,21 +380,24 @@ logger.info(f"User data: {sanitize_log_data(user_data)}")
 ### 8.1 检查依赖漏洞
 
 ```bash
-# 使用safety检查
+# 使用 pip-audit（推荐，PyPA 官方维护）
+pip install pip-audit
+pip-audit
+
+# 使用 safety 检查（Safety DB）
 pip install safety
 safety check
 
-# 使用pip-audit
-pip install pip-audit
-pip-audit
+# 使用 uv 内置审计（2026 年推荐）
+uv pip audit
 ```
 
 ### 8.2 固定依赖版本
 
 ```python
-# requirements.txt
-Flask==2.3.0
-requests==2.31.0
+# requirements.txt — 固定版本
+Flask==3.1.2
+requests==2.32.3
 ```
 
 ## 9. 常见安全漏洞
@@ -459,6 +464,95 @@ Python安全编程需要关注：
 - **认证授权**：用户身份验证和权限控制
 - **数据加密**：敏感数据加密
 - **安全配置**：安全的最佳实践
+- **供应链安全**：依赖审计和版本锁定
 
 遵循安全最佳实践可以保护应用免受常见攻击。
+
+## 12. OWASP Top 10 2025 与 Python 安全
+
+> 🔄 更新于 2026-05-02
+
+OWASP Top 10 在 2025 年发布了新版本，相比 2021 版有重大变化。以下是与 Python 开发者最相关的更新。来源：[Talk Python #545 - OWASP Top 10 2025](https://talkpython.fm/episodes/show/545/owasp-top-10-2025-list-for-python-devs)
+
+### 12.1 2025 版关键变化
+
+| 排名 | 2025 版 | 变化 |
+|------|---------|------|
+| A01 | Broken Access Control | 保持第一 |
+| A02 | Cryptographic Failures | 保持 |
+| A03 | **Software Supply Chain Failures** | **新增**（原 A06 拆分+扩展） |
+| A04 | Injection | 从 A03 降至 A04 |
+| A05 | Insecure Design | 保持 |
+| A06 | Security Misconfiguration | 保持 |
+| A07 | **Exceptional Condition Handling** | **新增**（替代 XSS 独立项） |
+| A08 | Server-Side Request Forgery | 保持 |
+| A09 | Security Logging & Monitoring | 保持 |
+| A10 | **Unsafe Consumption of APIs** | **新增** |
+
+### 12.2 供应链安全（A03）— Python 重点
+
+供应链攻击已成为 Python 生态最大威胁之一。PyPI 在 2025 年完成了第二次外部安全审计（Trail of Bits），发现 14 个问题（2 个高危）。来源：[PyPI Second Security Audit](https://pydevtools.com/blog/pypi-second-security-audit/)
+
+```python
+# 2026 年推荐的 Python 供应链安全实践
+
+# 1. 在 CI 中集成 pip-audit（PyPA 官方工具）
+# pyproject.toml
+# [tool.pytest.ini_options]
+# 添加 pip-audit 作为测试步骤
+
+# 2. 使用 uv 的 --exclude-newer 延迟安装新包
+# 避免安装发布不到一周的包，等待社区发现问题
+# uv pip compile --exclude-newer "1 week" requirements.in
+
+# 3. 锁定依赖哈希
+# uv pip compile --generate-hashes requirements.in -o requirements.txt
+
+# 4. CI 配置示例（GitHub Actions）
+# .github/workflows/security.yml
+# - name: Audit dependencies
+#   run: |
+#     pip install pip-audit
+#     pip-audit --strict --desc
+```
+
+来源：[Python Supply Chain Security Made Easy](https://mkennedy.codes/posts/python-supply-chain-security-made-easy/)
+
+### 12.3 异常条件处理（A07）— Python 常见问题
+
+```python
+# ❌ 危险：裸捕获异常后返回默认值
+def get_user_balance(user_id):
+    try:
+        return db.query(f"SELECT balance FROM accounts WHERE id = {user_id}")
+    except Exception:
+        return 0  # 静默失败，可能掩盖安全问题
+
+# ✅ 安全：明确处理异常类型，记录日志
+def get_user_balance(user_id: int) -> Decimal:
+    try:
+        result = db.execute(
+            text("SELECT balance FROM accounts WHERE id = :id"),
+            {"id": user_id}
+        )
+        row = result.fetchone()
+        if row is None:
+            raise ValueError(f"用户 {user_id} 不存在")
+        return row.balance
+    except SQLAlchemyError as e:
+        logger.error(f"数据库查询失败: user_id={user_id}", exc_info=True)
+        raise
+```
+
+### 12.4 2026 年 Python 安全工具链
+
+| 工具 | 用途 | 推荐度 |
+|------|------|--------|
+| **pip-audit** | 依赖漏洞扫描（OSV + PyPI） | ⭐⭐⭐ 必备 |
+| **uv** | 包管理 + 哈希锁定 + --exclude-newer | ⭐⭐⭐ 必备 |
+| **Ruff** | 安全相关 lint 规则（S 系列） | ⭐⭐⭐ 必备 |
+| **Bandit** | Python 静态安全分析 | ⭐⭐ 推荐 |
+| **safety** | 依赖漏洞扫描（Safety DB） | ⭐⭐ 补充 |
+| **Semgrep** | 自定义安全规则扫描 | ⭐⭐ 大型项目 |
+| **Sigstore** | 包签名验证 | ⭐ 前沿 |
 

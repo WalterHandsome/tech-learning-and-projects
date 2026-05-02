@@ -170,3 +170,106 @@ inline fun <reified T> Gson.fromJson(json: String): T =
 // 使用
 val user = gson.fromJson<User>(jsonStr)  // 无需传 Class
 ```
+
+> 🔄 更新于 2026-05-02
+
+<!-- version-check: Kotlin 2.3.20, Compose 1.11, Android 16 API 36, checked 2026-05-02 -->
+
+## 8. 2026 年面试新增热点
+
+### 8.1 Kotlin 2.x 新特性面试题
+
+```kotlin
+// Q: K2 编译器是什么？有什么影响？
+// A: K2 是 Kotlin 2.0 引入的全新编译器前端，Kotlin 2.3.20 默认启用。
+// 编译速度显著提升，类型推断更准确，IDE 分析更快。
+// 对开发者代码无 Breaking Change，但 Gradle 插件需要 2.0+ 版本。
+
+// Q: when 表达式的守卫条件（Guard Conditions）是什么？
+// A: Kotlin 2.1+ 新增，允许在 when 分支中添加额外的布尔条件
+fun classify(value: Any) = when (value) {
+    is Int if value > 0 -> "正整数"
+    is Int -> "非正整数"
+    is String if value.isNotEmpty() -> "非空字符串"
+    else -> "其他"
+}
+
+// Q: name-based 解构声明是什么？
+// A: Kotlin 2.3.20 新增，解构声明不再依赖位置顺序，而是按名称匹配
+data class User(val name: String, val age: Int, val email: String)
+// 传统方式（位置依赖）
+val (name, age, email) = user
+// name-based（Kotlin 2.3.20+，按名称匹配，顺序无关）
+val (email, name) = user  // 只取需要的字段
+
+// Q: 显式 backing fields 是什么？
+// A: Kotlin 2.0+ 新增，允许属性的 backing field 有不同的类型
+class Counter {
+    val count: Int
+        field = 0  // backing field 显式声明
+        get() = field
+    
+    fun increment() { field++ }
+}
+```
+
+### 8.2 Compose 2026 面试题
+
+```kotlin
+// Q: Strong Skipping Mode 是什么？
+// A: Compose 编译器优化，默认启用（Compose 1.10+）。
+// 即使参数不稳定（unstable），只要值没变就跳过重组。
+// 减少了手动标注 @Stable/@Immutable 的需求。
+
+// Q: collectAsStateWithLifecycle 和 collectAsState 的区别？
+// A: collectAsStateWithLifecycle 是生命周期感知的：
+// - App 进入后台时自动停止收集 → 节省资源
+// - App 回到前台时自动恢复收集
+// - 2026 年是标准推荐，替代 collectAsState
+val state by viewModel.uiState.collectAsStateWithLifecycle()
+
+// Q: Compose 1.11（2026-04）有什么新特性？
+// A: 核心变化：
+// 1. 测试 API v2 成为默认（StandardTestDispatcher 替代 UnconfinedTestDispatcher）
+// 2. SharedElement 调试工具（LookaheadAnimationVisualDebugging）
+// 3. Trackpad 事件改进（PointerType.Mouse 替代 PointerType.Touch）
+// 4. Material3 1.5 稳定版
+
+// Q: Navigation 3 和 Navigation Compose 2.x 的区别？
+// A: Navigation 3 是全新 Compose-first 设计（1.1.1 稳定版）：
+// - 开发者完全控制 back stack（不再是框架管理）
+// - 使用 @Serializable 数据类定义路由（类型安全）
+// - 支持 Compose Multiplatform
+// Navigation 2.x 仍然维护（2.9.8），但新项目推荐 Navigation 3
+
+// Q: Vkompose 是什么？为什么重要？
+// A: VK.com 开源的 Compose 性能工具套件，包含：
+// - IntelliJ 插件：高亮不稳定参数
+// - Gradle 插件：编译时检测重组问题
+// - Detekt 规则：阻止性能问题进入代码库
+// 2026 年 Compose 性能优化的最佳实践工具
+```
+
+### 8.3 Android 16 面试题
+
+```kotlin
+// Q: Android 16 的 Minor SDK Version 是什么？
+// A: Android 16 QPR2 首次引入 Minor SDK Version 机制：
+// - 允许在年度大版本之外发布新 API
+// - Minor 版本只包含增量 API，不引入 targetSdkVersion 行为变更
+// - 减少开发者回归测试负担
+// 检查方式：Build.VERSION.SDK_INT_MINOR
+
+// Q: Android 16 对 App 方向和宽高比有什么变化？
+// A: Android 16（API 36）强制所有 App 支持自适应布局：
+// - 系统可覆盖 App 的屏幕方向、宽高比、可调整大小限制
+// - 折叠屏和大屏设备上，App 不能再锁定竖屏
+// - 开发者需要测试多窗口和不同屏幕尺寸
+
+// Q: AGP 9.0 有什么重大变化？
+// A: Android Gradle Plugin 9.0（2026-01）：
+// - 要求 Gradle 9+、Kotlin 2.0+
+// - Compose Compiler 不再需要单独配置（内置于 Kotlin 编译器）
+// - compileSdk/targetSdk 推荐 36
+// - JDK 要求从 17 升级到 21
+```

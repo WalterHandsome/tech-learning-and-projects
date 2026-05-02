@@ -62,6 +62,108 @@ let forced = name!  // nil 时崩溃
 if let name { print(name) }  // 等同于 if let name = name
 ```
 
+> 🔄 更新于 2026-05-02
+
+<!-- version-check: Swift 6.2, iOS 26, Xcode 26.4, checked 2026-05-02 -->
+
+## 7. 2026 年 Swift 面试新增热点
+
+### 7.1 Swift 6.2 并发模型面试题
+
+```swift
+// Q: Swift 6.2 的 Approachable Concurrency 是什么？
+// A: Swift 6.2 彻底改变了并发编程模型：
+// - 默认 MainActor 隔离：所有代码默认在主线程执行
+// - @concurrent 显式并发：需要并发时显式标注
+// - 从"默认并发，手动标注安全"变为"默认安全，显式引入并发"
+
+// Swift 6.1 及之前：需要手动标注 @MainActor
+@MainActor
+class OldViewModel: ObservableObject {
+    func updateUI() { /* 在主线程 */ }
+}
+
+// Swift 6.2：默认就在 MainActor，需要并发时用 @concurrent
+class NewViewModel: ObservableObject {
+    func updateUI() { /* 默认在主线程 */ }
+    
+    @concurrent
+    func fetchData() async throws -> Data {
+        // 显式声明在后台执行
+        return try await URLSession.shared.data(from: url).0
+    }
+}
+
+// Q: async 函数在 Swift 6.2 中的行为变化？
+// A: async 函数现在在调用者的上下文中执行（而非自动切换到后台）：
+// - 如果从 MainActor 调用 async 函数，它在主线程执行
+// - 需要后台执行必须显式标注 @concurrent
+// - 这避免了意外的线程切换和数据竞争
+```
+
+### 7.2 Swift 6 严格并发面试题
+
+```swift
+// Q: Swift 6 的 Sendable 协议是什么？为什么重要？
+// A: Sendable 标记类型可以安全地跨并发域传递：
+// - struct 默认 Sendable（如果所有属性都是 Sendable）
+// - class 需要显式遵循 Sendable 并确保线程安全
+// - Swift 6 将数据竞争从警告升级为编译错误
+
+// ❌ 编译错误：class 默认不是 Sendable
+class UserData {
+    var name: String = ""
+}
+// 跨 Actor 传递 UserData 会报错
+
+// ✅ 方案1：使用 struct
+struct UserData: Sendable {
+    let name: String
+}
+
+// ✅ 方案2：使用 Actor
+actor UserData {
+    var name: String = ""
+}
+
+// ✅ 方案3：@unchecked Sendable（自行保证线程安全）
+final class UserData: @unchecked Sendable {
+    private let lock = NSLock()
+    private var _name: String = ""
+    var name: String {
+        get { lock.withLock { _name } }
+        set { lock.withLock { _name = newValue } }
+    }
+}
+```
+
+### 7.3 iOS 26 / Liquid Glass 面试题
+
+```swift
+// Q: Liquid Glass 是什么？对开发者有什么影响？
+// A: iOS 26 引入的全新设计语言（iOS 7 以来最大视觉重设计）：
+// - 所有 Apple 平台统一采用 Liquid Glass 设计
+// - 用 Xcode 26 重新编译即可自动获得新外观
+// - .glassEffect() 修饰符一行代码应用效果
+// - iOS 26.1 添加 Tinted 选项，26.4 可禁用部分效果
+// - iOS 27 将强制要求 Liquid Glass 设计
+
+// Q: SwiftUI 在 iOS 26 有哪些重要新特性？
+// A: 核心新特性：
+// 1. 原生 WebView（不再需要 UIViewRepresentable 包装 WKWebView）
+// 2. 富文本编辑（TextEditor + AttributedString）
+// 3. 3D Swift Charts
+// 4. @Animatable 宏（自动合成 animatableData，减少样板代码）
+// 5. TabView 搜索标签（.search role）
+
+// Q: @Observable 和 @ObservableObject 怎么选？
+// A: 2026 年推荐 @Observable（iOS 17+）：
+// - 更细粒度的观察（属性级别，而非对象级别）
+// - 不需要 @Published 标注
+// - 性能更好（只在读取的属性变化时触发更新）
+// @ObservableObject 仍然支持，但新项目应使用 @Observable
+```
+
 ## 3. 闭包与捕获
 
 ```swift

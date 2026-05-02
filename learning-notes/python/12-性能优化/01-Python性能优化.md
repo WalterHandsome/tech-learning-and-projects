@@ -473,3 +473,109 @@ Python性能优化需要综合考虑：
 
 合理的优化可以显著提高应用性能。
 
+
+
+## 13. Python 3.14/3.15 性能新特性
+
+> 🔄 更新于 2026-05-02
+
+<!-- version-check: Python 3.14.4, Python 3.15 alpha JIT, Free-threaded build, checked 2026-05-02 -->
+
+### 13.1 Free-threaded Python（无 GIL）
+
+Python 3.14 是首个官方支持 Free-threaded 构建的版本（PEP 779）。移除 GIL 后，多线程可以真正并行执行 CPU 密集任务。来源：[Python Free-Threading Mode](https://www.nandann.com/blog/python-free-threading-2026)
+
+```python
+# 安装 free-threaded Python（使用 uv）
+# uv python install 3.14t
+
+import threading
+import time
+
+# 在 3.14t 中，这些线程真正并行执行
+def cpu_intensive(n):
+    """CPU 密集任务"""
+    total = 0
+    for i in range(n):
+        total += i * i
+    return total
+
+start = time.perf_counter()
+threads = []
+for _ in range(4):
+    t = threading.Thread(target=cpu_intensive, args=(10_000_000,))
+    threads.append(t)
+    t.start()
+for t in threads:
+    t.join()
+elapsed = time.perf_counter() - start
+# 3.14t: ~0.8s（4 核并行）
+# 3.14 (GIL): ~3.2s（串行）
+```
+
+**Free-threaded 性能数据：**
+
+| 指标 | Python 3.13 | Python 3.14 | Python 3.14t |
+|------|------------|------------|-------------|
+| 单线程开销 | 基准 | 基准 | +5~10% |
+| 4 线程 CPU 密集 | ~1x（GIL 限制） | ~1x | ~3.5x |
+| I/O 密集 | 基准 | 基准 | 基准（无差异） |
+
+来源：[Free-threaded mode improvements](https://gdevops.frama.io/python/versions/3.14.0/free-threaded-mode-improvements/)
+
+**适用场景：**
+- ✅ CPU 密集型并行计算（图像处理、数据转换）
+- ✅ 科学计算（NumPy/Pandas 已支持 free-threaded）
+- ❌ 不适合替代 asyncio 的 I/O 密集场景
+- ⚠️ 第三方库需要适配（检查 `pip install --config-settings=free-threaded=true`）
+
+### 13.2 JIT 编译器演进
+
+Python 的 JIT 编译器经历了曲折的发展。来源：[Python's JIT Is Finally Fast](https://mathewsachin.github.io/blog/2026/03/18/python-jit-finally-fast.html)
+
+```
+JIT 演进时间线：
+├─ Python 3.13：实验性 copy-and-patch JIT（经常比标准解释器更慢）
+├─ Python 3.14：tail-calling 解释器（Windows x86-64 有问题）
+└─ Python 3.15 alpha：新 JIT 终于达标
+   ├─ macOS AArch64：比 tail-calling 解释器快 11-12%
+   ├─ x86_64 Linux：比标准解释器快 5-6%
+   └─ 范围：从 -20% 到 +100%（取决于工作负载）
+```
+
+来源：[Python 3.15's JIT is now back on track](https://blog.python.org/2026/03/jit-on-track)
+
+**2026 年 Python 运行时选择：**
+
+| 运行时 | 适用场景 | 性能特点 |
+|--------|---------|---------|
+| CPython 3.14 | 通用开发 | 基准，稳定可靠 |
+| CPython 3.14t | CPU 并行 | 多线程真正并行，单线程 +5-10% 开销 |
+| CPython 3.15 alpha | 尝鲜 | JIT 带来 5-12% 提升 |
+| PyPy 7.3 | 长时间运行 | 某些工作负载 5-10x 提升 |
+| Cython 3.x | 热点函数 | 接近 C 性能 |
+| Numba | 数值计算 | GPU 加速，NumPy 兼容 |
+
+来源：[CPython vs. PyPy JIT comparison](https://www.infoworld.com/article/4117428/which-python-runtime-does-jit-better-cpython-or-pypy.html)
+
+### 13.3 2026 年性能优化决策树
+
+```
+性能瓶颈在哪里？
+├─ I/O 密集（网络/文件）
+│  └─ asyncio + aiohttp/httpx（首选）
+│     └─ 3.14t + ThreadPoolExecutor（混合场景）
+├─ CPU 密集（计算）
+│  ├─ 纯 Python 代码
+│  │  ├─ 3.14t free-threaded（多核并行）
+│  │  ├─ multiprocessing（传统方案）
+│  │  └─ PyPy（长时间运行）
+│  └─ 数值计算
+│     ├─ NumPy/Pandas 向量化（首选）
+│     ├─ Numba @jit（热点函数）
+│     └─ Cython（极致性能）
+└─ 内存瓶颈
+   ├─ 生成器替代列表
+   ├─ __slots__ 减少对象开销
+   └─ Scalene 定位内存热点
+```

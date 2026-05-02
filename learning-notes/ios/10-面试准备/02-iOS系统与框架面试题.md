@@ -153,3 +153,35 @@ NotificationCenter.default.addObserver(forName: .userDidLogin, object: nil, queu
     let userId = notification.userInfo?["userId"] as? String
 }
 ```
+
+> 🔄 更新于 2026-05-02
+
+<!-- version-check: iOS 26, SwiftUI iOS 26, Xcode 26.4, checked 2026-05-02 -->
+
+## 7. 2026 年 iOS 系统面试新题
+
+```swift
+// Q: iOS 26 的 Liquid Glass 对 UIKit 应用有什么影响？
+// A: 用 Xcode 26 重新编译即可自动获得 Liquid Glass 外观：
+// - UINavigationBar、UITabBar、UIToolbar 自动应用 Glass 效果
+// - 自定义 UI 组件可能需要调整以适配新的视觉风格
+// - iOS 27 将强制要求 UIScene 生命周期（不再支持 AppDelegate-only）
+// 建议：尽早用 Xcode 26 编译测试，检查自定义 UI 的兼容性
+
+// Q: SwiftUI 原生 WebView 怎么用？
+// A: iOS 26 新增原生 WebView，不再需要 UIViewRepresentable：
+// WebPage 是 @Observable 类，提供完整的导航控制
+// 支持 JavaScript 交互、Cookie 管理、导航委托
+
+// Q: Xcode 26.3 的 Agentic Coding 是什么？
+// A: Xcode 26.3 引入 AI Agent 编码能力：
+// - Claude Agent 和 Codex 可自主分析项目、修改文件
+// - 搜索文档、捕获 Previews 并迭代修复
+// - 标志着 IDE 从"辅助工具"向"AI 协作伙伴"转变
+
+// Q: Privacy Manifests 在 2026 年有什么变化？
+// A: Privacy Manifests 已成为 App Store 提交的强制要求：
+// - 所有使用 Required Reason API 的框架必须声明用途
+// - 第三方 SDK 必须提供 PrivacyInfo.xcprivacy 文件
+// - App Store Connect 会自动检查并拒绝不合规的提交
+```

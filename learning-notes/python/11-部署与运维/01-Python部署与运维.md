@@ -512,14 +512,97 @@ pg_dump -U user dbname > backup_$DATE.sql
 5. **自动化部署**：使用CI/CD自动化部署流程
 6. **安全加固**：定期更新依赖，使用HTTPS
 
-## 16. 总结
+## 16. 2026 年 Python 部署演进
+
+> 🔄 更新于 2026-05-02
+
+<!-- version-check: Gunicorn 23.x, Uvicorn 0.34.x, Docker 29, checked 2026-05-02 -->
+
+### 16.1 ASGI 成为新项目默认
+
+2026 年，ASGI 已从实验性方案变为新项目的默认选择。FastAPI、现代 Django（4.0+）和 Starlette 都原生支持 ASGI。
+
+**Gunicorn + Uvicorn Workers 是生产标准组合**：
+
+```python
+# gunicorn.conf.py — 2026 年推荐配置
+import multiprocessing
+
+# Uvicorn worker 处理 ASGI 异步请求
+worker_class = "uvicorn.workers.UvicornWorker"
+
+# Worker 数量：CPU 核心数 × 2 + 1
+workers = multiprocessing.cpu_count() * 2 + 1
+
+bind = "0.0.0.0:8000"
+timeout = 120
+keepalive = 5
+max_requests = 1000
+max_requests_jitter = 50
+accesslog = "-"
+errorlog = "-"
+loglevel = "info"
+
+# 优雅关闭超时
+graceful_timeout = 30
+```
+
+```bash
+# 启动命令
+gunicorn app.main:app -c gunicorn.conf.py
+```
+
+### 16.2 2026 年推荐 Dockerfile
+
+```dockerfile
+# 多阶段构建，Docker 29 + Python 3.14
+FROM python:3.14-slim AS builder
+
+# 使用 uv 替代 pip（10-100x 速度提升）
+COPY --from=ghcr.io/astral-sh/uv:latest /uv /usr/local/bin/uv
+
+WORKDIR /app
+COPY pyproject.toml uv.lock ./
+RUN uv sync --frozen --no-dev
+
+FROM python:3.14-slim AS runtime
+
+# 非 root 用户运行
+RUN groupadd -r app && useradd -r -g app app
+
+WORKDIR /app
+COPY --from=builder /app/.venv /app/.venv
+COPY . .
+
+# 设置 PATH 使用虚拟环境
+ENV PATH="/app/.venv/bin:$PATH"
+
+USER app
+EXPOSE 8000
+
+CMD ["gunicorn", "app.main:app", "-c", "gunicorn.conf.py"]
+```
+
+### 16.3 Python Web 服务器选型表（2026）
+
+| 服务器 | 协议 | 适用场景 | 推荐度 |
+|--------|------|---------|--------|
+| Gunicorn + Uvicorn Workers | ASGI | FastAPI/Django 异步 | ⭐⭐⭐⭐⭐ |
+| Uvicorn 单独运行 | ASGI | 开发环境/小型应用 | ⭐⭐⭐ |
+| Gunicorn（sync workers） | WSGI | Flask/Django 同步 | ⭐⭐⭐⭐ |
+| Hypercorn | ASGI/HTTP2/HTTP3 | 需要 HTTP/3 支持 | ⭐⭐⭐ |
+| uWSGI | WSGI | 遗留项目 | ⭐⭐（不推荐新项目） |
+
+> 来源：[Python Application Servers in 2025](https://www.deployhq.com/blog/python-application-servers-in-2025-from-wsgi-to-modern-asgi-solutions)、[FastAPI Deployment Guide 2026](https://zestminds.com/blog/fastapi-deployment-guide/)
+
+## 17. 总结
 
 Python应用部署涉及多个方面：
-- **Web服务器**：Gunicorn、uWSGI
-- **反向代理**：Nginx
-- **容器化**：Docker
-- **进程管理**：Supervisor、systemd
-- **监控**：日志、性能监控
+- **Web服务器**：Gunicorn + Uvicorn Workers（ASGI 标准组合）
+- **反向代理**：Nginx（HTTP/3 支持）
+- **容器化**：Docker 29 + uv 构建
+- **进程管理**：systemd（推荐）、Supervisor
+- **监控**：Prometheus + 结构化日志
 
 合理的部署方案可以确保应用的稳定运行。
 

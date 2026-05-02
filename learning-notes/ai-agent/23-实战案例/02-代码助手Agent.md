@@ -224,3 +224,42 @@ async def generate_tests(code: str, file_path: str) -> str:
 
 ### 📺 B站
 - [AI编程助手实战](https://www.bilibili.com/video/BV1Bm421N7BH) — AI代码助手中文教程
+
+> 🔄 更新于 2026-05-02
+
+<!-- version-check: Code Assistant Agent 2026, Claude Code 2.1.x, Cursor 3, checked 2026-05-02 -->
+
+## 7. 2026 年代码助手 Agent 趋势
+
+### 7.1 市场格局
+
+2026 年代码助手 Agent 已从"辅助补全"演进为"自主编码"：
+
+| 产品 | 定位 | 核心能力 |
+|------|------|---------|
+| Claude Code | 终端 Agent | Auto Mode 自主编码、Agent Teams 多 Agent 并行、Ultraplan 云端规划 |
+| Cursor 3 | IDE Agent | Agent-First 界面、Agents Window 多 Agent 并行、Design Mode |
+| Kiro | IDE Agent | Spec 驱动开发、Hooks 自动化、Steering 项目规范 |
+| Devin 2.2 | 自主开发 Agent | Desktop Computer Use、Self-reviewing PR、PR 合并率 67% |
+| Codex CLI | 终端 Agent | OpenAI 开源、沙箱执行、多文件编辑 |
+| OpenHands | 开源 Agent | 70K+ Stars、SWE-bench 高分、完全开源 |
+
+### 7.2 关键架构变化
+
+```
+2024 年：单文件补全
+  用户输入 → LLM → 代码补全
+
+2026 年：多 Agent 自主编码
+  用户需求 → Lead Agent（规划）
+                 ├─ Worker Agent 1（前端修改）
+                 ├─ Worker Agent 2（后端修改）
+                 ├─ Worker Agent 3（测试编写）
+                 └─ Lead Agent（审查 + 合并）
+```
+
+**核心趋势：**
+- **Agent Teams / Swarm 模式**：Claude Code 和 Cursor 3 都支持多 Agent 并行处理大型任务
+- **有状态续传**：Agent 可以在上下文压缩后继续工作，不丢失关键信息
+- **Spec 驱动开发**：先定义规格再编码，确保 Agent 理解需求后再动手
+- **MCP 工具标准化**：代码助手通过 MCP 接入 Git、文件系统、数据库等工具

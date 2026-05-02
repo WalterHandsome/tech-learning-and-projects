@@ -316,3 +316,107 @@ d:/TestCode/protoc.exe --plugin=protoc-gen-grpc-java=d:/TestCode/protoc-grpc.exe
 不断刷新请求， 股票价格也会随机变化，能够正常结合Spring Boot访问gRPC服务。
 
 
+## 2. gRPC-Java 2026 版本演进
+
+> 🔄 更新于 2026-05-02
+
+<!-- version-check: gRPC-Java 1.80.0, Netty 4.2.12, Spring gRPC 1.0.x, Protobuf 29.x, checked 2026-05-02 -->
+
+### 2.1 gRPC-Java 版本跃升
+
+gRPC-Java 当前稳定版为 **1.80.0**（Javadoc 已发布），相比本文档中使用的 1.22.1 有巨大变化。来源：[gRPC-Java API](https://grpc.github.io/grpc-java/javadoc/)
+
+**关键版本里程碑：**
+
+| 版本范围 | 重要变化 |
+|---------|---------|
+| 1.22→1.40 | xDS 负载均衡、Binder Transport（Android） |
+| 1.40→1.55 | OpenTelemetry 集成、Rls（路由查找服务） |
+| 1.55→1.70 | Java 11 最低要求、Protobuf 4.x 支持 |
+| 1.70→1.80 | Java 17 推荐、Virtual Threads 支持、性能优化 |
+
+**2026 年推荐依赖版本：**
+
+```xml
+<properties>
+    <grpc.version>1.78.0</grpc.version>
+    <protobuf.version>4.29.3</protobuf.version>
+    <netty.version>4.1.132.Final</netty.version>
+</properties>
+
+<dependencies>
+    <dependency>
+        <groupId>io.grpc</groupId>
+        <artifactId>grpc-netty-shaded</artifactId>
+        <version>${grpc.version}</version>
+    </dependency>
+    <dependency>
+        <groupId>io.grpc</groupId>
+        <artifactId>grpc-protobuf</artifactId>
+        <version>${grpc.version}</version>
+    </dependency>
+    <dependency>
+        <groupId>io.grpc</groupId>
+        <artifactId>grpc-stub</artifactId>
+        <version>${grpc.version}</version>
+    </dependency>
+</dependencies>
+```
+
+### 2.2 Netty 4.2 版本演进
+
+Netty 当前有两个活跃分支。来源：[Netty Downloads](https://netty.io/downloads)
+
+| 分支 | 最新版本 | 状态 | JDK 要求 |
+|------|---------|------|---------|
+| 4.1.x | 4.1.132.Final（2026-03-24） | 稳定，推荐 | JDK 6+ |
+| 4.2.x | 4.2.12.Final（2026-03-25） | 稳定，推荐 | JDK 11+ |
+| 5.0.x | 5.0.0.Alpha5 | 开发中 | JDK 11+ |
+
+**Netty 4.2 核心变化：**
+- 最低 JDK 11（4.1.x 仍支持 JDK 6）
+- 新的 Buffer API（为 Netty 5 做准备）
+- io_uring 传输支持（Linux 高性能 I/O）
+- 性能优化和安全修复
+
+### 2.3 Spring gRPC — 官方 Spring 集成
+
+> 🔄 更新于 2026-05-02
+
+Spring 官方推出了 **Spring gRPC** 框架（`org.springframework.grpc`），替代了之前社区维护的 `grpc-spring-boot-starter`（`net.devh`）。来源：[Spring gRPC Reference](https://docs.spring.io/spring-grpc/reference/getting-started.html)
+
+**重要变化：**
+- Spring gRPC 1.0.x 支持 **Spring Boot 4.1.x**
+- 旧的 `net.devh:grpc-server-spring-boot-starter`（本文档使用的）已不再推荐
+- `grpc-ecosystem/grpc-spring`（3.6K Stars）仍在维护，但新项目推荐 Spring 官方版本
+
+```xml
+<!-- 2026 年推荐：Spring gRPC 官方 Starter -->
+<dependency>
+    <groupId>org.springframework.grpc</groupId>
+    <artifactId>spring-grpc-spring-boot-starter</artifactId>
+    <version>1.0.0</version>
+</dependency>
+```
+
+来源：[Spring gRPC Next Steps for 1.0.0](https://spring.io/blog/2025/11/05/spring-grpc-next-steps/)
+
+### 2.4 Protobuf 版本演进
+
+| 版本 | 发布时间 | 关键变化 |
+|------|---------|---------|
+| 3.x | 旧版 | 本文档使用的版本 |
+| 4.x（Edition 2023） | 2023 | 统一 proto2/proto3 语法为 Editions |
+| 4.29.x | 2026 | 当前稳定版，推荐新项目使用 |
+
+### 2.5 版本选择建议
+
+| 场景 | 推荐方案 |
+|------|---------|
+| Spring Boot 4.x 新项目 | Spring gRPC 1.0.x + gRPC-Java 1.78+ |
+| Spring Boot 3.x 项目 | grpc-ecosystem/grpc-spring 3.x |
+| 非 Spring 项目 | gRPC-Java 1.78+ 原生 API |
+| Android 客户端 | gRPC-Java 1.78+（Binder Transport） |
+| 高性能场景 | Netty 4.2.x + io_uring（Linux） |
+
+

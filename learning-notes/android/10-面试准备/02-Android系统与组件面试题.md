@@ -176,3 +176,33 @@ override fun onInterceptTouchEvent(ev: MotionEvent): Boolean {
 // 加载资源 → 任意 Context
 // 单例中 → Application Context（避免泄漏）
 ```
+
+> 🔄 更新于 2026-05-02
+
+<!-- version-check: Android 16 API 36, Compose 1.11, checked 2026-05-02 -->
+
+## 7. 2026 年 Android 系统面试新题
+
+```kotlin
+// Q: Android 16 QPR2 的 Minor SDK Version 对开发者意味着什么？
+// A: 这是 Android 平台演进的重大变化：
+// - Google 可以在年度大版本之外发布新 API（QPR2 是首个 Minor SDK 版本）
+// - Minor 版本的变更主要是增量的，不引入 targetSdkVersion 行为变更
+// - 开发者不需要对 Minor 版本做全面回归测试
+// - 安全和无障碍相关的行为变更仍可能包含（如 SMS OTP 保护）
+
+// Q: Compose 1.11 的 Trackpad 事件改进是什么？
+// A: 之前 Trackpad 事件被解释为 PointerType.Touch（假触摸），
+// 导致点击拖拽时触发滚动而非选择。
+// Compose 1.11 将 Trackpad 事件改为 PointerType.Mouse：
+// - 点击拖拽 → 选择文本（而非滚动）
+// - 支持双指滑动和捏合手势（API 34+）
+// - 文本框支持双击/三击选择和桌面风格右键菜单
+// 新增 performTrackpadInput 测试 API
+
+// Q: Android 16 的 Predictive Back 有什么变化？
+// A: Android 16 强制启用 Predictive Back 动画：
+// - 用户从屏幕边缘滑动时可预览返回目标
+// - App 必须正确处理 OnBackPressedCallback
+// - Fragment 和 Activity 转场需要适配预测性返回动画
+```

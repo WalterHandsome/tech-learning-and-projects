@@ -3,6 +3,8 @@
 > Author: Walter Wang
 > 如果你要从零构建一个 AI Agent 项目，Claude Code 的 512,000 行源码是目前最好的架构参考
 
+<!-- version-check: Claude Code 2.1.118, Claude Code Desktop GA, Agent Teams public, checked 2026-05-02 -->
+
 ## 1. 为什么要学 Claude Code 的架构
 
 Claude Code 泄露的源码揭示了一个关键事实：**模型只占代码量的 1.6%（~8,000 行），98.4% 是工程脚手架**。同一个 Claude 模型在 Web 版和 Claude Code 中表现差异巨大，原因不在模型，而在围绕模型构建的工程系统。
@@ -1578,6 +1580,70 @@ print(f"编辑结果: {result.success} — {result.message}")
 ```
 
 **核心教训：** 文件编辑工具不只是 `open().write()`。生产级 Agent 需要在编辑前验证安全性和一致性，编辑后通知所有相关系统。Claude Code 的 12 项检查是经过真实用户场景打磨出来的，每一项都对应一个曾经出过的 Bug。
+
+
+## 17. Claude Code 2026 版本演进
+
+> 🔄 更新于 2026-05-02
+
+Claude Code 从 v2.1.101（第 11 次更新记录）到 v2.1.118 经历了密集迭代，产品形态从终端工具扩展为多平台 Agent 系统。来源：[Claude Code Changelog](https://code.claude.com/docs/en/changelog)、[Releasebot](https://releasebot.io/updates/anthropic/claude-code)
+
+### 17.1 v2.1.101 → v2.1.118 关键变化
+
+| 版本范围 | 核心变化 |
+|---------|---------|
+| v2.1.105~108 | 持久化配置设置、MCP 连接器增强、权限系统改进 |
+| v2.1.109~112 | Hooks 系统增强、PR 工作流改进、可观测性（OTel 事件） |
+| v2.1.113~116 | `claude project purge` 命令、Auto Mode 权限卡住红色提示、Windows PowerShell 7 检测 |
+| v2.1.117~118 | `--dangerously-skip-permissions` 扩展、OAuth 登录改进、图片粘贴修复、流空闲超时修复 |
+
+### 17.2 Claude Code Desktop
+
+Claude Code 已从纯终端工具扩展为桌面应用，支持：
+- **可视化 Diff 审查** — 直接在桌面应用中查看代码变更
+- **应用预览** — 内置预览服务器
+- **会话管理** — 并行会话、后台任务监控
+- **Computer Use（预览）** — Agent 可以操作桌面应用
+- **Chrome 扩展（Beta）** — 浏览器集成
+- **Scheduled Tasks** — 定时任务执行
+
+来源：[Claude Code Desktop](https://code.claude.com/docs/en/desktop)
+
+### 17.3 Agent Teams 与 Managed Agents
+
+Claude Code 的多 Agent 架构已公开：
+- **Forked Subagents** — `CLAUDE_CODE_FORK_SUBAGENT=1` 启用外部构建的分叉子 Agent
+- **Agent Teams** — peer-to-peer 邮箱通信架构，多 Agent 并行协作
+- **Managed Agents** — Anthropic 托管的 Agent 运行时（公开 Beta）
+
+来源：[Anthropic Engineering - Managed Agents](https://www.anthropic.com/engineering/managed-agents)
+
+### 17.4 架构启示更新
+
+Claude Code 2026 年的演进揭示了 Coding Agent 的发展方向：
+
+```
+2025 年 Agent 架构：
+├─ 终端 CLI → 单一入口
+├─ 单 Agent → 线性执行
+└─ 本地运行 → 开发者机器
+
+2026 年 Agent 架构：
+├─ 多平台（CLI + Desktop + Web + IDE + Slack）→ 统一 Agent 核心
+├─ Agent Teams → 并行协作 + 文件系统通信
+├─ 混合运行（本地 + 云端 Ultraplan + 远程会话）→ 弹性计算
+├─ 有状态续传 → 会话分叉、断点恢复
+└─ 可观测性（OTel 事件）→ 企业级监控
+```
+
+### 17.5 对本文架构建议的影响
+
+本文第 6 节的多 Agent 编排模式仍然准确，但需要补充：
+
+1. **文件系统通信仍是核心** — Agent Teams 使用邮箱文件（inbox.jsonl）通信，验证了本文第 6.2 节的设计
+2. **有状态续传成为标准** — 会话可以分叉、恢复、远程继续，本文第 5 节的上下文管理需要考虑持久化到远程存储
+3. **权限系统持续演进** — `--dangerously-skip-permissions` 的扩展说明安全和便利的平衡仍在调整
+4. **可观测性从可选变为必需** — OTel 事件（`claude_code.skill_activated` 等）表明生产级 Agent 必须有结构化追踪
 
 
 ## 🎬 推荐视频资源
