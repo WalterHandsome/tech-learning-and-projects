@@ -4565,7 +4565,565 @@
       "source": "Hacker News 开发者",
       "topic": "global-tech",
       "date": "2026-05-02"
+    },
+    "1d42f5881de5": {
+      "title": "Disneyland Now Uses Face Recognition on Visitors",
+      "source": "Wired AI",
+      "topic": "ai-agent",
+      "date": "2026-05-03"
+    },
+    "6c5f861eab6d": {
+      "title": "The Claude Delusion: Richard Dawkins believes his AI chatbot is conscious",
+      "source": "Hacker News AI",
+      "topic": "ai-agent",
+      "date": "2026-05-03"
+    },
+    "1d4f674f82a1": {
+      "title": "Voice-AI-for-Beginners – A curated learning path for developers",
+      "source": "Hacker News AI",
+      "topic": "ai-agent",
+      "date": "2026-05-03"
+    },
+    "30998a404fc0": {
+      "title": "The agent harness belongs outside the sandbox",
+      "source": "Hacker News AI",
+      "topic": "ai-agent",
+      "date": "2026-05-03"
+    },
+    "7a1fd97234ad": {
+      "title": "Santa Cruz restaurant changes logo after flurry of negative reviews for AI art",
+      "source": "Hacker News AI",
+      "topic": "ai-agent",
+      "date": "2026-05-03"
+    },
+    "6110753a9b31": {
+      "title": "AI Self-preferencing in Algorithmic Hiring: Empirical Evidence and Insights",
+      "source": "Hacker News AI",
+      "topic": "ai-agent",
+      "date": "2026-05-03"
+    },
+    "ed9192b8d313": {
+      "title": "Open Design: Use Your Coding Agent as a Design Engine",
+      "source": "Hacker News AI",
+      "topic": "ai-agent",
+      "date": "2026-05-03"
+    },
+    "07d271cca9b0": {
+      "title": "Show HN: Mljar Studio – local AI data analyst that saves analysis as notebooks",
+      "source": "Hacker News AI",
+      "topic": "ai-agent",
+      "date": "2026-05-03"
+    },
+    "530037456ebf": {
+      "title": "Show HN: Filling PDF forms with AI using client-side tool calling",
+      "source": "Hacker News AI",
+      "topic": "ai-agent",
+      "date": "2026-05-03"
+    },
+    "2ec20e2c907f": {
+      "title": "A Couple Million Lines of Haskell: Production Engineering at Mercury",
+      "source": "Hacker News AI 关键词",
+      "topic": "ai-agent",
+      "date": "2026-05-03"
+    },
+    "36f6563d216b": {
+      "title": "Richard Dawkins and The Claude Delusion: The great skeptic gets taken in",
+      "source": "Hacker News AI 关键词",
+      "topic": "ai-agent",
+      "date": "2026-05-03"
+    },
+    "a95f9b90590a": {
+      "title": "科氪 | 张雪机车再夺冠军！荣耀宣布推出张雪机车冠军联名款手表",
+      "source": "36氪",
+      "topic": "china-tech",
+      "date": "2026-05-03"
+    },
+    "18ac41b8b3d0": {
+      "title": "卓驭于贝贝：向物理AI转型，是生存法则的必然选择 | 最前线",
+      "source": "36氪",
+      "topic": "china-tech",
+      "date": "2026-05-03"
+    },
+    "f6641dfb11ab": {
+      "title": "在硅谷，中美具身公司聊了聊了4个问题的解法",
+      "source": "36氪",
+      "topic": "china-tech",
+      "date": "2026-05-03"
+    },
+    "5665e20a4a29": {
+      "title": "网信部门严管“自媒体”未规范标注信息来源行为",
+      "source": "36氪",
+      "topic": "china-tech",
+      "date": "2026-05-03"
+    },
+    "c92a770595d7": {
+      "title": "因伊朗战争导致能源成本上升，越南通胀加速",
+      "source": "36氪",
+      "topic": "china-tech",
+      "date": "2026-05-03"
+    },
+    "2a7ea6fe857c": {
+      "title": "横琴口岸“五一”假期单日客流创历史新高",
+      "source": "36氪",
+      "topic": "china-tech",
+      "date": "2026-05-03"
+    },
+    "c380bd908700": {
+      "title": "普京签署法案批准“移动售药”试点",
+      "source": "36氪",
+      "topic": "china-tech",
+      "date": "2026-05-03"
+    },
+    "63dc6d92c524": {
+      "title": "长江下75米 海太长江隧道工程施工抵达江底最深处",
+      "source": "36氪",
+      "topic": "china-tech",
+      "date": "2026-05-03"
+    },
+    "a397758e8a8c": {
+      "title": "雨雾影响通行 湘皖鄂共11个路段关闭收费站",
+      "source": "36氪",
+      "topic": "china-tech",
+      "date": "2026-05-03"
+    },
+    "0875f8d90f87": {
+      "title": "韩国银行业一季度发放的近3万亿韩元贷款预计无法收回",
+      "source": "36氪",
+      "topic": "china-tech",
+      "date": "2026-05-03"
+    },
+    "fb20195b4333": {
+      "title": "今天全国高速公路车流量预计超6300万辆次",
+      "source": "36氪",
+      "topic": "china-tech",
+      "date": "2026-05-03"
+    },
+    "cbb755a3309c": {
+      "title": "马来西亚称大米供应充足，足以维持到年底",
+      "source": "36氪",
+      "topic": "china-tech",
+      "date": "2026-05-03"
+    },
+    "6ff33cd35279": {
+      "title": "“五一”假期第二日广东4A级及以上景区接待游客394.2万人次，同比增长5.2%",
+      "source": "36氪",
+      "topic": "china-tech",
+      "date": "2026-05-03"
+    },
+    "e0f550de56f0": {
+      "title": "今日全国铁路预计发送旅客1855万人次",
+      "source": "36氪",
+      "topic": "china-tech",
+      "date": "2026-05-03"
+    },
+    "4c4b17d73b35": {
+      "title": "2026五一档新片票房破4亿",
+      "source": "36氪",
+      "topic": "china-tech",
+      "date": "2026-05-03"
+    },
+    "2a44e77f3575": {
+      "title": "广汽国际：1—4月出口量同比增长133.9%",
+      "source": "36氪",
+      "topic": "china-tech",
+      "date": "2026-05-03"
+    },
+    "81cb0486bff0": {
+      "title": "本田将对自动驾驶AI软件初创公司helm_ai追加投资",
+      "source": "36氪",
+      "topic": "china-tech",
+      "date": "2026-05-03"
+    },
+    "fbcd82bc409d": {
+      "title": "一季度5家上市券商净利翻番，“百亿营收俱乐部”成员增至4家",
+      "source": "36氪",
+      "topic": "china-tech",
+      "date": "2026-05-03"
+    },
+    "c7110716488d": {
+      "title": "马斯克1583亿美元薪酬实际为0",
+      "source": "36氪",
+      "topic": "china-tech",
+      "date": "2026-05-03"
+    },
+    "ccb213504c74": {
+      "title": "机构：特朗普拟上调汽车关税，或使德国产值损失近 180 亿美元",
+      "source": "36氪",
+      "topic": "china-tech",
+      "date": "2026-05-03"
+    },
+    "b92316c30b95": {
+      "title": "科创板向新向优活力蓬勃，2025年净利大增26%",
+      "source": "36氪",
+      "topic": "china-tech",
+      "date": "2026-05-03"
+    },
+    "9c64a703c453": {
+      "title": "特朗普政府救助计划失败，美国精神航空宣布停止运营",
+      "source": "36氪",
+      "topic": "china-tech",
+      "date": "2026-05-03"
+    },
+    "5bc168f43e2c": {
+      "title": "“五一”假期运输火车票已售1.17亿张",
+      "source": "36氪",
+      "topic": "china-tech",
+      "date": "2026-05-03"
+    },
+    "3033fd7893eb": {
+      "title": "魔法原子进军硅谷背后：世界模型野望与生态卡位",
+      "source": "极客公园",
+      "topic": "china-tech",
+      "date": "2026-05-03"
+    },
+    "9dd9bfacc57d": {
+      "title": "张雪机车夺得 WSBK 第三冠；传苹果正在酝酿一笔大型 AI 收购；创始人加入后，OpenAI 宣布开放 OpenClaw 直连｜极客早知道",
+      "source": "极客公园",
+      "topic": "china-tech",
+      "date": "2026-05-03"
+    },
+    "faa090bc7b27": {
+      "title": "iPhone Air 销量疲软，安卓厂商集体叫停超薄旗舰；佳能或将推出 Pocket 相机；腾讯增持游戏科学，持股达 24%",
+      "source": "极客公园",
+      "topic": "china-tech",
+      "date": "2026-05-03"
+    },
+    "fdcda74e220f": {
+      "title": "突破视觉仿真算力瓶颈！新一代具身智能仿真框架开源：高吞吐并行高保真渲染助力规模化训练",
+      "source": "量子位",
+      "topic": "china-tech",
+      "date": "2026-05-03"
+    },
+    "62d5832affa7": {
+      "title": "DeepSeek V4最大的遗憾",
+      "source": "量子位",
+      "topic": "china-tech",
+      "date": "2026-05-03"
+    },
+    "f147dc6d17e1": {
+      "title": "华为携手中科大发布灵境造物，openJiuwen首发Coordination Engineering全栈支撑",
+      "source": "量子位",
+      "topic": "china-tech",
+      "date": "2026-05-03"
+    },
+    "54f9e175aac8": {
+      "title": "他用AI办了个音乐节，主题：别读博",
+      "source": "量子位",
+      "topic": "china-tech",
+      "date": "2026-05-03"
+    },
+    "c6c434fb0902": {
+      "title": "智谱公布“降智”的秘密：Scaling不可避免的痛",
+      "source": "量子位",
+      "topic": "china-tech",
+      "date": "2026-05-03"
+    },
+    "09c1bd6cd9e9": {
+      "title": "太抓马了！马斯克OpenAI开庭，硅谷巨富互揭老底像极了村口吵架",
+      "source": "量子位",
+      "topic": "china-tech",
+      "date": "2026-05-03"
+    },
+    "310c32b2a4ad": {
+      "title": "技术日报｜多智能体金融交易框架 TradingAgents 夺冠突破 6.2 万星，Claude 智能体编排平台 ruflo 强势入榜",
+      "source": "开源中国",
+      "topic": "china-tech",
+      "date": "2026-05-03"
+    },
+    "2f2926569d17": {
+      "title": "技术日报｜mattpocock 技能库六连榜总量突破 5.2 万，Warp 终端三连榜逼近 5.2 万星",
+      "source": "开源中国",
+      "topic": "china-tech",
+      "date": "2026-05-03"
+    },
+    "67c47530b876": {
+      "title": "David Bessis on AI destroying mathematics",
+      "source": "Hacker News 中国科技",
+      "topic": "china-tech",
+      "date": "2026-05-03"
+    },
+    "df36fca31933": {
+      "title": "The AI Race Is Charged by the Fear of Being Left Behind",
+      "source": "Hacker News 中国科技",
+      "topic": "china-tech",
+      "date": "2026-05-03"
+    },
+    "fdb3438e8bbd": {
+      "title": "When Dawkins met Claude – Could this AI be conscious?",
+      "source": "Hacker News 中国科技",
+      "topic": "china-tech",
+      "date": "2026-05-03"
+    },
+    "355ff2f21d9a": {
+      "title": "Kimi K2.6 just beat Claude, GPT-5.5, and Gemini in a coding challenge",
+      "source": "Hacker News Top",
+      "topic": "global-tech",
+      "date": "2026-05-03"
+    },
+    "ffe8f41ae57f": {
+      "title": "Windows API Is Successful Cross-Platform API",
+      "source": "Hacker News Top",
+      "topic": "global-tech",
+      "date": "2026-05-03"
+    },
+    "aa5156e672eb": {
+      "title": "Open source does not imply open community",
+      "source": "Hacker News Top",
+      "topic": "global-tech",
+      "date": "2026-05-03"
+    },
+    "b8429edd7290": {
+      "title": "Care Homes and Hotels in Japan Shut as Expansion Strategy Unravels",
+      "source": "Hacker News Top",
+      "topic": "global-tech",
+      "date": "2026-05-03"
+    },
+    "b18660ae7263": {
+      "title": "Maryland Is First to Ban A.I.-Driven Price Increases in Grocery Stores",
+      "source": "Hacker News Top",
+      "topic": "global-tech",
+      "date": "2026-05-03"
+    },
+    "fc8939c45f99": {
+      "title": "Clandestine network smuggling Starlink tech into Iran to beat internet blackout",
+      "source": "Hacker News Top",
+      "topic": "global-tech",
+      "date": "2026-05-03"
+    },
+    "397eaf2ad457": {
+      "title": "Am I the only one who hates delivery robots?",
+      "source": "Hacker News Top",
+      "topic": "global-tech",
+      "date": "2026-05-03"
+    },
+    "c92a17cdddb3": {
+      "title": "Clojurists Together – Q2 2026 Open Source Funding Announcement",
+      "source": "Hacker News Top",
+      "topic": "global-tech",
+      "date": "2026-05-03"
+    },
+    "138eaafc703d": {
+      "title": "Show HN: State of the Art of Coding Models, According to Hacker News Commenters",
+      "source": "Hacker News Top",
+      "topic": "global-tech",
+      "date": "2026-05-03"
+    },
+    "d7ffb30e8e53": {
+      "title": "Six Years Perfecting Maps on WatchOS",
+      "source": "Hacker News Top",
+      "topic": "global-tech",
+      "date": "2026-05-03"
+    },
+    "bfde6c94a3be": {
+      "title": "This Month in Ladybird - April 2026",
+      "source": "Hacker News Top",
+      "topic": "global-tech",
+      "date": "2026-05-03"
+    },
+    "630e08d5655f": {
+      "title": "Neanderthals ran 'fat factories' 125,000 years ago (2025)",
+      "source": "Hacker News Top",
+      "topic": "global-tech",
+      "date": "2026-05-03"
+    },
+    "1e2fb6a87ea6": {
+      "title": "VS Code inserting 'Co-Authored-by Copilot' into commits regardless of usage",
+      "source": "Hacker News Top",
+      "topic": "global-tech",
+      "date": "2026-05-03"
+    },
+    "d0e81f40b75b": {
+      "title": "NetHack 5.0.0",
+      "source": "Hacker News Top",
+      "topic": "global-tech",
+      "date": "2026-05-03"
+    },
+    "698b3bc11b2f": {
+      "title": "California to begin ticketing driverless cars that violate traffic laws",
+      "source": "Hacker News Top",
+      "topic": "global-tech",
+      "date": "2026-05-03"
+    },
+    "a21f7307c543": {
+      "title": "Do_not_track",
+      "source": "Hacker News Top",
+      "topic": "global-tech",
+      "date": "2026-05-03"
+    },
+    "bdbbb546f42f": {
+      "title": "Dav2d",
+      "source": "Hacker News Top",
+      "topic": "global-tech",
+      "date": "2026-05-03"
+    },
+    "49a4b9297638": {
+      "title": "Refusal in Language Models Is Mediated by a Single Direction",
+      "source": "Hacker News Top",
+      "topic": "global-tech",
+      "date": "2026-05-03"
+    },
+    "8b4d792db10f": {
+      "title": "How fast is a macOS VM, and how small could it be?",
+      "source": "Hacker News Top",
+      "topic": "global-tech",
+      "date": "2026-05-03"
+    },
+    "ad7ed935ea39": {
+      "title": "Dabbling in Erlang, part 2: A minimal introduction (2013)",
+      "source": "Hacker News Top",
+      "topic": "global-tech",
+      "date": "2026-05-03"
+    },
+    "2a218547e58b": {
+      "title": "A Physics Engine with Incremental Rollback for Multiplayer Games",
+      "source": "Hacker News Top",
+      "topic": "global-tech",
+      "date": "2026-05-03"
+    },
+    "6ec2b86ae92c": {
+      "title": "A more efficient implementation of Shor's algorithm",
+      "source": "Hacker News Top",
+      "topic": "global-tech",
+      "date": "2026-05-03"
+    },
+    "4ce3b826e9fa": {
+      "title": "AI-generated actors and scripts are now ineligible for Oscars",
+      "source": "TechCrunch",
+      "topic": "global-tech",
+      "date": "2026-05-03"
+    },
+    "893b706df692": {
+      "title": "Farewell, Jeeves: Ask.com shuts down",
+      "source": "TechCrunch",
+      "topic": "global-tech",
+      "date": "2026-05-03"
+    },
+    "64581d20e008": {
+      "title": "Netflix delays Greta Gerwig’s ‘Narnia’ movie for big theatrical push in 2027",
+      "source": "TechCrunch",
+      "topic": "global-tech",
+      "date": "2026-05-03"
+    },
+    "f620eec25f20": {
+      "title": "The best AI dictation apps, tested and ranked",
+      "source": "TechCrunch",
+      "topic": "global-tech",
+      "date": "2026-05-03"
+    },
+    "f0c008552faa": {
+      "title": "Beyond Lovable and Mistral: 21 European startups to watch",
+      "source": "TechCrunch",
+      "topic": "global-tech",
+      "date": "2026-05-03"
+    },
+    "6227202d83e9": {
+      "title": "Meta&#8217;s historic loss in court could cost a lot more than $375 million",
+      "source": "The Verge",
+      "topic": "global-tech",
+      "date": "2026-05-03"
+    },
+    "f688d2057746": {
+      "title": "Spirit Airlines shuts down after Trump’s war on Iran doubled jet fuel prices",
+      "source": "The Verge",
+      "topic": "global-tech",
+      "date": "2026-05-03"
+    },
+    "3a8378703b75": {
+      "title": "Aura’s delightful Aspen photo frame is on sale for $30 off this weekend",
+      "source": "The Verge",
+      "topic": "global-tech",
+      "date": "2026-05-03"
+    },
+    "a9bc0524d619": {
+      "title": "Anker’s discounted 2-in-1 USB-C cable is a great way to spend $15",
+      "source": "The Verge",
+      "topic": "global-tech",
+      "date": "2026-05-03"
+    },
+    "7a61964e3a50": {
+      "title": "Playing Esoteric Ebb is like rolling the dice with a great DM",
+      "source": "The Verge",
+      "topic": "global-tech",
+      "date": "2026-05-03"
+    },
+    "df750e0a516e": {
+      "title": "The things we’re building",
+      "source": "The Verge",
+      "topic": "global-tech",
+      "date": "2026-05-03"
+    },
+    "abb3cb429417": {
+      "title": "Research roundup: 6 cool science stories we almost missed",
+      "source": "Ars Technica",
+      "topic": "global-tech",
+      "date": "2026-05-03"
+    },
+    "254b6c9c941f": {
+      "title": "Infrasound waves stop kitchen fires, but can they replace sprinklers?",
+      "source": "Ars Technica",
+      "topic": "global-tech",
+      "date": "2026-05-03"
+    },
+    "1f50fcb25a54": {
+      "title": "Virgin Galactic reveals new ship, but it's running out of time and cash",
+      "source": "Ars Technica",
+      "topic": "global-tech",
+      "date": "2026-05-03"
+    },
+    "006755075f14": {
+      "title": "Apple may take \"several months\" to catch up to Mac mini and Studio demand",
+      "source": "Ars Technica",
+      "topic": "global-tech",
+      "date": "2026-05-03"
+    },
+    "4c256bdd93f2": {
+      "title": "Women sue the men who used their Instagram feeds to create AI porn influencers",
+      "source": "Ars Technica",
+      "topic": "global-tech",
+      "date": "2026-05-03"
+    },
+    "92f0929e0ac4": {
+      "title": "Rocket Report: Falcon Heavy is back; Russia's Soyuz-5 finally debuts",
+      "source": "Ars Technica",
+      "topic": "global-tech",
+      "date": "2026-05-03"
+    },
+    "6634a04ef202": {
+      "title": "There's a lot of hype about Chinese EVs—is any of it true?",
+      "source": "Ars Technica",
+      "topic": "global-tech",
+      "date": "2026-05-03"
+    },
+    "9aa3dab4b932": {
+      "title": "PeekFocus",
+      "source": "Product Hunt",
+      "topic": "global-tech",
+      "date": "2026-05-03"
+    },
+    "d85609dc5c37": {
+      "title": "Code Orange: Fail Small is complete. The result is a stronger Cloudflare network",
+      "source": "Cloudflare Blog",
+      "topic": "global-tech",
+      "date": "2026-05-03"
+    },
+    "3685226cdbe4": {
+      "title": "Introducing Dynamic Workflows: durable execution that follows the tenant",
+      "source": "Cloudflare Blog",
+      "topic": "global-tech",
+      "date": "2026-05-03"
+    },
+    "488bace36fde": {
+      "title": "Kubernetes v1.36: Pod-Level Resource Managers (Alpha)",
+      "source": "Kubernetes Blog",
+      "topic": "global-tech",
+      "date": "2026-05-03"
+    },
+    "77cc814bb6c7": {
+      "title": "Flue is a TypeScript framework for building the next generation of agents",
+      "source": "Hacker News 开发者",
+      "topic": "global-tech",
+      "date": "2026-05-03"
     }
   },
-  "updated": "2026-05-02 17:48"
+  "updated": "2026-05-03 12:43"
 }
