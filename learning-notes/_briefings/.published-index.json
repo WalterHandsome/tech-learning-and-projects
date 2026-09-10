@@ -15209,9 +15209,219 @@
       "title": "",
       "topic": "global-tech",
       "date": "2026-09-09"
+    },
+    "3ef4b2b1e6b6": {
+      "url": "https://news.ycombinator.com/item?id=49626190",
+      "title": "",
+      "topic": "global-tech",
+      "date": "2026-09-10"
+    },
+    "6904b5b08396": {
+      "url": "https://www.theverge.com",
+      "title": "",
+      "topic": "global-tech",
+      "date": "2026-09-10"
+    },
+    "e7cefb42b5dd": {
+      "url": "https://techcrunch.com/2026/09/09/apple-launches-iphone-18-pro-with-upgraded-camera",
+      "title": "",
+      "topic": "global-tech",
+      "date": "2026-09-10"
+    },
+    "94525a172b46": {
+      "url": "https://www.ithome.com",
+      "title": "",
+      "topic": "global-tech",
+      "date": "2026-09-10"
+    },
+    "b00f42c133a0": {
+      "url": "https://sspai.com",
+      "title": "",
+      "topic": "global-tech",
+      "date": "2026-09-10"
+    },
+    "60ded1b1d623": {
+      "url": "https://www.bajura.online/2026/09/i-rewrote-my-backend-in-go-in-72-hours.html",
+      "title": "",
+      "topic": "global-tech",
+      "date": "2026-09-10"
+    },
+    "c83949ff8ab6": {
+      "url": "https://github.blog",
+      "title": "",
+      "topic": "global-tech",
+      "date": "2026-09-10"
+    },
+    "9957c79ffef3": {
+      "url": "https://tailwindcss.com/blog/tailwind-is-joining-shopify",
+      "title": "",
+      "topic": "global-tech",
+      "date": "2026-09-10"
+    },
+    "cbc580718eb3": {
+      "url": "https://news.ycombinator.com/",
+      "title": "",
+      "topic": "global-tech",
+      "date": "2026-09-10"
+    },
+    "e4a99fcce7c2": {
+      "url": "https://blog.cloudflare.com/workers-module-registry-nodejs",
+      "title": "",
+      "topic": "global-tech",
+      "date": "2026-09-10"
+    },
+    "d1a241117a92": {
+      "url": "https://news.ycombinator.com/item?id=49611641",
+      "title": "",
+      "topic": "global-tech",
+      "date": "2026-09-10"
+    },
+    "14e1070544d3": {
+      "url": "https://www.infoq.cn/article/h4M6YGm3G7Zph5QEIV5R",
+      "title": "",
+      "topic": "global-tech",
+      "date": "2026-09-10"
+    },
+    "fbf292449671": {
+      "url": "https://www.infoq.cn/article/klMJ7wvdgqiYK6BmBI5u",
+      "title": "",
+      "topic": "global-tech",
+      "date": "2026-09-10"
+    },
+    "8d9334c368a2": {
+      "url": "https://kubernetes.io/blog/2026/09/09/kubernetes-v1-37-node-lifecycle-conditions",
+      "title": "",
+      "topic": "global-tech",
+      "date": "2026-09-10"
+    },
+    "e1c89211d652": {
+      "url": "https://www.anthropic.com/research/alignment-assessment-cybersecurity-incidents",
+      "title": "",
+      "topic": "ai-agent",
+      "date": "2026-09-10"
+    },
+    "69f2efaec696": {
+      "url": "https://arxiv.org/abs/2609.06792",
+      "title": "",
+      "topic": "ai-agent",
+      "date": "2026-09-10"
+    },
+    "03160cf6dc59": {
+      "url": "https://x.com/bcherny/status/2097557079762624563",
+      "title": "",
+      "topic": "ai-agent",
+      "date": "2026-09-10"
+    },
+    "ee0f9c7f632a": {
+      "url": "https://x.com/sama/status/2097404861642137851",
+      "title": "",
+      "topic": "ai-agent",
+      "date": "2026-09-10"
+    },
+    "8ae3b49cb27b": {
+      "url": "https://x.com/levie/status/2097412556893852154",
+      "title": "",
+      "topic": "ai-agent",
+      "date": "2026-09-10"
+    },
+    "9b2c8cc9a35a": {
+      "url": "https://arxiv.org/abs/2609.09134",
+      "title": "",
+      "topic": "ai-agent",
+      "date": "2026-09-10"
+    },
+    "b4f493f39b03": {
+      "url": "https://www.leiphone.com/category/zaobao/bx7l7B6CyNAubHQg.html",
+      "title": "",
+      "topic": "ai-agent",
+      "date": "2026-09-10"
+    },
+    "00bf6e858482": {
+      "url": "https://www.langchain.com/blog/connections-managed-credentials-and-per-caller-identity-for-managed-deep-agents",
+      "title": "",
+      "topic": "ai-agent",
+      "date": "2026-09-10"
+    },
+    "4e8918f9180d": {
+      "url": "https://arxiv.org/abs/2609.06835",
+      "title": "",
+      "topic": "ai-agent",
+      "date": "2026-09-10"
+    },
+    "617408dfe6e1": {
+      "url": "https://arxiv.org/abs/2609.06124",
+      "title": "",
+      "topic": "ai-agent",
+      "date": "2026-09-10"
+    },
+    "845bcb280ff0": {
+      "url": "https://www.qbitai.com/2026/09/486350.html",
+      "title": "",
+      "topic": "ai-agent",
+      "date": "2026-09-10"
+    },
+    "2eff6143e608": {
+      "url": "https://www.qbitai.com/2026/09/486288.html",
+      "title": "",
+      "topic": "china-tech",
+      "date": "2026-09-10"
+    },
+    "e641e88df68d": {
+      "url": "https://www.qbitai.com/2026/09/486436.html",
+      "title": "",
+      "topic": "china-tech",
+      "date": "2026-09-10"
+    },
+    "3d25804e56c7": {
+      "url": "https://www.ithome.com/1/000/570.htm",
+      "title": "",
+      "topic": "china-tech",
+      "date": "2026-09-10"
+    },
+    "1f20b2245799": {
+      "url": "https://www.36kr.com/newsflashes/3976998736507142",
+      "title": "",
+      "topic": "china-tech",
+      "date": "2026-09-10"
+    },
+    "765b8a36069d": {
+      "url": "https://www.leiphone.com/category/industrynews/qYzjYFvO8ZwUF0yC.html",
+      "title": "",
+      "topic": "china-tech",
+      "date": "2026-09-10"
+    },
+    "09b6eaf6626d": {
+      "url": "https://www.infoq.cn/article/B2trh9hRTevk90IxzLXx",
+      "title": "",
+      "topic": "china-tech",
+      "date": "2026-09-10"
+    },
+    "d4a8e28f16b1": {
+      "url": "https://www.infoq.cn/article/UN2Gt8aKT40ed5z52WuL",
+      "title": "",
+      "topic": "china-tech",
+      "date": "2026-09-10"
+    },
+    "b76385f0a67a": {
+      "url": "https://www.qbitai.com/2026/09/486450.html",
+      "title": "",
+      "topic": "china-tech",
+      "date": "2026-09-10"
+    },
+    "729eceef2dee": {
+      "url": "https://www.leiphone.com/category/industrynews/SjYRQou3shWq9xXG.html",
+      "title": "",
+      "topic": "china-tech",
+      "date": "2026-09-10"
+    },
+    "4452ada762d1": {
+      "url": "https://www.36kr.com/newsflashes/3976950141563143",
+      "title": "",
+      "topic": "china-tech",
+      "date": "2026-09-10"
     }
   },
-  "updated": "2026-09-09 11:13",
+  "updated": "2026-09-10 11:23",
   "file_hashes": {
     "china-tech/2026-05-20": "32f8dcbd60de16ca",
     "global-tech/2026-05-20": "c26133bf7aa7c02a",
@@ -15593,6 +15803,9 @@
     "china-tech/2026-09-08": "786ae9712cc29512",
     "china-tech/2026-09-09": "33ce5439a0e8ff74",
     "ai-agent/2026-09-09": "7e67e0353bb3d5c6",
-    "global-tech/2026-09-09": "8421496e63c17b95"
+    "global-tech/2026-09-09": "8421496e63c17b95",
+    "global-tech/2026-09-10": "ac4e5cb77775b9d4",
+    "ai-agent/2026-09-10": "cf53a78af9494783",
+    "china-tech/2026-09-10": "8b9f65bd9d413bb8"
   }
 }
